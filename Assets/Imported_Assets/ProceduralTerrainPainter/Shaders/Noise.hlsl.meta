@@ -6,5 +6,5 @@ AssetOrigin:
   productId: 188357
   packageName: Procedural Terrain Painter
   packageVersion: 1.0.5
-  assetPath: Assets/ProceduralTerrainPainter/Shaders/Noise.hlsl
+  assetPath: Assets/Imported_Assets/ProceduralTerrainPainter/Shaders/Noise.hlsl
   uploadId: 704237

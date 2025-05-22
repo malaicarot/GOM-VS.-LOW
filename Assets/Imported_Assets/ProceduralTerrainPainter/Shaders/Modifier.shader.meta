@@ -6,5 +6,5 @@ AssetOrigin:
   productId: 188357
   packageName: Procedural Terrain Painter
   packageVersion: 1.0.5
-  assetPath: Assets/ProceduralTerrainPainter/Shaders/Modifier.shader
+  assetPath: Assets/Imported_Assets/ProceduralTerrainPainter/Shaders/Modifier.shader
   uploadId: 704237

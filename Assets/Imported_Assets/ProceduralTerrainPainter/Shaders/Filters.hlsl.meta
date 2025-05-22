@@ -12,5 +12,5 @@ AssetOrigin:
   productId: 188357
   packageName: Procedural Terrain Painter
   packageVersion: 1.0.5
-  assetPath: Assets/ProceduralTerrainPainter/Shaders/Filters.hlsl
+  assetPath: Assets/Imported_Assets/ProceduralTerrainPainter/Shaders/Filters.hlsl
   uploadId: 704237

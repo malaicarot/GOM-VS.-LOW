@@ -16,5 +16,5 @@ AssetOrigin:
   productId: 188357
   packageName: Procedural Terrain Painter
   packageVersion: 1.0.5
-  assetPath: Assets/ProceduralTerrainPainter/Runtime/TerrainPainter.cs
+  assetPath: Assets/Imported_Assets/ProceduralTerrainPainter/Runtime/TerrainPainter.cs
   uploadId: 704237
