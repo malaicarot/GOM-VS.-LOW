@@ -13,17 +13,18 @@ public class JumpState : StateMachine
 
     public override void Exit()
     {
-        animator.SetBool("Jump", false);
+        // animator.SetBool("Jump", false);
 
     }
 
     public override void Update()
     {
-        if (CountdownTime.SingletonCountdown.Countdown(jumpTime))
+        player.SetState(new SprintState(this.player));
+        
+        if (!CountdownTime.SingletonCountdown.Countdown(jumpTime))
         {
-            player.SetState(new SprintState(this.player));
-        }
 
-        player.SetState(new IdleState(this.player));
+            player.SetState(new IdleState(this.player));
+        }
     }
 }

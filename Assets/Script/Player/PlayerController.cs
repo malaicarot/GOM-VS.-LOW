@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float sprintSpeed = 12;
     [SerializeField] float rotationSpeed = 5f;
     [SerializeField] float jumpHeight = 1f;
+    [SerializeField] float jumpTime = 1f;
+
     [SerializeField] float speedTransition = 0.5f;
 
     [Header("Constant")]
@@ -47,7 +49,6 @@ public class PlayerController : MonoBehaviour
         currentState.Update();
         ProcessRotation();
         CalculateVelocity();
-        // CountdownTime.SingletonCountdown.Countdown(4f);
     }
 
     public void SetState(StateMachine state)
@@ -127,20 +128,33 @@ public class PlayerController : MonoBehaviour
 
     public bool CheckSprintInput()
     {
-        if (input.sprint) return true;
-        return false;
+        return input.sprint;
     }
     public bool CheckMoveInput()
     {
-        if (input.move != Vector2.zero) return true;
-        return false;
+        return input.move != Vector2.zero;
     }
     public bool CheckJumpInput()
     {
-        if (input.jump && controller.isGrounded)
+        if (input.jump && controller.isGrounded && CountdownTime.SingletonCountdown.Countdown(jumpTime))
         {
             return true;
         }
         return false;
+    }
+
+    public bool CheckAttackInput()
+    {
+        return input.attack;
+    }
+
+    public int ComboAttackCount()
+    {
+        return input.combo;
+    }
+
+    public void SetComboCount(int count)
+    {
+        input.combo = count;
     }
 }

@@ -9,6 +9,8 @@ public class InputManagers : MonoBehaviour
     public Vector2 look;
     public bool jump;
     public bool sprint;
+    public bool attack;
+    public int combo = 0;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -18,28 +20,47 @@ public class InputManagers : MonoBehaviour
     public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM
-    void OnMove(InputValue inputValue)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        MoveInput(inputValue.Get<Vector2>());
+        MoveInput(context.ReadValue<Vector2>());
     }
 
-    void OnJump(InputValue inputValue)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        JumpInput(inputValue.isPressed);
+        JumpInput(context.performed);
     }
 
-    void OnSprint(InputValue inputValue)
+    public void OnSprint(InputAction.CallbackContext context)
     {
-        SprintInput(inputValue.isPressed);
-
+        SprintInput(context.performed);
     }
 
-    void OnLook(InputValue inputValue)
+    public void OnLook(InputAction.CallbackContext context)
     {
         if (cursorInputForLook)
         {
-            LookInput(inputValue.Get<Vector2>());
+            LookInput(context.ReadValue<Vector2>());
         }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            combo++;
+            combo = Mathf.Clamp(combo, 1, 5);
+            if (combo > 4)
+            {
+                combo = 1;
+            }
+            Debug.Log(combo);
+        }
+        AttackInput(context.performed);
+    }
+
+    public void OnHeavyAttack(InputAction.CallbackContext context)
+    {
+        // AttackInput(context.performed);
     }
 #endif
 
@@ -56,6 +77,10 @@ public class InputManagers : MonoBehaviour
     void SprintInput(bool _sprint)
     {
         sprint = _sprint;
+    }
+    void AttackInput(bool _attack)
+    {
+        attack = _attack;
     }
     void LookInput(Vector2 _look)
     {

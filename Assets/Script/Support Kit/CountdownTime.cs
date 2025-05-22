@@ -22,8 +22,6 @@ public class CountdownTime : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        Debug.Log("Countdown: " + timer);
-
     }
 
 
