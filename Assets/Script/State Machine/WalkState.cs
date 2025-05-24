@@ -6,15 +6,11 @@ public class WalkState : StateMachine
 
     public override void Enter()
     {
-        // player.ProcessMove();
-        Debug.Log("WalkState");
-
 
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit WalkState");
     }
     public override void Update()
     {

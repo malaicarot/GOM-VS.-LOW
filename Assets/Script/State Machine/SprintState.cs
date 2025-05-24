@@ -6,13 +6,10 @@ public class SprintState : StateMachine
 
     public override void Enter()
     {
-        // player.ProcessMove();
-        Debug.Log("SprintState");
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit SprintState");
     }
     public override void Update()
     {

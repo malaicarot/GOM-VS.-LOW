@@ -54,7 +54,6 @@ public class InputManagers : MonoBehaviour
             {
                 combo = 1;
             }
-            Debug.Log(combo);
         }
         AttackInput(context.performed);
     }

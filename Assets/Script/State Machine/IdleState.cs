@@ -10,14 +10,11 @@ public class IdleState : StateMachine
     public override void Enter()
     {
         lastCombatState = player.OnCombatMode();
-        // SetAnimation();
-        Debug.Log("Idle");
 
     }
 
     public override void Exit()
     {
-        Debug.Log("Exit Idle");
     }
 
     public override void Update()
