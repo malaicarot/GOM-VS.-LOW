@@ -5,9 +5,14 @@ public class IdleState : StateMachine
 {
     public IdleState(PlayerController player) : base(player)
     { }
+
+    bool lastCombatState;
     public override void Enter()
     {
+        lastCombatState = player.OnCombatMode();
+        // SetAnimation();
         Debug.Log("Idle");
+
     }
 
     public override void Exit()
@@ -17,9 +22,9 @@ public class IdleState : StateMachine
 
     public override void Update()
     {
+        SetAnimation();
+        animator.SetFloat(player.move_animation_blend_name, player.TarGetSpeed());// Tính toán lại tốc độ
 
-        animator.SetFloat(player.move_animation_blend_name, player.TarGetSpeed()); // Tính toán lại tốc độ
-        // }
         if (player.CheckMoveInput())
         {
             player.SetState(new WalkState(this.player));
@@ -33,6 +38,23 @@ public class IdleState : StateMachine
         if (player.CheckAttackInput())
         {
             player.SetState(new AttackState(this.player));
+        }
+    }
+
+    void SetAnimation()
+    {
+        if (player.OnCombatMode() != lastCombatState)
+        {
+            if (player.OnCombatMode())
+            {
+                animator.SetTrigger("Combat_Mode");
+            }
+            else
+            {
+                animator.SetTrigger("Normal_Mode");
+
+            }
+            lastCombatState = player.OnCombatMode();
         }
     }
 }

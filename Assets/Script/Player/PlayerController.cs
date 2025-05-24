@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     StateMachine currentState;
     CharacterController controller;
     public Animator animator;
-    InputManagers input;
+    public InputManagers input;
 
     [Header("Movement Settings")]
     [SerializeField] float walkSpeed = 7f;
@@ -157,4 +157,10 @@ public class PlayerController : MonoBehaviour
     {
         input.combo = count;
     }
+
+    public bool OnCombatMode()
+    {
+        return input.combat_mode;
+    }
 }
+

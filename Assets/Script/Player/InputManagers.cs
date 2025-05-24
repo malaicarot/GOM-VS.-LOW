@@ -11,6 +11,7 @@ public class InputManagers : MonoBehaviour
     public bool sprint;
     public bool attack;
     public int combo = 0;
+    public bool combat_mode;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -62,6 +63,14 @@ public class InputManagers : MonoBehaviour
     {
         // AttackInput(context.performed);
     }
+
+    public void OnEquip(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            CombatModeOn(!combat_mode);
+        }
+    }
 #endif
 
     void MoveInput(Vector2 _move)
@@ -85,6 +94,11 @@ public class InputManagers : MonoBehaviour
     void LookInput(Vector2 _look)
     {
         look = _look;
+    }
+
+    void CombatModeOn(bool _combat_mode)
+    {
+        combat_mode = _combat_mode;
     }
 
     void OnApplicationFocus(bool focus)
