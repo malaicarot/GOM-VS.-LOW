@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class IdleState : StateMachine
+public class IdleState : State_Machine
 {
     public IdleState(PlayerController player) : base(player)
     { }
@@ -17,7 +17,7 @@ public class IdleState : StateMachine
     {
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
         SetAnimation();
         animator.SetFloat(player.move_animation_blend_name, player.TarGetSpeed());// Tính toán lại tốc độ

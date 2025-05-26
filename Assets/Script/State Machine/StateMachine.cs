@@ -1,21 +1,17 @@
-
 using UnityEngine;
 
-public abstract class StateMachine
+public abstract class StateMachine : MonoBehaviour
 {
-    protected PlayerController player;
-    protected Animator animator;
-
-    public StateMachine(PlayerController _player)
+    State currentState;
+    public void SwitchState(State newState)
     {
-        this.player = _player;
-        this.animator = _player.animator;
+        currentState?.Exit();
+        currentState = newState;
+        currentState?.Enter();
     }
 
-
-    public virtual void Enter() { }
-
-    public virtual void Exit() { }
-
-    public abstract void Update();
+    void Update()
+    {
+        currentState?.Tick(Time.deltaTime);
+    }
 }

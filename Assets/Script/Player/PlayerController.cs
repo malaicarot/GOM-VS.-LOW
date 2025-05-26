@@ -4,10 +4,10 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Transform cameraFollow;
-    StateMachine currentState;
+    State_Machine currentState;
     CharacterController controller;
     public Animator animator;
-    public InputManagers input;
+    InputManagers input;
 
     [Header("Movement Settings")]
     [SerializeField] float walkSpeed = 7f;
@@ -46,12 +46,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        currentState.Update();
+        currentState.FixedUpdate();
         ProcessRotation();
+    }
+    void FixedUpdate()
+    {
         CalculateVelocity();
     }
 
-    public void SetState(StateMachine state)
+    public void SetState(State_Machine state)
     {
         if (currentState != null)
         {

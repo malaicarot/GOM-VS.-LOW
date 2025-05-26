@@ -1,28 +1,27 @@
 using UnityEngine;
 
-public class WalkState : StateMachine
+public class SprintState : State_Machine
 {
-    public WalkState(PlayerController _player) : base(_player) { }
+    public SprintState(PlayerController _player) : base(_player) { }
 
     public override void Enter()
     {
-
     }
 
     public override void Exit()
     {
     }
-    public override void Update()
+    public override void FixedUpdate()
     {
         player.ProcessMove(player.TarGetSpeed());
         animator.SetFloat(player.move_animation_blend_name, player.speed);
-        if (player.CheckSprintInput())
+        if (!player.CheckSprintInput())
         {
-            player.SetState(new SprintState(this.player));
-        }
-        if (!player.CheckMoveInput())
-        {
-            player.SetState(new IdleState(this.player));
+            if (!player.CheckMoveInput())
+            {
+                player.SetState(new IdleState(this.player));
+            }
+            player.SetState(new WalkState(this.player));
         }
         if (player.CheckJumpInput())
         {

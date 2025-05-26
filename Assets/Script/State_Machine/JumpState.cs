@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpState : StateMachine
+public class JumpState : State_Machine
 {
     public JumpState(PlayerController _player) : base(_player) { }
     float jumpTime = 2f;
@@ -15,7 +15,7 @@ public class JumpState : StateMachine
 
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
         player.SetState(new SprintState(this.player));
         

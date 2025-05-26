@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AttackState : StateMachine
+public class AttackState : State_Machine
 {
     public AttackState(PlayerController player) : base(player)
     { }
@@ -20,7 +20,7 @@ public class AttackState : StateMachine
     {
         animator.SetInteger(hashAttack, 0);
     }
-    public override void Update()
+    public override void FixedUpdate()
     {
         comboTime += Time.time;
         if (comboTime > maxComboTime)
