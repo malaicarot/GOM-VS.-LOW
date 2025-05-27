@@ -98,6 +98,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c9b9104-d95e-4338-a4e4-9ef2e13f41d0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -373,6 +382,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f97a98db-f01d-4862-b17b-67c30c76a22c"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Target"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -968,6 +988,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_HeavyAttack = m_Player.FindAction("HeavyAttack", throwIfNotFound: true);
         m_Player_Equip = m_Player.FindAction("Equip", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+        m_Player_Target = m_Player.FindAction("Target", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1055,6 +1076,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_HeavyAttack;
     private readonly InputAction m_Player_Equip;
     private readonly InputAction m_Player_Dodge;
+    private readonly InputAction m_Player_Target;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -1067,6 +1089,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @HeavyAttack => m_Wrapper.m_Player_HeavyAttack;
         public InputAction @Equip => m_Wrapper.m_Player_Equip;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+        public InputAction @Target => m_Wrapper.m_Player_Target;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1100,6 +1123,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
+            @Target.started += instance.OnTarget;
+            @Target.performed += instance.OnTarget;
+            @Target.canceled += instance.OnTarget;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1128,6 +1154,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
+            @Target.started -= instance.OnTarget;
+            @Target.performed -= instance.OnTarget;
+            @Target.canceled -= instance.OnTarget;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1318,6 +1347,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnEquip(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnTarget(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

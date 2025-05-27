@@ -1,14 +1,18 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerFreeLookState : PlayerBaseState
 {
 
     readonly int MovementSpeedHash = Animator.StringToHash("MovementSpeed");
+    readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     const float AnimationDamping = 0.1f;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
+        stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        stateMachine.InputReader.TargetEvent += OnTarget;
 
     }
     public override void Tick(float deltaTime)
@@ -26,6 +30,11 @@ public class PlayerFreeLookState : PlayerBaseState
         RotationByFaceDirection(direction, deltaTime);
     }
 
+    public override void Exit()
+    {
+        stateMachine.InputReader.TargetEvent -= OnTarget;
+    }
+
     void RotationByFaceDirection(Vector3 direction, float deltaTime)
     {
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(direction), stateMachine.RotationDamping * deltaTime);
@@ -41,9 +50,9 @@ public class PlayerFreeLookState : PlayerBaseState
         right.Normalize();
         return forward * stateMachine.InputReader.Movement.y + right * stateMachine.InputReader.Movement.x;
     }
-
-    public override void Exit()
+    void OnTarget()
     {
-        Debug.Log("Exit");
+        if (!stateMachine.Targeter.SelectedTarget()) { return; }
+        stateMachine.SwitchState(new PlayerTargetState(stateMachine));
     }
 }

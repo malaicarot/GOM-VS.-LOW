@@ -8,8 +8,13 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public Vector2 Movement { get; private set; }
     public event Action JumpEvent;
     public event Action DodgeEvent;
-    public Vector2 Look { get; private set; }
+    public event Action TargetEvent;
+    public event Action CancelTargetEvent;
 
+
+    public Vector2 Look { get; private set; }
+    // public bool Target { get; private set; }
+    bool isTarget = false;
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
     InputControls controls;
@@ -69,6 +74,22 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     {
     }
 
+    public void OnTarget(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+        isTarget = !isTarget;
+        if (isTarget)
+        {
+            TargetEvent?.Invoke();
+        }
+        else
+        {
+            CancelTargetEvent?.Invoke();
+        }
+    }
     void OnApplicationFocus(bool forcus)
     {
         SetCursorState(cursorLocked);
@@ -78,5 +99,4 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     {
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
     }
-
 }
