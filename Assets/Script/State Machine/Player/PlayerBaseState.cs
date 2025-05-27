@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public abstract class PlayerBaseState : State
 {
@@ -6,5 +7,17 @@ public abstract class PlayerBaseState : State
     public PlayerBaseState(PlayerStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+    }
+
+    protected void Move(Vector3 motion, float deltaTime)
+    {
+        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
+    }
+
+    protected void FaceTarget()
+    {
+        Vector3 direction = stateMachine.Targeter.currentTarget.transform.position - stateMachine.transform.position;
+        direction.y = 0;
+        stateMachine.transform.rotation = Quaternion.LookRotation(direction);
     }
 }

@@ -13,8 +13,13 @@ public class PlayerTargetState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Debug.Log(stateMachine.Targeter.currentTarget.name);
-
+        if (stateMachine.Targeter.currentTarget == null)
+        {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            return;
+        }
+        FaceTarget();
+        Move(CalculateDirection() * stateMachine.TargetMoveSpeed, deltaTime);
     }
     public override void Exit()
     {
@@ -26,5 +31,14 @@ public class PlayerTargetState : PlayerBaseState
     {
         stateMachine.Targeter.CancelTarget();
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+    }
+
+    Vector3 CalculateDirection()
+    {
+        Vector3 targetMovement = new Vector3();
+        targetMovement += stateMachine.transform.right * stateMachine.InputReader.Movement.x;
+        targetMovement += stateMachine.transform.forward * stateMachine.InputReader.Movement.y;
+
+        return targetMovement;
     }
 }

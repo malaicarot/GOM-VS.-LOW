@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3763211940669811999}
   - component: {fileID: 29047699337472688}
   - component: {fileID: 8081329094475311088}
-  - component: {fileID: 2049668963277394651}
   - component: {fileID: 4217218188618888286}
+  - component: {fileID: 2505635981897903755}
   m_Layer: 0
   m_Name: TargetingCamera
   m_TagString: Untagged
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340103093034404524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32728952, y: -0.10148197, z: 0.035379477, w: 0.93879247}
-  m_LocalPosition: {x: 0.7000122, y: 2.5999985, z: -3.2000122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.5700073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -92,41 +92,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackerSettings:
-    BindingMode: 0
-    PositionDamping: {x: 0.5, y: 0.5, z: 0.5}
+    BindingMode: 4
+    PositionDamping: {x: 0.2, y: 0.2, z: 0.2}
     AngularDampingMode: 0
     RotationDamping: {x: 0.5, y: 0.5, z: 0.5}
     QuaternionDamping: 1
-  FollowOffset: {x: 0.7, y: 2.6, z: -3.2}
---- !u!114 &2049668963277394651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340103093034404524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 0
-      Size: {x: 0.2, y: 0.2}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 0
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.3, y: 0.3}
-  Lookahead:
-    Enabled: 1
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
+  FollowOffset: {x: 0, y: 0, z: 4.57}
 --- !u!114 &4217218188618888286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +105,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340103093034404524}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eb4843bae7d24943842ea23130dcd55, type: 3}
   m_Name: 
@@ -148,6 +119,19 @@ MonoBehaviour:
   FovRange: {x: 1, y: 100}
   DollyRange: {x: -100, y: 100}
   OrthoSizeRange: {x: 1, y: 1000}
+--- !u!114 &2505635981897903755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340103093034404524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afa82ae3200b82408d605c3dbdd1e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damping: 0.3
 --- !u!1 &1503312838713030045
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +193,7 @@ MonoBehaviour:
       CustomLookAtTarget: 0
   DefaultBlend:
     Style: 1
-    Time: 0.5
+    Time: 0.7
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -318,8 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98c0f5b99d3c7f44991ef34fb82c891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets: []
-  currentTarget: {fileID: 0}
+  cinemachineTargetGroup: {fileID: 4041991904369410749}
+  targetRadius: 2
+  targetWeight: 0.25
 --- !u!135 &7747076316497454275
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -379,6 +364,7 @@ GameObject:
   - component: {fileID: 6589989521398559296}
   - component: {fileID: 6021395826758367435}
   - component: {fileID: 8122867859573884653}
+  - component: {fileID: 5511087972398891737}
   - component: {fileID: 7762902324441488572}
   - component: {fileID: 5776690426890126537}
   m_Layer: 6
@@ -423,7 +409,9 @@ MonoBehaviour:
   <Controller>k__BackingField: {fileID: 5776690426890126537}
   <Animator>k__BackingField: {fileID: 7762902324441488572}
   <Targeter>k__BackingField: {fileID: 6059768069161550300}
-  <FreeLookMovement>k__BackingField: 5
+  <ForceReceiver>k__BackingField: {fileID: 5511087972398891737}
+  <FreeLookMoveSpeed>k__BackingField: 10
+  <TargetMoveSpeed>k__BackingField: 7
   <RotationDamping>k__BackingField: 10
 --- !u!114 &8122867859573884653
 MonoBehaviour:
@@ -439,6 +427,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorLocked: 1
   cursorInputForLook: 1
+--- !u!114 &5511087972398891737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962102434391316707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d649a12189871846a838ce16759197b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 5776690426890126537}
 --- !u!95 &7762902324441488572
 Animator:
   serializedVersion: 7
@@ -512,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 6560354687323652708}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1.3154472e-10, z: 6.2601657e-10, w: 1}
-  m_LocalPosition: {x: 0.000000059604645, y: 0.00000023841858, z: 4.182115}
+  m_LocalPosition: {x: 0, y: 0, z: -4.5700073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -536,9 +537,6 @@ MonoBehaviour:
   Targets:
   - Object: {fileID: 8467494535887779963}
     Weight: 0.2
-    Radius: 2
-  - Object: {fileID: 0}
-    Weight: 3
     Radius: 2
   m_LegacyTargets: []
 --- !u!1 &6872475308664639375
