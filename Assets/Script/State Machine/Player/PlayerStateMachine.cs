@@ -7,6 +7,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+    [field: SerializeField] public Attack[] Attacks { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }

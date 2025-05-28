@@ -6,15 +6,15 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 {
     public Vector2 Movement { get; private set; }
+    public bool IsAttack { get; private set; }
     public event Action JumpEvent;
     public event Action DodgeEvent;
     public event Action SrpintEvent;
     public event Action TargetEvent;
     public event Action CancelTargetEvent;
 
-
     public Vector2 Look { get; private set; }
-    // public bool Target { get; private set; }
+
     bool isTarget = false;
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
@@ -36,6 +36,14 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            IsAttack = true;
+        }
+        if (context.canceled)
+        {
+            IsAttack = false;
+        }
     }
 
     public void OnDodge(InputAction.CallbackContext context)
