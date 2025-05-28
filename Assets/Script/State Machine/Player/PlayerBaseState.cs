@@ -13,7 +13,6 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
-
     protected void FaceTarget()
     {
         Vector3 direction = stateMachine.Targeter.currentTarget.transform.position - stateMachine.transform.position;

@@ -8,6 +8,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public Vector2 Movement { get; private set; }
     public event Action JumpEvent;
     public event Action DodgeEvent;
+    public event Action SrpintEvent;
     public event Action TargetEvent;
     public event Action CancelTargetEvent;
 
@@ -72,6 +73,8 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (!context.performed) { Debug.Log("Srpint"); return; }
+        SrpintEvent?.Invoke();
     }
 
     public void OnTarget(InputAction.CallbackContext context)

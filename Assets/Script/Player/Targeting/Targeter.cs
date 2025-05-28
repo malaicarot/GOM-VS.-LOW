@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -9,7 +10,13 @@ public class Targeter : MonoBehaviour
     [SerializeField] float targetRadius = 2f;
     [SerializeField] float targetWeight = 0.25f;
     List<Target> targets = new List<Target>();
-    public Target currentTarget{ get; private set; }
+    public Target currentTarget { get; private set; }
+    Camera mainCamera;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+    }
 
 
     void OnTriggerEnter(Collider other)
@@ -29,7 +36,29 @@ public class Targeter : MonoBehaviour
     {
         if (targets.Count <= 0) { return false; }
 
-        currentTarget = targets[0];
+        Target closetsTarget = null;
+        float closetsDistance = Mathf.Infinity;
+
+
+        foreach (Target target in targets)
+        {
+            Vector2 viewPosition = mainCamera.WorldToViewportPoint(target.transform.position);
+            if (viewPosition.x < 0 || viewPosition.x > 1 || viewPosition.y < 0 || viewPosition.y > 1)
+            {
+                continue;
+            }
+            Vector2 toCenter = viewPosition - new Vector2(0.5f, 0.5f);
+
+            if (toCenter.sqrMagnitude < closetsDistance)
+            {
+                closetsTarget = target;
+                closetsDistance = toCenter.sqrMagnitude;
+            }
+            
+        }
+        if(closetsTarget == null){ return false; }
+
+        currentTarget = closetsTarget;
         cinemachineTargetGroup.AddMember(currentTarget.transform, targetWeight, targetRadius);
         return true;
     }
