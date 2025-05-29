@@ -11,7 +11,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, stateMachine.CrossFadeDuration);
         stateMachine.InputReader.TargetEvent += OnTarget;
     }
     public override void Tick(float deltaTime)
