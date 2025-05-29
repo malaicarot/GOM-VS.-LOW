@@ -3,8 +3,12 @@ using UnityEngine;
 public class ForceReceiver : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
+    [SerializeField] float drag = 0.3f;
+
     float verticalVelocity;
-    public Vector3 Movement => Vector3.up * verticalVelocity;
+    Vector3 impact;
+    Vector3 dampingVelocity;
+    public Vector3 Movement => impact + Vector3.up * verticalVelocity;
 
 
     void Update()
@@ -18,5 +22,11 @@ public class ForceReceiver : MonoBehaviour
         {
             verticalVelocity += Physics.gravity.y * Time.deltaTime;
         }
+        impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
+    }
+
+    public void AddForce(Vector3 force)
+    {
+        impact += force;
     }
 }

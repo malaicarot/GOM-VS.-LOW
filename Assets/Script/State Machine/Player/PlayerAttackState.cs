@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerAttackState : PlayerBaseState
 {
     float previousFrameTime;
+    bool alreadyApplyForce;
     Attack attack;
     public PlayerAttackState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
     {
@@ -20,8 +21,12 @@ public class PlayerAttackState : PlayerBaseState
         FaceTarget();
         float normalizedTime = GetNormalizedTime();
 
-        if (normalizedTime > previousFrameTime && normalizedTime < 1f)
+        if (normalizedTime >= previousFrameTime && normalizedTime < 1f)
         {
+            if (normalizedTime >= attack.ForceTime)
+            {
+                TryApplyForce();
+            }
             if (stateMachine.InputReader.IsAttack)
             {
 
@@ -30,12 +35,23 @@ public class PlayerAttackState : PlayerBaseState
         }
         else
         {
-            //Back to Locomotion
+            if (stateMachine.Targeter.currentTarget != null)
+            {
+                stateMachine.SwitchState(new PlayerTargetState(stateMachine));
+            }
+            else
+            {
+                stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+
+            }
         }
 
-
-
         previousFrameTime = normalizedTime;
+    }
+
+    public override void Exit()
+    {
+
     }
 
     void TryCombo(float normalizedTime)
@@ -49,11 +65,6 @@ public class PlayerAttackState : PlayerBaseState
                 attack.AttackIndex
             )
         );
-    }
-
-    public override void Exit()
-    {
-
     }
 
     float GetNormalizedTime()
@@ -74,5 +85,13 @@ public class PlayerAttackState : PlayerBaseState
         {
             return 0f;
         }
+    }
+
+    void TryApplyForce()
+    {
+        if (alreadyApplyForce) { return; }
+
+        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * attack.Force);
+        alreadyApplyForce = true;
     }
 }

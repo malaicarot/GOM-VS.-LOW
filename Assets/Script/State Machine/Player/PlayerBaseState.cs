@@ -11,13 +11,27 @@ public abstract class PlayerBaseState : State
 
     protected void Move(Vector3 motion, float deltaTime)
     {
-        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
+        float targetSpeed;
+
+        if (IsSprint())
+        {
+            targetSpeed = stateMachine.FreeLookMoveSpeed * stateMachine.MultiplyCoefficientSpeed;
+        }
+        else
+        {
+            targetSpeed = stateMachine.FreeLookMoveSpeed;
+        }
+
+        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * targetSpeed * deltaTime);
+    }
+    protected bool IsSprint()
+    {
+        return stateMachine.InputReader.IsSprint;
     }
 
     protected void Move(float deltaTime)
     {
-        stateMachine.Controller.Move(Vector3.zero * deltaTime);
-
+        stateMachine.Controller.Move(Vector3.zero + stateMachine.ForceReceiver.Movement * deltaTime);
     }
     protected void FaceTarget()
     {

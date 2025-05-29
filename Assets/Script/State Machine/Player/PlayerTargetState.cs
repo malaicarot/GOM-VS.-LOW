@@ -32,7 +32,7 @@ public class PlayerTargetState : PlayerBaseState
 
 
         FaceTarget();
-        Move(CalculateDirection() * stateMachine.TargetMoveSpeed, deltaTime);
+        Move(CalculateDirection(), deltaTime);
     }
     public override void Exit()
     {
@@ -56,6 +56,7 @@ public class PlayerTargetState : PlayerBaseState
         else
         {
             float value = direction.x > 0 ? 1 : -1;
+            if(IsSprint()) { value *= 2; }
             stateMachine.Animator.SetFloat(TargetingRightHash, value, AnimationDamping, deltatime);
 
         }
@@ -68,6 +69,7 @@ public class PlayerTargetState : PlayerBaseState
         else
         {
             float value = direction.y > 0 ? 1 : -1;
+            if(IsSprint()) { value *= 2; }
             stateMachine.Animator.SetFloat(TargetingForwardHash, value, AnimationDamping, deltatime);
         }
     }
