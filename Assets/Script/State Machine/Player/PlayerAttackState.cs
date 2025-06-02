@@ -16,14 +16,14 @@ public class PlayerAttackState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
         foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
         {
-            attackDamage.SetAttack(attack.AttackDamage);
+            attackDamage.SetAttack(attack.AttackDamage, attack.AttackKnockback);
         }
     }
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
         FaceTarget();
-        float normalizedTime = GetNormalizedTime();
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator);
 
         if (normalizedTime >= previousFrameTime && normalizedTime < 1f)
         {
@@ -33,7 +33,6 @@ public class PlayerAttackState : PlayerBaseState
             }
             if (stateMachine.InputReader.IsAttack)
             {
-
                 TryCombo(normalizedTime);
             }
         }
@@ -69,26 +68,6 @@ public class PlayerAttackState : PlayerBaseState
                 attack.AttackIndex
             )
         );
-    }
-
-    float GetNormalizedTime()
-    {
-        AnimatorStateInfo currentState = stateMachine.Animator.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextInfo = stateMachine.Animator.GetNextAnimatorStateInfo(0);
-
-
-        if (stateMachine.Animator.IsInTransition(0) && nextInfo.IsTag("Attack"))
-        {
-            return nextInfo.normalizedTime;
-        }
-        else if (!stateMachine.Animator.IsInTransition(0) && currentState.IsTag("Attack"))
-        {
-            return currentState.normalizedTime;
-        }
-        else
-        {
-            return 0f;
-        }
     }
 
     void TryApplyForce()

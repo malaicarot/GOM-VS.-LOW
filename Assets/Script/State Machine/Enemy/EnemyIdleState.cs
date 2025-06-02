@@ -25,11 +25,13 @@ public class EnemyIdleState : EnemyBaseState
             enemyState.SwitchState(new EnemyChasingState(enemyState));
             return;
         }
+
+        FaceTarget();
         enemyState.Animator.SetFloat(EnemySpeedHash, 0, AnimationDamping, deltaTime);
     }
 
     public override void Exit()
     {
-    }
 
+    }
 }

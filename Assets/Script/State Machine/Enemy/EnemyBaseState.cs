@@ -4,6 +4,7 @@ public abstract class EnemyBaseState : State
 {
     protected EnemyStateMachine enemyState;
     float ditanceSqr;
+    float atkRangeSqr;
     Vector3 direction;
 
 
@@ -15,7 +16,13 @@ public abstract class EnemyBaseState : State
     protected bool IsInChanseRange()
     {
         ditanceSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
-        return ditanceSqr <= enemyState.PlayerChasingRange * enemyState.PlayerChasingRange;
+        return ditanceSqr <= enemyState.EnemyChasingRange * enemyState.EnemyChasingRange;
+    }
+
+    protected bool IsInAttackRange()
+    {
+        atkRangeSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
+        return atkRangeSqr <= enemyState.EnemyAttackRange * enemyState.EnemyAttackRange;
     }
 
     protected void Move(float deltaTime)
@@ -30,7 +37,9 @@ public abstract class EnemyBaseState : State
 
     protected void FaceTarget()
     {
+        if (enemyState.Player == null) { return; }
         direction = enemyState.Player.transform.position - enemyState.transform.position;
+        direction.y = 0;
         enemyState.transform.rotation = Quaternion.LookRotation(direction);
     }
 }

@@ -20,9 +20,14 @@ public class EnemyChasingState : EnemyBaseState
             enemyState.SwitchState(new EnemyIdleState(enemyState));
             return;
         }
+        if (IsInAttackRange())
+        {
+            enemyState.SwitchState(new EnemyAttackState(enemyState));
+            return;
+        }
+        FaceTarget();
         MoveToPlayer(deltaTime);
         enemyState.Animator.SetFloat(EnemySpeedHash, 1, AnimationDamping, deltaTime);
-
     }
     public override void Exit()
     {
@@ -32,9 +37,11 @@ public class EnemyChasingState : EnemyBaseState
 
     void MoveToPlayer(float deltaTime)
     {
-        enemyState.NavMeshAgent.destination = enemyState.Player.transform.position; // vị trí mà enemy hướng tớitới
-        Move(enemyState.NavMeshAgent.desiredVelocity.normalized * enemyState.EnemySpeed, deltaTime); // desiredVelocity => thể hiện hướng đi tiếp theo
+        if (enemyState.NavMeshAgent.isOnNavMesh)
+        {
+            enemyState.NavMeshAgent.destination = enemyState.Player.transform.position; // vị trí mà enemy hướng tớitới
+            Move(enemyState.NavMeshAgent.desiredVelocity.normalized * enemyState.EnemySpeed, deltaTime); // desiredVelocity => thể hiện hướng đi tiếp theo
+        }
         enemyState.NavMeshAgent.velocity = enemyState.EnemyController.velocity;
     }
-
 }

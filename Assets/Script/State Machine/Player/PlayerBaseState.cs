@@ -35,9 +35,21 @@ public abstract class PlayerBaseState : State
     }
     protected void FaceTarget()
     {
-        if(stateMachine.Targeter.currentTarget == null) { return; }
+        if (stateMachine.Targeter.currentTarget == null) { return; }
         Vector3 direction = stateMachine.Targeter.currentTarget.transform.position - stateMachine.transform.position;
         direction.y = 0;
         stateMachine.transform.rotation = Quaternion.LookRotation(direction);
+    }
+
+    protected void ReturnToLocomotion()
+    {
+        if (stateMachine.Targeter.currentTarget != null)
+        {
+            stateMachine.SwitchState(new PlayerTargetState(stateMachine));
+        }
+        else
+        {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+        }
     }
 }
