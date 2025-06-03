@@ -16,7 +16,7 @@ public class ForceReceiver : MonoBehaviour
 
     void Update()
     {
-        if (verticalVelocity <= 0 && controller.isGrounded)
+        if (verticalVelocity < 0f && controller.isGrounded)
         {
             verticalVelocity = Physics.gravity.y * Time.deltaTime;
         }
@@ -43,5 +43,10 @@ public class ForceReceiver : MonoBehaviour
         {
             agent.enabled = false;
         }
+    }
+
+    public void AddJumpForce(float jumpForce)
+    {
+        verticalVelocity += jumpForce;
     }
 }

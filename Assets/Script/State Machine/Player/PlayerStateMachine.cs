@@ -12,10 +12,15 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Attack[] Attacks { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
-    [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
+    [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
+    [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
+    [field: SerializeField] public float DodgeDuration { get; private set; }
+    [field: SerializeField] public float DodgeLength { get; private set; }
+    [field: SerializeField] public float DodgeTimeCooldown { get; private set; }
+    public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
     public Transform CameraTransfrom { get; private set; }
     void Start()
     {
@@ -32,15 +37,24 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
-
     }
 
     void HandleAttack()
     {
         SwitchState(new PlayerImpactState(this));
     }
-        void HandleDeadState()
+    void HandleDeadState()
     {
         SwitchState(new PlayerDeadState(this));
+    }
+
+    public void OnJump()
+    {
+        SwitchState(new PlayerJumpState(this));
+    }
+
+    public void SetDodgeTime(float dodgeTime)
+    {
+        PreviousDodgeTime = dodgeTime;
     }
 }

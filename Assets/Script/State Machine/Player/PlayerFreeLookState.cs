@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, stateMachine.CrossFadeDuration);
         stateMachine.InputReader.TargetEvent += OnTarget;
+        stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
     }
     public override void Tick(float deltaTime)
     {
@@ -23,7 +25,7 @@ public class PlayerFreeLookState : PlayerBaseState
         }
 
         Vector3 direction = CalculateDirection();
-        Move(direction, deltaTime);
+        Move(direction, deltaTime, false);
 
 
         if (stateMachine.InputReader.Movement == Vector2.zero)
@@ -37,8 +39,8 @@ public class PlayerFreeLookState : PlayerBaseState
         }
         else
         {
-            
-        stateMachine.Animator.SetFloat(MovementSpeedHash, 1, AnimationDamping, deltaTime);
+
+            stateMachine.Animator.SetFloat(MovementSpeedHash, 1, AnimationDamping, deltaTime);
         }
 
         RotationByFaceDirection(direction, deltaTime);
@@ -47,6 +49,8 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
+        stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
+
     }
 
     void RotationByFaceDirection(Vector3 direction, float deltaTime)

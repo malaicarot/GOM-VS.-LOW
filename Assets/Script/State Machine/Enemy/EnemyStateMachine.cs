@@ -20,14 +20,13 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float EnemyAttackKnockback { get; private set; }
 
 
-    public GameObject Player { get; private set; }
+    public Health Player { get; private set; }
 
 
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(Player);
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         NavMeshAgent.updatePosition = false;
         NavMeshAgent.updateRotation = false;
         SwitchState(new EnemyIdleState(this));

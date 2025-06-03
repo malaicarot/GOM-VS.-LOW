@@ -9,13 +9,15 @@ public abstract class PlayerBaseState : State
         this.stateMachine = stateMachine;
     }
 
-    protected void Move(Vector3 motion, float deltaTime)
+    protected void Move(Vector3 motion, float deltaTime, bool isJump)
     {
         float targetSpeed;
 
         if (IsSprint())
         {
             targetSpeed = stateMachine.FreeLookMoveSpeed * stateMachine.MultiplyCoefficientSpeed;
+        } else if (isJump) {
+            targetSpeed = 0;
         }
         else
         {

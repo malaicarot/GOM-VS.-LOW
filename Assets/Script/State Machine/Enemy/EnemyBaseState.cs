@@ -15,6 +15,7 @@ public abstract class EnemyBaseState : State
 
     protected bool IsInChanseRange()
     {
+        if(enemyState.Player.isDead){ return false; }
         ditanceSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
         return ditanceSqr <= enemyState.EnemyChasingRange * enemyState.EnemyChasingRange;
     }

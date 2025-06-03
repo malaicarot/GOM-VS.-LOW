@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3763211940669811999}
   - component: {fileID: 29047699337472688}
-  - component: {fileID: 8081329094475311088}
   - component: {fileID: 2505635981897903755}
   - component: {fileID: 4217218188618888286}
+  - component: {fileID: 6378810918461522425}
   m_Layer: 0
   m_Name: TargetingCamera
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1340103093034404524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.449997, z: 4.5700073}
+  m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60,7 +60,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 8969657442680883006}
     CustomLookAtTarget: 1
   Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -79,25 +79,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &8081329094475311088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340103093034404524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackerSettings:
-    BindingMode: 4
-    PositionDamping: {x: 0.2, y: 0.2, z: 0.2}
-    AngularDampingMode: 0
-    RotationDamping: {x: 0.5, y: 0.5, z: 0.5}
-    QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 1.45, z: 4.57}
 --- !u!114 &2505635981897903755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,14 +105,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FramingMode: 2
-  FramingSize: 0.8
-  CenterOffset: {x: 0, y: -0.5}
-  Damping: 2
+  FramingSize: 2
+  CenterOffset: {x: 0, y: -1.93}
+  Damping: 0.1
   SizeAdjustment: 2
   LateralAdjustment: 0
   FovRange: {x: 1, y: 100}
   DollyRange: {x: -100, y: 100}
   OrthoSizeRange: {x: 1, y: 1000}
+--- !u!114 &6378810918461522425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340103093034404524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraDistance: 10
+  DeadZoneDepth: 0
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 1
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 0
+  TargetOffset: {x: 0, y: 1, z: 5}
+  Damping: {x: 0.2, y: 0.2, z: 0.2}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1 &1503312838713030045
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 0
-    m_Value: 0
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -244,6 +256,12 @@ MonoBehaviour:
   - Hash: -1458883149
     HashOfParent: 756556552
   - Hash: 930062352
+    HashOfParent: 756556552
+  - Hash: -1063883918
+    HashOfParent: 756556552
+  - Hash: -1752896643
+    HashOfParent: 756556552
+  - Hash: -946407516
     HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
@@ -389,9 +407,10 @@ GameObject:
   - component: {fileID: 5511087972398891737}
   - component: {fileID: 9184651822358037881}
   - component: {fileID: 4172962999781835033}
+  - component: {fileID: 5474813598975987176}
   - component: {fileID: 7762902324441488572}
   - component: {fileID: 5776690426890126537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -435,7 +454,7 @@ MonoBehaviour:
   <Targeter>k__BackingField: {fileID: 6059768069161550300}
   <ForceReceiver>k__BackingField: {fileID: 5511087972398891737}
   <Health>k__BackingField: {fileID: 4172962999781835033}
-  <Ragdoll>k__BackingField: {fileID: 0}
+  <Ragdoll>k__BackingField: {fileID: 5474813598975987176}
   <Attacks>k__BackingField:
   - <AttackAnimationName>k__BackingField: Attack_1
     <AnimationDuration>k__BackingField: 0.1
@@ -473,10 +492,14 @@ MonoBehaviour:
   - {fileID: 667766968305350065}
   - {fileID: 4487511072025727147}
   <FreeLookMoveSpeed>k__BackingField: 6
-  <MultiplyCoefficientSpeed>k__BackingField: 2
   <TargetMoveSpeed>k__BackingField: 7
+  <MultiplyCoefficientSpeed>k__BackingField: 2
+  <JumpForce>k__BackingField: 2
   <RotationDamping>k__BackingField: 10
   <CrossFadeDuration>k__BackingField: 0.1
+  <DodgeDuration>k__BackingField: 0.1
+  <DodgeLength>k__BackingField: 1
+  <DodgeTimeCooldown>k__BackingField: 1
 --- !u!114 &8122867859573884653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +558,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &5474813598975987176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962102434391316707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eea4050f2aec214aa14f39dbc3ee9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7762902324441488572}
+  controller: {fileID: 5776690426890126537}
 --- !u!95 &7762902324441488572
 Animator:
   serializedVersion: 7
@@ -608,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 6560354687323652708}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1.3154472e-10, z: 6.2601657e-10, w: 1}
-  m_LocalPosition: {x: 0, y: -1.449997, z: -4.5700073}
+  m_LocalPosition: {x: 0, y: -1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -631,7 +668,7 @@ MonoBehaviour:
   UpdateMethod: 2
   Targets:
   - Object: {fileID: 8467494535887779963}
-    Weight: 0.2
+    Weight: 0.25
     Radius: 2
   m_LegacyTargets: []
 --- !u!1 &6872475308664639375
@@ -664,8 +701,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6872475308664639375}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19788016, y: 0.5793248, z: -0.14757206, w: 0.7768197}
-  m_LocalPosition: {x: -2.8299255, y: 3.1985931, z: -0.84210205}
+  m_LocalRotation: {x: -0.1326279, y: -0.000000014240489, z: -0.0000000019055195, w: 0.99116594}
+  m_LocalPosition: {x: 0, y: 0.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -748,7 +785,7 @@ MonoBehaviour:
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: 73.428604
+    Value: 0
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -758,7 +795,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: 42.426903
+    Value: 0
     Center: 17.5
     Range: {x: -10, y: 45}
     Wrap: 0

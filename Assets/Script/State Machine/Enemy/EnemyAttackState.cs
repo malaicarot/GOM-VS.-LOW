@@ -19,6 +19,7 @@ public class EnemyAttackState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
+        FaceTarget();
         if (GetNormalizedTime(enemyState.Animator) >= 1f)
         {
             enemyState.SwitchState(new EnemyChasingState(enemyState));
