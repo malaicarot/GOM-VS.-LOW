@@ -40,9 +40,11 @@ public class PlayerTargetState : PlayerBaseState
 
         UpdateAnimation(deltaTime);
 
-
+    float targetSpeed = stateMachine.InputReader.IsSprint ?
+        stateMachine.TargetMoveSpeed * stateMachine.MultiplyCoefficientSpeed :
+        stateMachine.TargetMoveSpeed;
         FaceTarget();
-        Move(CalculateDirection(deltaTime), deltaTime, false);
+        Move(CalculateDirection(deltaTime) * targetSpeed, deltaTime);
     }
     public override void Exit()
     {
@@ -107,7 +109,6 @@ public class PlayerTargetState : PlayerBaseState
         }
         else
         {
-
             targetMovement += stateMachine.transform.right * stateMachine.InputReader.Movement.x;
             targetMovement += stateMachine.transform.forward * stateMachine.InputReader.Movement.y;
         }

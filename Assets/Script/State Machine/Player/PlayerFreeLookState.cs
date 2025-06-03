@@ -25,8 +25,10 @@ public class PlayerFreeLookState : PlayerBaseState
         }
 
         Vector3 direction = CalculateDirection();
-        Move(direction, deltaTime, false);
-
+        float targetSpeed = stateMachine.InputReader.IsSprint ?
+        stateMachine.FreeLookMoveSpeed * stateMachine.MultiplyCoefficientSpeed :
+        stateMachine.FreeLookMoveSpeed;
+        Move(direction * targetSpeed, deltaTime);
 
         if (stateMachine.InputReader.Movement == Vector2.zero)
         {
@@ -57,18 +59,6 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(direction), stateMachine.RotationDamping * deltaTime);
     }
-
-    Vector3 CalculateDirection()
-    {
-        Vector3 forward = stateMachine.CameraTransfrom.forward;
-        Vector3 right = stateMachine.CameraTransfrom.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-        return forward * stateMachine.InputReader.Movement.y + right * stateMachine.InputReader.Movement.x;
-    }
-
 
 
     void OnTarget()

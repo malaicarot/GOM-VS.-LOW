@@ -13,6 +13,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
+    [field: SerializeField] public float JumpSpeed { get; private set; }
+    [field: SerializeField] public float JumpSpeedWhileRun { get; private set; }
     [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
@@ -26,6 +28,7 @@ public class PlayerStateMachine : StateMachine
     {
         CameraTransfrom = Camera.main.transform;
         SwitchState(new PlayerFreeLookState(this));
+
     }
 
     void OnEnable()

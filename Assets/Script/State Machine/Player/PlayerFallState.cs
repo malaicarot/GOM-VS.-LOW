@@ -18,7 +18,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Move(momentum, deltaTime, false);
+        Move(CalculateDirection() + momentum, deltaTime);
         if (stateMachine.Controller.isGrounded)
         {
             ReturnToLocomotion();

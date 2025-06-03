@@ -9,22 +9,9 @@ public abstract class PlayerBaseState : State
         this.stateMachine = stateMachine;
     }
 
-    protected void Move(Vector3 motion, float deltaTime, bool isJump)
+    protected void Move(Vector3 motion, float deltaTime)
     {
-        float targetSpeed;
-
-        if (IsSprint())
-        {
-            targetSpeed = stateMachine.FreeLookMoveSpeed * stateMachine.MultiplyCoefficientSpeed;
-        } else if (isJump) {
-            targetSpeed = 0;
-        }
-        else
-        {
-            targetSpeed = stateMachine.FreeLookMoveSpeed;
-        }
-
-        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * targetSpeed * deltaTime);
+        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
     protected bool IsSprint()
     {
@@ -53,5 +40,16 @@ public abstract class PlayerBaseState : State
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
         }
+    }
+
+    protected Vector3 CalculateDirection()
+    {
+        Vector3 forward = stateMachine.CameraTransfrom.forward;
+        Vector3 right = stateMachine.CameraTransfrom.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+        return forward * stateMachine.InputReader.Movement.y + right * stateMachine.InputReader.Movement.x;
     }
 }
