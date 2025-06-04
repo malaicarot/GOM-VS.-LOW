@@ -13,15 +13,12 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
-    [field: SerializeField] public float JumpSpeed { get; private set; }
-    [field: SerializeField] public float JumpSpeedWhileRun { get; private set; }
     [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeLength { get; private set; }
-    [field: SerializeField] public float DodgeTimeCooldown { get; private set; }
     public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
     public Transform CameraTransfrom { get; private set; }
     void Start()

@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyAttackState : EnemyBaseState
 {
     readonly int EnemyAttackHash = Animator.StringToHash("Enemy_Attack");
+    readonly string EnemyAttackTag = "Attack";
 
     public EnemyAttackState(EnemyStateMachine enemyState) : base(enemyState)
     {
@@ -20,7 +21,7 @@ public class EnemyAttackState : EnemyBaseState
     {
         Move(deltaTime);
         FaceTarget();
-        if (GetNormalizedTime(enemyState.Animator) >= 1f)
+        if (GetNormalizedTime(enemyState.Animator, EnemyAttackTag) >= 1f)
         {
             enemyState.SwitchState(new EnemyChasingState(enemyState));
         }

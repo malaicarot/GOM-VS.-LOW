@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
 {
+    readonly string AttackAnimationTag = "Attack";
     float previousFrameTime;
     bool alreadyApplyForce;
     Attack attack;
@@ -23,7 +24,7 @@ public class PlayerAttackState : PlayerBaseState
     {
         Move(deltaTime);
         FaceTarget();
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator);
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, AttackAnimationTag);
 
         if (normalizedTime >= previousFrameTime && normalizedTime < 1f)
         {

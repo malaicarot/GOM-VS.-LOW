@@ -19,7 +19,7 @@ public class PlayerJumpState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
         Move(CalculateDirection() + momentum, deltaTime);
-        if (stateMachine.ForceReceiver.Movement. y <= 0 || stateMachine.Controller.velocity.y <= 0f)
+        if (stateMachine.ForceReceiver.Movement.y <= 0 || stateMachine.Controller.velocity.y <= 0f)
         {
             stateMachine.SwitchState(new PlayerFallState(stateMachine));
             return;

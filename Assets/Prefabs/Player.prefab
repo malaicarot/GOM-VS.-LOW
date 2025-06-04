@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3763211940669811999}
   - component: {fileID: 29047699337472688}
-  - component: {fileID: 2505635981897903755}
   - component: {fileID: 4217218188618888286}
-  - component: {fileID: 6378810918461522425}
+  - component: {fileID: 7642335471138969392}
+  - component: {fileID: 5240118191021259817}
   m_Layer: 0
   m_Name: TargetingCamera
   m_TagString: Untagged
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340103093034404524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalRotation: {x: 0.18910734, y: 0, z: 0, w: 0.9819564}
+  m_LocalPosition: {x: 0, y: 3.4000015, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79,19 +79,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &2505635981897903755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340103093034404524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afa82ae3200b82408d605c3dbdd1e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damping: 0.3
 --- !u!114 &4217218188618888286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,15 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FramingMode: 2
-  FramingSize: 2
-  CenterOffset: {x: 0, y: -1.93}
+  FramingSize: 0.9
+  CenterOffset: {x: 0, y: -0.8}
   Damping: 0.1
   SizeAdjustment: 2
   LateralAdjustment: 0
   FovRange: {x: 1, y: 100}
-  DollyRange: {x: -100, y: 100}
+  DollyRange: {x: -10, y: 100}
   OrthoSizeRange: {x: 1, y: 1000}
---- !u!114 &6378810918461522425
+--- !u!114 &7642335471138969392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,23 +109,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1340103093034404524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDistance: 10
-  DeadZoneDepth: 0
+  Damping: {x: 0.2, y: 0.2, z: 0.2}
+  ShoulderOffset: {x: 0, y: 3, z: -2}
+  VerticalArmLength: 0.4
+  CameraSide: 1
+  CameraDistance: 2
+  AvoidObstacles:
+    Enabled: 0
+    CollisionFilter:
+      serializedVersion: 2
+      m_Bits: 1
+    IgnoreTag: 
+    CameraRadius: 0.2
+    DampingIntoCollision: 0
+    DampingFromCollision: 0.5
+--- !u!114 &5240118191021259817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340103093034404524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   Composition:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.2, y: 0.2}
+      Size: {x: 0.3, y: 0.4}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
-  CenterOnActivate: 0
-  TargetOffset: {x: 0, y: 1, z: 5}
-  Damping: {x: 0.2, y: 0.2, z: 0.2}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 1.8, z: 0}
+  Damping: {x: 0.2, y: 0.2}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -493,13 +504,12 @@ MonoBehaviour:
   - {fileID: 4487511072025727147}
   <FreeLookMoveSpeed>k__BackingField: 6
   <TargetMoveSpeed>k__BackingField: 7
-  <MultiplyCoefficientSpeed>k__BackingField: 2
-  <JumpForce>k__BackingField: 2
+  <MultiplyCoefficientSpeed>k__BackingField: 1.8
+  <JumpForce>k__BackingField: 6
   <RotationDamping>k__BackingField: 10
   <CrossFadeDuration>k__BackingField: 0.1
-  <DodgeDuration>k__BackingField: 0.1
-  <DodgeLength>k__BackingField: 1
-  <DodgeTimeCooldown>k__BackingField: 1
+  <DodgeDuration>k__BackingField: 0.5
+  <DodgeLength>k__BackingField: 5.5
 --- !u!114 &8122867859573884653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,13 +622,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.84
-  m_Radius: 0.3
+  m_Height: 2
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!1 &6560354687323652708
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,8 +654,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6560354687323652708}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1.3154472e-10, z: 6.2601657e-10, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 5}
+  m_LocalRotation: {x: -0.18910734, y: -0, z: -0, w: 0.9819564}
+  m_LocalPosition: {x: 0, y: -1.6712613, z: 4.976635}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -663,8 +673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionMode: 0
-  RotationMode: 0
+  PositionMode: 1
+  RotationMode: 1
   UpdateMethod: 2
   Targets:
   - Object: {fileID: 8467494535887779963}
@@ -701,7 +711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6872475308664639375}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1326279, y: -0.000000014240489, z: -0.0000000019055195, w: 0.99116594}
+  m_LocalRotation: {x: -0.13262789, y: 8.3728814e-19, z: 1.3455924e-19, w: 0.99116594}
   m_LocalPosition: {x: 0, y: 0.5, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
