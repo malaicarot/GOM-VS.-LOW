@@ -22,8 +22,6 @@ public class PlayerDodgingState : PlayerBaseState
 
     public override void Enter()
     {
-
-
         stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
         stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
         stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
