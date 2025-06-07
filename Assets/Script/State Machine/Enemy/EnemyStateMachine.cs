@@ -30,18 +30,19 @@ public class EnemyStateMachine : StateMachine
         NavMeshAgent.updatePosition = false;
         NavMeshAgent.updateRotation = false;
         SwitchState(new EnemyIdleState(this));
+
     }
 
     void OnEnable()
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
+        FallToGround();
     }
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
-
     }
 
     void HandleAttack()
@@ -62,5 +63,13 @@ public class EnemyStateMachine : StateMachine
         Gizmos.DrawWireSphere(transform.position, EnemyChasingRange);
         Gizmos.DrawWireSphere(transform.position, EnemyAttackRange);
     }
-
+    
+    void FallToGround()
+    {
+        RaycastHit raycastHit;
+        if (Physics.Raycast(gameObject.transform.position, Vector3.down, out raycastHit, 40f, LayerMask.GetMask("Ground")))
+        {
+            gameObject.transform.position = raycastHit.point;
+        }
+    }
 }

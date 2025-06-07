@@ -36,6 +36,8 @@ public class ForceReceiver : MonoBehaviour
         }
     }
 
+
+
     public void AddForce(Vector3 force)
     {
         impact += force;

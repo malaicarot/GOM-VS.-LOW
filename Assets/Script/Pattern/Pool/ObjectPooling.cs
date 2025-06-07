@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ObjectPooling : MonoBehaviour
 {
@@ -38,7 +39,6 @@ public class ObjectPooling : MonoBehaviour
             pooledObjectDictionary.Add(pooledObject.name, pooledStack);
         }
     }
-
 
     public PooledObject GetPooledObject(string type, Vector3 position, Quaternion rotation)
     {
@@ -79,7 +79,16 @@ public class ObjectPooling : MonoBehaviour
 
     void SetTransform(PooledObject pooledObject, Vector3 position, Quaternion rotation)
     {
-        pooledObject.gameObject.transform.position = position;
+        NavMeshHit navMeshHit;
+        if (NavMesh.SamplePosition(position, out navMeshHit, 10f, NavMesh.GetAreaFromName("Walkable")))
+        {
+            pooledObject.gameObject.transform.position = navMeshHit.position;
+        }
+        else
+        {
+            pooledObject.gameObject.transform.position = position;
+        }
+
         pooledObject.gameObject.transform.rotation = rotation;
     }
 }

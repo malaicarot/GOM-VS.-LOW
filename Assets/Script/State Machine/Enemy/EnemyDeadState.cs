@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyDeadState : EnemyBaseState
 {
-    // readonly int DeathHash = Animator.StringToHash("Enemy_Dying");
 
     public EnemyDeadState(EnemyStateMachine enemyState) : base(enemyState)
     {
@@ -10,7 +9,6 @@ public class EnemyDeadState : EnemyBaseState
 
     public override void Enter()
     {
-        // enemyState.Animator.CrossFadeInFixedTime(DeathHash, enemyState.CrossFadeDuration);
         enemyState.Ragdoll.ToggleRagdoll(true);
         GameObject.Destroy(enemyState.Target);
     }
