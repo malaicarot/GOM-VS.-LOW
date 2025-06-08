@@ -6,10 +6,10 @@ public class PlayerDodgingState : PlayerBaseState
     readonly int DodgeForwardHash = Animator.StringToHash("Dodge_Forward");
     readonly int DodgeRightHash = Animator.StringToHash("Dodge_Right");
     Vector3 dodgingDirection;
+    float dodgeAccessTime;
     float dodgeRemainingTime;
     public PlayerDodgingState(PlayerStateMachine stateMachine, Vector3 dodgingDirection) : base(stateMachine)
     {
-        Debug.Log(dodgingDirection);
         if (dodgingDirection == Vector3.zero)
         {
             this.dodgingDirection.y = -1; // default dodge backward
@@ -50,6 +50,5 @@ public class PlayerDodgingState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.Health.SetParry(false);
-
     }
 }

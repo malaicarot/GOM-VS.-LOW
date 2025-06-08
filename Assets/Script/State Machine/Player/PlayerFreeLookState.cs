@@ -15,7 +15,9 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, stateMachine.CrossFadeDuration);
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
+        stateMachine.InputReader.DodgeEvent += OnDodge;
     }
+    
     public override void Tick(float deltaTime)
     {
         if (stateMachine.InputReader.IsAttack)
@@ -52,7 +54,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
-
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
     }
 
     void RotationByFaceDirection(Vector3 direction, float deltaTime)
@@ -65,5 +67,10 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         if (!stateMachine.Targeter.SelectedTarget()) { return; }
         stateMachine.SwitchState(new PlayerTargetState(stateMachine));
+    }
+
+        void OnDodge()
+    {
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }
 }

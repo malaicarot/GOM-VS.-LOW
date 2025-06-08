@@ -16,6 +16,7 @@ public class ObjectPooling : MonoBehaviour
         SetupPool();
     }
 
+
     void SetupPool()
     {
         if (pooledObjects == null || pooledObjects.Count == 0)
@@ -80,7 +81,7 @@ public class ObjectPooling : MonoBehaviour
     void SetTransform(PooledObject pooledObject, Vector3 position, Quaternion rotation)
     {
         NavMeshHit navMeshHit;
-        if (NavMesh.SamplePosition(position, out navMeshHit, 10f, NavMesh.GetAreaFromName("Walkable")))
+        if (NavMesh.SamplePosition(position, out navMeshHit, 10f, NavMesh.AllAreas))
         {
             pooledObject.gameObject.transform.position = navMeshHit.position;
         }

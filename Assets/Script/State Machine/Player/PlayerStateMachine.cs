@@ -19,7 +19,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeLength { get; private set; }
-    public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
     public Transform CameraTransfrom { get; private set; }
     void Start()
     {
@@ -51,10 +50,5 @@ public class PlayerStateMachine : StateMachine
     public void OnJump()
     {
         SwitchState(new PlayerJumpState(this));
-    }
-
-    public void SetDodgeTime(float dodgeTime)
-    {
-        PreviousDodgeTime = dodgeTime;
     }
 }

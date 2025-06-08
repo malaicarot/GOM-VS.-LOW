@@ -1,8 +1,6 @@
 
 using UnityEngine;
 
-
-
 public enum ENEMY_TYPE
 {
     Enemy_Creep_1,
@@ -16,14 +14,14 @@ public class EnemyPool : ObjectPooling
 
     void Start()
     {
-        if (EnemyPoolSingleton != null)
-        {
-            Destroy(EnemyPoolSingleton);
-        }
-        else
-        {
+        // if (EnemyPoolSingleton != null)
+        // {
+        //     Destroy(EnemyPoolSingleton);
+        // }
+        // else
+        // {
             EnemyPoolSingleton = this;
-        }
+        // }
     }
 
     public PooledObject GetEnemy(string enemyType, Vector3 position, Quaternion rotation)
@@ -47,5 +45,4 @@ public class EnemyPool : ObjectPooling
         }
         return null;
     }
-
 }

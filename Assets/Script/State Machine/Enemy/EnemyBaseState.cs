@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class EnemyBaseState : State
 {
     protected EnemyStateMachine enemyState;
-    float ditanceSqr;
+    float distanceSqr;
     float atkRangeSqr;
     Vector3 direction;
 
@@ -16,8 +16,8 @@ public abstract class EnemyBaseState : State
     protected bool IsInChanseRange()
     {
         if(enemyState.Player.isDead){ return false; }
-        ditanceSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
-        return ditanceSqr <= enemyState.EnemyChasingRange * enemyState.EnemyChasingRange;
+        distanceSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
+        return distanceSqr <= enemyState.EnemyChasingRange * enemyState.EnemyChasingRange;
     }
 
     protected bool IsInAttackRange()

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(PooledObject))]
@@ -7,12 +8,19 @@ public class SpawnEnemy : PooledObject
     [Range(1, 10), SerializeField] uint enemiesQuantity;
     [SerializeField] Vector3 distanceBetweenEnemies;
 
-
     Vector3 rootPosition;
 
 
     void Start()
     {
+        // StartCoroutine(WaitToSpawn());
+        SpawnEnemies();
+    }
+
+
+    IEnumerator WaitToSpawn()
+    {
+        yield return new WaitForSeconds(2f);
         SpawnEnemies();
     }
 
@@ -25,13 +33,9 @@ public class SpawnEnemy : PooledObject
             for (int i = 0; i < enemiesQuantity; i++)
             {
                 Debug.Log(rootPosition);
-                PooledObject enemy = EnemyPool.EnemyPoolSingleton.GetEnemy(EnemyPool.EnemyPoolSingleton.RandomType(), rootPosition, Quaternion.identity);
+                EnemyPool.EnemyPoolSingleton.GetEnemy(EnemyPool.EnemyPoolSingleton.RandomType(), rootPosition, Quaternion.identity);
                 rootPosition += distanceBetweenEnemies;
-                // FallToGround(enemy);
             }
         }
     }
-
-
- 
 }
