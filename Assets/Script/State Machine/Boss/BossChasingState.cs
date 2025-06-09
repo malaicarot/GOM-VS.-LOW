@@ -20,7 +20,7 @@ public class BossChasingState : BossBaseState
     {
         if (IsInAttackRange())
         {
-            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine));
+            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
             return;
         }
         bossStateMachine.Animator.SetFloat(MovementSpeedHash, 2, bossStateMachine.CrossFadeDuration, deltaTime);
