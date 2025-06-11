@@ -14,6 +14,8 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.CancelTargetEvent += OnCancel;
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
+        stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
+
     }
 
     public override void Tick(float deltaTime)
@@ -40,6 +42,15 @@ public class PlayerTargetState : PlayerBaseState
         float targetSpeed = stateMachine.InputReader.IsSprint ?
             stateMachine.TargetMoveSpeed * stateMachine.MultiplyCoefficientSpeed :
             stateMachine.TargetMoveSpeed;
+        if (targetSpeed >= stateMachine.TargetMoveSpeed)
+        {
+            stateMachine.Stamina.ReduceStamina(stateMachine.walkStaminaReduce);
+
+        }
+        else if (targetSpeed >= stateMachine.TargetMoveSpeed * stateMachine.MultiplyCoefficientSpeed)
+        {
+            stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
+        }
 
         FaceTarget();
         Move(CalculateTargetDirection() * targetSpeed, deltaTime);
@@ -49,6 +60,8 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.CancelTargetEvent -= OnCancel;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
+        stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
+
     }
 
 
@@ -66,6 +79,16 @@ public class PlayerTargetState : PlayerBaseState
     {
         Vector3 direction = stateMachine.InputReader.Movement;
 
+        if (direction == Vector3.zero)
+        {
+            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
+        }
+        else
+        {
+
+            stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
+        }
+
         if (direction.x == 0)
         {
             stateMachine.Animator.SetFloat(TargetingRightHash, 0, AnimationDamping, deltatime);
@@ -80,7 +103,6 @@ public class PlayerTargetState : PlayerBaseState
         if (direction.y == 0)
         {
             stateMachine.Animator.SetFloat(TargetingForwardHash, 0, AnimationDamping, deltatime);
-
         }
         else
         {

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BossChasingState : BossBaseState
 {
-    // readonly int FlexAnimationHash = Animator.StringToHash("Flexing");
     readonly int BossLocomotionHash = Animator.StringToHash("Locomotion");
     readonly int MovementSpeedHash = Animator.StringToHash("MovementSpeed");
 
@@ -12,20 +11,26 @@ public class BossChasingState : BossBaseState
 
     public override void Enter()
     {
-        // bossStateMachine.Animator.CrossFadeInFixedTime(FlexAnimationHash, bossStateMachine.CrossFadeDuration);
         bossStateMachine.Animator.CrossFadeInFixedTime(BossLocomotionHash, bossStateMachine.CrossFadeDuration);
 
     }
     public override void Tick(float deltaTime)
     {
+
+        bossStateMachine.Animator.SetFloat(MovementSpeedHash, 1, bossStateMachine.CrossFadeDuration, deltaTime);
+        FaceTarget();
+        MoveToPlayer(deltaTime);
         if (IsInAttackRange())
         {
             bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
             return;
         }
-        bossStateMachine.Animator.SetFloat(MovementSpeedHash, 2, bossStateMachine.CrossFadeDuration, deltaTime);
-        FaceTarget();
-        MoveToPlayer(deltaTime);
+        if (!IsInChanseRange())
+        {
+            bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
+            return;
+        }
+        Debug.Log("Chasing");
     }
     public override void Exit()
     {

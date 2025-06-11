@@ -28,7 +28,8 @@ public class BossAttackState : BossBaseState
         Move(deltaTime);
         FaceTarget();
         float normalizedTime = GetNormalizedTime(bossStateMachine.Animator, EnemyAttackTag);
-        if (normalizedTime >= previousFrameTime && normalizedTime <= 1f && IsInAttackRange())
+        if (normalizedTime >= previousFrameTime && normalizedTime <= 1f)
+        // && IsInAttackRange()
         {
             if (normalizedTime >= attack.ForceTime)
             {
@@ -44,7 +45,6 @@ public class BossAttackState : BossBaseState
         }
 
         previousFrameTime = normalizedTime;
-
     }
 
     public override void Exit()

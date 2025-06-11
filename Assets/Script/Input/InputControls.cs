@@ -116,6 +116,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Healing"",
+                    ""type"": ""Button"",
+                    ""id"": ""6090143d-30a1-4041-ba09-3d7b10c77920"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -413,6 +422,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcf65fb0-177c-4d33-a7fd-63760df40a82"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Healing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1010,6 +1030,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Target = m_Player.FindAction("Target", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
+        m_Player_Healing = m_Player.FindAction("Healing", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1099,6 +1120,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Target;
     private readonly InputAction m_Player_Block;
+    private readonly InputAction m_Player_Healing;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -1113,6 +1135,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Target => m_Wrapper.m_Player_Target;
         public InputAction @Block => m_Wrapper.m_Player_Block;
+        public InputAction @Healing => m_Wrapper.m_Player_Healing;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1152,6 +1175,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @Healing.started += instance.OnHealing;
+            @Healing.performed += instance.OnHealing;
+            @Healing.canceled += instance.OnHealing;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1186,6 +1212,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @Healing.started -= instance.OnHealing;
+            @Healing.performed -= instance.OnHealing;
+            @Healing.canceled -= instance.OnHealing;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1378,6 +1407,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnTarget(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnHealing(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

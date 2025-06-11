@@ -17,12 +17,17 @@ public class BossIdleState : BossBaseState
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
-        if (IsInChanseRange())
+        bossStateMachine.Animator.SetFloat(BossSpeedHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
+        // if (IsInChanseRange())
+        // {
+        //     bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
+        //     return;
+        // }
+        if (IsInCautiousRange())
         {
-            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
+            bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
             return;
         }
-        bossStateMachine.Animator.SetFloat(BossSpeedHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
     }
     public override void Exit()
     {

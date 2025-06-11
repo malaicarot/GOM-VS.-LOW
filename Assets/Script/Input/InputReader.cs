@@ -15,6 +15,8 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public event Action DodgeEvent;
     public event Action TargetEvent;
     public event Action CancelTargetEvent;
+    public event Action HealingEvent;
+
 
     public Vector2 Look { get; private set; }
 
@@ -120,6 +122,11 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
         {
             IsBlocking = false;
         }
+    }
+    public void OnHealing(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+        HealingEvent?.Invoke();
     }
     void OnApplicationFocus(bool forcus)
     {

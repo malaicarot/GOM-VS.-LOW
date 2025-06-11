@@ -14,6 +14,7 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
         foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
         {

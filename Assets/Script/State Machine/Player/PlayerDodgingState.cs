@@ -6,7 +6,6 @@ public class PlayerDodgingState : PlayerBaseState
     readonly int DodgeForwardHash = Animator.StringToHash("Dodge_Forward");
     readonly int DodgeRightHash = Animator.StringToHash("Dodge_Right");
     Vector3 dodgingDirection;
-    float dodgeAccessTime;
     float dodgeRemainingTime;
     public PlayerDodgingState(PlayerStateMachine stateMachine, Vector3 dodgingDirection) : base(stateMachine)
     {
@@ -22,6 +21,7 @@ public class PlayerDodgingState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.Stamina.ReduceStamina(stateMachine.dodgeStaminaReduce);
         stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
         stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
         stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);

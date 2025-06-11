@@ -16,6 +16,7 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float BossChasingRange { get; private set; }
     [field: SerializeField] public float BossAttackRange { get; private set; }
+    [field: SerializeField] public float BossCautiousRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
     public Health Player { get; private set; }
 
@@ -49,6 +50,7 @@ public class BossStateMachine : StateMachine
 
         Gizmos.DrawWireSphere(transform.position, BossChasingRange);
         Gizmos.DrawWireSphere(transform.position, BossAttackRange);
+        Gizmos.DrawWireSphere(transform.position, BossCautiousRange);
     }
 
 }

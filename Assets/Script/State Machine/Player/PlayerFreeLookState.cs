@@ -16,8 +16,9 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.DodgeEvent += OnDodge;
+        stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
     }
-    
+
     public override void Tick(float deltaTime)
     {
         if (stateMachine.InputReader.IsAttack)
@@ -34,16 +35,18 @@ public class PlayerFreeLookState : PlayerBaseState
 
         if (stateMachine.InputReader.Movement == Vector2.zero)
         {
+            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
             stateMachine.Animator.SetFloat(MovementSpeedHash, 0, AnimationDamping, deltaTime);
             return;
         }
         else if (stateMachine.InputReader.IsSprint)
         {
+            stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
             stateMachine.Animator.SetFloat(MovementSpeedHash, 2, AnimationDamping, deltaTime);
         }
         else
         {
-
+            stateMachine.Stamina.ReduceStamina(stateMachine.walkStaminaReduce);
             stateMachine.Animator.SetFloat(MovementSpeedHash, 1, AnimationDamping, deltaTime);
         }
 
@@ -55,6 +58,8 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
+
     }
 
     void RotationByFaceDirection(Vector3 direction, float deltaTime)
@@ -69,7 +74,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.SwitchState(new PlayerTargetState(stateMachine));
     }
 
-        void OnDodge()
+    void OnDodge()
     {
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }

@@ -10,6 +10,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.Stamina.ReduceStamina(stateMachine.jumpStaminaReduce);
         stateMachine.ForceReceiver.AddJumpForce(stateMachine.JumpForce);
         momentum = stateMachine.Controller.velocity;
         momentum.y = 0f;
