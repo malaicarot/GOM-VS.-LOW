@@ -8,12 +8,12 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
     [field: SerializeField] public Stamina Stamina { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public StatusBar StaminaBar { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
-
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
     [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
@@ -28,6 +28,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float attackStaminaReduce { get; private set; }
     [field: SerializeField] public float dodgeStaminaReduce { get; private set; }
     [field: SerializeField] public float healing { get; private set; }
+    [field: SerializeField] public float reducePotion { get; private set; }
     [field: SerializeField] public float staminaRecovery { get; private set; }
 
 

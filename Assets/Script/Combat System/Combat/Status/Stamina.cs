@@ -11,7 +11,6 @@ public class Stamina : MonoBehaviour
     [SerializeField] float recoverySpeed;
     float currentStamina;
 
-    public event Action OnAction;
     void Start()
     {
         currentStamina = maxStamina;

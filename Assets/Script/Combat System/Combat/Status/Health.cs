@@ -6,7 +6,6 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth = 100;
     [SerializeField] StatusBar statusBar;
     public event Action OnTakeDamage;
-    public event Action OnHealing;
     public event Action OnDeath;
     public bool isDead => currentHealth == 0;
     float currentHealth;
@@ -32,7 +31,6 @@ public class Health : MonoBehaviour
     public void RecoverHealth(float amount)
     {
         currentHealth = MathF.Min(currentHealth + amount, maxHealth);
-        OnHealing?.Invoke();
     }
 
     public void DealDamage(float damage)
