@@ -11,7 +11,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
     [field: SerializeField] public Stamina Stamina { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
-    [field: SerializeField] public StatusBar StaminaBar { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
@@ -22,7 +21,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeLength { get; private set; }
-    [field: SerializeField] public float walkStaminaReduce { get; private set; }
     [field: SerializeField] public float sprintStaminaReduce { get; private set; }
     [field: SerializeField] public float jumpStaminaReduce { get; private set; }
     [field: SerializeField] public float attackStaminaReduce { get; private set; }

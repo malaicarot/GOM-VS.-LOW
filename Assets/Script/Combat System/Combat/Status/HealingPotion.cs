@@ -6,7 +6,7 @@ public class HealingPotion : MonoBehaviour
 {
     [SerializeField] StatusBar statusBar;
     [SerializeField] float maxPotion;
-    public float currentPotion{ get; set; }
+    public float currentPotion { get; set; }
 
     void Start()
     {

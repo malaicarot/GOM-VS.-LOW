@@ -46,7 +46,7 @@ public class PlayerFreeLookState : PlayerBaseState
         }
         else
         {
-            stateMachine.Stamina.ReduceStamina(stateMachine.walkStaminaReduce);
+            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
             stateMachine.Animator.SetFloat(MovementSpeedHash, 1, AnimationDamping, deltaTime);
         }
 

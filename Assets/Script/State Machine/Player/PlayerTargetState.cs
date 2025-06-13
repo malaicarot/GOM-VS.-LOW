@@ -44,8 +44,7 @@ public class PlayerTargetState : PlayerBaseState
             stateMachine.TargetMoveSpeed;
         if (targetSpeed >= stateMachine.TargetMoveSpeed)
         {
-            stateMachine.Stamina.ReduceStamina(stateMachine.walkStaminaReduce);
-
+            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
         }
         else if (targetSpeed >= stateMachine.TargetMoveSpeed * stateMachine.MultiplyCoefficientSpeed)
         {

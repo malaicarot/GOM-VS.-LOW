@@ -17,10 +17,10 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.tag == "Player")
-        {
+        // if (gameObject.tag == "Player")
+        // {
             statusBar.fillAmount = currentHealth / maxHealth;
-        }
+        // }
     }
 
     public void SetParry(bool isParry)

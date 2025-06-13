@@ -19,14 +19,12 @@ public class Stamina : MonoBehaviour
     void Update()
     {
         statusBar.fillAmount = currentStamina / maxStamina;
-
-
     }
 
 
     public void RecoveryStamina(float amount)
     {
-        currentStamina = Mathf.Min(currentStamina + amount, maxStamina);
+        currentStamina = Mathf.Lerp(currentStamina, Mathf.Min(currentStamina + amount, maxStamina), recoverySpeed);
     }
 
 
