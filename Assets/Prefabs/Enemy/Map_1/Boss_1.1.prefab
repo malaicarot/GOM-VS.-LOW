@@ -477,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 1542963090223502076}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 212.06, y: 612.3, z: 327.06}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -532,8 +532,9 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <BossAttackDamage>k__BackingField: 20
   <CrossFadeDuration>k__BackingField: 0.1
-  <BossChasingRange>k__BackingField: 20
+  <BossChasingRange>k__BackingField: 10
   <BossAttackRange>k__BackingField: 3.5
+  <BossCautiousRange>k__BackingField: 20
   <BossAttackKnockback>k__BackingField: 0.1
 --- !u!114 &192870557073299328
 MonoBehaviour:
@@ -548,6 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  statusBar: {fileID: 0}
 --- !u!114 &7056416182719643853
 MonoBehaviour:
   m_ObjectHideFlags: 0

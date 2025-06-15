@@ -14,14 +14,14 @@ public class EnemyPool : ObjectPooling
 
     void Start()
     {
-        // if (EnemyPoolSingleton != null)
-        // {
-        //     Destroy(EnemyPoolSingleton);
-        // }
-        // else
-        // {
+        if (EnemyPoolSingleton != null)
+        {
+            Destroy(EnemyPoolSingleton);
+        }
+        else
+        {
             EnemyPoolSingleton = this;
-        // }
+        }
     }
 
     public PooledObject GetEnemy(string enemyType, Vector3 position, Quaternion rotation)

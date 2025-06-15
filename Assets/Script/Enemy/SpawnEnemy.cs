@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(PooledObject))]
-public class SpawnEnemy : PooledObject
+public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] Transform[] areaSpawn;
     [Range(1, 10), SerializeField] uint enemiesQuantity;
@@ -13,10 +12,8 @@ public class SpawnEnemy : PooledObject
 
     void Start()
     {
-        // StartCoroutine(WaitToSpawn());
         SpawnEnemies();
     }
-
 
     IEnumerator WaitToSpawn()
     {
@@ -32,7 +29,6 @@ public class SpawnEnemy : PooledObject
             rootPosition = areaPosition.position;
             for (int i = 0; i < enemiesQuantity; i++)
             {
-                Debug.Log(rootPosition);
                 EnemyPool.EnemyPoolSingleton.GetEnemy(EnemyPool.EnemyPoolSingleton.RandomType(), rootPosition, Quaternion.identity);
                 rootPosition += distanceBetweenEnemies;
             }

@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class EnemyStateMachine : StateMachine
 {
@@ -18,6 +20,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float EnemyChasingRange { get; private set; }
     [field: SerializeField] public float EnemyAttackRange { get; private set; }
     [field: SerializeField] public float EnemyAttackKnockback { get; private set; }
+    [field: SerializeField] public float TimeToDisappear { get; private set; }
 
 
     public Health Player { get; private set; }
@@ -30,7 +33,6 @@ public class EnemyStateMachine : StateMachine
         NavMeshAgent.updatePosition = false;
         NavMeshAgent.updateRotation = false;
         SwitchState(new EnemyIdleState(this));
-
     }
 
     void OnEnable()
@@ -63,7 +65,7 @@ public class EnemyStateMachine : StateMachine
         Gizmos.DrawWireSphere(transform.position, EnemyChasingRange);
         Gizmos.DrawWireSphere(transform.position, EnemyAttackRange);
     }
-    
+
     void FallToGround()
     {
         RaycastHit raycastHit;
@@ -71,5 +73,17 @@ public class EnemyStateMachine : StateMachine
         {
             gameObject.transform.position = raycastHit.point;
         }
+
+    }
+
+    public void ReturnEnemy()
+    {
+        StartCoroutine(WaitToReturnEnemy());
+    }
+
+    IEnumerator WaitToReturnEnemy()
+    {
+        yield return new WaitForSeconds(TimeToDisappear);
+        this.GetComponent<PooledObject>()?.Release();
     }
 }

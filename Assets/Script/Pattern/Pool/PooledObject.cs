@@ -3,13 +3,16 @@ using UnityEngine;
 public class PooledObject : MonoBehaviour
 {
     ObjectPooling Instance;
-    public ObjectPooling _Instance { get => Instance; set => value = Instance; }
+    public ObjectPooling _Instance { get => Instance; set => Instance = value; }
+
 
     public void Release()
     {
-        if (_Instance != null)
+        Debug.Log("Not Return!");
+        if (Instance != null)
         {
-            _Instance.ReturnToPool(this);
+            Instance.ReturnToPool(this);
+            Debug.Log("Return!");
         }
     }
 }

@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
+// [RequireComponent(typeof(PooledObject))]
 public class Health : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100;
@@ -19,7 +21,7 @@ public class Health : MonoBehaviour
     {
         // if (gameObject.tag == "Player")
         // {
-            statusBar.fillAmount = currentHealth / maxHealth;
+        statusBar.fillAmount = currentHealth / maxHealth;
         // }
     }
 

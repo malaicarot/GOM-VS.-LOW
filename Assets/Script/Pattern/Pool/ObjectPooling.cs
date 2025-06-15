@@ -31,8 +31,8 @@ public class ObjectPooling : MonoBehaviour
             for (int i = 0; i < poolSize; i++)
             {
                 PooledObject instance = Instantiate(pooledObject);
-                instance.gameObject.transform.parent = this.transform;
                 instance._Instance = this;
+                instance.gameObject.transform.parent = this.transform;
                 instance.gameObject.SetActive(false);
                 instance.name = pooledObject.name;
                 pooledStack.Push(instance);
@@ -67,15 +67,20 @@ public class ObjectPooling : MonoBehaviour
 
     public void ReturnToPool(PooledObject pooledObject)
     {
+
         if (!pooledObjectDictionary.ContainsKey(pooledObject.name))
         {
-            Destroy(pooledObject);
+            Debug.Log("This name isn't exits!");
+            Destroy(pooledObject.gameObject);
+        }
+        else
+        {
+            pooledObjectDictionary[pooledObject.name].Push(pooledObject);
+            // pooledObject.gameObject.transform.position = Vector3.zero;
+            // pooledObject.gameObject.transform.rotation = Quaternion.identity;
+            pooledObject.gameObject.SetActive(false);
         }
 
-        pooledObject.gameObject.transform.position = Vector3.zero;
-        pooledObject.gameObject.transform.rotation = Quaternion.identity;
-        pooledObject.gameObject.SetActive(false);
-        pooledObjectDictionary[pooledObject.name].Push(pooledObject);
     }
 
     void SetTransform(PooledObject pooledObject, Vector3 position, Quaternion rotation)

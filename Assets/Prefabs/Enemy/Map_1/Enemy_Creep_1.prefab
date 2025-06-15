@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4683755642285144656}
   - component: {fileID: 6261187379328097998}
   - component: {fileID: 499906267210327538}
+  - component: {fileID: 1861686893239695616}
   m_Layer: 0
   m_Name: Enemy_Creep_1
   m_TagString: Untagged
@@ -200,6 +201,7 @@ MonoBehaviour:
   <EnemyChasingRange>k__BackingField: 10
   <EnemyAttackRange>k__BackingField: 0.7
   <EnemyAttackKnockback>k__BackingField: 20
+  <TimeToDisappear>k__BackingField: 2
 --- !u!114 &1551613108990356904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +354,19 @@ NavMeshAgent:
   m_BaseOffset: -0.07
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1861686893239695616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526138589045461769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e74e3d2ed7e4a4ca9f91b4c860dd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 7169689813347574021}
 --- !u!1 &7396788517980888782
 GameObject:
   m_ObjectHideFlags: 0
