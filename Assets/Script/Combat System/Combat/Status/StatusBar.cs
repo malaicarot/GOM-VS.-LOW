@@ -14,6 +14,6 @@ public class StatusBar : MonoBehaviour
 
     public void UpdateFill(float current, float next, float speed)
     {
-        fill.fillAmount = Mathf.Lerp(current, next, changeSpeed * Time.deltaTime);
+        fill.fillAmount = Mathf.Lerp(current, next, speed * Time.deltaTime);
     }
 }

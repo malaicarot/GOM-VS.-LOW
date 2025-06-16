@@ -8,6 +8,8 @@ public class BossDeadState : BossBaseState
 
     public override void Enter()
     {
+        bossStateMachine.Ragdoll.ToggleRagdoll(true);
+        GameObject.Destroy(bossStateMachine.Target);
     }
 
     public override void Tick(float deltaTime)

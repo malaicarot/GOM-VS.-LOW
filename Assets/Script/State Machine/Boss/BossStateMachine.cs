@@ -6,6 +6,7 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Attack[] Attack { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
@@ -31,18 +32,24 @@ public class BossStateMachine : StateMachine
     void OnEnable()
     {
         Health.OnTakeDamage += HandleAttack;
+        Health.OnDeath += HandleDeath;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
-
+        Health.OnDeath -= HandleDeath;
     }
+
     void HandleAttack()
     {
         SwitchState(new BossImpactState(this));
     }
 
+    void HandleDeath()
+    {
+        SwitchState(new BossDeadState(this));
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -52,5 +59,4 @@ public class BossStateMachine : StateMachine
         Gizmos.DrawWireSphere(transform.position, BossAttackRange);
         Gizmos.DrawWireSphere(transform.position, BossCautiousRange);
     }
-
 }
