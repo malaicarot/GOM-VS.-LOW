@@ -6,6 +6,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
+    [field: SerializeField] public PlayerSkill PlayerSkill { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
@@ -64,6 +65,10 @@ public class PlayerStateMachine : StateMachine
     public void OnJump()
     {
         SwitchState(new PlayerJumpState(this));
+    }
+    public void OnCastSkill()
+    {
+        SwitchState(new PlayerCastSkillState(this));
     }
 
     public void HandleHealing()

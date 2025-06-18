@@ -17,6 +17,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
+        stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
     }
 
     public override void Tick(float deltaTime)
@@ -59,6 +60,8 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
+        stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
+
 
     }
 

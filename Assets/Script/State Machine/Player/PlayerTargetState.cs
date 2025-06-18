@@ -15,6 +15,8 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
+        stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
+
 
     }
 
@@ -60,7 +62,7 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
-
+        stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
     }
 
 

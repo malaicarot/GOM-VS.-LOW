@@ -125,6 +125,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffcb6b1e-6c88-49e3-a747-8382c0b6caef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -433,6 +442,50 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Healing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10652224-0c01-4501-b527-a4f08ee49158"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Skill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07e5a468-1bc3-4855-94ab-c67adc0b79bc"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Skill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2aaa7616-d83f-4f7b-bf5a-59b7f626ff6a"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Skill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e3bb55d-8268-4f4f-96f8-c34ead188566"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1031,6 +1084,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Target = m_Player.FindAction("Target", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_Healing = m_Player.FindAction("Healing", throwIfNotFound: true);
+        m_Player_Skill = m_Player.FindAction("Skill", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1121,6 +1175,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Target;
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_Healing;
+    private readonly InputAction m_Player_Skill;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -1136,6 +1191,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Target => m_Wrapper.m_Player_Target;
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @Healing => m_Wrapper.m_Player_Healing;
+        public InputAction @Skill => m_Wrapper.m_Player_Skill;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1178,6 +1234,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Healing.started += instance.OnHealing;
             @Healing.performed += instance.OnHealing;
             @Healing.canceled += instance.OnHealing;
+            @Skill.started += instance.OnSkill;
+            @Skill.performed += instance.OnSkill;
+            @Skill.canceled += instance.OnSkill;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1215,6 +1274,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Healing.started -= instance.OnHealing;
             @Healing.performed -= instance.OnHealing;
             @Healing.canceled -= instance.OnHealing;
+            @Skill.started -= instance.OnSkill;
+            @Skill.performed -= instance.OnSkill;
+            @Skill.canceled -= instance.OnSkill;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1408,6 +1470,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnTarget(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnHealing(InputAction.CallbackContext context);
+        void OnSkill(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

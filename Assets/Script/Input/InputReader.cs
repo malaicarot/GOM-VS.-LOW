@@ -9,8 +9,10 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public bool IsAttack { get; private set; }
     public bool IsSprint { get; private set; }
     public bool IsBlocking { get; private set; }
+    public int ButtonIndex { get; private set; }
 
 
+    public event Action SkillEvent;
     public event Action JumpEvent;
     public event Action DodgeEvent;
     public event Action TargetEvent;
@@ -127,6 +129,36 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     {
         if (!context.performed) { return; }
         HealingEvent?.Invoke();
+    }
+    public void OnSkill(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            // ButtonIndex = -1;
+            return;
+        }
+        
+        
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            ButtonIndex = 0;
+        }
+        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        {
+            ButtonIndex = 1;
+
+        }
+        else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        {
+            ButtonIndex = 2;
+
+        }
+        else if (Keyboard.current.digit4Key.wasPressedThisFrame)
+        {
+            ButtonIndex = 3;
+
+        }
+        SkillEvent?.Invoke();
     }
     void OnApplicationFocus(bool forcus)
     {
