@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f31e2ae32614f1f45b838bc88acc3a29, type: 3}
   skillClassName: 
   manaCost: 0
   coolDown: 0

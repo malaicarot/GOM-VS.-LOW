@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Ability
 {
     public abstract string Name { get; }
-    public abstract void Proccess();
+    public abstract void Proccess(SkillData skillData, Transform effectTransform);
 
 }
 
@@ -16,8 +16,9 @@ public class Keep : Ability
 {
     public override string Name => "Keep";
 
-    public override void Proccess()
+    public override void Proccess(SkillData skillData, Transform effectTransform)
     {
+        GameObject.FindAnyObjectByType<PlayerSkill>()?.ActiveEffect(skillData.effect, effectTransform);
         Debug.Log("Keep");
     }
 }
@@ -26,8 +27,11 @@ public class Stoning : Ability
 {
     public override string Name => "Stoning";
 
-    public override void Proccess()
+    public override void Proccess(SkillData skillData, Transform effectTransform)
     {
+        GameObject.FindAnyObjectByType<PlayerSkill>()?.ActiveEffect(skillData.effect, effectTransform);
+
+
         Debug.Log("Stoning");
     }
 }

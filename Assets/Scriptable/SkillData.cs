@@ -4,21 +4,21 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
     [Header("General Infor")]
-    [SerializeField] string skillName;
+    public string skillName;
     [TextArea, SerializeField] string description;
-    [SerializeField] Sprite icon;
+    public Sprite sprite;
 
     [Header("Logic")]
     [SerializeField] string skillClassName;
-    [SerializeField] float manaCost;
-    [SerializeField] float coolDown;
+    public float manaCost;
+    public float coolDown;
 
     [Header("Effect")]
-    [SerializeField] GameObject effect;
-    [SerializeField] AudioClip sound;
+    public ParticleSystem effect;
+    public AudioClip sound;
 
     [Header("Targeting")]
-    [SerializeField] float range;
-    [SerializeField] bool isAOE;
+    public float range;
+    public bool isAOE;
 
 }
