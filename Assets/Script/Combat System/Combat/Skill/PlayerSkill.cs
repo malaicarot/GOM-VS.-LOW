@@ -8,7 +8,6 @@ public class PlayerSkill : MonoBehaviour
     [SerializeField] Button[] buttonSkill;
     [SerializeField] SkillData[] skillData;
 
-    [SerializeField] float cooldownTime;
     Image backgroundImage; // Icon kĩ năng được làm mờ 
     Image fillImage;       // Icon kĩ năng sắc nét, dùng để làm hiệu ứng hồi chiêu
     List<Image> fillImageList;
@@ -80,6 +79,11 @@ public class PlayerSkill : MonoBehaviour
     {
         ParticleSystem tempParticle = Instantiate(particleSystem, effectTransform.position, Quaternion.identity);
         tempParticle.Play();
+    }
+
+    public float ManaCost(int index)
+    {
+        return skillData[index].manaCost;
     }
 
 }

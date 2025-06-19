@@ -10,6 +10,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
+    [field: SerializeField] public Mana Mana { get; private set; }
+
     [field: SerializeField] public Stamina Stamina { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
@@ -29,6 +31,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float healing { get; private set; }
     [field: SerializeField] public float reducePotion { get; private set; }
     [field: SerializeField] public float staminaRecovery { get; private set; }
+
 
 
 
@@ -68,6 +71,7 @@ public class PlayerStateMachine : StateMachine
     }
     public void OnCastSkill()
     {
+        if(Mana.currentMana <= 0){ return; }
         SwitchState(new PlayerCastSkillState(this));
     }
 

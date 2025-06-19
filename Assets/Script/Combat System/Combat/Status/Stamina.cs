@@ -27,7 +27,6 @@ public class Stamina : MonoBehaviour
         currentStamina = Mathf.Lerp(currentStamina, Mathf.Min(currentStamina + amount, maxStamina), recoverySpeed);
     }
 
-
     public void ReduceStamina(float amount)
     {
         currentStamina = MathF.Max(currentStamina - amount, 0);

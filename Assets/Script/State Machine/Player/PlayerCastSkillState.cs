@@ -13,6 +13,7 @@ public class PlayerCastSkillState : PlayerBaseState
     {
         stateMachine.Animator.CrossFadeInFixedTime(CastSkillHash, stateMachine.CrossFadeDuration);
         stateMachine.PlayerSkill.UseSkill(stateMachine.InputReader.ButtonIndex);
+        stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.ManaCost(stateMachine.InputReader.ButtonIndex));
     }
 
     public override void Tick(float deltaTime)
