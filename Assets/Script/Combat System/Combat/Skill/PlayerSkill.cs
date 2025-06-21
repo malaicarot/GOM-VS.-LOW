@@ -5,56 +5,60 @@ using UnityEngine.UI;
 
 public class PlayerSkill : MonoBehaviour
 {
-    [SerializeField] Button[] buttonSkill;
-    [SerializeField] SkillData[] skillData;
+    [SerializeField] GameObject[] skillUI;
+    [field: SerializeField] public SkillData[] skillData { get; private set; }
 
     Image backgroundImage; // Icon kĩ năng được làm mờ 
     Image fillImage;       // Icon kĩ năng sắc nét, dùng để làm hiệu ứng hồi chiêu
     List<Image> fillImageList;
-    Ability ability;
-
-
+    List<StatusBar> statusBarList;
+    float test = 100f;
+    const float FILL_CONST = 100f;
 
     void Start()
     {
         fillImageList = new List<Image>();
+        statusBarList = new List<StatusBar>();
         UpdateImage();
+        SetUpStatusBar();
     }
-
     void Update()
     {
-        // CooldownUI();
+        // FillUI();
     }
 
-    public void UseSkill(int index)
+    void SetUpStatusBar()
     {
-        if (index >= 0 && index < buttonSkill.Length)
+        foreach (var item in fillImageList)
         {
-            buttonSkill[index].onClick.Invoke();
-            ActiveEffect(index);
+            StatusBar statusBar = item.gameObject.GetComponent<StatusBar>();
+            statusBarList.Add(statusBar);
         }
     }
 
-    void CooldownUI()
+    void FillUI()
     {
-        // for (int i = 0; i < fillImageList.Count; i++)
-        // {
-        //     fillImageList[i].fillAmount = Mathf.Lerp(0, 1, skilldata[i].coolDown);
-
-        // }
-    }
-
-
-    void ActiveEffect(int index)
-    {
-        ability = AbilityFactory.GetAbility(skillData[index].skillName);
-        if (ability != null)
+        foreach (var item in fillImageList)
         {
-            ability.Proccess(skillData[index], this.transform);
-            fillImageList[index].fillAmount = 0;
+            if (item.fillAmount < 1)
+            {
+                StatusBar statusBar = item.gameObject.GetComponent<StatusBar>();
+                statusBar.fillAmount = 1f;
+            }
         }
     }
 
+    public void SetUpFill(string name)
+    {
+        foreach (var item in fillImageList)
+        {
+            if (item.sprite.name == name)
+            {
+                StatusBar statusBar = item.gameObject.GetComponent<StatusBar>();
+                statusBar.fillAmount = 0 / FILL_CONST;
+            }
+        }
+    }
 
     void UpdateImage()
     {
@@ -62,8 +66,8 @@ public class PlayerSkill : MonoBehaviour
 
         for (int i = 0; i < skillData.Length; i++)
         {
-            backgroundImage = buttonSkill[i].transform.Find("Background")?.GetComponent<Image>();
-            fillImage = buttonSkill[i].transform.Find("Fill")?.GetComponent<Image>();
+            backgroundImage = skillUI[i].transform.Find("Background")?.GetComponent<Image>();
+            fillImage = skillUI[i].transform.Find("Fill")?.GetComponent<Image>();
 
             backgroundImage.sprite = skillData[i].sprite;
             fillImage.sprite = skillData[i].sprite;
@@ -74,16 +78,4 @@ public class PlayerSkill : MonoBehaviour
             fillImage.gameObject.SetActive(true);
         }
     }
-
-    public void ActiveEffect(ParticleSystem particleSystem, Transform effectTransform)
-    {
-        ParticleSystem tempParticle = Instantiate(particleSystem, effectTransform.position, Quaternion.identity);
-        tempParticle.Play();
-    }
-
-    public float ManaCost(int index)
-    {
-        return skillData[index].manaCost;
-    }
-
 }

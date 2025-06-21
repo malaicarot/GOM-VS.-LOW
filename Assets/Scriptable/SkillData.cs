@@ -9,7 +9,7 @@ public class SkillData : ScriptableObject
     public Sprite sprite;
 
     [Header("Logic")]
-    [SerializeField] string skillClassName;
+    public AnimationClip animation;
     public float manaCost;
     public float coolDown;
 

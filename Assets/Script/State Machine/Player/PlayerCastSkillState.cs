@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class PlayerCastSkillState : PlayerBaseState
 {
-    readonly int CastSkillHash = Animator.StringToHash("Cast_Skill");
+    readonly int CastSkillHash = Animator.StringToHash("CastSkill");
     readonly string CastSkillTag = "CastSkill";
+    int skillIndex;
+    Ability ability;
+
 
     public PlayerCastSkillState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -11,9 +14,12 @@ public class PlayerCastSkillState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Animator.CrossFadeInFixedTime(CastSkillHash, stateMachine.CrossFadeDuration);
-        stateMachine.PlayerSkill.UseSkill(stateMachine.InputReader.ButtonIndex);
-        stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.ManaCost(stateMachine.InputReader.ButtonIndex));
+        skillIndex = stateMachine.InputReader.ButtonIndex;
+        UseSkill(skillIndex);
+        stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.skillData[skillIndex].manaCost);
+        PlayAnimation(skillIndex);
+        stateMachine.PlayerSkill.SetUpFill(stateMachine.PlayerSkill.skillData[skillIndex].sprite.name);
+
     }
 
     public override void Tick(float deltaTime)
@@ -35,5 +41,23 @@ public class PlayerCastSkillState : PlayerBaseState
 
     public override void Exit()
     {
+    }
+
+    void UseSkill(int index)
+    {
+        string name = stateMachine.PlayerSkill.skillData[index].skillName;
+        ability = AbilityFactory.GetAbility(name);
+        if (ability != null)
+        {
+            ability.Proccess(stateMachine.PlayerSkill.skillData[index], stateMachine.gameObject);
+        }
+    }
+
+    void PlayAnimation(int index)
+    {
+        AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(stateMachine.AnimatorOverrideController);
+        runtimeOverride["DefaultSkill"] = stateMachine.PlayerSkill.skillData[index].animation;
+        stateMachine.Animator.runtimeAnimatorController = runtimeOverride;
+        stateMachine.Animator.CrossFadeInFixedTime(CastSkillHash, stateMachine.CrossFadeDuration);
     }
 }
