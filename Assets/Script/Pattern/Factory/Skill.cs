@@ -8,7 +8,6 @@ public class Keep : Ability
     {
         ParticleSystem skill = GameObject.Instantiate(skillData.effect, caster.transform.position, Quaternion.identity);
         skill.Play();
-        // caster.GetComponent<Animator>()?.SetTrigger(skillData.animation);
         
     }
 }
@@ -22,6 +21,5 @@ public class Stoning : Ability
     {
         ParticleSystem skill = GameObject.Instantiate(skillData.effect, caster.transform.position, Quaternion.identity);
         skill.Play();
-        Debug.Log("Stoning");
     }
 }

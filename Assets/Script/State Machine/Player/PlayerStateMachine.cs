@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStateMachine : StateMachine
 {
     [field: SerializeField] public InputReader InputReader { get; private set; }
+    [field: SerializeField] public Button[] Buttons { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public AnimatorOverrideController AnimatorOverrideController { get; private set; }
@@ -12,7 +14,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
     [field: SerializeField] public Mana Mana { get; private set; }
-
     [field: SerializeField] public Stamina Stamina { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
@@ -32,11 +33,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float healing { get; private set; }
     [field: SerializeField] public float reducePotion { get; private set; }
     [field: SerializeField] public float staminaRecovery { get; private set; }
-
-
-
-
-
 
     public Transform CameraTransfrom { get; private set; }
     void Start()
@@ -73,6 +69,9 @@ public class PlayerStateMachine : StateMachine
     public void OnCastSkill()
     {
         if(Mana.currentMana <= 0){ return; }
+        if(!PlayerSkill.ButtonOnClick(Buttons[InputReader.ButtonIndex])){ return; }
+
+        Buttons[InputReader.ButtonIndex].onClick.Invoke();
         SwitchState(new PlayerCastSkillState(this));
     }
 

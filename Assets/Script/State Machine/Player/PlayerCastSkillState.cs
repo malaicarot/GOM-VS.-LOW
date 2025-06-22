@@ -18,8 +18,6 @@ public class PlayerCastSkillState : PlayerBaseState
         UseSkill(skillIndex);
         stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.skillData[skillIndex].manaCost);
         PlayAnimation(skillIndex);
-        stateMachine.PlayerSkill.SetUpFill(stateMachine.PlayerSkill.skillData[skillIndex].sprite.name);
-
     }
 
     public override void Tick(float deltaTime)

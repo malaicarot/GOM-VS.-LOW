@@ -11,53 +11,12 @@ public class PlayerSkill : MonoBehaviour
     Image backgroundImage; // Icon kĩ năng được làm mờ 
     Image fillImage;       // Icon kĩ năng sắc nét, dùng để làm hiệu ứng hồi chiêu
     List<Image> fillImageList;
-    List<StatusBar> statusBarList;
-    float test = 100f;
-    const float FILL_CONST = 100f;
 
     void Start()
     {
         fillImageList = new List<Image>();
-        statusBarList = new List<StatusBar>();
         UpdateImage();
-        SetUpStatusBar();
-    }
-    void Update()
-    {
-        // FillUI();
-    }
-
-    void SetUpStatusBar()
-    {
-        foreach (var item in fillImageList)
-        {
-            StatusBar statusBar = item.gameObject.GetComponent<StatusBar>();
-            statusBarList.Add(statusBar);
-        }
-    }
-
-    void FillUI()
-    {
-        foreach (var item in fillImageList)
-        {
-            if (item.fillAmount < 1)
-            {
-                StatusBar statusBar = item.gameObject.GetComponent<StatusBar>();
-                statusBar.fillAmount = 1f;
-            }
-        }
-    }
-
-    public void SetUpFill(string name)
-    {
-        foreach (var item in fillImageList)
-        {
-            if (item.sprite.name == name)
-            {
-                StatusBar statusBar = item.gameObject.GetComponent<StatusBar>();
-                statusBar.fillAmount = 0 / FILL_CONST;
-            }
-        }
+        SetCooldownSkill();
     }
 
     void UpdateImage()
@@ -76,6 +35,26 @@ public class PlayerSkill : MonoBehaviour
 
             backgroundImage.gameObject.SetActive(true);
             fillImage.gameObject.SetActive(true);
+        }
+    }
+
+    public bool ButtonOnClick(Button button)
+    {
+        CoolDown coolDown = button.GetComponentInChildren<CoolDown>();
+
+        if (coolDown.cooldown < coolDown.coolDownTime)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    void SetCooldownSkill()
+    {
+        for (int i = 0; i < fillImageList.Count; i++)
+        {
+            CoolDown coolDown = fillImageList[i].GetComponent<CoolDown>();
+            coolDown.coolDownTime = skillData[i].coolDown;
         }
     }
 }
