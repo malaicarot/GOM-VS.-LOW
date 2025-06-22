@@ -22,6 +22,11 @@ public class Mana : MonoBehaviour
         }
     }
 
+    public void ResetMana()
+    {
+        currentMana = maxMana;
+    }
+
     public void IncreaseMana(float amount)
     {
         currentMana = Mathf.Min(currentMana + amount, maxMana);

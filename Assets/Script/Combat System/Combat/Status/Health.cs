@@ -28,6 +28,12 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+
+    }
+
     public void SetParry(bool isParry)
     {
         this.isParry = isParry;

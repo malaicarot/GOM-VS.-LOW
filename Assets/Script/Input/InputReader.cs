@@ -10,6 +10,8 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public bool IsSprint { get; private set; }
     public bool IsBlocking { get; private set; }
     public int ButtonIndex { get; private set; }
+    // public int Inter { get; private set; }
+
 
 
     public event Action SkillEvent;
@@ -18,6 +20,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public event Action TargetEvent;
     public event Action CancelTargetEvent;
     public event Action HealingEvent;
+    public event Action Interact;
 
 
     public Vector2 Look { get; private set; }
@@ -137,8 +140,8 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
             // ButtonIndex = -1;
             return;
         }
-        
-        
+
+
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             ButtonIndex = 0;
@@ -159,6 +162,11 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 
         }
         SkillEvent?.Invoke();
+    }
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+        Interact?.Invoke();
     }
     void OnApplicationFocus(bool forcus)
     {

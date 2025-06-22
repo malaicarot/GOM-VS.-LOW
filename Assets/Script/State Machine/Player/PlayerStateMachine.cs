@@ -18,6 +18,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
+    [field: SerializeField] public Respawn Respawn { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
     [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
@@ -35,6 +36,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float staminaRecovery { get; private set; }
 
     public Transform CameraTransfrom { get; private set; }
+    public Transform CheckPoint { get; private set; }
     void Start()
     {
         CameraTransfrom = Camera.main.transform;
@@ -46,11 +48,14 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
+        InputReader.Interact += OnGetCheckPoint;
     }
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
+        InputReader.Interact -= OnGetCheckPoint;
+
     }
 
     void HandleAttack()
@@ -66,13 +71,37 @@ public class PlayerStateMachine : StateMachine
     {
         SwitchState(new PlayerJumpState(this));
     }
+
+    public void OnGetCheckPoint()
+    {
+        if (Respawn.isGetCheckpoint)
+        {
+            CheckPoint = Respawn.respawnTransform;
+        }
+        Debug.Log(CheckPoint.position);
+    }
+
     public void OnCastSkill()
     {
-        if(Mana.currentMana <= 0){ return; }
-        if(!PlayerSkill.ButtonOnClick(Buttons[InputReader.ButtonIndex])){ return; }
+        if (Mana.currentMana <= 0) { return; }
+        if (!PlayerSkill.ButtonOnClick(Buttons[InputReader.ButtonIndex])) { return; }
 
         Buttons[InputReader.ButtonIndex].onClick.Invoke();
         SwitchState(new PlayerCastSkillState(this));
+    }
+
+    public void HandleRespawnState()
+    {
+        Respawn.RespawnPlayer();
+        SwitchState(new PlayerRespawnState(this));
+
+    }
+
+    public void HandleReturnFreeLookState()
+    {
+        Respawn.RespawnPlayer();
+        SwitchState(new PlayerFreeLookState(this));
+
     }
 
     public void HandleHealing()

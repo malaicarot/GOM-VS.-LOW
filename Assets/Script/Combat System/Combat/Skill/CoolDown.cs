@@ -20,11 +20,6 @@ public class CoolDown : MonoBehaviour
         fillImage.fillAmount = fill;
     }
 
-    public void DisableUseSkill(Button button)
-    {
-        button.enabled = false;
-    }
-
     public void SetCooldown()
     {
         cooldown = 0;
