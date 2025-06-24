@@ -10,7 +10,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public bool IsSprint { get; private set; }
     public bool IsBlocking { get; private set; }
     public int ButtonIndex { get; private set; }
-    // public int Inter { get; private set; }
+    public bool IsInteract { get; private set; }
 
 
 
@@ -20,7 +20,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public event Action TargetEvent;
     public event Action CancelTargetEvent;
     public event Action HealingEvent;
-    public event Action Interact;
+    // public event Action Interact;
 
 
     public Vector2 Look { get; private set; }
@@ -165,8 +165,16 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
-        Interact?.Invoke();
+        // if (!context.performed) { return; }
+        // Interact?.Invoke();
+        if (context.performed)
+        {
+            IsInteract = true;
+        }
+        else if (context.canceled)
+        {
+            IsInteract = false;
+        }
     }
     void OnApplicationFocus(bool forcus)
     {

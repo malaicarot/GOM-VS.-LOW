@@ -36,7 +36,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float staminaRecovery { get; private set; }
 
     public Transform CameraTransfrom { get; private set; }
-    public Transform CheckPoint { get; private set; }
+    // public Transform CheckPoint { get; private set; }
     void Start()
     {
         CameraTransfrom = Camera.main.transform;
@@ -48,14 +48,11 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
-        InputReader.Interact += OnGetCheckPoint;
     }
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
-        InputReader.Interact -= OnGetCheckPoint;
-
     }
 
     void HandleAttack()
@@ -72,15 +69,6 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerJumpState(this));
     }
 
-    public void OnGetCheckPoint()
-    {
-        if (Respawn.isGetCheckpoint)
-        {
-            CheckPoint = Respawn.respawnTransform;
-        }
-        Debug.Log(CheckPoint.position);
-    }
-
     public void OnCastSkill()
     {
         if (Mana.currentMana <= 0) { return; }
@@ -90,22 +78,43 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerCastSkillState(this));
     }
 
-    public void HandleRespawnState()
+    public Transform GetTransformFromCheckPoint(Transform transform)
     {
-        Respawn.RespawnPlayer();
-        SwitchState(new PlayerRespawnState(this));
-
+        return transform;
     }
 
-    public void HandleReturnFreeLookState()
-    {
-        Respawn.RespawnPlayer();
-        SwitchState(new PlayerFreeLookState(this));
-
-    }
 
     public void HandleHealing()
     {
         SwitchState(new PlayerHealingState(this));
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (InputReader.IsSprint)
+        {
+            if (other.CompareTag("Ledge"))
+            {
+                SwitchState(new PlayerLedgeBalanceState(this));
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (InputReader.IsInteract)
+        {
+            if (other.CompareTag("Item"))
+            {
+                SwitchState(new PlayerCollectionState(this));
+            }
+            else if (other.CompareTag("CheckPoint"))
+            {
+                GetTransformFromCheckPoint(other.gameObject.transform);
+                Respawn.respawnTransform = other.gameObject.transform;
+                SwitchState(new PlayerGetCheckPointState(this));
+            }
+        }
     }
 }

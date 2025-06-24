@@ -9,15 +9,23 @@ public class PlayerDeadState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.Ragdoll.ToggleRagdoll(true);
-        stateMachine.Respawn.RespawnPlayer();
     }
 
     public override void Tick(float deltaTime)
     {
-        stateMachine.HandleRespawnState();
     }
     public override void Exit()
     {
 
+    }
+
+    void ResSpawn()
+    {
+        stateMachine.Ragdoll.ToggleRagdoll(false);
+        // stateMachine.transform.position = stateMachine.CheckPoint.position;
+        stateMachine.Health.ResetHealth();
+        stateMachine.Mana.ResetMana();
+        stateMachine.Stamina.ResetStamina();
+        stateMachine.HealingPotion.ResetPotion();
     }
 }

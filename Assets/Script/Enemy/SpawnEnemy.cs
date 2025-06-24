@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnEnemy : MonoBehaviour
 {
@@ -8,23 +10,37 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] Vector3 distanceBetweenEnemies;
 
     Vector3 rootPosition;
+    List<Transform> validTransform = new List<Transform>();
 
 
     void Start()
     {
-        SpawnEnemies();
+        FilterValidPoint();
+        StartCoroutine(WaitToSpawn());
     }
 
     IEnumerator WaitToSpawn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         SpawnEnemies();
     }
 
+    void FilterValidPoint()
+    {
+        foreach (Transform item in areaSpawn)
+        {
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(item.position, out hit, 5f, NavMesh.AllAreas))
+            {
+                validTransform.Add(item);
+            }
+        }
+    }
 
     void SpawnEnemies()
     {
-        foreach (Transform areaPosition in areaSpawn)
+        if (validTransform.Count <= 0) { return; }
+        foreach (Transform areaPosition in validTransform)
         {
             rootPosition = areaPosition.position;
             for (int i = 0; i < enemiesQuantity; i++)

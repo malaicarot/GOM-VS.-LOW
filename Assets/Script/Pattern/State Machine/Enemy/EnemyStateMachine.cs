@@ -22,10 +22,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float EnemyAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeToDisappear { get; private set; }
 
-
     public Health Player { get; private set; }
-
-
 
     void Start()
     {
@@ -41,6 +38,7 @@ public class EnemyStateMachine : StateMachine
         Health.OnDeath += HandleDeadState;
         FallToGround();
     }
+
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
@@ -57,7 +55,6 @@ public class EnemyStateMachine : StateMachine
         SwitchState(new EnemyDeadState(this));
     }
 
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -73,7 +70,6 @@ public class EnemyStateMachine : StateMachine
         {
             gameObject.transform.position = raycastHit.point;
         }
-
     }
 
     public void ReturnEnemy()

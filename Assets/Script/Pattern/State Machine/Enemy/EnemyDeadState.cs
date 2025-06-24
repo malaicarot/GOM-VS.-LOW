@@ -1,6 +1,5 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
+
 
 public class EnemyDeadState : EnemyBaseState
 {
@@ -14,8 +13,6 @@ public class EnemyDeadState : EnemyBaseState
         enemyState.Ragdoll.ToggleRagdoll(true);
         GameObject.Destroy(enemyState.Target);
         enemyState.ReturnEnemy();
-
-
     }
 
     public override void Tick(float deltaTime)

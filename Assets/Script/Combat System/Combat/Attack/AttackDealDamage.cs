@@ -13,11 +13,13 @@ public class AttackDealDamage : MonoBehaviour
     {
         alreadyCollider.Clear();
     }
+
     public void SetAttack(int damage, float knockback)
     {
         dealDamaged = damage;
         this.knockback = knockback;
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other == myCollider) { return; }

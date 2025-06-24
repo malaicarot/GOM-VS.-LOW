@@ -8,6 +8,7 @@ public class ObjectPooling : MonoBehaviour
 {
     [Range(1, 50), SerializeField] uint poolSize;
     [SerializeField] List<PooledObject> pooledObjects;
+    [SerializeField] Vector3 offScreen;
     Dictionary<string, Stack<PooledObject>> pooledObjectDictionary;
 
 
@@ -30,8 +31,9 @@ public class ObjectPooling : MonoBehaviour
             Stack<PooledObject> pooledStack = new Stack<PooledObject>();
             for (int i = 0; i < poolSize; i++)
             {
-                PooledObject instance = Instantiate(pooledObject);
+                PooledObject instance = Instantiate(pooledObject, offScreen, Quaternion.identity);
                 instance._Instance = this;
+                // instance.gameObject.transform.position = offScreen;
                 instance.gameObject.transform.parent = this.transform;
                 instance.gameObject.SetActive(false);
                 instance.name = pooledObject.name;
