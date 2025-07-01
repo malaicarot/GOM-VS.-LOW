@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - CheckPoint
   - Item
+  - Ledge
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player
   - Ragdoll
   - Ground
-  - 
+  - Obstacle
   - 
   - 
   - 

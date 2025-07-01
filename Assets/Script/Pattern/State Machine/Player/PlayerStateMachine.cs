@@ -111,6 +111,8 @@ public class PlayerStateMachine : StateMachine
             }
             else if (other.CompareTag("CheckPoint"))
             {
+                CheckPoint checkPoint = other.GetComponent<CheckPoint>();
+                checkPoint.GlowingEyes();
                 GetTransformFromCheckPoint(other.gameObject.transform);
                 Respawn.respawnTransform = other.gameObject.transform;
                 SwitchState(new PlayerGetCheckPointState(this));

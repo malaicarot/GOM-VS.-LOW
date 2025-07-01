@@ -196,10 +196,10 @@ MonoBehaviour:
   - {fileID: 2890702343649922792}
   <EnemyController>k__BackingField: {fileID: 4683755642285144656}
   <EnemySpeed>k__BackingField: 1.5
-  <EnemyAttackDamage>k__BackingField: 50
+  <EnemyAttackDamage>k__BackingField: 10
   <CrossFadeDuration>k__BackingField: 0.1
   <EnemyChasingRange>k__BackingField: 10
-  <EnemyAttackRange>k__BackingField: 0.7
+  <EnemyAttackRange>k__BackingField: 1
   <EnemyAttackKnockback>k__BackingField: 20
   <TimeToDisappear>k__BackingField: 2
 --- !u!114 &1551613108990356904

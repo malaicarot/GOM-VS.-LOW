@@ -5,49 +5,81 @@ using UnityEngine.AI;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [SerializeField] Transform[] areaSpawn;
-    [Range(1, 10), SerializeField] uint enemiesQuantity;
-    [SerializeField] Vector3 distanceBetweenEnemies;
-
-    Vector3 rootPosition;
-    List<Transform> validTransform = new List<Transform>();
+    [SerializeField] GameObject[] areaSpawn;
+    // [Range(1, 10), SerializeField] uint enemiesQuantity;
+    [SerializeField] int maxAttemps = 10;
+    [SerializeField] float radius = 5f;
+    [SerializeField] int numberOfPoint = 5;
+    [SerializeField] float timeToWait = 1f;
 
 
     void Start()
     {
-        FilterValidPoint();
         StartCoroutine(WaitToSpawn());
     }
 
     IEnumerator WaitToSpawn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeToWait);
         SpawnEnemies();
-    }
-
-    void FilterValidPoint()
-    {
-        foreach (Transform item in areaSpawn)
-        {
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(item.position, out hit, 5f, NavMesh.AllAreas))
-            {
-                validTransform.Add(item);
-            }
-        }
     }
 
     void SpawnEnemies()
     {
-        if (validTransform.Count <= 0) { return; }
-        foreach (Transform areaPosition in validTransform)
+        if (areaSpawn.Length <= 0) { return; }
+        foreach (GameObject area in areaSpawn)
         {
-            rootPosition = areaPosition.position;
-            for (int i = 0; i < enemiesQuantity; i++)
+            foreach (Vector3 position in GetRandomPointsInArea(area))
             {
-                EnemyPool.EnemyPoolSingleton.GetEnemy(EnemyPool.EnemyPoolSingleton.RandomType(), rootPosition, Quaternion.identity);
-                rootPosition += distanceBetweenEnemies;
+                EnemyPool.EnemyPoolSingleton.GetEnemy(EnemyPool.EnemyPoolSingleton.RandomType(), position, Quaternion.identity);
             }
         }
     }
+
+    List<Vector3> GetRandomPointsInArea(GameObject area)
+    {
+        List<Vector3> validTransform = new List<Vector3>();
+        int found = 0;
+        Bounds bounds = area.GetComponent<Collider>().bounds;
+        while (found < numberOfPoint)
+        {
+            for (int i = 0; i < maxAttemps; i++)
+            {
+                Vector3 randomPoint = new Vector3(Random.Range(bounds.min.x, bounds.max.x),
+                bounds.center.y,
+                Random.Range(bounds.min.z, bounds.max.z)
+                );
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(randomPoint, out hit, radius, NavMesh.AllAreas))
+                {
+                    found++;
+                    validTransform.Add(hit.position);
+                    break;
+                }
+            }
+            if (found >= numberOfPoint)
+            {
+                break;
+            }
+        }
+        return validTransform;
+    }
+
+    // void OnDrawGizmosSelected()
+    // {
+    //     Debug.Log("Draw Gizmos");
+    //     Gizmos.color = Color.green;
+    //     foreach (var point in GetRandomPointsInArea(areaSpawn[3]))
+    //     {
+    //         Gizmos.DrawSphere(point, 1f);
+    //     }
+    //     foreach (var point in GetRandomPointsInArea(areaSpawn[4]))
+    //     {
+    //         Gizmos.DrawSphere(point, 1f);
+    //     }
+    //     foreach (var point in GetRandomPointsInArea(areaSpawn[5]))
+    //     {
+    //         Gizmos.DrawSphere(point, 1f);
+    //     }
+    // }
 }
