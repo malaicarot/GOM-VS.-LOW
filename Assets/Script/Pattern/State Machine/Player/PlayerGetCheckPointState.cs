@@ -10,26 +10,17 @@ public class PlayerGetCheckPointState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.DisableMoment();
         stateMachine.Animator.CrossFadeInFixedTime(GetCheckPointHash, stateMachine.CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator, GetCheckPointString);
-        if (normalizedTime > 1f)
-        {
-            if (stateMachine.Targeter.currentTarget != null)
-            {
-                stateMachine.SwitchState(new PlayerTargetState(stateMachine));
-            }
-            else
-            {
-                stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-            }
-        }
+        UIManagers.UIManager.StopAction += stateMachine.OnReturnFreeLook;
     }
 
     public override void Exit()
     {
+        stateMachine.DisableMoment();
     }
 }

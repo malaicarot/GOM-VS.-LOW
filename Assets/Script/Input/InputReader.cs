@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +19,6 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     public event Action TargetEvent;
     public event Action CancelTargetEvent;
     public event Action HealingEvent;
-    // public event Action Interact;
 
 
     public Vector2 Look { get; private set; }
@@ -36,13 +34,10 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
         controls.Enable();
     }
 
-
     void OnDestroy()
     {
         controls.Disable();
     }
-
-
 
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -117,6 +112,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
             CancelTargetEvent?.Invoke();
         }
     }
+
     public void OnBlock(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -128,16 +124,17 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
             IsBlocking = false;
         }
     }
+
     public void OnHealing(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
         HealingEvent?.Invoke();
     }
+
     public void OnSkill(InputAction.CallbackContext context)
     {
         if (!context.performed)
         {
-            // ButtonIndex = -1;
             return;
         }
 
@@ -163,10 +160,9 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
         }
         SkillEvent?.Invoke();
     }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
-        // if (!context.performed) { return; }
-        // Interact?.Invoke();
         if (context.performed)
         {
             IsInteract = true;
@@ -176,10 +172,12 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
             IsInteract = false;
         }
     }
-    void OnApplicationFocus(bool forcus)
+
+    public void OnApplicationFocus(bool forcus)
     {
         SetCursorState(cursorLocked);
     }
+    
 
     void SetCursorState(bool newState)
     {

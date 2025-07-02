@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
@@ -13,5 +14,6 @@ public class CheckPoint : MonoBehaviour
             Material material = eye.GetComponent<Renderer>().material;
             material.SetColor("_EmissiveColor", color * 50);
         }
+        UIManagers.UIManager.ActiveCheckpointUI(true);
     }
 }

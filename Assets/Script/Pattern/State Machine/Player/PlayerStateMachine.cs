@@ -36,7 +36,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float staminaRecovery { get; private set; }
 
     public Transform CameraTransfrom { get; private set; }
-    // public Transform CheckPoint { get; private set; }
     void Start()
     {
         CameraTransfrom = Camera.main.transform;
@@ -68,6 +67,17 @@ public class PlayerStateMachine : StateMachine
     {
         SwitchState(new PlayerJumpState(this));
     }
+
+    public void OnReturnFreeLook()
+    {
+        SwitchState(new PlayerFreeLookState(this));
+    }
+
+    // public void OnExitCheckPoint()
+    // {
+    //     SwitchState(new PlayerFreeLookState(this));
+    //     DisableMoment();
+    // }
 
     public void OnCastSkill()
     {
@@ -118,5 +128,11 @@ public class PlayerStateMachine : StateMachine
                 SwitchState(new PlayerGetCheckPointState(this));
             }
         }
+    }
+    public void DisableMoment()
+    {
+        InputReader.cursorLocked = !InputReader.cursorLocked;
+        InputReader.cursorInputForLook = !InputReader.cursorInputForLook;
+        InputReader.OnApplicationFocus(InputReader.cursorLocked);
     }
 }
