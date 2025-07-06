@@ -6,6 +6,8 @@ public class UIManagers : MonoBehaviour
     public static UIManagers UIManager;
 
     [SerializeField] GameObject UICheckpointInteraction;
+    [SerializeField] GameObject UISystem;
+
     public event Action ActionCountinue;
     public event Action Rest;
 
@@ -36,5 +38,12 @@ public class UIManagers : MonoBehaviour
     {
         Rest?.Invoke();
         OnLeave();
+    }
+
+    public void OnSystem(string name)
+    {
+        UISystem.SetActive(true);
+        SystemUIManagers systemUIManagers = UISystem.GetComponent<SystemUIManagers>();
+        systemUIManagers.ActiveContent(name);
     }
 }

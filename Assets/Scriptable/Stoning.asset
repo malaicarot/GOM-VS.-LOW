@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Stoning
   description: 
-  sprite: {fileID: 21300000, guid: f31e2ae32614f1f45b838bc88acc3a29, type: 3}
+  sprite: {fileID: 21300000, guid: f4b54ec8d3fe7e7479419e26a24b5fee, type: 3}
   animation: {fileID: 7400000, guid: ccfd0b43cae66f24f8fa6a1fb7c6d99a, type: 2}
   manaCost: 50
   coolDown: 40
