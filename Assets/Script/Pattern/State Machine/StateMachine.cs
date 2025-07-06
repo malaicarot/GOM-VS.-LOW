@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class StateMachine : MonoBehaviour
 {
-
     State currentState;
     public void SwitchState(State newState)
     {
@@ -10,8 +9,6 @@ public abstract class StateMachine : MonoBehaviour
         currentState = newState;
         currentState?.Enter();
     }
-
-
 
     void Update()
     {

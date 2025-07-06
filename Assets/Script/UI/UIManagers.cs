@@ -6,7 +6,8 @@ public class UIManagers : MonoBehaviour
     public static UIManagers UIManager;
 
     [SerializeField] GameObject UICheckpointInteraction;
-    public event Action StopAction;
+    public event Action ActionCountinue;
+    public event Action Rest;
 
     void Start()
     {
@@ -22,11 +23,18 @@ public class UIManagers : MonoBehaviour
 
     public void ActiveCheckpointUI(bool state)
     {
-        if (!state)
-        {
-            StopAction?.Invoke();
-        }
-
         UICheckpointInteraction.SetActive(state);
+    }
+
+    public void OnLeave()
+    {
+        ActionCountinue?.Invoke();
+        ActiveCheckpointUI(false);
+    }
+
+    public void OnRest()
+    {
+        Rest?.Invoke();
+        OnLeave();
     }
 }

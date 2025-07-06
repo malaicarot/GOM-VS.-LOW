@@ -19,13 +19,5 @@ public class PlayerDeadState : PlayerBaseState
 
     }
 
-    void ResSpawn()
-    {
-        stateMachine.Ragdoll.ToggleRagdoll(false);
-        // stateMachine.transform.position = stateMachine.CheckPoint.position;
-        stateMachine.Health.ResetHealth();
-        stateMachine.Mana.ResetMana();
-        stateMachine.Stamina.ResetStamina();
-        stateMachine.HealingPotion.ResetPotion();
-    }
+   
 }

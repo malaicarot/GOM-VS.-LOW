@@ -73,12 +73,6 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerFreeLookState(this));
     }
 
-    // public void OnExitCheckPoint()
-    // {
-    //     SwitchState(new PlayerFreeLookState(this));
-    //     DisableMoment();
-    // }
-
     public void OnCastSkill()
     {
         if (Mana.currentMana <= 0) { return; }
@@ -134,5 +128,13 @@ public class PlayerStateMachine : StateMachine
         InputReader.cursorLocked = !InputReader.cursorLocked;
         InputReader.cursorInputForLook = !InputReader.cursorInputForLook;
         InputReader.OnApplicationFocus(InputReader.cursorLocked);
+    }
+
+    public void Rest()
+    {
+        Health.ResetHealth();
+        Mana.ResetMana();
+        Stamina.ResetStamina();
+        HealingPotion.ResetPotion();
     }
 }

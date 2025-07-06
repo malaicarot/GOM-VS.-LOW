@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerGetCheckPointState : PlayerBaseState
 {
     readonly int GetCheckPointHash = Animator.StringToHash("GetCheckPoint");
-    string GetCheckPointString = "GetCheckPoint";
     public PlayerGetCheckPointState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -16,7 +15,8 @@ public class PlayerGetCheckPointState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        UIManagers.UIManager.StopAction += stateMachine.OnReturnFreeLook;
+        UIManagers.UIManager.ActionCountinue += stateMachine.OnReturnFreeLook;
+        UIManagers.UIManager.Rest += stateMachine.Rest;
     }
 
     public override void Exit()
