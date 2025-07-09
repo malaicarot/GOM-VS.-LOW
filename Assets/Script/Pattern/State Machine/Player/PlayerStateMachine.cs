@@ -17,6 +17,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Stamina Stamina { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
+    [field: SerializeField] public PlayerStats PlayerStats { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public Respawn Respawn { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
@@ -47,11 +48,15 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
+        PlayerStats.IncreaseStats += IncreaseDamage;
+
     }
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
+        PlayerStats.IncreaseStats -= IncreaseDamage;
+
     }
 
     void HandleAttack()
@@ -61,6 +66,14 @@ public class PlayerStateMachine : StateMachine
     void HandleDeadState()
     {
         SwitchState(new PlayerDeadState(this));
+    }
+
+    public void IncreaseDamage()
+    {
+        foreach (Attack attack in Attacks)
+        {
+            attack.AttackDamage += 5;
+        }
     }
 
     public void OnJump()
@@ -92,6 +105,7 @@ public class PlayerStateMachine : StateMachine
     {
         SwitchState(new PlayerHealingState(this));
     }
+
 
 
     void OnTriggerEnter(Collider other)

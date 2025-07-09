@@ -21,12 +21,16 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float EnemyAttackRange { get; private set; }
     [field: SerializeField] public float EnemyAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeToDisappear { get; private set; }
+    [field: SerializeField] public int XPProvide { get; private set; }
+
 
     public Health Player { get; private set; }
+    public PlayerStats PlayerStats { get; private set; }
 
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        PlayerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         NavMeshAgent.updatePosition = false;
         NavMeshAgent.updateRotation = false;
         SwitchState(new EnemyIdleState(this));

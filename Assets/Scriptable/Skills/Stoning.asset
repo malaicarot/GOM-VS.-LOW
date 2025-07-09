@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02aacfd2f94603243a445dc397a03649, type: 3}
   m_Name: Stoning
   m_EditorClassIdentifier: 
-  skillName: Stoning
-  description: 
-  sprite: {fileID: 21300000, guid: f4b54ec8d3fe7e7479419e26a24b5fee, type: 3}
-  animation: {fileID: 7400000, guid: ccfd0b43cae66f24f8fa6a1fb7c6d99a, type: 2}
-  manaCost: 50
-  coolDown: 40
-  effect: {fileID: 5936817956851514767, guid: 9029beab0dd9eb84aade1739487ed290, type: 3}
-  sound: {fileID: 0}
-  range: 0
-  isAOE: 0
+  SkillName: Stoning
+  Description: 'Stoning
+
+'
+  Sprite: {fileID: 21300000, guid: f4b54ec8d3fe7e7479419e26a24b5fee, type: 3}
+  Animation: {fileID: 7400000, guid: ccfd0b43cae66f24f8fa6a1fb7c6d99a, type: 2}
+  ManaCost: 30
+  CoolDown: 40
+  LevelNeeded: 5
+  Effect: {fileID: 2152626108995705947, guid: 6f692cd2d2d5eb84ab790976eccc0bae, type: 3}
+  Sound: {fileID: 0}
+  Range: 0
+  IsAOE: 0

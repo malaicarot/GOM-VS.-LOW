@@ -16,7 +16,7 @@ public class PlayerCastSkillState : PlayerBaseState
     {
         skillIndex = stateMachine.InputReader.ButtonIndex;
         UseSkill(skillIndex);
-        stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.skillData[skillIndex].manaCost);
+        stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.skillData[skillIndex].ManaCost);
         PlayAnimation(skillIndex);
     }
 
@@ -43,7 +43,7 @@ public class PlayerCastSkillState : PlayerBaseState
 
     void UseSkill(int index)
     {
-        string name = stateMachine.PlayerSkill.skillData[index].skillName;
+        string name = stateMachine.PlayerSkill.skillData[index].SkillName;
         ability = AbilityFactory.GetAbility(name);
         if (ability != null)
         {
@@ -54,7 +54,7 @@ public class PlayerCastSkillState : PlayerBaseState
     void PlayAnimation(int index)
     {
         AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(stateMachine.AnimatorOverrideController);
-        runtimeOverride["DefaultSkill"] = stateMachine.PlayerSkill.skillData[index].animation;
+        runtimeOverride["DefaultSkill"] = stateMachine.PlayerSkill.skillData[index].Animation;
         stateMachine.Animator.runtimeAnimatorController = runtimeOverride;
         stateMachine.Animator.CrossFadeInFixedTime(CastSkillHash, stateMachine.CrossFadeDuration);
     }

@@ -22,6 +22,14 @@ public class Mana : MonoBehaviour
         }
     }
 
+    public void IncreaseManaLevel(float amount)
+    {
+        maxMana += amount;
+        currentMana = maxMana;
+        Debug.Log("Health: " + maxMana);
+    }
+
+
     public void ResetMana()
     {
         currentMana = maxMana;

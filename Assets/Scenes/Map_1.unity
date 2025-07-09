@@ -10123,6 +10123,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369070bc683be3f4bb1975e231fefbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2002059492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002059443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bf4eec73abf3f408f24bc46d8d002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerXP: 0
+  playerLevel: 0
+  playerHP: 0
+  playerAttributes:
+  - attributeData: {fileID: 11400000, guid: ea83041e0ba0b244da2c31977478627a, type: 2}
+    amount: 10
+  - attributeData: {fileID: 11400000, guid: fdbc5be8186d8ff44ac95b196a154663, type: 2}
+    amount: 10
+  - attributeData: {fileID: 11400000, guid: d3df9cce046c10b4bb3e1b92f6a11cb2, type: 2}
+    amount: 10
+  - attributeData: {fileID: 11400000, guid: a458ae5dc4efc8b41a155d82396f8efb, type: 2}
+    amount: 10
+  manaIncrease: 10
+  staminaIncrease: 5
+  healthIncrease: 10
+  XPNeededToLevelUp: 10
 --- !u!1 &2007565119
 GameObject:
   m_ObjectHideFlags: 0
@@ -11474,6 +11502,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2002059463}
     - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: <PlayerStats>k__BackingField
+      value: 
+      objectReference: {fileID: 2002059492}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
       propertyPath: <reducePotion>k__BackingField
       value: 25
       objectReference: {fileID: 0}
@@ -11525,6 +11557,22 @@ PrefabInstance:
       propertyPath: <AnimatorOverrideController>k__BackingField
       value: 
       objectReference: {fileID: 22100000, guid: bf63a3e189a98bb48b2c47a6386b0a2f, type: 2}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[0].<AttackDamage>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[1].<AttackDamage>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[2].<AttackDamage>k__BackingField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: <Attacks>k__BackingField.Array.data[3].<AttackDamage>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9004668908779668099, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11558,16 +11606,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8298184940317647384, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      insertIndex: 3
+      insertIndex: 1
+      addedObject: {fileID: 2002059492}
+    - targetCorrespondingSourceObject: {fileID: 8298184940317647384, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      insertIndex: 4
       addedObject: {fileID: 2002059463}
     - targetCorrespondingSourceObject: {fileID: 8298184940317647384, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      insertIndex: 8
+      insertIndex: 9
       addedObject: {fileID: 2002059453}
     - targetCorrespondingSourceObject: {fileID: 8298184940317647384, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      insertIndex: 9
+      insertIndex: 10
       addedObject: {fileID: 2002059473}
     - targetCorrespondingSourceObject: {fileID: 8298184940317647384, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      insertIndex: 12
+      insertIndex: 13
       addedObject: {fileID: 2002059483}
   m_SourcePrefab: {fileID: 100100000, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
 --- !u!1660057539 &9223372036854775807

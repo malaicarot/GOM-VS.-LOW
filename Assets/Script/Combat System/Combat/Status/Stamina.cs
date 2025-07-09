@@ -21,6 +21,13 @@ public class Stamina : MonoBehaviour
         statusBar.fillAmount = currentStamina / maxStamina;
     }
 
+    public void IncreaseStamina(float amount)
+    {
+        maxStamina += amount;
+        currentStamina = maxStamina;
+        Debug.Log("Staminna: " + maxStamina);
+    }
+
     public void ResetStamina()
     {
         currentStamina = maxStamina;

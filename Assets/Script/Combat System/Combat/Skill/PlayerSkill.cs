@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,8 +27,8 @@ public class PlayerSkill : MonoBehaviour
             backgroundImage = skillUI[i].transform.Find("Background")?.GetComponent<Image>();
             fillImage = skillUI[i].transform.Find("Fill")?.GetComponent<Image>();
 
-            backgroundImage.sprite = skillData[i].sprite;
-            fillImage.sprite = skillData[i].sprite;
+            backgroundImage.sprite = skillData[i].Sprite;
+            fillImage.sprite = skillData[i].Sprite;
             fillImage.fillAmount = 1;
             fillImageList.Add(fillImage);
 
@@ -54,7 +53,7 @@ public class PlayerSkill : MonoBehaviour
         for (int i = 0; i < fillImageList.Count; i++)
         {
             CoolDown coolDown = fillImageList[i].GetComponent<CoolDown>();
-            coolDown.coolDownTime = skillData[i].coolDown;
+            coolDown.coolDownTime = skillData[i].CoolDown;
         }
     }
 }

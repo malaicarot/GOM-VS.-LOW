@@ -15,6 +15,14 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void IncreaseHP(float amount)
+    {
+        maxHealth += amount;
+        currentHealth = maxHealth;
+        Debug.Log("Health: " + maxHealth);
+    }
+
+
     void Update()
     {
         if (statusBar != null)
