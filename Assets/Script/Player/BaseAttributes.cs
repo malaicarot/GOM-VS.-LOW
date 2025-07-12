@@ -1,11 +1,11 @@
 
 [System.Serializable]
-public class PlayerAttributes
+public class BaseAttributes
 {
     public AttributeData attributeData;
     public int amount;
 
-    public PlayerAttributes(AttributeData attributeData, int amount)
+    public BaseAttributes(AttributeData attributeData, int amount)
     {
         this.attributeData = attributeData;
         this.amount = amount;

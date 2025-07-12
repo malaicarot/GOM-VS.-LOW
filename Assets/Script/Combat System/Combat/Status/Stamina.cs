@@ -1,19 +1,18 @@
 using System;
-using System.Collections;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Stamina : MonoBehaviour
 {
-    [SerializeField] float maxStamina = 100;
+    float maxStamina;
     [SerializeField] StatusBar statusBar;
     [SerializeField] float recoverySpeed;
+    PlayerStats playerStats;
     float currentStamina;
 
     void Start()
     {
-        currentStamina = maxStamina;
+        playerStats = gameObject.GetComponent<PlayerStats>();
+        SetStamina();
     }
 
     void Update()
@@ -21,11 +20,10 @@ public class Stamina : MonoBehaviour
         statusBar.fillAmount = currentStamina / maxStamina;
     }
 
-    public void IncreaseStamina(float amount)
+    public void SetStamina()
     {
-        maxStamina += amount;
+        maxStamina = playerStats.ReturnAttribute("Stamina");
         currentStamina = maxStamina;
-        Debug.Log("Staminna: " + maxStamina);
     }
 
     public void ResetStamina()

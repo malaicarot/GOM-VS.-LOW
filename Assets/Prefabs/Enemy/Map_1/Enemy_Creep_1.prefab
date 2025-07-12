@@ -202,7 +202,7 @@ MonoBehaviour:
   <EnemyAttackRange>k__BackingField: 1
   <EnemyAttackKnockback>k__BackingField: 20
   <TimeToDisappear>k__BackingField: 2
-  <XPProvide>k__BackingField: 5
+  <XPProvide>k__BackingField: 10
 --- !u!114 &1551613108990356904
 MonoBehaviour:
   m_ObjectHideFlags: 0

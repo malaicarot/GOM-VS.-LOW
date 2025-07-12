@@ -35,27 +35,29 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float healing { get; private set; }
     [field: SerializeField] public float reducePotion { get; private set; }
     [field: SerializeField] public float staminaRecovery { get; private set; }
+    [field: SerializeField] public int attackDamageUp { get; private set; }
 
     public Transform CameraTransfrom { get; private set; }
+
     void Start()
     {
         CameraTransfrom = Camera.main.transform;
         SwitchState(new PlayerFreeLookState(this));
-
+        SetDamage();
     }
 
     void OnEnable()
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
-        PlayerStats.IncreaseStats += IncreaseDamage;
+        PlayerStats.IncreaseStats += SetDamage;
 
     }
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
-        PlayerStats.IncreaseStats -= IncreaseDamage;
+        PlayerStats.IncreaseStats -= SetDamage;
 
     }
 
@@ -68,11 +70,11 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerDeadState(this));
     }
 
-    public void IncreaseDamage()
+    public void SetDamage()
     {
         foreach (Attack attack in Attacks)
         {
-            attack.AttackDamage += 5;
+            attack.AttackDamage = PlayerStats.ReturnAttribute("Attacks");
         }
     }
 

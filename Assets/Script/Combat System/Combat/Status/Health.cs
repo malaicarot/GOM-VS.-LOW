@@ -7,19 +7,32 @@ public class Health : MonoBehaviour
     [SerializeField] StatusBar statusBar;
     public event Action OnTakeDamage;
     public event Action OnDeath;
+
     public bool isDead => currentHealth == 0;
+
+    PlayerStats playerStats;
     float currentHealth;
+    int resistance;
     bool isParry;
     void Start()
     {
-        currentHealth = maxHealth;
+        if (gameObject.name == "Player")
+        {
+            playerStats = GetComponent<PlayerStats>();
+            resistance = playerStats.ReturnAttribute("Resistance");
+            maxHealth = playerStats.ReturnAttribute("Health");
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth = maxHealth;
+        }
     }
 
-    public void IncreaseHP(float amount)
+    public void SetHealth()
     {
-        maxHealth += amount;
+        maxHealth = playerStats.ReturnAttribute("Health");
         currentHealth = maxHealth;
-        Debug.Log("Health: " + maxHealth);
     }
 
 
@@ -52,14 +65,14 @@ public class Health : MonoBehaviour
         currentHealth = MathF.Min(currentHealth + amount, maxHealth);
     }
 
-    public void DealDamage(float damage)
+    public void DealDamage(int damage)
     {
         if (isParry) { return; }
         if (currentHealth == 0)
         {
             return;
         }
-        currentHealth = Mathf.Max(currentHealth - damage, 0);
+        currentHealth = Mathf.Max(currentHealth - damage + resistance, 0);
         OnTakeDamage?.Invoke();
 
         if (currentHealth == 0)

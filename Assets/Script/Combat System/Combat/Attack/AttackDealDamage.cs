@@ -24,8 +24,7 @@ public class AttackDealDamage : MonoBehaviour
     {
         if (other == myCollider) { return; }
         if (alreadyCollider.Contains(other)) { return; }
-        if(this.tag == other.tag){ return; }
-        Debug.Log(other.tag);
+        if (this.tag == other.tag) { return; }
 
         alreadyCollider.Add(other);
         if (other.TryGetComponent<Health>(out Health health))

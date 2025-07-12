@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class Mana : MonoBehaviour
 {
-    [SerializeField] float maxMana = 100f;
+    float maxMana = 100f;
     [SerializeField] StatusBar statusBar;
+    PlayerStats playerStats;
 
     public float currentMana { get; set; }
 
     void Start()
     {
-        currentMana = maxMana;
+        playerStats = GetComponent<PlayerStats>();
+        SetMana();
     }
 
     void Update()
@@ -22,11 +24,10 @@ public class Mana : MonoBehaviour
         }
     }
 
-    public void IncreaseManaLevel(float amount)
+    public void SetMana()
     {
-        maxMana += amount;
+        maxMana = playerStats.ReturnAttribute("Mana");
         currentMana = maxMana;
-        Debug.Log("Health: " + maxMana);
     }
 
 

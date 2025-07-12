@@ -14,7 +14,7 @@ public class PlayerBlockingState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
-        stateMachine.Health.SetParry(true);
+        // stateMachine.Health.SetParry(true);
         if (!stateMachine.InputReader.IsBlocking)
         {
             if (stateMachine.Targeter.currentTarget != null)
@@ -32,6 +32,6 @@ public class PlayerBlockingState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.Health.SetParry(false);
+        // stateMachine.Health.SetParry(false);
     }
 }

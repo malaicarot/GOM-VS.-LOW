@@ -23,6 +23,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float TimeToDisappear { get; private set; }
     [field: SerializeField] public int XPProvide { get; private set; }
 
+    public event Action IncreaseXP;
 
     public Health Player { get; private set; }
     public PlayerStats PlayerStats { get; private set; }
@@ -56,6 +57,7 @@ public class EnemyStateMachine : StateMachine
 
     void HandleDeadState()
     {
+        
         SwitchState(new EnemyDeadState(this));
     }
 

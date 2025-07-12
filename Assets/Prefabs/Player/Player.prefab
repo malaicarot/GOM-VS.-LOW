@@ -1929,8 +1929,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2584085290156648094}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07508471, y: 0.10077263, z: 0.0076271733, w: 0.99204284}
-  m_LocalPosition: {x: 0, y: 0.5, z: -4}
+  m_LocalRotation: {x: -0.18869779, y: 0.08165435, z: 0.015746417, w: 0.978508}
+  m_LocalPosition: {x: 0, y: 0.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1994,12 +1994,12 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 0.5, z: 0}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 0.2, y: 0.2, z: 0.2}
+    PositionDamping: {x: 0.1, y: 0.1, z: 0.1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   OrbitStyle: 0
-  Radius: 4
+  Radius: 3
   Orbits:
     Top:
       Radius: 2
@@ -2083,6 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a076c17fe76165e4f8ed21498b877bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Easing: 0
   Modifiers: []
   references:
     version: 2
@@ -5107,13 +5108,18 @@ GameObject:
   m_Component:
   - component: {fileID: 2387151979052819162}
   - component: {fileID: 8348328040764536222}
+  - component: {fileID: 1010871635633876715}
   - component: {fileID: 992030574892389213}
+  - component: {fileID: 5857677036986609860}
   - component: {fileID: 7852096713561134943}
   - component: {fileID: 8578287357908026401}
   - component: {fileID: 5981195130741601368}
   - component: {fileID: 3788422622758419725}
+  - component: {fileID: 7101156326723327042}
+  - component: {fileID: 4081280052448854997}
   - component: {fileID: 732870923661264720}
   - component: {fileID: 547520234726117023}
+  - component: {fileID: 763235515447207228}
   - component: {fileID: 9060520689404221231}
   m_Layer: 6
   m_Name: Player
@@ -5154,17 +5160,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 992030574892389213}
-  <Buttons>k__BackingField: []
+  <Buttons>k__BackingField:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   <Controller>k__BackingField: {fileID: 9060520689404221231}
   <Animator>k__BackingField: {fileID: 547520234726117023}
-  <AnimatorOverrideController>k__BackingField: {fileID: 0}
+  <AnimatorOverrideController>k__BackingField: {fileID: 22100000, guid: bf63a3e189a98bb48b2c47a6386b0a2f, type: 2}
   <Targeter>k__BackingField: {fileID: 8501578714582093775}
-  <PlayerSkill>k__BackingField: {fileID: 0}
+  <PlayerSkill>k__BackingField: {fileID: 5857677036986609860}
   <ForceReceiver>k__BackingField: {fileID: 7852096713561134943}
   <Health>k__BackingField: {fileID: 5981195130741601368}
-  <HealingPotion>k__BackingField: {fileID: 0}
-  <Mana>k__BackingField: {fileID: 0}
-  <Stamina>k__BackingField: {fileID: 0}
+  <HealingPotion>k__BackingField: {fileID: 7101156326723327042}
+  <Mana>k__BackingField: {fileID: 4081280052448854997}
+  <Stamina>k__BackingField: {fileID: 3788422622758419725}
   <Ragdoll>k__BackingField: {fileID: 732870923661264720}
   <Attacks>k__BackingField:
   - <AttackAnimationName>k__BackingField: Attack_1
@@ -5173,7 +5183,7 @@ MonoBehaviour:
     <AttackIndex>k__BackingField: 1
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 10
-    <AttackDamage>k__BackingField: 10
+    <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 30
   - <AttackAnimationName>k__BackingField: Attack_2
     <AnimationDuration>k__BackingField: 0.1
@@ -5181,7 +5191,7 @@ MonoBehaviour:
     <AttackIndex>k__BackingField: 2
     <ForceTime>k__BackingField: 0.4
     <Force>k__BackingField: 10
-    <AttackDamage>k__BackingField: 10
+    <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 30
   - <AttackAnimationName>k__BackingField: Attack_3
     <AnimationDuration>k__BackingField: 0.1
@@ -5189,7 +5199,7 @@ MonoBehaviour:
     <AttackIndex>k__BackingField: 3
     <ForceTime>k__BackingField: 0.4
     <Force>k__BackingField: 10
-    <AttackDamage>k__BackingField: 12
+    <AttackDamage>k__BackingField: 7
     <AttackKnockback>k__BackingField: 30
   - <AttackAnimationName>k__BackingField: Attack_4
     <AnimationDuration>k__BackingField: 0.1
@@ -5197,12 +5207,13 @@ MonoBehaviour:
     <AttackIndex>k__BackingField: -1
     <ForceTime>k__BackingField: 0.4
     <Force>k__BackingField: 15
-    <AttackDamage>k__BackingField: 20
+    <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 30
+  <PlayerStats>k__BackingField: {fileID: 1010871635633876715}
   <AttackDealDamage>k__BackingField:
   - {fileID: 8724367364160634405}
   - {fileID: 6842670091143175791}
-  <Respawn>k__BackingField: {fileID: 0}
+  <Respawn>k__BackingField: {fileID: 763235515447207228}
   <FreeLookMoveSpeed>k__BackingField: 6
   <TargetMoveSpeed>k__BackingField: 7
   <MultiplyCoefficientSpeed>k__BackingField: 1.8
@@ -5211,13 +5222,41 @@ MonoBehaviour:
   <CrossFadeDuration>k__BackingField: 0.1
   <DodgeDuration>k__BackingField: 0.5
   <DodgeLength>k__BackingField: 2.5
-  <sprintStaminaReduce>k__BackingField: 0
-  <jumpStaminaReduce>k__BackingField: 0
-  <attackStaminaReduce>k__BackingField: 0
-  <dodgeStaminaReduce>k__BackingField: 0
-  <healing>k__BackingField: 0
-  <reducePotion>k__BackingField: 0
-  <staminaRecovery>k__BackingField: 0
+  <sprintStaminaReduce>k__BackingField: 0.3
+  <jumpStaminaReduce>k__BackingField: 1
+  <attackStaminaReduce>k__BackingField: 3
+  <dodgeStaminaReduce>k__BackingField: 5
+  <healing>k__BackingField: 25
+  <reducePotion>k__BackingField: 25
+  <staminaRecovery>k__BackingField: 0.2
+--- !u!114 &1010871635633876715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298184940317647384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bf4eec73abf3f408f24bc46d8d002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerXP: 0
+  playerLevel: 0
+  playerHP: 0
+  playerAttributes:
+  - attributeData: {fileID: 11400000, guid: ea83041e0ba0b244da2c31977478627a, type: 2}
+    amount: 10
+  - attributeData: {fileID: 11400000, guid: fdbc5be8186d8ff44ac95b196a154663, type: 2}
+    amount: 10
+  - attributeData: {fileID: 11400000, guid: d3df9cce046c10b4bb3e1b92f6a11cb2, type: 2}
+    amount: 10
+  - attributeData: {fileID: 11400000, guid: a458ae5dc4efc8b41a155d82396f8efb, type: 2}
+    amount: 10
+  manaIncrease: 10
+  staminaIncrease: 5
+  healthIncrease: 10
+  XPNeededToLevelUp: 10
 --- !u!114 &992030574892389213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5232,6 +5271,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorLocked: 1
   cursorInputForLook: 1
+--- !u!114 &5857677036986609860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298184940317647384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62df68a5c15cd5468fa0a52437f44a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  <skillData>k__BackingField:
+  - {fileID: 11400000, guid: 60b1de33a57e83c4f96c99c7b9f95043, type: 2}
+  - {fileID: 11400000, guid: 8aa420dc39ee06441b7252770d320ed2, type: 2}
 --- !u!114 &7852096713561134943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5291,7 +5350,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStamina: 100
   statusBar: {fileID: 0}
-  recoverySpeed: 0
+  recoverySpeed: 1.5
+--- !u!114 &7101156326723327042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298184940317647384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6bdc0dfe88eb74a93d7873fca6781e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusBar: {fileID: 0}
+  maxPotion: 100
+--- !u!114 &4081280052448854997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298184940317647384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb07e5801982b747bb7e505935c8ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 100
+  statusBar: {fileID: 0}
 --- !u!114 &732870923661264720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5328,6 +5415,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &763235515447207228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298184940317647384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369070bc683be3f4bb1975e231fefbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &9060520689404221231
 CharacterController:
   m_ObjectHideFlags: 0
