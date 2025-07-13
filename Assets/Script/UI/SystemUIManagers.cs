@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SystemUIManagers : MonoBehaviour
 {
@@ -36,28 +34,33 @@ public class SystemUIManagers : MonoBehaviour
         ActiveObject(ReturnGameObject(name));
     }
 
-    public void OnGetSkill()
+    public void OnStats()
     {
         ActiveObject(content[0]);
     }
 
-    public void OnCraft()
+    public void OnGetSkill()
     {
         ActiveObject(content[1]);
     }
 
-    public void OnBrew()
+    public void OnCraft()
     {
         ActiveObject(content[2]);
     }
 
-    public void OnMedicines()
+    public void OnBrew()
     {
         ActiveObject(content[3]);
     }
 
-    public void OnSettings()
+    public void OnMedicines()
     {
         ActiveObject(content[4]);
+    }
+
+    public void OnSettings()
+    {
+        ActiveObject(content[5]);
     }
 }

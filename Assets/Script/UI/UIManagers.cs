@@ -46,4 +46,9 @@ public class UIManagers : MonoBehaviour
         SystemUIManagers systemUIManagers = UISystem.GetComponent<SystemUIManagers>();
         systemUIManagers.ActiveContent(name);
     }
+
+    public void OnExitSystem()
+    {
+        UISystem.SetActive(false);
+    }
 }
