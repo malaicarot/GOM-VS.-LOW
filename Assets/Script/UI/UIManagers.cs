@@ -4,9 +4,10 @@ using UnityEngine;
 public class UIManagers : MonoBehaviour
 {
     public static UIManagers UIManager;
-
+    
     [SerializeField] GameObject UICheckpointInteraction;
     [SerializeField] GameObject UISystem;
+
 
     public event Action ActionCountinue;
     public event Action Rest;

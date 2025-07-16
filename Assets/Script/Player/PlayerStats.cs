@@ -8,7 +8,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] int playerXP = 0;
     [SerializeField] int playerLevel = 0;
 
-
     [Header("Player Attributes")]
     public List<BaseAttributes> playerAttributes = new List<BaseAttributes>();
 
@@ -28,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     Health health;
     Mana mana;
     Stamina stamina;
+    int increasePoint = 0;
 
     void Start()
     {
@@ -35,7 +35,6 @@ public class PlayerStats : MonoBehaviour
         mana = GetComponent<Mana>();
         stamina = GetComponent<Stamina>();
     }
-
 
     public void RaiseXP(int amount)
     {
@@ -52,6 +51,8 @@ public class PlayerStats : MonoBehaviour
     {
         playerLevel++;
         XPNeededToLevelUp += 5;
+        increasePoint = playerLevel;
+        Debug.Log(increasePoint);
         IncreaseAttributes();
         health.SetHealth();
         mana.SetMana();
@@ -70,7 +71,7 @@ public class PlayerStats : MonoBehaviour
         return 0;
     }
 
-     public Sprite ReturnAttributeSprite(string name)
+    public Sprite ReturnAttributeSprite(string name)
     {
         foreach (BaseAttributes item in playerAttributes)
         {
@@ -107,5 +108,30 @@ public class PlayerStats : MonoBehaviour
                     break;
             }
         }
+    }
+    void IncreaseAmount(string name)
+    {
+        foreach (BaseAttributes item in playerAttributes)
+        {
+            if (item.attributeData.name == name)
+            {
+                item.amount += attackDamageIncrease;
+            }
+        }
+    }
+
+    public void IncreaseAttackDamage()
+    {
+        IncreaseAmount("Attacks");
+        IncreaseStats?.Invoke();
+    }
+
+    public void IncreaseDefense()
+    {
+
+    }
+    public void IncreaseIntrinsic()
+    {
+
     }
 }
