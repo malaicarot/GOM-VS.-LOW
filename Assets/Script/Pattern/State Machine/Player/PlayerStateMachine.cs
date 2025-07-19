@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerStateMachine : StateMachine
 {
     [field: SerializeField] public InputReader InputReader { get; private set; }
+    [field: SerializeField] public PlayerCombat PlayerCombat { get; private set; }
     [field: SerializeField] public Button[] Buttons { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
@@ -51,32 +52,26 @@ public class PlayerStateMachine : StateMachine
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
         PlayerStats.IncreaseStats += SetDamage;
-
     }
+
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
         PlayerStats.IncreaseStats -= SetDamage;
-
     }
 
     void HandleAttack()
     {
         SwitchState(new PlayerImpactState(this));
     }
+
     void HandleDeadState()
     {
         SwitchState(new PlayerDeadState(this));
     }
 
-    public void SetDamage()
-    {
-        foreach (Attack attack in Attacks)
-        {
-            attack.AttackDamage = PlayerStats.ReturnAttribute("Attacks");
-        }
-    }
+
 
     public void OnJump()
     {
@@ -86,6 +81,14 @@ public class PlayerStateMachine : StateMachine
     public void OnReturnFreeLook()
     {
         SwitchState(new PlayerFreeLookState(this));
+    }
+
+    public void SetDamage()
+    {
+        foreach (Attack attack in Attacks)
+        {
+            attack.AttackDamage = PlayerStats.ReturnAttribute("Attacks");
+        }
     }
 
     public void OnCastSkill()
@@ -108,7 +111,13 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerHealingState(this));
     }
 
-
+    public void PlayAnimation(int animationHash, AnimationClip animation)
+    {
+        AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(AnimatorOverrideController);
+        runtimeOverride["DefaultSkill"] = animation;
+        Animator.runtimeAnimatorController = runtimeOverride;
+        Animator.CrossFadeInFixedTime(animationHash, CrossFadeDuration);
+    }
 
     void OnTriggerEnter(Collider other)
     {

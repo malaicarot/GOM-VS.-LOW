@@ -16,15 +16,23 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
-
+        stateMachine.PlayerCombat.OnFirstHit += OnSpecialAttack;
 
     }
 
     public override void Tick(float deltaTime)
     {
+
         if (stateMachine.InputReader.IsAttack)
         {
-            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
+            if (stateMachine.Targeter.currentTarget.isFirstAttack && SpecialEffectManagers.specialEffectManagers.ApplyFirstHit())
+            {
+                stateMachine.PlayerCombat.PerformAttack();
+            }
+            else
+            {
+                stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
+            }
             return;
         }
 
@@ -63,6 +71,8 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
+        stateMachine.PlayerCombat.OnFirstHit -= OnSpecialAttack;
+
     }
 
 
@@ -75,6 +85,11 @@ public class PlayerTargetState : PlayerBaseState
     void OnDodge()
     {
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
+    }
+
+    void OnSpecialAttack()
+    {
+        stateMachine.SwitchState(new PlayerSpecialAttack(stateMachine));
     }
     void UpdateAnimation(float deltatime)
     {
@@ -122,4 +137,6 @@ public class PlayerTargetState : PlayerBaseState
 
         return targetMovement;
     }
+
+
 }

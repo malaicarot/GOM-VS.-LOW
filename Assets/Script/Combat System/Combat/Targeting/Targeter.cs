@@ -54,9 +54,9 @@ public class Targeter : MonoBehaviour
                 closetsTarget = target;
                 closetsDistance = toCenter.sqrMagnitude;
             }
-            
+
         }
-        if(closetsTarget == null){ return false; }
+        if (closetsTarget == null) { return false; }
 
         currentTarget = closetsTarget;
         cinemachineTargetGroup.AddMember(currentTarget.transform, targetWeight, targetRadius);

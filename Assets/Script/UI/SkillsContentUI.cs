@@ -4,6 +4,7 @@ public class SkillsContentUI : MonoBehaviour
 {
     [SerializeField] GameObject skills;
     [SerializeField] GameObject stregth;
+    [SerializeField] GameObject special;
 
     GameObject isActiveObject;
 
@@ -30,5 +31,10 @@ public class SkillsContentUI : MonoBehaviour
     public void ActiveStregthPanel()
     {
         ActiveContent(stregth);
+    }
+
+    public void ActiveSpecialPanel()
+    {
+        ActiveContent(special);
     }
 }

@@ -16,9 +16,10 @@ public class PlayerAttackState : PlayerBaseState
     {
         stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
+        
         foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
         {
-            attackDamage.SetAttack(attack.AttackDamage, attack.AttackKnockback);
+            attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(attack.AttackDamage), attack.AttackKnockback);
         }
     }
     public override void Tick(float deltaTime)

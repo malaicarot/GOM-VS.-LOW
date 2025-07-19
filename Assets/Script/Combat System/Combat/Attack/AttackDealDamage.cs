@@ -32,6 +32,11 @@ public class AttackDealDamage : MonoBehaviour
             health.DealDamage(dealDamaged);
         }
 
+        if (other.TryGetComponent<Target>(out Target target))
+        {
+            target.isFirstAttack = false;
+        }
+
         if (other.TryGetComponent<ForceReceiver>(out ForceReceiver force))
         {
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;

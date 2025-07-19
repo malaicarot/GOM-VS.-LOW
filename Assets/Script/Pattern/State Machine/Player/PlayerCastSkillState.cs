@@ -17,7 +17,7 @@ public class PlayerCastSkillState : PlayerBaseState
         skillIndex = stateMachine.InputReader.ButtonIndex;
         UseSkill(skillIndex);
         stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.skillData[skillIndex].ManaCost);
-        PlayAnimation(skillIndex);
+        stateMachine.PlayAnimation(CastSkillHash, stateMachine.PlayerSkill.skillData[skillIndex].Animation);
     }
 
     public override void Tick(float deltaTime)
@@ -49,13 +49,5 @@ public class PlayerCastSkillState : PlayerBaseState
         {
             ability.Proccess(stateMachine.PlayerSkill.skillData[index], stateMachine.gameObject);
         }
-    }
-
-    void PlayAnimation(int index)
-    {
-        AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(stateMachine.AnimatorOverrideController);
-        runtimeOverride["DefaultSkill"] = stateMachine.PlayerSkill.skillData[index].Animation;
-        stateMachine.Animator.runtimeAnimatorController = runtimeOverride;
-        stateMachine.Animator.CrossFadeInFixedTime(CastSkillHash, stateMachine.CrossFadeDuration);
     }
 }

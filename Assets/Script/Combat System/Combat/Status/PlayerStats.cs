@@ -52,7 +52,6 @@ public class PlayerStats : MonoBehaviour
         playerLevel++;
         XPNeededToLevelUp += 5;
         increasePoint = playerLevel;
-        Debug.Log(increasePoint);
         IncreaseAttributes();
         health.SetHealth();
         mana.SetMana();
@@ -124,6 +123,17 @@ public class PlayerStats : MonoBehaviour
     {
         IncreaseAmount("Attacks");
         IncreaseStats?.Invoke();
+    }
+
+    public int CalculateCritical(int currentDamage)
+    {
+        int criticalRate = UnityEngine.Random.Range(0, 99);
+        if (criticalRate < ReturnAttribute("Critical"))
+        {
+            currentDamage += currentDamage / 2;
+        }
+        Debug.Log(currentDamage);
+        return currentDamage;
     }
 
     public void IncreaseDefense()
