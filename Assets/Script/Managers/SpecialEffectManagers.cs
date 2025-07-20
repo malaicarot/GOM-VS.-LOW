@@ -7,17 +7,24 @@ public class SpecialEffectManagers : MonoBehaviour
     public static SpecialEffectManagers specialEffectManagers;
     public List<SpecialEffectsData> specialEffectsDataList;
 
+    public event Action OnActiveEffect;
+    public event Action OnReadySingleton;
 
     void Awake()
     {
-        if (specialEffectManagers != null)
+        if (specialEffectManagers != null && specialEffectManagers != this)
         {
             Destroy(specialEffectManagers);
+            return;
         }
         else
         {
             specialEffectManagers = this;
+            DontDestroyOnLoad(gameObject);
+            OnReadySingleton?.Invoke();
         }
+        Debug.Log("Created Instance");
+
     }
 
     public void UnlockEffect(string effectName)
@@ -26,30 +33,7 @@ public class SpecialEffectManagers : MonoBehaviour
         if (skill != null && !skill.unlocked)
         {
             skill.unlocked = true;
+            OnActiveEffect?.Invoke();
         }
-    }
-
-    public bool ApplyFirstHit()
-    {
-        foreach (var effect in specialEffectsDataList)
-        {
-            if (effect.unlocked && effect.trigger == SpecialEffectsData.TriggerType.OnFirstHit)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public AnimationClip FirstHitAnimation()
-    {
-        foreach (var effect in specialEffectsDataList)
-        {
-            if (effect.unlocked && effect.trigger == SpecialEffectsData.TriggerType.OnFirstHit)
-            {
-                return effect.Animation;
-            }
-        }
-        return null;
     }
 }

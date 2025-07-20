@@ -10,7 +10,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public AnimatorOverrideController AnimatorOverrideController { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
-    [field: SerializeField] public PlayerSkill PlayerSkill { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
@@ -71,8 +70,6 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerDeadState(this));
     }
 
-
-
     public void OnJump()
     {
         SwitchState(new PlayerJumpState(this));
@@ -94,7 +91,7 @@ public class PlayerStateMachine : StateMachine
     public void OnCastSkill()
     {
         if (Mana.currentMana <= 0) { return; }
-        if (!PlayerSkill.ButtonOnClick(Buttons[InputReader.ButtonIndex])) { return; }
+        if (!PlayerSkill.playerSkillSingleton.ButtonOnClick(Buttons[InputReader.ButtonIndex])) { return; }
 
         Buttons[InputReader.ButtonIndex].onClick.Invoke();
         SwitchState(new PlayerCastSkillState(this));

@@ -16,8 +16,8 @@ public class PlayerCastSkillState : PlayerBaseState
     {
         skillIndex = stateMachine.InputReader.ButtonIndex;
         UseSkill(skillIndex);
-        stateMachine.Mana.ReduceMana(stateMachine.PlayerSkill.skillData[skillIndex].ManaCost);
-        stateMachine.PlayAnimation(CastSkillHash, stateMachine.PlayerSkill.skillData[skillIndex].Animation);
+        stateMachine.Mana.ReduceMana(PlayerSkill.playerSkillSingleton.skillData[skillIndex].ManaCost);
+        stateMachine.PlayAnimation(CastSkillHash, PlayerSkill.playerSkillSingleton.skillData[skillIndex].Animation);
     }
 
     public override void Tick(float deltaTime)
@@ -43,11 +43,11 @@ public class PlayerCastSkillState : PlayerBaseState
 
     void UseSkill(int index)
     {
-        string name = stateMachine.PlayerSkill.skillData[index].SkillName;
+        string name = PlayerSkill.playerSkillSingleton.skillData[index].SkillName;
         ability = AbilityFactory.GetAbility(name);
         if (ability != null)
         {
-            ability.Proccess(stateMachine.PlayerSkill.skillData[index], stateMachine.gameObject);
+            ability.Proccess(PlayerSkill.playerSkillSingleton.skillData[index], stateMachine.gameObject);
         }
     }
 }

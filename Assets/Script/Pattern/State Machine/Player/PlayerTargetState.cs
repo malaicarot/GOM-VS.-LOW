@@ -16,7 +16,7 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
-        stateMachine.PlayerCombat.OnFirstHit += OnSpecialAttack;
+        // stateMachine.PlayerCombat.OnFirstHit += OnSpecialAttack;
 
     }
 
@@ -25,14 +25,14 @@ public class PlayerTargetState : PlayerBaseState
 
         if (stateMachine.InputReader.IsAttack)
         {
-            if (stateMachine.Targeter.currentTarget.isFirstAttack && SpecialEffectManagers.specialEffectManagers.ApplyFirstHit())
-            {
-                stateMachine.PlayerCombat.PerformAttack();
-            }
-            else
-            {
-                stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
-            }
+            // if (stateMachine.Targeter.currentTarget.isFirstAttack && SpecialEffectManagers.specialEffectManagers.ApplyFirstHit())
+            // {
+            //     stateMachine.PlayerCombat.PerformAttack();
+            // }
+            // else
+            // {
+            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
+            // }
             return;
         }
 
@@ -71,7 +71,7 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
-        stateMachine.PlayerCombat.OnFirstHit -= OnSpecialAttack;
+        // stateMachine.PlayerCombat.OnFirstHit -= OnSpecialAttack;
 
     }
 
@@ -87,10 +87,10 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }
 
-    void OnSpecialAttack()
-    {
-        stateMachine.SwitchState(new PlayerSpecialAttack(stateMachine));
-    }
+    // void OnSpecialAttack()
+    // {
+    //     stateMachine.SwitchState(new PlayerSpecialAttack(stateMachine));
+    // }
     void UpdateAnimation(float deltatime)
     {
         Vector3 direction = stateMachine.InputReader.Movement;

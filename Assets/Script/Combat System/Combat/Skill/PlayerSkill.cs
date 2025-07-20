@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerSkill : MonoBehaviour
 {
+    public static PlayerSkill playerSkillSingleton;
     [SerializeField] GameObject[] skillUI;
     [field: SerializeField] public SkillData[] skillData { get; private set; }
 
@@ -13,6 +14,14 @@ public class PlayerSkill : MonoBehaviour
 
     void Start()
     {
+        if (playerSkillSingleton == null)
+        {
+            playerSkillSingleton = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         fillImageList = new List<Image>();
         UpdateImage();
         SetCooldownSkill();

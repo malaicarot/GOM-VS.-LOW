@@ -3633,6 +3633,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5c0c2d05d89d047a0045268bec9997, type: 3}
+--- !u!114 &434408196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2216125921256259121, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+  m_PrefabInstance: {fileID: 8575097890871394764}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5dc25900c43304bae1dc8e5dfc4397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &435750547
 GameObject:
   m_ObjectHideFlags: 0
@@ -5368,6 +5379,7 @@ Transform:
   - {fileID: 1036008789}
   - {fileID: 1356713283}
   - {fileID: 397466174}
+  - {fileID: 966596241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615984783
@@ -8461,6 +8473,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 961385386}
+--- !u!1 &966596240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966596241}
+  - component: {fileID: 966596242}
+  m_Layer: 0
+  m_Name: Skills Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966596241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966596240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 608169141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966596242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966596240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62df68a5c15cd5468fa0a52437f44a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillUI:
+  - {fileID: 386375639}
+  - {fileID: 1038110304}
+  - {fileID: 579796586}
+  - {fileID: 1837526291}
+  <skillData>k__BackingField:
+  - {fileID: 11400000, guid: 60b1de33a57e83c4f96c99c7b9f95043, type: 2}
+  - {fileID: 11400000, guid: 8aa420dc39ee06441b7252770d320ed2, type: 2}
 --- !u!1001 &969027897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10733,6 +10797,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ac1e4a9da241740aa5d2eee49e044b, type: 3}
+--- !u!114 &1317325374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6107674796351955382, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+  m_PrefabInstance: {fileID: 8575097890871394764}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5dc25900c43304bae1dc8e5dfc4397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1326334474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17540,22 +17615,6 @@ PrefabInstance:
       propertyPath: statusBar
       value: 
       objectReference: {fileID: 30715299}
-    - target: {fileID: 5857677036986609860, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      propertyPath: 'skillUI.Array.data[0]'
-      value: 
-      objectReference: {fileID: 386375639}
-    - target: {fileID: 5857677036986609860, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      propertyPath: 'skillUI.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1038110304}
-    - target: {fileID: 5857677036986609860, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      propertyPath: 'skillUI.Array.data[2]'
-      value: 
-      objectReference: {fileID: 579796586}
-    - target: {fileID: 5857677036986609860, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
-      propertyPath: 'skillUI.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1837526291}
     - target: {fileID: 5981195130741601368, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
       propertyPath: statusBar
       value: 
@@ -17584,6 +17643,18 @@ PrefabInstance:
       propertyPath: '<Buttons>k__BackingField.Array.data[3]'
       value: 
       objectReference: {fileID: 1837526296}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: <AttackDealDamage>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: '<AttackDealDamage>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 434408196}
+    - target: {fileID: 8348328040764536222, guid: 7ae2014eebd8fa440b15be2f48c02680, type: 3}
+      propertyPath: '<AttackDealDamage>k__BackingField.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1317325374}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

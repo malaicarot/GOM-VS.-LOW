@@ -4,7 +4,7 @@ using UnityEngine;
 public class UIManagers : MonoBehaviour
 {
     public static UIManagers UIManager;
-    
+
     [SerializeField] GameObject UICheckpointInteraction;
     [SerializeField] GameObject UISystem;
 
@@ -14,13 +14,15 @@ public class UIManagers : MonoBehaviour
 
     void Start()
     {
-        if (UIManager != null)
+        if (UIManager != null && UIManager != this)
         {
             Destroy(UIManager);
+            return;
         }
         else
         {
             UIManager = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 

@@ -12,6 +12,7 @@ public class AbilityFactory
 
     public static void IsInitializeAbility()
     {
+        
         if (IsInitialized) { return; }
         var abilityTypes = Assembly.GetAssembly(typeof(Ability)).GetTypes()
         .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Ability)));

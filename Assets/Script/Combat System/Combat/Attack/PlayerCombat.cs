@@ -1,19 +1,56 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public event Action OnAttack;
-    public event Action OnFirstHit;
-    public event Action OnCritical;
 
+    public List<SpecialEffectsData> specialEffectsActiveList = new List<SpecialEffectsData>();
 
-    public void PerformAttack()
+    void Start()
     {
-        if (SpecialEffectManagers.specialEffectManagers.ApplyFirstHit())
+        SetUpEffectActive();
+    }
+
+
+    void OnEnable()
+    {
+        SpecialEffectManagers.specialEffectManagers.OnActiveEffect += SetUpEffectActive;
+    }
+
+    void OnDisable()
+    {
+        SpecialEffectManagers.specialEffectManagers.OnActiveEffect -= SetUpEffectActive;
+    }
+
+    void Update()
+    {
+        ApplyEffect();
+    }
+
+    void SetUpEffectActive()
+    {
+        foreach (SpecialEffectsData effect in SpecialEffectManagers.specialEffectManagers.specialEffectsDataList)
         {
-            Debug.Log("Ban su kien");
-            OnFirstHit?.Invoke();
+            if (effect.unlocked)
+            {
+                specialEffectsActiveList.Add(effect);
+            }
+        }
+    }
+
+
+    void ApplyEffect()
+    {
+        foreach (SpecialEffectsData effect in specialEffectsActiveList)
+        {
+            string name = effect.effectName;
+            Effect effectOn = EffectFactory.GetEffect(name);
+            if (effectOn == null)
+            {
+                continue;
+            }
+            effectOn.Proccess(effect, this.gameObject);
         }
     }
 }

@@ -6,18 +6,20 @@ public class SpecialEffectsData : ScriptableObject
 {
     [Header("General Infor")]
     public string effectName;
-    [TextArea, SerializeField] string Description;
+    [TextArea, SerializeField] public string Description;
     public Sprite Thumbnail;
 
     [Header("Logic")]
     public AnimationClip Animation;
-    public enum TriggerType { OnAttack, OnFirstHit, OnCritical }
-    public TriggerType trigger;
+    public int AnimationHash = Animator.StringToHash("FirstHit");
+    public string AnimationTag = "FirstHit";
 
     [Header("Effect")]
+    public int AttackDamage = 20;
+    public float AttackKnockback = 40f;
     public float attackRangeBonus;
     public float staminaRegen;
 
+    [Header("State")]
     public bool unlocked = false;
-
 }

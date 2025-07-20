@@ -12,7 +12,6 @@ public class Keep : Ability
     }
 }
 
-
 public class Stoning : Ability
 {
     public override string Name => "Stoning";
