@@ -19,8 +19,6 @@ public class PlayerSpecialAttack : PlayerBaseState
         {
             attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(effect.AttackDamage), effect.AttackKnockback);
         }
-
-        // stateMachine.PlayAnimation(SpecialAttackHash, effect.Animation);
     }
 
     public override void Tick(float deltaTime)

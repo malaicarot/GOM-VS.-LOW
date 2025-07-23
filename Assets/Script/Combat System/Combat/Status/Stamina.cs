@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Stamina : MonoBehaviour
 {
+    public event Action OnTired;
+    public event Action OnEnergetic;
     float maxStamina;
     [SerializeField] StatusBar statusBar;
     [SerializeField] float recoverySpeed;
@@ -17,6 +19,14 @@ public class Stamina : MonoBehaviour
 
     void Update()
     {
+        if (currentStamina <= 1)
+        {
+            OnTired?.Invoke();
+        }
+        else if (currentStamina > 1)
+        {
+            OnEnergetic?.Invoke();
+        }
         statusBar.fillAmount = currentStamina / maxStamina;
     }
 

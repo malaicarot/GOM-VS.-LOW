@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class GetMartialsArt : MonoBehaviour
     [SerializeField] GameObject[] necessaryArrow;
     [SerializeField] GameObject[] targetArrow;
 
+    List<GameObject> currentNecessaryArrowList;
+
     Button button;
 
     int requirementArrow = 0;
@@ -15,6 +18,7 @@ public class GetMartialsArt : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
+        currentNecessaryArrowList = new List<GameObject>();
         button.enabled = false;
         requirementArrow = necessaryArrow.Length;
         if (necessaryArrow.Length == 0)
@@ -28,26 +32,30 @@ public class GetMartialsArt : MonoBehaviour
 
     void Update()
     {
-        CheckRequirement();
+        if (requirementArrow > 0)
+        {
+            CheckRequirement();
+        }
     }
 
     void CheckRequirement()
     {
-        if (necessaryArrow.Length == 0)
+        if (necessaryArrow.Length > 0)
         {
-            return;
-        }
-
-        if (requirementArrow == 0)
-        {
-            button.enabled = true;
-        }
-
-        foreach (GameObject item in necessaryArrow)
-        {
-            if (item.activeInHierarchy)
+            foreach (GameObject item in necessaryArrow)
             {
-                requirementArrow--;
+                if (item.activeInHierarchy && !currentNecessaryArrowList.Contains(item))
+                {
+                    currentNecessaryArrowList.Add(item);
+                    requirementArrow--;
+                }
+            }
+
+            if (requirementArrow == 0)
+            {
+                button.enabled = true;
+                requirementArrow = -1;
+                return;
             }
         }
     }
@@ -58,7 +66,6 @@ public class GetMartialsArt : MonoBehaviour
         {
             item.SetActive(active);
         }
-        // button.enabled = false;
     }
 
 

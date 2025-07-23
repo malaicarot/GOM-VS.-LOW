@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     public List<SpecialEffectsData> specialEffectsActiveList = new List<SpecialEffectsData>();
 
     void Start()
@@ -50,6 +49,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 continue;
             }
+            // effect.ActiveAtion();
             effectOn.Proccess(effect, this.gameObject);
         }
     }

@@ -108,20 +108,26 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-    void IncreaseAmount(string name)
+    void IncreaseAmount(string name, int amount)
     {
         foreach (BaseAttributes item in playerAttributes)
         {
             if (item.attributeData.name == name)
             {
-                item.amount += attackDamageIncrease;
+                item.amount += amount;
             }
         }
     }
 
     public void IncreaseAttackDamage()
     {
-        IncreaseAmount("Attacks");
+        IncreaseAmount("Attacks", attackDamageIncrease);
+        IncreaseStats?.Invoke();
+    }
+
+    public void IncreaseResistance()
+    {
+        IncreaseAmount("Resistance", resistanceIncrease);
         IncreaseStats?.Invoke();
     }
 
@@ -136,10 +142,6 @@ public class PlayerStats : MonoBehaviour
         return currentDamage;
     }
 
-    public void IncreaseDefense()
-    {
-
-    }
     public void IncreaseIntrinsic()
     {
 

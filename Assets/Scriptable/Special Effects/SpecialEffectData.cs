@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SpecialEffects", menuName = "Scriptable Objects/SpecialEffectsData")]
@@ -14,6 +15,8 @@ public class SpecialEffectsData : ScriptableObject
     public int AnimationHash = Animator.StringToHash("FirstHit");
     public string AnimationTag = "FirstHit";
 
+    // public event Action OnEffectTrigger;
+
     [Header("Effect")]
     public int AttackDamage = 20;
     public float AttackKnockback = 40f;
@@ -22,4 +25,14 @@ public class SpecialEffectsData : ScriptableObject
 
     [Header("State")]
     public bool unlocked = false;
+
+    // public void ActiveAtion()
+    // {
+    //     if (unlocked)
+    //     {
+    //         OnEffectTrigger?.Invoke();
+    //     }
+    // }
+
+
 }

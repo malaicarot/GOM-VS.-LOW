@@ -6,6 +6,9 @@ public class PlayerTargetState : PlayerBaseState
     readonly int TargetingForwardHash = Animator.StringToHash("Targeting_Forward");
     readonly int TargetingRightHash = Animator.StringToHash("Targeting_Right");
     const float AnimationDamping = 0.1f;
+    float speed;
+    bool isTired;
+
     public PlayerTargetState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -16,8 +19,8 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
-        // stateMachine.PlayerCombat.OnFirstHit += OnSpecialAttack;
-
+        stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
+        stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
     }
 
     public override void Tick(float deltaTime)
@@ -25,14 +28,7 @@ public class PlayerTargetState : PlayerBaseState
 
         if (stateMachine.InputReader.IsAttack)
         {
-            // if (stateMachine.Targeter.currentTarget.isFirstAttack && SpecialEffectManagers.specialEffectManagers.ApplyFirstHit())
-            // {
-            //     stateMachine.PlayerCombat.PerformAttack();
-            // }
-            // else
-            // {
             stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
-            // }
             return;
         }
 
@@ -50,13 +46,13 @@ public class PlayerTargetState : PlayerBaseState
         UpdateAnimation(deltaTime);
 
         float targetSpeed = stateMachine.InputReader.IsSprint ?
-            stateMachine.TargetMoveSpeed * stateMachine.MultiplyCoefficientSpeed :
-            stateMachine.TargetMoveSpeed;
-        if (targetSpeed >= stateMachine.TargetMoveSpeed)
+            speed * stateMachine.MultiplyCoefficientSpeed :
+            speed;
+        if (targetSpeed >= speed)
         {
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
         }
-        else if (targetSpeed >= stateMachine.TargetMoveSpeed * stateMachine.MultiplyCoefficientSpeed)
+        else if (targetSpeed >= speed * stateMachine.MultiplyCoefficientSpeed)
         {
             stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
         }
@@ -71,8 +67,8 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
-        // stateMachine.PlayerCombat.OnFirstHit -= OnSpecialAttack;
-
+        stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
+        stateMachine.Stamina.OnEnergetic -= SetHighStaminaSpeed;
     }
 
 
@@ -87,10 +83,17 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }
 
-    // void OnSpecialAttack()
-    // {
-    //     stateMachine.SwitchState(new PlayerSpecialAttack(stateMachine));
-    // }
+    void SetLowStaminaSpeed()
+    {
+        speed = stateMachine.LowStaminaSpeed;
+        isTired = true;
+    }
+    void SetHighStaminaSpeed()
+    {
+        speed = stateMachine.TargetMoveSpeed;
+        isTired = false;
+    }
+
     void UpdateAnimation(float deltatime)
     {
         Vector3 direction = stateMachine.InputReader.Movement;
@@ -111,7 +114,17 @@ public class PlayerTargetState : PlayerBaseState
         }
         else
         {
-            float value = direction.x > 0 ? 1 : -1;
+            float index;
+            if (isTired)
+            {
+                index = 0.5f;
+            }
+            else
+            {
+                index = 1;
+            }
+
+            float value = direction.x > 0 ? index : -1;
             if (IsSprint()) { value *= 2; }
             stateMachine.Animator.SetFloat(TargetingRightHash, value, AnimationDamping, deltatime);
         }
@@ -122,7 +135,17 @@ public class PlayerTargetState : PlayerBaseState
         }
         else
         {
-            float value = direction.y > 0 ? 1 : -1;
+            float index;
+            if (isTired)
+            {
+                index = 0.5f;
+            }
+            else
+            {
+                index = 1;
+            }
+
+            float value = direction.y > 0 ? index : -1;
             if (IsSprint()) { value *= 2; }
             stateMachine.Animator.SetFloat(TargetingForwardHash, value, AnimationDamping, deltatime);
         }

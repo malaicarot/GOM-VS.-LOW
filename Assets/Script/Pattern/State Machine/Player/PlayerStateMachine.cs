@@ -22,6 +22,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Respawn Respawn { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
+    [field: SerializeField] public float LowStaminaSpeed { get; private set; }
+
     [field: SerializeField] public float MultiplyCoefficientSpeed { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
@@ -43,21 +45,24 @@ public class PlayerStateMachine : StateMachine
     {
         CameraTransfrom = Camera.main.transform;
         SwitchState(new PlayerFreeLookState(this));
-        SetDamage();
+        SetStats();
     }
 
     void OnEnable()
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
-        PlayerStats.IncreaseStats += SetDamage;
+        // Stamina.OnTired += ;
+        PlayerStats.IncreaseStats += SetStats;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
+        // Stamina.OnTired += ;
+
         Health.OnDeath -= HandleDeadState;
-        PlayerStats.IncreaseStats -= SetDamage;
+        PlayerStats.IncreaseStats -= SetStats;
     }
 
     void HandleAttack()
@@ -80,12 +85,14 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerFreeLookState(this));
     }
 
-    public void SetDamage()
+    public void SetStats()
     {
         foreach (Attack attack in Attacks)
         {
             attack.AttackDamage = PlayerStats.ReturnAttribute("Attacks");
         }
+
+        Health.SetResistance();
     }
 
     public void OnCastSkill()

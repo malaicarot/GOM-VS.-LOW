@@ -2,10 +2,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpecialEffectType
+{
+    None,
+    FirstHit,
+    OnCritical,
+    OnKill,
+    OnCast,
+    Custom
+}
 public class SpecialEffectManagers : MonoBehaviour
 {
     public static SpecialEffectManagers specialEffectManagers;
     public List<SpecialEffectsData> specialEffectsDataList;
+
+
 
     public event Action OnActiveEffect;
     public event Action OnReadySingleton;
@@ -23,8 +34,6 @@ public class SpecialEffectManagers : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             OnReadySingleton?.Invoke();
         }
-        Debug.Log("Created Instance");
-
     }
 
     public void UnlockEffect(string effectName)

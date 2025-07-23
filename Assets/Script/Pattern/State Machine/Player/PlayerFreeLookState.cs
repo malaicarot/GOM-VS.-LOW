@@ -8,6 +8,8 @@ public class PlayerFreeLookState : PlayerBaseState
     readonly int MovementSpeedHash = Animator.StringToHash("MovementSpeed");
     readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     const float AnimationDamping = 0.1f;
+    float speed;
+    bool isTired;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -18,6 +20,8 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
+        stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
+        stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
     }
 
     public override void Tick(float deltaTime)
@@ -30,25 +34,17 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 direction = CalculateDirection();
         float targetSpeed = stateMachine.InputReader.IsSprint ?
-        stateMachine.FreeLookMoveSpeed * stateMachine.MultiplyCoefficientSpeed :
-        stateMachine.FreeLookMoveSpeed;
+        speed * stateMachine.MultiplyCoefficientSpeed :
+        speed;
         Move(direction * targetSpeed, deltaTime);
 
-        if (stateMachine.InputReader.Movement == Vector2.zero)
+        if (isTired)
         {
-            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
-            stateMachine.Animator.SetFloat(MovementSpeedHash, 0, AnimationDamping, deltaTime);
-            return;
-        }
-        else if (stateMachine.InputReader.IsSprint)
-        {
-            stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
-            stateMachine.Animator.SetFloat(MovementSpeedHash, 2, AnimationDamping, deltaTime);
+            SetAnimation(0, 0.5f, 1.5f, deltaTime);
         }
         else
         {
-            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
-            stateMachine.Animator.SetFloat(MovementSpeedHash, 1, AnimationDamping, deltaTime);
+            SetAnimation(0, 1, 2, deltaTime);
         }
 
         RotationByFaceDirection(direction, deltaTime);
@@ -61,8 +57,8 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
-
-
+        stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
+        stateMachine.Stamina.OnEnergetic -= SetHighStaminaSpeed;
     }
 
     void RotationByFaceDirection(Vector3 direction, float deltaTime)
@@ -80,5 +76,36 @@ public class PlayerFreeLookState : PlayerBaseState
     void OnDodge()
     {
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
+    }
+
+    void SetAnimation(float stand, float walk, float run, float deltaTime)
+    {
+        if (stateMachine.InputReader.Movement == Vector2.zero)
+        {
+            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
+            stateMachine.Animator.SetFloat(MovementSpeedHash, stand, AnimationDamping, deltaTime);
+            return;
+        }
+        else if (stateMachine.InputReader.IsSprint)
+        {
+            stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
+            stateMachine.Animator.SetFloat(MovementSpeedHash, run, AnimationDamping, deltaTime);
+        }
+        else
+        {
+            stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
+            stateMachine.Animator.SetFloat(MovementSpeedHash, walk, AnimationDamping, deltaTime);
+        }
+    }
+
+    void SetLowStaminaSpeed()
+    {
+        speed = stateMachine.LowStaminaSpeed;
+        isTired = true;
+    }
+    void SetHighStaminaSpeed()
+    {
+        speed = stateMachine.FreeLookMoveSpeed;
+        isTired = false;
     }
 }

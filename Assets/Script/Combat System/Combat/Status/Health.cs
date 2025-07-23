@@ -35,6 +35,10 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void SetResistance()
+    {
+        resistance = playerStats.ReturnAttribute("Resistance");
+    }
 
     void Update()
     {
