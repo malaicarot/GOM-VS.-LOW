@@ -34,7 +34,10 @@ public class AttackDealDamage : MonoBehaviour
 
         if (other.TryGetComponent<Target>(out Target target))
         {
-            target.isFirstAttack = false;
+            if (target.isFirstAttack)
+            {
+                target.isFirstAttack = false;
+            }
         }
 
         if (other.TryGetComponent<ForceReceiver>(out ForceReceiver force))

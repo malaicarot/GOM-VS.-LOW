@@ -21,6 +21,7 @@ MonoBehaviour:
   ManaCost: 30
   CoolDown: 40
   LevelNeeded: 5
+  unlocked: 1
   Effect: {fileID: 2152626108995705947, guid: 6f692cd2d2d5eb84ab790976eccc0bae, type: 3}
   Sound: {fileID: 0}
   Range: 0

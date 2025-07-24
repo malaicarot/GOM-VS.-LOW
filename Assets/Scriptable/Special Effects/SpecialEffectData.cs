@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpecialEffectsData : ScriptableObject
 {
     [Header("General Infor")]
-    public string effectName;
+    public string EffectName;
     [TextArea, SerializeField] public string Description;
     public Sprite Thumbnail;
 
@@ -15,24 +15,10 @@ public class SpecialEffectsData : ScriptableObject
     public int AnimationHash = Animator.StringToHash("FirstHit");
     public string AnimationTag = "FirstHit";
 
-    // public event Action OnEffectTrigger;
-
     [Header("Effect")]
-    public int AttackDamage = 20;
     public float AttackKnockback = 40f;
-    public float attackRangeBonus;
-    public float staminaRegen;
+    public int AttackCoefficient = 2;
 
     [Header("State")]
     public bool unlocked = false;
-
-    // public void ActiveAtion()
-    // {
-    //     if (unlocked)
-    //     {
-    //         OnEffectTrigger?.Invoke();
-    //     }
-    // }
-
-
 }

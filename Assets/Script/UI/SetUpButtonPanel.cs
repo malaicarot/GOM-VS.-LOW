@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpecialAttackPanel : MonoBehaviour
+public class SetUpButtonPanel : MonoBehaviour
 {
     [SerializeField] Transform slotParent;
     [SerializeField] GameObject prefabs;

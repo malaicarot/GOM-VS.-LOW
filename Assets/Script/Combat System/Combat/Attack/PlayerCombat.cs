@@ -43,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
     {
         foreach (SpecialEffectsData effect in specialEffectsActiveList)
         {
-            string name = effect.effectName;
+            string name = effect.EffectName;
             Effect effectOn = EffectFactory.GetEffect(name);
             if (effectOn == null)
             {

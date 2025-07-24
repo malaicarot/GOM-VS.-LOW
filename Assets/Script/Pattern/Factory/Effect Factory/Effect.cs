@@ -18,6 +18,7 @@ public class FirstHit : Effect
 
         if (target != null)
         {
+            Debug.Log("Target " + target.isFirstAttack);
             if (target.isFirstAttack && inputReader.IsAttack)
             {
                 playerStateMachine.SwitchState(new PlayerSpecialAttack(playerStateMachine, effectsData));

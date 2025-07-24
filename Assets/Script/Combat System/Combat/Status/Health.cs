@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
     public void SetHealth()
     {
         maxHealth = playerStats.ReturnAttribute("Health");
-        currentHealth = maxHealth;
+        // currentHealth = maxHealth;
     }
 
     public void SetResistance()

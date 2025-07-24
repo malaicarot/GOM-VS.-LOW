@@ -13,6 +13,7 @@ public class SkillData : ScriptableObject
     public float ManaCost;
     public float CoolDown;
     public int LevelNeeded;
+    public bool unlocked = false;
 
     [Header("Effect")]
     public ParticleSystem Effect;

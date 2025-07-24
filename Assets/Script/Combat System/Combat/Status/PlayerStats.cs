@@ -54,6 +54,7 @@ public class PlayerStats : MonoBehaviour
         increasePoint = playerLevel;
         IncreaseAttributes();
         health.SetHealth();
+        health.SetResistance();
         mana.SetMana();
         stamina.SetStamina();
     }
@@ -131,6 +132,12 @@ public class PlayerStats : MonoBehaviour
         IncreaseStats?.Invoke();
     }
 
+    public void IncreaseIntrinsic()
+    {
+        IncreaseAmount("Health", healthIncrease);
+        IncreaseStats?.Invoke();
+    }
+
     public int CalculateCritical(int currentDamage)
     {
         int criticalRate = UnityEngine.Random.Range(0, 99);
@@ -140,10 +147,5 @@ public class PlayerStats : MonoBehaviour
         }
         Debug.Log(currentDamage);
         return currentDamage;
-    }
-
-    public void IncreaseIntrinsic()
-    {
-
     }
 }

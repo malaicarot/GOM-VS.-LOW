@@ -38,7 +38,7 @@ public class SpecialEffectManagers : MonoBehaviour
 
     public void UnlockEffect(string effectName)
     {
-        var skill = specialEffectsDataList.Find(name => name.effectName == effectName);
+        var skill = specialEffectsDataList.Find(name => name.EffectName == effectName);
         if (skill != null && !skill.unlocked)
         {
             skill.unlocked = true;
