@@ -45,7 +45,7 @@ public class PlayerStateMachine : StateMachine
     {
         CameraTransfrom = Camera.main.transform;
         SwitchState(new PlayerFreeLookState(this));
-        SetStats();
+        // SetStats();
     }
 
     void OnEnable()

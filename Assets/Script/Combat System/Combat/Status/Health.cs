@@ -18,9 +18,12 @@ public class Health : MonoBehaviour
     {
         if (gameObject.name == "Player")
         {
+            
             playerStats = GetComponent<PlayerStats>();
             resistance = playerStats.ReturnAttribute("Resistance");
             maxHealth = playerStats.ReturnAttribute("Health");
+            Debug.Log("resistance: " + resistance);
+            Debug.Log("maxHealth: " + maxHealth);
             currentHealth = maxHealth;
         }
         else
@@ -32,12 +35,12 @@ public class Health : MonoBehaviour
     public void SetHealth()
     {
         maxHealth = playerStats.ReturnAttribute("Health");
-        // currentHealth = maxHealth;
     }
 
     public void SetResistance()
     {
         resistance = playerStats.ReturnAttribute("Resistance");
+        Debug.Log("Resistance value: " + resistance);
     }
 
     void Update()

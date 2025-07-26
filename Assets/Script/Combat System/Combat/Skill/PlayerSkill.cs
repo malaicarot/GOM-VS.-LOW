@@ -10,6 +10,8 @@ public class PlayerSkill : MonoBehaviour
     [SerializeField] GameObject[] skillUI;
     [field: SerializeField] public List<SkillData> skillData { get; private set; }
 
+    public List<SkillData> alreadySkill { get; private set; }
+
 
     Image backgroundImage; // Icon kĩ năng được làm mờ 
     Image fillImage;       // Icon kĩ năng sắc nét, dùng để làm hiệu ứng hồi chiêu
@@ -26,6 +28,7 @@ public class PlayerSkill : MonoBehaviour
             Destroy(gameObject);
         }
         fillImageList = new List<Image>();
+        alreadySkill = new List<SkillData>();
         // UpdateImage();
         SetupStart();
         SetCooldownSkill();
@@ -65,9 +68,10 @@ public class PlayerSkill : MonoBehaviour
                 fillImageList.Add(fillImage);
                 backgroundImage.gameObject.SetActive(true);
                 fillImage.gameObject.SetActive(true);
+                alreadySkill.Add(skillData);
+                Debug.Log(alreadySkill[0]);
                 break;
             }
-
         }
     }
 

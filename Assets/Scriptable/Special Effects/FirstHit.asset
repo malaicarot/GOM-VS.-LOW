@@ -20,4 +20,4 @@ MonoBehaviour:
   AnimationTag: FirstHit
   AttackKnockback: 40
   AttackCoefficient: 2
-  unlocked: 1
+  unlocked: 0
