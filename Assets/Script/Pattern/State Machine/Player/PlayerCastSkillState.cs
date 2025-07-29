@@ -4,6 +4,7 @@ public class PlayerCastSkillState : PlayerBaseState
 {
     readonly int CastSkillHash = Animator.StringToHash("CastSkill");
     readonly string CastSkillTag = "CastSkill";
+    readonly string overideName = "DefaultSkill";
     int skillIndex;
     Ability ability;
 
@@ -17,7 +18,7 @@ public class PlayerCastSkillState : PlayerBaseState
         skillIndex = stateMachine.InputReader.ButtonIndex;
         UseSkill(skillIndex);
         stateMachine.Mana.ReduceMana(PlayerSkill.playerSkillSingleton.alreadySkill[skillIndex].ManaCost);
-        stateMachine.PlayAnimation(CastSkillHash, PlayerSkill.playerSkillSingleton.alreadySkill[skillIndex].Animation);
+        stateMachine.PlayAnimation(stateMachine.AnimatorOverrideController, overideName, CastSkillHash, PlayerSkill.playerSkillSingleton.alreadySkill[skillIndex].Animation);
     }
 
     public override void Tick(float deltaTime)

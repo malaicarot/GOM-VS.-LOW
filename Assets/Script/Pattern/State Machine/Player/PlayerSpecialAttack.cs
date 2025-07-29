@@ -17,7 +17,7 @@ public class PlayerSpecialAttack : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(SpecialAttackHash, stateMachine.CrossFadeDuration);
         foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
         {
-            attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(stateMachine.Attacks[0].AttackDamage * effect.AttackCoefficient), effect.AttackKnockback);
+            // attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(stateMachine.Attacks[0].AttackDamage * effect.AttackCoefficient), effect.AttackKnockback);
         }
     }
 

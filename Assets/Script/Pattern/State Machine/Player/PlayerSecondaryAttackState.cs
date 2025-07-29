@@ -1,0 +1,103 @@
+using UnityEngine;
+
+public class PlayerSecondaryAttackState : PlayerBaseState
+{
+    readonly string AttackAnimationTag = "Attack";
+    float previousFrameTime;
+    bool alreadyApplyForce;
+    Attack attack;
+    int index;
+    public PlayerSecondaryAttackState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
+    {
+        attack = stateMachine.AttacksSecondary[attackIndex];
+        index = attackIndex;
+    }
+
+    public override void Enter()
+    {
+        stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
+        stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
+
+        foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
+        {
+            attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(attack.AttackDamage), attack.AttackKnockback);
+        }
+    }
+
+    public override void Tick(float deltaTime)
+    {
+        Move(deltaTime);
+        FaceTarget();
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, AttackAnimationTag);
+
+        if (normalizedTime >= previousFrameTime && normalizedTime < 1f)
+        {
+            if (normalizedTime >= attack.ForceTime)
+            {
+                TryApplyForce();
+            }
+            if (stateMachine.InputReader.IsSecondaryAttack)
+            {
+                TryCombo(normalizedTime, "secondary");
+                // if (stateMachine.InputReader.IsAttack)
+                // {
+                //     TryCombo(normalizedTime, "main");
+
+                // }
+            }
+
+        }
+        else
+        {
+            if (stateMachine.Targeter.currentTarget != null)
+            {
+                stateMachine.SwitchState(new PlayerTargetState(stateMachine));
+            }
+            else
+            {
+                stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+
+            }
+        }
+
+        previousFrameTime = normalizedTime;
+    }
+    public override void Exit()
+    {
+    }
+
+    void TryCombo(float normalizedTime, string attackType)
+    {
+        if (attack.AttackIndex == -1) { return; }
+        if (normalizedTime < attack.AttackTime) { return; }
+
+        // if (attackType == "secondary")
+        // {
+        stateMachine.SwitchState(
+    new PlayerSecondaryAttackState(
+        stateMachine,
+        attack.AttackIndex
+    ));
+        // }
+        // else
+        // {
+        //     stateMachine.SwitchState(
+        //     new PlayerAttackState(
+        //         stateMachine,
+        //         stateMachine.Attacks[index].AttackIndex
+        //     ));
+
+        // }
+
+
+    }
+
+    void TryApplyForce()
+    {
+        if (alreadyApplyForce) { return; }
+
+        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * attack.Force);
+        alreadyApplyForce = true;
+    }
+
+}

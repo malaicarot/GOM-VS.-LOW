@@ -73,7 +73,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""HeavyAttack"",
+                    ""name"": ""Secondary_Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f0495cf2-e1bf-41ca-a270-8765745060db"",
                     ""expectedControlType"": """",
@@ -395,7 +395,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""HeavyAttack"",
+                    ""action"": ""Secondary_Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -435,7 +435,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""412cff8f-6573-4024-962b-73c40e74e63d"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/leftAlt"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -1098,7 +1098,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_HeavyAttack = m_Player.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_Player_Secondary_Attack = m_Player.FindAction("Secondary_Attack", throwIfNotFound: true);
         m_Player_Equip = m_Player.FindAction("Equip", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Target = m_Player.FindAction("Target", throwIfNotFound: true);
@@ -1190,7 +1190,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_HeavyAttack;
+    private readonly InputAction m_Player_Secondary_Attack;
     private readonly InputAction m_Player_Equip;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Target;
@@ -1207,7 +1207,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @HeavyAttack => m_Wrapper.m_Player_HeavyAttack;
+        public InputAction @Secondary_Attack => m_Wrapper.m_Player_Secondary_Attack;
         public InputAction @Equip => m_Wrapper.m_Player_Equip;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Target => m_Wrapper.m_Player_Target;
@@ -1239,9 +1239,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @HeavyAttack.started += instance.OnHeavyAttack;
-            @HeavyAttack.performed += instance.OnHeavyAttack;
-            @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @Secondary_Attack.started += instance.OnSecondary_Attack;
+            @Secondary_Attack.performed += instance.OnSecondary_Attack;
+            @Secondary_Attack.canceled += instance.OnSecondary_Attack;
             @Equip.started += instance.OnEquip;
             @Equip.performed += instance.OnEquip;
             @Equip.canceled += instance.OnEquip;
@@ -1282,9 +1282,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @HeavyAttack.started -= instance.OnHeavyAttack;
-            @HeavyAttack.performed -= instance.OnHeavyAttack;
-            @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @Secondary_Attack.started -= instance.OnSecondary_Attack;
+            @Secondary_Attack.performed -= instance.OnSecondary_Attack;
+            @Secondary_Attack.canceled -= instance.OnSecondary_Attack;
             @Equip.started -= instance.OnEquip;
             @Equip.performed -= instance.OnEquip;
             @Equip.canceled -= instance.OnEquip;
@@ -1493,7 +1493,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnSecondary_Attack(InputAction.CallbackContext context);
         void OnEquip(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnTarget(InputAction.CallbackContext context);

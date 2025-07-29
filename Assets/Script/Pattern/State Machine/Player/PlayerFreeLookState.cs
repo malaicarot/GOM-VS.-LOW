@@ -32,6 +32,12 @@ public class PlayerFreeLookState : PlayerBaseState
             return;
         }
 
+        if (stateMachine.InputReader.IsSecondaryAttack)
+        {
+            stateMachine.SwitchState(new PlayerSecondaryAttackState(stateMachine, 0));
+            return;
+        }
+
         Vector3 direction = CalculateDirection();
         float targetSpeed = stateMachine.InputReader.IsSprint ?
         speed * stateMachine.MultiplyCoefficientSpeed :

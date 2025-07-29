@@ -31,6 +31,11 @@ public class PlayerTargetState : PlayerBaseState
             stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
             return;
         }
+        if (stateMachine.InputReader.IsSecondaryAttack)
+        {
+            stateMachine.SwitchState(new PlayerSecondaryAttackState(stateMachine, 0));
+            return;
+        }
 
         if (stateMachine.Targeter.currentTarget == null)
         {

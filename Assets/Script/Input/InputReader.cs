@@ -6,6 +6,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 {
     public Vector2 Movement { get; private set; }
     public bool IsAttack { get; private set; }
+    public bool IsSecondaryAttack { get; private set; }
     public bool IsSprint { get; private set; }
     public bool IsBlocking { get; private set; }
     public int ButtonIndex { get; private set; }
@@ -50,7 +51,18 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
             IsAttack = false;
         }
     }
+    public void OnSecondary_Attack(InputAction.CallbackContext context)
 
+    {
+        if (context.performed)
+        {
+            IsSecondaryAttack = true;
+        }
+        if (context.canceled)
+        {
+            IsSecondaryAttack = false;
+        }
+    }
     public void OnDodge(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
@@ -58,10 +70,6 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     }
 
     public void OnEquip(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnHeavyAttack(InputAction.CallbackContext context)
     {
     }
 
@@ -177,7 +185,7 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
     {
         SetCursorState(cursorLocked);
     }
-    
+
 
     void SetCursorState(bool newState)
     {

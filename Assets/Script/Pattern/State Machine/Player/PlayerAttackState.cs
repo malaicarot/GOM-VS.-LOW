@@ -1,5 +1,3 @@
-using System;
-using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
 {
@@ -7,13 +5,15 @@ public class PlayerAttackState : PlayerBaseState
     float previousFrameTime;
     bool alreadyApplyForce;
     Attack attack;
+    int index;
     public PlayerAttackState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
     {
         attack = stateMachine.Attacks[attackIndex];
+        index = attackIndex;
     }
 
     public override void Enter()
-    { 
+    {
         stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
 
@@ -37,7 +37,11 @@ public class PlayerAttackState : PlayerBaseState
             }
             if (stateMachine.InputReader.IsAttack)
             {
-                TryCombo(normalizedTime);
+                TryCombo(normalizedTime, "main");
+                // if (stateMachine.InputReader.IsSecondaryAttack)
+                // {
+                //     TryCombo(normalizedTime, "secondary");
+                // }
             }
         }
         else
@@ -61,17 +65,27 @@ public class PlayerAttackState : PlayerBaseState
 
     }
 
-    void TryCombo(float normalizedTime)
+    void TryCombo(float normalizedTime, string attackType)
     {
         if (attack.AttackIndex == -1) { return; }
         if (normalizedTime < attack.AttackTime) { return; }
 
-        stateMachine.SwitchState(
+        // if (attackType == "main")
+        // {
+            stateMachine.SwitchState(
             new PlayerAttackState(
                 stateMachine,
                 attack.AttackIndex
-            )
-        );
+            ));
+        // }
+        // else
+        // {
+        //     stateMachine.SwitchState(
+        //     new PlayerSecondaryAttackState(
+        //         stateMachine,
+        //         stateMachine.AttacksSecondary[index].AttackIndex
+        //     ));
+        // }
     }
 
     void TryApplyForce()

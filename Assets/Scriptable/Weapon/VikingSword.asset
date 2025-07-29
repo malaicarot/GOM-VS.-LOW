@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e202f3996829c14cbce6da58989f3a6, type: 3}
+  m_Name: VikingSword
+  m_EditorClassIdentifier: 
+  Name: VikingSword
+  Thumbnail: {fileID: 0}
+  WeaponPrefab: {fileID: 2455212711425032272, guid: 9a85788d4cc95794a90c0b77a2994d13, type: 3}
+  AnimationTag: Attack
+  Attacks:
+  - <AttackAnimationName>k__BackingField: Attack_1
+    <AnimationDuration>k__BackingField: 0.1
+    <AttackTime>k__BackingField: 0.6
+    <AttackIndex>k__BackingField: 1
+    <ForceTime>k__BackingField: 0.35
+    <Force>k__BackingField: 10
+    <AttackDamage>k__BackingField: 5
+    <AttackKnockback>k__BackingField: 20
+  - <AttackAnimationName>k__BackingField: Attack_2
+    <AnimationDuration>k__BackingField: 0.1
+    <AttackTime>k__BackingField: 0.8
+    <AttackIndex>k__BackingField: 2
+    <ForceTime>k__BackingField: 0.4
+    <Force>k__BackingField: 10
+    <AttackDamage>k__BackingField: 5
+    <AttackKnockback>k__BackingField: 20
+  - <AttackAnimationName>k__BackingField: Attack_3
+    <AnimationDuration>k__BackingField: 0.1
+    <AttackTime>k__BackingField: 0.8
+    <AttackIndex>k__BackingField: 3
+    <ForceTime>k__BackingField: 0.4
+    <Force>k__BackingField: 10
+    <AttackDamage>k__BackingField: 7
+    <AttackKnockback>k__BackingField: 20
+  - <AttackAnimationName>k__BackingField: Attack_4
+    <AnimationDuration>k__BackingField: 0.1
+    <AttackTime>k__BackingField: 0
+    <AttackIndex>k__BackingField: -1
+    <ForceTime>k__BackingField: 0.4
+    <Force>k__BackingField: 15
+    <AttackDamage>k__BackingField: 8
+    <AttackKnockback>k__BackingField: 20
+  AnimationClip:
+  - {fileID: 7400000, guid: 864407e39d228ff4fbcef283dab63153, type: 2}
+  - {fileID: 7400000, guid: 19d6a0cf4fdd64f44b2ca06e4b6539fc, type: 2}
+  - {fileID: 7400000, guid: 2fd8b623619ce5346a483899d95e798f, type: 2}
+  - {fileID: 7400000, guid: c58b1f9e94b862b46bc1d41afc7d7725, type: 2}
