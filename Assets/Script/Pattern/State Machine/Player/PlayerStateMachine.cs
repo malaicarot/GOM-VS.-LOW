@@ -10,8 +10,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public AnimatorOverrideController AnimatorOverrideController { get; private set; }
-    [field: SerializeField] public AnimatorOverrideController AnimatorAttackOverrideController { get; private set; }
-    [field: SerializeField] public AnimatorOverrideController AnimatorSecondaryAttackOverrideController { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
@@ -19,11 +17,10 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Mana Mana { get; private set; }
     [field: SerializeField] public Stamina Stamina { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
-    // [field: SerializeField] public Attack[] Attacks { get; private set; }
-    // [field: SerializeField] public Attack[] Attacks { get; private set; }
-
     [field: SerializeField] public PlayerStats PlayerStats { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
+    [field: SerializeField] public AttackHandler AttackHandlers { get; private set; }
+
     [field: SerializeField] public Respawn Respawn { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
@@ -69,6 +66,7 @@ public class PlayerStateMachine : StateMachine
         Health.OnDeath -= HandleDeadState;
         PlayerStats.IncreaseStats -= SetStats;
         PlayerCombat.OnSetWeapon -= SetAttackBaseWeapon;
+
     }
 
     void HandleAttack()
@@ -105,17 +103,6 @@ public class PlayerStateMachine : StateMachine
     {
         Attacks = PlayerCombat.weapon.Attacks;
         AttacksSecondary = PlayerCombat.weaponSecondary.Attacks;
-        AnimationClip atk_1 = PlayerCombat.weapon.AnimationClip[0];
-        AnimationClip atk_2 = PlayerCombat.weapon.AnimationClip[1];
-        AnimationClip atk_3 = PlayerCombat.weapon.AnimationClip[2];
-        AnimationClip atk_4 = PlayerCombat.weapon.AnimationClip[3];
-
-
-        AnimationClip atk_s_1 = PlayerCombat.weaponSecondary.AnimationClip[0];
-        AnimationClip atk_s_2 = PlayerCombat.weaponSecondary.AnimationClip[1];
-
-
-        SetAttackAnimation(atk_1, atk_2, atk_3, atk_4, atk_s_1, atk_s_2, AnimatorAttackOverrideController, Attacks, AttacksSecondary);
     }
 
     public void OnCastSkill()
@@ -145,18 +132,7 @@ public class PlayerStateMachine : StateMachine
         Animator.runtimeAnimatorController = runtimeOverride;
         Animator.CrossFadeInFixedTime(animationHash, CrossFadeDuration);
     }
-    public void SetAttackAnimation(AnimationClip atk_1, AnimationClip atk_2, AnimationClip atk_3, AnimationClip atk_4, AnimationClip atk_s_1, AnimationClip atk_s_2, AnimatorOverrideController animatorOverrideController, Attack[] attack, Attack[] attack_secondary)
-    {
-        AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(animatorOverrideController);
-        runtimeOverride[attack[0].AttackAnimationName] = atk_1;
-        runtimeOverride[attack[1].AttackAnimationName] = atk_2;
-        runtimeOverride[attack[2].AttackAnimationName] = atk_3;
-        runtimeOverride[attack[3].AttackAnimationName] = atk_4;
 
-        runtimeOverride[attack_secondary[0].AttackAnimationName] = atk_s_1;
-        runtimeOverride[attack_secondary[1].AttackAnimationName] = atk_s_2;
-        Animator.runtimeAnimatorController = runtimeOverride;
-    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -201,4 +177,6 @@ public class PlayerStateMachine : StateMachine
         Stamina.ResetStamina();
         HealingPotion.ResetPotion();
     }
+
+    
 }

@@ -192,7 +192,6 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 499906267210327538}
   <ForceReceiver>k__BackingField: {fileID: 8609052916850907783}
   <AttackDealDamage>k__BackingField:
-  - {fileID: 6369977505838940174}
   - {fileID: 2890702343649922792}
   <EnemyController>k__BackingField: {fileID: 4683755642285144656}
   <EnemySpeed>k__BackingField: 1.5
@@ -229,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a6564e7f05d524c8f51d1069bb2637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFirstAttack: 1
 --- !u!114 &8609052916850907783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,9 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22322a06b2b370b409bd10e0320bd3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackLogic:
-  - {fileID: 7396788517980888782}
-  - {fileID: 3266253607123096949}
+  attackRightLogic: {fileID: 7396788517980888782}
+  attackLeftLogic: {fileID: 3266253607123096949}
 --- !u!114 &217552180024563807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +304,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.94
-  m_Radius: 0.26
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

@@ -1,24 +1,50 @@
+using System;
 using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
-    [SerializeField] GameObject[] attackLogic;
+    [SerializeField] GameObject attackRightLogic;
+    [SerializeField] GameObject attackLeftLogic;
 
+    public event Action PlayAttackSound;
 
-    public void OnEnableAttack()
+    public void OnEnableAttackRight()
     {
-        foreach (GameObject attack in attackLogic)
+        if (attackRightLogic == null)
         {
-            attack.SetActive(true);
+            return;
         }
+        attackRightLogic.SetActive(true);
+        PlayAttackSound?.Invoke();
     }
 
-    public void OnDisableAttack()
+    public void OnDisableAttackRight()
     {
-        foreach (GameObject attack in attackLogic)
+        if (attackRightLogic == null)
         {
-            attack.SetActive(false);
+            return;
         }
+        attackRightLogic.SetActive(false);
+    }
+
+    public void OnEnableAttackLeft()
+    {
+        if (attackLeftLogic == null)
+        {
+            return;
+        }
+        attackLeftLogic.SetActive(true);
+        PlayAttackSound?.Invoke();
+
+    }
+
+    public void OnDisableAttackLeft()
+    {
+        if (attackLeftLogic == null)
+        {
+            return;
+        }
+        attackLeftLogic.SetActive(false);
     }
 
 }

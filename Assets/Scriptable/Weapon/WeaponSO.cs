@@ -12,5 +12,4 @@ public class WeaponSO : ScriptableObject
     [Header("Logic")]
     public string AnimationTag;
     public Attack[] Attacks;
-    public AnimationClip[] AnimationClip;
 }

@@ -28,12 +28,13 @@ public class PlayerTargetState : PlayerBaseState
 
         if (stateMachine.InputReader.IsAttack)
         {
-            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
+            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.Attacks));
             return;
         }
+
         if (stateMachine.InputReader.IsSecondaryAttack)
         {
-            stateMachine.SwitchState(new PlayerSecondaryAttackState(stateMachine, 0));
+            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.AttacksSecondary));
             return;
         }
 

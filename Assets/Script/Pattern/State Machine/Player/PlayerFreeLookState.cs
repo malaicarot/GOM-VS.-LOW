@@ -28,13 +28,14 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         if (stateMachine.InputReader.IsAttack)
         {
-            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0));
+            
+            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.Attacks));
             return;
         }
 
         if (stateMachine.InputReader.IsSecondaryAttack)
         {
-            stateMachine.SwitchState(new PlayerSecondaryAttackState(stateMachine, 0));
+            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.AttacksSecondary));
             return;
         }
 
@@ -69,7 +70,10 @@ public class PlayerFreeLookState : PlayerBaseState
 
     void RotationByFaceDirection(Vector3 direction, float deltaTime)
     {
-        stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(direction), stateMachine.RotationDamping * deltaTime);
+        if (direction != Vector3.zero)
+        {
+            stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(direction), stateMachine.RotationDamping * deltaTime);
+        }
     }
 
 

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e202f3996829c14cbce6da58989f3a6, type: 3}
+  m_Name: Iron_Dagger
+  m_EditorClassIdentifier: 
+  Name: Iron_Dagger
+  Thumbnail: {fileID: 0}
+  WeaponPrefab: {fileID: 2258411484881710256, guid: d2a69bab98638ae41819a23ca7985832, type: 3}
+  AnimationTag: Attack
+  Attacks:
+  - <AttackAnimationName>k__BackingField: Attack_Secondary_1
+    <AnimationDuration>k__BackingField: 0.1
+    <AttackTime>k__BackingField: 0.6
+    <AttackIndex>k__BackingField: 1
+    <ForceTime>k__BackingField: 0.35
+    <Force>k__BackingField: 10
+    <AttackDamage>k__BackingField: 5
+    <AttackKnockback>k__BackingField: 10
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7d5a2364976c9e941bed39b122b82a0a, type: 3}
+  - <AttackAnimationName>k__BackingField: Attack_Secondary_2
+    <AnimationDuration>k__BackingField: 0.1
+    <AttackTime>k__BackingField: 0
+    <AttackIndex>k__BackingField: -1
+    <ForceTime>k__BackingField: 0.4
+    <Force>k__BackingField: 10
+    <AttackDamage>k__BackingField: 5
+    <AttackKnockback>k__BackingField: 10
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 6c993a15b455bc34f895514875da6b13, type: 3}

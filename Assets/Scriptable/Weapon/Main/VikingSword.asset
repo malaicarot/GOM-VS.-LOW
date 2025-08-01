@@ -17,15 +17,16 @@ MonoBehaviour:
   WeaponPrefab: {fileID: 2455212711425032272, guid: 9a85788d4cc95794a90c0b77a2994d13, type: 3}
   AnimationTag: Attack
   Attacks:
-  - <AttackAnimationName>k__BackingField: Attack_1
+  - <AttackAnimationName>k__BackingField: Sword_Attack_1
     <AnimationDuration>k__BackingField: 0.1
-    <AttackTime>k__BackingField: 0.6
+    <AttackTime>k__BackingField: 0.8
     <AttackIndex>k__BackingField: 1
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-  - <AttackAnimationName>k__BackingField: Attack_2
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: bee35a4829bd8d641935563d00945ca6, type: 3}
+  - <AttackAnimationName>k__BackingField: Sword_Attack_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
     <AttackIndex>k__BackingField: 2
@@ -33,7 +34,8 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-  - <AttackAnimationName>k__BackingField: Attack_3
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: e9ca1316c211e834d8b9bc76d8af4106, type: 3}
+  - <AttackAnimationName>k__BackingField: Sword_Attack_3
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
     <AttackIndex>k__BackingField: 3
@@ -41,7 +43,8 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 7
     <AttackKnockback>k__BackingField: 20
-  - <AttackAnimationName>k__BackingField: Attack_4
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: eee16dc9faa0eda4d9653d4cf7d56847, type: 3}
+  - <AttackAnimationName>k__BackingField: Sword_Attack_4
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
     <AttackIndex>k__BackingField: -1
@@ -49,8 +52,4 @@ MonoBehaviour:
     <Force>k__BackingField: 15
     <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 20
-  AnimationClip:
-  - {fileID: 7400000, guid: 864407e39d228ff4fbcef283dab63153, type: 2}
-  - {fileID: 7400000, guid: 19d6a0cf4fdd64f44b2ca06e4b6539fc, type: 2}
-  - {fileID: 7400000, guid: 2fd8b623619ce5346a483899d95e798f, type: 2}
-  - {fileID: 7400000, guid: c58b1f9e94b862b46bc1d41afc7d7725, type: 2}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: e93ab68b3d5beff46839af47f10b34a7, type: 3}

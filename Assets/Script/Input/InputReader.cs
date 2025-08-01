@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 {
     public Vector2 Movement { get; private set; }
-    public bool IsAttack { get; private set; }
-    public bool IsSecondaryAttack { get; private set; }
+    public bool IsAttack { get; set; }
+    public bool IsSecondaryAttack { get; set; }
     public bool IsSprint { get; private set; }
     public bool IsBlocking { get; private set; }
     public int ButtonIndex { get; private set; }
@@ -42,25 +42,16 @@ public class InputReader : MonoBehaviour, InputControls.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
             IsAttack = true;
         }
-        if (context.canceled)
-        {
-            IsAttack = false;
-        }
     }
     public void OnSecondary_Attack(InputAction.CallbackContext context)
-
     {
-        if (context.performed)
+        if (context.started)
         {
             IsSecondaryAttack = true;
-        }
-        if (context.canceled)
-        {
-            IsSecondaryAttack = false;
         }
     }
     public void OnDodge(InputAction.CallbackContext context)

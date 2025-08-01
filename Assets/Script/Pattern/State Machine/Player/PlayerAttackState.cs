@@ -5,15 +5,23 @@ public class PlayerAttackState : PlayerBaseState
     float previousFrameTime;
     bool alreadyApplyForce;
     Attack attack;
-    int index;
-    public PlayerAttackState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
+    int currentAttackIndex;
+    Attack[] currentComboList;
+    public PlayerAttackState(PlayerStateMachine stateMachine, int attackIndex, Attack[] comboList) : base(stateMachine)
     {
-        attack = stateMachine.Attacks[attackIndex];
-        index = attackIndex;
+        currentComboList = comboList;
+        currentAttackIndex = attackIndex;
+        if (attackIndex >= comboList.Length)
+        {
+            currentAttackIndex = 0;
+        }
+        attack = currentComboList[currentAttackIndex];
     }
 
     public override void Enter()
     {
+        stateMachine.AttackHandlers.PlayAttackSound += PlayerSound;
+
         stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
 
@@ -21,6 +29,7 @@ public class PlayerAttackState : PlayerBaseState
         {
             attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(attack.AttackDamage), attack.AttackKnockback);
         }
+
     }
 
     public override void Tick(float deltaTime)
@@ -35,13 +44,17 @@ public class PlayerAttackState : PlayerBaseState
             {
                 TryApplyForce();
             }
+
             if (stateMachine.InputReader.IsAttack)
             {
-                TryCombo(normalizedTime, "main");
-                // if (stateMachine.InputReader.IsSecondaryAttack)
-                // {
-                //     TryCombo(normalizedTime, "secondary");
-                // }
+                TryCombo(normalizedTime, attack.AttackIndex, stateMachine.Attacks);
+                stateMachine.InputReader.IsAttack = false;
+            }
+
+            if (stateMachine.InputReader.IsSecondaryAttack)
+            {
+                TryCombo(normalizedTime, attack.AttackIndex, stateMachine.AttacksSecondary);
+                stateMachine.InputReader.IsSecondaryAttack = false;
             }
         }
         else
@@ -53,7 +66,6 @@ public class PlayerAttackState : PlayerBaseState
             else
             {
                 stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-
             }
         }
 
@@ -62,30 +74,22 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void Exit()
     {
+        stateMachine.AttackHandlers.PlayAttackSound -= PlayerSound;
 
     }
 
-    void TryCombo(float normalizedTime, string attackType)
+    void TryCombo(float normalizedTime, int attackIndex, Attack[] nextComboList)
     {
         if (attack.AttackIndex == -1) { return; }
         if (normalizedTime < attack.AttackTime) { return; }
 
-        // if (attackType == "main")
-        // {
-            stateMachine.SwitchState(
-            new PlayerAttackState(
-                stateMachine,
-                attack.AttackIndex
-            ));
-        // }
-        // else
-        // {
-        //     stateMachine.SwitchState(
-        //     new PlayerSecondaryAttackState(
-        //         stateMachine,
-        //         stateMachine.AttacksSecondary[index].AttackIndex
-        //     ));
-        // }
+
+        stateMachine.SwitchState(
+        new PlayerAttackState(
+            stateMachine,
+            attackIndex,
+            nextComboList
+        ));
     }
 
     void TryApplyForce()
@@ -94,5 +98,10 @@ public class PlayerAttackState : PlayerBaseState
 
         stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * attack.Force);
         alreadyApplyForce = true;
+    }
+
+    void PlayerSound()
+    {
+        SoundManager.soundManager.PlaySound(attack.AudioClip);
     }
 }

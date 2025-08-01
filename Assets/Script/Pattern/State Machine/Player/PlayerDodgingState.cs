@@ -9,6 +9,9 @@ public class PlayerDodgingState : PlayerBaseState
     float dodgeRemainingTime;
     public PlayerDodgingState(PlayerStateMachine stateMachine, Vector3 dodgingDirection) : base(stateMachine)
     {
+        Debug.Log("x: " + dodgingDirection.x);
+        Debug.Log("y: " + dodgingDirection.y);
+        Debug.Log("z: " + dodgingDirection.z);
         if (dodgingDirection == Vector3.zero)
         {
             this.dodgingDirection.y = -1; // default dodge backward
@@ -36,6 +39,7 @@ public class PlayerDodgingState : PlayerBaseState
 
         targetMovement += stateMachine.transform.right * dodgingDirection.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;
         targetMovement += stateMachine.transform.forward * dodgingDirection.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+        Debug.Log("Target movement: " + targetMovement);
 
         Move(targetMovement, deltaTime);
         FaceTarget();

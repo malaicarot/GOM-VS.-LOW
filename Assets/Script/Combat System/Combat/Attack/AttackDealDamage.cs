@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class AttackDealDamage : MonoBehaviour
     List<Collider> alreadyCollider = new List<Collider>();
     int dealDamaged;
     float knockback;
+
+    // public event Action PlaySoundWeapon;
 
 
     void OnEnable()
@@ -27,9 +30,17 @@ public class AttackDealDamage : MonoBehaviour
         if (this.tag == other.tag) { return; }
 
         alreadyCollider.Add(other);
+        // PlaySoundWeapon?.Invoke();
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(dealDamaged);
+
+        }
+
+        if (other.TryGetComponent<AttackHandler>(out AttackHandler attackHandler))
+        {
+            attackHandler.OnDisableAttackRight();
+            attackHandler.OnDisableAttackLeft();
         }
 
         if (other.TryGetComponent<Target>(out Target target))

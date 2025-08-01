@@ -11,17 +11,26 @@ public class PlayerCombat : MonoBehaviour
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
     public event Action OnSetWeapon;
+    // public event Action PlayWeaponSound;
     public WeaponSO weapon { get; private set; }
     public WeaponSO weaponSecondary { get; private set; }
+    public GameObject mainWeapon { get; private set; }
+    public GameObject subWeapon { get; private set; }
+
 
     void Start()
     {
         SetUpEffectActive();
-        EquipWeapon("VikingSword");
-        EquipSecondaryWeapon("Dagger");
+        EquipWeapon("LightSword");
+        EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
     }
 
+    void Update()
+    {
+        // PlayWeaponSound?.Invoke();
+        ApplyEffect();
+    }
 
     void OnEnable()
     {
@@ -33,10 +42,6 @@ public class PlayerCombat : MonoBehaviour
         SpecialEffectManagers.specialEffectManagers.OnActiveEffect -= SetUpEffectActive;
     }
 
-    void Update()
-    {
-        ApplyEffect();
-    }
 
     void SetUpEffectActive()
     {
@@ -71,8 +76,12 @@ public class PlayerCombat : MonoBehaviour
         {
             if (weaponSO.Name == name)
             {
+                if (mainWeapon != null)
+                {
+                    mainWeapon = null;
+                }
                 weapon = weaponSO;
-                Instantiate(weapon.WeaponPrefab, weaponRight.transform);
+                mainWeapon = Instantiate(weapon.WeaponPrefab, weaponRight.transform);
             }
         }
     }
@@ -83,8 +92,12 @@ public class PlayerCombat : MonoBehaviour
         {
             if (weaponSO.Name == name)
             {
+                if (subWeapon != null)
+                {
+                    subWeapon = null;
+                }
                 weaponSecondary = weaponSO;
-                Instantiate(weaponSecondary.WeaponPrefab, weaponLeft.transform);
+                subWeapon = Instantiate(weaponSecondary.WeaponPrefab, weaponLeft.transform);
             }
         }
     }
