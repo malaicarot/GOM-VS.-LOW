@@ -21,7 +21,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         SetUpEffectActive();
-        EquipWeapon("LightSword");
+        EquipWeapon("AxeEvolving");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
     }

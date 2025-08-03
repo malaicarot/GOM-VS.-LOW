@@ -18911,7 +18911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1602628741925590402
 GameObject:
   m_ObjectHideFlags: 0
@@ -20617,7 +20617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4394191732775573924
 GameObject:
   m_ObjectHideFlags: 0
@@ -22391,6 +22391,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b31fd9c65d5e73b40b9df59f0c5c13d2, type: 2}
   - {fileID: 11400000, guid: 76e72ac27533a534189d8594a7f021d3, type: 2}
   - {fileID: 11400000, guid: 2dd667f36767dfa46b0895cc69f1245e, type: 2}
+  - {fileID: 11400000, guid: ca2c498ede5833d48a0d4652d563a0da, type: 2}
   weaponSOSecondaryList:
   - {fileID: 11400000, guid: 45e6f83eb3db5f548b6782b876de38a0, type: 2}
   - {fileID: 11400000, guid: 51461a99fc54bd34987b9daf4ddd7541, type: 2}
