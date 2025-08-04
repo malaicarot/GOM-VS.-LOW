@@ -2581,8 +2581,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.11591345, y: -0.100372635, z: -0.011774601, w: 0.98810464}
-  m_LocalPosition: {x: 488.24, y: 631.3, z: 843.67725}
+  m_LocalRotation: {x: -0.115913466, y: -0.100372635, z: -0.011774603, w: 0.98810464}
+  m_LocalPosition: {x: 488.24, y: 620.15, z: 861.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21799,7 +21799,7 @@ Transform:
   m_GameObject: {fileID: 299996411204101076}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 488.24, y: 630.8, z: 846.67725}
+  m_LocalPosition: {x: 488.24, y: 619.65, z: 864.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22392,6 +22392,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76e72ac27533a534189d8594a7f021d3, type: 2}
   - {fileID: 11400000, guid: 2dd667f36767dfa46b0895cc69f1245e, type: 2}
   - {fileID: 11400000, guid: ca2c498ede5833d48a0d4652d563a0da, type: 2}
+  - {fileID: 11400000, guid: 16b4fbb879cc6c946b725444f2c468fb, type: 2}
   weaponSOSecondaryList:
   - {fileID: 11400000, guid: 45e6f83eb3db5f548b6782b876de38a0, type: 2}
   - {fileID: 11400000, guid: 51461a99fc54bd34987b9daf4ddd7541, type: 2}
@@ -23244,7 +23245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6114865714039760722}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.11591344, y: -0.10037263, z: -0.011774599, w: 0.9881047}
+  m_LocalRotation: {x: -0.11591345, y: -0.10037262, z: -0.0117746005, w: 0.9881047}
   m_LocalPosition: {x: 0, y: 0.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

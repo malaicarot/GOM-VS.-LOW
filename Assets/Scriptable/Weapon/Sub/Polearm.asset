@@ -17,7 +17,7 @@ MonoBehaviour:
   WeaponPrefab: {fileID: 3602583792596469769, guid: bdce17856616f124c8296d8c6f1c3719, type: 3}
   AnimationTag: Attack
   Attacks:
-  - <AttackAnimationName>k__BackingField: Attack_Secondary_1
+  - <AttackAnimationName>k__BackingField: Attack_Secondary_S_1
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.6
     <AttackIndex>k__BackingField: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 10
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 7d5a2364976c9e941bed39b122b82a0a, type: 3}
-  - <AttackAnimationName>k__BackingField: Attack_Secondary_2
+  - <AttackAnimationName>k__BackingField: Attack_Secondary_S_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
     <AttackIndex>k__BackingField: -1
