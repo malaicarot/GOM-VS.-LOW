@@ -15,7 +15,7 @@ public abstract class EnemyBaseState : State
 
     protected bool IsInChanseRange()
     {
-        if(enemyState.Player.isDead){ return false; }
+        if (enemyState.Player.isDead) { return false; }
         distanceSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
         return distanceSqr <= enemyState.EnemyChasingRange * enemyState.EnemyChasingRange;
     }
@@ -25,6 +25,13 @@ public abstract class EnemyBaseState : State
         atkRangeSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
         return atkRangeSqr <= enemyState.EnemyAttackRange * enemyState.EnemyAttackRange;
     }
+
+    protected float AttackRange()
+    {
+        return atkRangeSqr = (enemyState.Player.transform.position - enemyState.transform.position).sqrMagnitude;
+    }
+
+
 
     protected void Move(float deltaTime)
     {

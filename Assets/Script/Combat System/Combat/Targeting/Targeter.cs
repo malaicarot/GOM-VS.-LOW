@@ -18,7 +18,6 @@ public class Targeter : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-
     void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<Target>(out Target target)) { return; }

@@ -10,6 +10,7 @@ public class PlayerFreeLookState : PlayerBaseState
     const float AnimationDamping = 0.1f;
     float speed;
     bool isTired;
+    // float time
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -28,7 +29,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         if (stateMachine.InputReader.IsAttack)
         {
-            
+
             stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.Attacks));
             return;
         }
@@ -85,6 +86,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     void OnDodge()
     {
+
         stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }
 

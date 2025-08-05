@@ -52,5 +52,4 @@ public abstract class PlayerBaseState : State
         right.Normalize();
         return forward * stateMachine.InputReader.Movement.y + right * stateMachine.InputReader.Movement.x;
     }
-    
 }

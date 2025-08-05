@@ -20,7 +20,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public PlayerStats PlayerStats { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public AttackHandler AttackHandlers { get; private set; }
-
+    [field: SerializeField] public DodgeController DodgeController { get; private set; }
     [field: SerializeField] public Respawn Respawn { get; private set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
@@ -45,10 +45,13 @@ public class PlayerStateMachine : StateMachine
 
     public Attack[] Attacks { get; private set; }
     public Attack[] AttacksSecondary { get; private set; }
+    public AttackHandler AttackHandlerEnemy { get; set; }
+    public float perfectDodgeTime;
 
     void Start()
     {
         CameraTransfrom = Camera.main.transform;
+
         SwitchState(new PlayerFreeLookState(this));
     }
 
@@ -178,5 +181,5 @@ public class PlayerStateMachine : StateMachine
         HealingPotion.ResetPotion();
     }
 
-    
+
 }

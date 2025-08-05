@@ -3,15 +3,14 @@ using UnityEngine;
 public class PlayerDodgingState : PlayerBaseState
 {
     readonly int DodgeBlendTreeHash = Animator.StringToHash("DodgeBlendTree");
+    readonly int PerfectDodgeHash = Animator.StringToHash("PerfectDodge");
     readonly int DodgeForwardHash = Animator.StringToHash("Dodge_Forward");
     readonly int DodgeRightHash = Animator.StringToHash("Dodge_Right");
     Vector3 dodgingDirection;
     float dodgeRemainingTime;
+    // bool isPerfectDodge = false;
     public PlayerDodgingState(PlayerStateMachine stateMachine, Vector3 dodgingDirection) : base(stateMachine)
     {
-        Debug.Log("x: " + dodgingDirection.x);
-        Debug.Log("y: " + dodgingDirection.y);
-        Debug.Log("z: " + dodgingDirection.z);
         if (dodgingDirection == Vector3.zero)
         {
             this.dodgingDirection.y = -1; // default dodge backward
@@ -24,22 +23,18 @@ public class PlayerDodgingState : PlayerBaseState
 
     public override void Enter()
     {
+        Dodge();
         stateMachine.Stamina.ReduceStamina(stateMachine.dodgeStaminaReduce);
-        stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
-        stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
-        stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
-
-        dodgeRemainingTime = stateMachine.DodgeDuration;
-        stateMachine.Health.SetParry(true);
     }
 
     public override void Tick(float deltaTime)
     {
+
+
         Vector3 targetMovement = new Vector3();
 
         targetMovement += stateMachine.transform.right * dodgingDirection.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;
         targetMovement += stateMachine.transform.forward * dodgingDirection.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
-        Debug.Log("Target movement: " + targetMovement);
 
         Move(targetMovement, deltaTime);
         FaceTarget();
@@ -49,10 +44,30 @@ public class PlayerDodgingState : PlayerBaseState
         {
             stateMachine.SwitchState(new PlayerTargetState(stateMachine));
         }
+
     }
 
     public override void Exit()
     {
         stateMachine.Health.SetParry(false);
+    }
+
+    void Dodge()
+    {
+        if (stateMachine.DodgeController.isPerfect)
+        {
+            Debug.Log("Perfect Dodge!");
+            stateMachine.Animator.CrossFadeInFixedTime(PerfectDodgeHash, stateMachine.CrossFadeDuration);
+            stateMachine.Health.SetParry(true);
+            dodgeRemainingTime = 1f;
+        }
+        else
+        {
+
+            stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
+            stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
+            stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
+            dodgeRemainingTime = stateMachine.DodgeDuration;
+        }
     }
 }

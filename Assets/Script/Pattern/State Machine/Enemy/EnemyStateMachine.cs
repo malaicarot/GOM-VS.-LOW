@@ -14,6 +14,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public CharacterController EnemyController { get; private set; }
+    // [field: SerializeField] public CalculateAttackTime CalculateAttackTime { get; private set; }
     [field: SerializeField] public float EnemySpeed { get; private set; }
     [field: SerializeField] public int EnemyAttackDamage { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
@@ -57,7 +58,7 @@ public class EnemyStateMachine : StateMachine
 
     void HandleDeadState()
     {
-        
+
         SwitchState(new EnemyDeadState(this));
     }
 

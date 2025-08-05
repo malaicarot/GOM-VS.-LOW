@@ -9,9 +9,6 @@ public class AttackDealDamage : MonoBehaviour
     int dealDamaged;
     float knockback;
 
-    // public event Action PlaySoundWeapon;
-
-
     void OnEnable()
     {
         alreadyCollider.Clear();
@@ -30,7 +27,7 @@ public class AttackDealDamage : MonoBehaviour
         if (this.tag == other.tag) { return; }
 
         alreadyCollider.Add(other);
-        // PlaySoundWeapon?.Invoke();
+
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(dealDamaged);

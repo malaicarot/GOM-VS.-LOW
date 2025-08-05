@@ -17,6 +17,7 @@ public class EnemyAttackState : EnemyBaseState
             attackDamage.SetAttack(enemyState.EnemyAttackDamage, enemyState.EnemyAttackKnockback);
         }
     }
+
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);

@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1996368806235520321}
   m_Layer: 0
   m_Name: Attack_Right_Logic
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1528,6 +1528,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3170444135493676662, guid: 0bbbec30d89fec54b88438bc5f54d884, type: 3}
+      propertyPath: attackLeftLogic
+      value: 
+      objectReference: {fileID: 6973953662617052750}
+    - target: {fileID: 3170444135493676662, guid: 0bbbec30d89fec54b88438bc5f54d884, type: 3}
+      propertyPath: attackRightLogic
+      value: 
+      objectReference: {fileID: 8181450964258370103}
+    - target: {fileID: 3170444135493676662, guid: 0bbbec30d89fec54b88438bc5f54d884, type: 3}
       propertyPath: 'attackLogic.Array.data[0]'
       value: 
       objectReference: {fileID: 8181450964258370103}
@@ -1550,7 +1558,7 @@ PrefabInstance:
     - target: {fileID: 7454900766929228562, guid: 0bbbec30d89fec54b88438bc5f54d884, type: 3}
       propertyPath: '<AttackDealDamage>k__BackingField.Array.data[0]'
       value: 
-      objectReference: {fileID: 1611440995038075167}
+      objectReference: {fileID: 2130181186353463564}
     - target: {fileID: 7454900766929228562, guid: 0bbbec30d89fec54b88438bc5f54d884, type: 3}
       propertyPath: '<AttackDealDamage>k__BackingField.Array.data[1]'
       value: 
