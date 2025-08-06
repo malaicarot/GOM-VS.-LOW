@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -181,5 +182,18 @@ public class PlayerStateMachine : StateMachine
         HealingPotion.ResetPotion();
     }
 
+    IEnumerator SlowMotion(float duration, float slowFactor)
+    {
+        Time.timeScale = slowFactor;
+        Time.fixedDeltaTime = 0.02f * slowFactor;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+    }
+
+    public void StartSlowMotion(float duration, float slowFactor)
+    {
+        StartCoroutine(SlowMotion(duration, slowFactor));
+    }
 
 }

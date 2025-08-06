@@ -1497,35 +1497,27 @@ MonoBehaviour:
     HashOfParent: 756556552
   - Hash: 230188126
     HashOfParent: 585382737
-  - Hash: -1256911658
-    HashOfParent: 585382737
-  - Hash: 2009079396
+  - Hash: 1911844345
     HashOfParent: 585382737
   - Hash: -479991077
     HashOfParent: 756556552
-  - Hash: 168036699
+  - Hash: 1455179428
     HashOfParent: -479991077
-  - Hash: -1587927945
+  - Hash: 309372945
     HashOfParent: -479991077
-  - Hash: -1503067552
+  - Hash: 1008362545
     HashOfParent: -479991077
-  - Hash: -1235612486
+  - Hash: 958233802
     HashOfParent: -479991077
-  - Hash: 882811509
+  - Hash: -1940796085
     HashOfParent: -479991077
-  - Hash: 825999554
-    HashOfParent: -479991077
-  - Hash: -1275105779
-    HashOfParent: -479991077
-  - Hash: 1191531679
+  - Hash: 2045552569
     HashOfParent: 756556552
-  - Hash: -569637595
+  - Hash: -521800189
     HashOfParent: 756556552
-  - Hash: -1458883149
+  - Hash: -1746745707
     HashOfParent: 756556552
-  - Hash: 930062352
-    HashOfParent: 756556552
-  - Hash: -1063883918
+  - Hash: 159798070
     HashOfParent: 756556552
   - Hash: -946407516
     HashOfParent: 756556552
@@ -1535,14 +1527,58 @@ MonoBehaviour:
     HashOfParent: 756556552
   - Hash: 1983519550
     HashOfParent: 756556552
-  - Hash: -1673772073
+  - Hash: -380845845
     HashOfParent: 1983519550
-  - Hash: 1318276959
+  - Hash: 1636385627
     HashOfParent: 1983519550
-  - Hash: 1351951570
+  - Hash: 722949068
     HashOfParent: 1983519550
-  - Hash: -1621828283
+  - Hash: 1696621137
     HashOfParent: 1983519550
+  - Hash: -750197081
+    HashOfParent: 756556552
+  - Hash: -197987923
+    HashOfParent: 756556552
+  - Hash: -1140291616
+    HashOfParent: 756556552
+  - Hash: -245945658
+    HashOfParent: 756556552
+  - Hash: -1919803098
+    HashOfParent: 756556552
+  - Hash: 2010469351
+    HashOfParent: 756556552
+  - Hash: -2149246
+    HashOfParent: 756556552
+  - Hash: -1063883918
+    HashOfParent: 756556552
+  - Hash: 2094948128
+    HashOfParent: 756556552
+  - Hash: -438890854
+    HashOfParent: 756556552
+  - Hash: -1239931490
+    HashOfParent: 756556552
+  - Hash: 1623811354
+    HashOfParent: 756556552
+  - Hash: -104844128
+    HashOfParent: 756556552
+  - Hash: -1899559882
+    HashOfParent: 756556552
+  - Hash: 279155093
+    HashOfParent: 756556552
+  - Hash: 592547873
+    HashOfParent: 756556552
+  - Hash: -1120598654
+    HashOfParent: 756556552
+  - Hash: 1414963383
+    HashOfParent: 756556552
+  - Hash: -849350387
+    HashOfParent: 756556552
+  - Hash: -1859253837
+    HashOfParent: 756556552
+  - Hash: 136796169
+    HashOfParent: 756556552
+  - Hash: 964763222
+    HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
 --- !u!1 &3348277052533008174
@@ -1653,6 +1689,7 @@ Transform:
   - {fileID: 4639291274645121819}
   - {fileID: 7626130281498133181}
   - {fileID: 6242192444052936375}
+  - {fileID: 1201703396659837146}
   - {fileID: 1279975075797136116}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1690,6 +1727,7 @@ MonoBehaviour:
   - {fileID: 794903817025192258}
   - {fileID: 7157595206059425966}
   <AttackHandlers>k__BackingField: {fileID: 2410406698048485414}
+  <DodgeController>k__BackingField: {fileID: 8145759043457103027}
   <Respawn>k__BackingField: {fileID: 6790277974651306519}
   <FreeLookMoveSpeed>k__BackingField: 6
   <TargetMoveSpeed>k__BackingField: 7
@@ -1708,6 +1746,7 @@ MonoBehaviour:
   <reducePotion>k__BackingField: 25
   <staminaRecovery>k__BackingField: 0.2
   <attackDamageUp>k__BackingField: 5
+  perfectDodgeTime: 0
 --- !u!114 &5363415352059896232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3247,6 +3286,102 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1730193589887287179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5426034769931884643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201703396659837146}
+  - component: {fileID: 8145759043457103027}
+  - component: {fileID: 6453339130003763900}
+  - component: {fileID: 8521887368521153342}
+  m_Layer: 6
+  m_Name: DodgeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201703396659837146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426034769931884643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5033284273537889278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8145759043457103027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426034769931884643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5ef05c378fdc444985c59939bab04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &6453339130003763900
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426034769931884643}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &8521887368521153342
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426034769931884643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!1 &5455439267233853605
 GameObject:
   m_ObjectHideFlags: 0

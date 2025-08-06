@@ -44,7 +44,7 @@ public class SystemUIManagers : MonoBehaviour
         ActiveObject(content[1]);
     }
 
-    public void OnCraft()
+    public void OnWeapon()
     {
         ActiveObject(content[2]);
     }
