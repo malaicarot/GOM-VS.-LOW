@@ -92,6 +92,11 @@ public class PlayerStateMachine : StateMachine
     {
         SwitchState(new PlayerFreeLookState(this));
     }
+    public void OnDodge()
+    {
+
+        SwitchState(new PlayerDodgingState(this, this.InputReader.Movement));
+    }
 
     public void SetStats()
     {
@@ -195,5 +200,4 @@ public class PlayerStateMachine : StateMachine
     {
         StartCoroutine(SlowMotion(duration, slowFactor));
     }
-
 }

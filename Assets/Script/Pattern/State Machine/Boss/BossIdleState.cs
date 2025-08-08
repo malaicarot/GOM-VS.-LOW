@@ -18,11 +18,7 @@ public class BossIdleState : BossBaseState
     {
         Move(deltaTime);
         bossStateMachine.Animator.SetFloat(BossSpeedHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
-        // if (IsInChanseRange())
-        // {
-        //     bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
-        //     return;
-        // }
+ 
         if (IsInCautiousRange())
         {
             bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));

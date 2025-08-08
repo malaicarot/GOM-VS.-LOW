@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,6 +20,7 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public float BossAttackRange { get; private set; }
     [field: SerializeField] public float BossCautiousRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
+
     public Health Player { get; private set; }
 
     void Start()

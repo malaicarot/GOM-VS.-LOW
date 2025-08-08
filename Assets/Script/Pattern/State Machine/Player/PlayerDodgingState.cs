@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerDodgingState : PlayerBaseState
@@ -10,6 +11,7 @@ public class PlayerDodgingState : PlayerBaseState
     float dodgeRemainingTime;
     float duration = 0.5f;
     float slowFactor = 0.5f;
+    bool isPerfect;
     public PlayerDodgingState(PlayerStateMachine stateMachine, Vector3 dodgingDirection) : base(stateMachine)
     {
         if (dodgingDirection == Vector3.zero)
@@ -61,9 +63,7 @@ public class PlayerDodgingState : PlayerBaseState
             stateMachine.StartSlowMotion(duration, slowFactor);
             stateMachine.Health.SetParry(true);
 
-            // stateMachine.Animator.CrossFadeInFixedTime(PerfectDodgeHash, stateMachine.CrossFadeDuration);
-            // stateMachine.Health.SetParry(true);
-            // dodgeRemainingTime = 1f;
+
             stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
             stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
             stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);

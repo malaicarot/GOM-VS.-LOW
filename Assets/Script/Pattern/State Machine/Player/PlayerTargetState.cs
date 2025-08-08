@@ -15,7 +15,7 @@ public class PlayerTargetState : PlayerBaseState
     {
         stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, stateMachine.CrossFadeDuration);
         stateMachine.InputReader.CancelTargetEvent += OnCancel;
-        stateMachine.InputReader.DodgeEvent += OnDodge;
+        stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
@@ -69,7 +69,7 @@ public class PlayerTargetState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.CancelTargetEvent -= OnCancel;
-        stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
@@ -82,11 +82,6 @@ public class PlayerTargetState : PlayerBaseState
     {
         stateMachine.Targeter.CancelTarget();
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-    }
-
-    void OnDodge()
-    {
-        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }
 
     void SetLowStaminaSpeed()
@@ -103,16 +98,19 @@ public class PlayerTargetState : PlayerBaseState
     void UpdateAnimation(float deltatime)
     {
         Vector3 direction = stateMachine.InputReader.Movement;
+        Debug.Log(direction.x);
+        Debug.Log(direction.y);
+        Debug.Log(direction.z);
 
         if (direction == Vector3.zero)
         {
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
         }
-        else
-        {
+        // else
+        // {
 
-            stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
-        }
+        //     stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
+        // }
 
         if (direction.x == 0)
         {

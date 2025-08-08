@@ -21,6 +21,7 @@ public class PlayerAttackState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.AttackHandlers.PlayAttackSound += PlayerSound;
+        stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
 
         stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
@@ -75,7 +76,7 @@ public class PlayerAttackState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.AttackHandlers.PlayAttackSound -= PlayerSound;
-
+        stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
     }
 
     void TryCombo(float normalizedTime, int attackIndex, Attack[] nextComboList)

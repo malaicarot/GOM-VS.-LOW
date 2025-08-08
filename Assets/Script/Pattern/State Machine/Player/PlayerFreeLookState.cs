@@ -18,7 +18,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, stateMachine.CrossFadeDuration);
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
-        stateMachine.InputReader.DodgeEvent += OnDodge;
+        stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
         stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
         stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
@@ -62,7 +62,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
-        stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
         stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
         stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
         stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
@@ -82,12 +82,6 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         if (!stateMachine.Targeter.SelectedTarget()) { return; }
         stateMachine.SwitchState(new PlayerTargetState(stateMachine));
-    }
-
-    void OnDodge()
-    {
-
-        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.Movement));
     }
 
     void SetAnimation(float stand, float walk, float run, float deltaTime)
