@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     public event Action OnTakeDamage;
     public event Action OnDeath;
 
+    // public event Action OnCounter;
+
     public bool isDead => currentHealth == 0;
 
     PlayerStats playerStats;
@@ -18,7 +20,7 @@ public class Health : MonoBehaviour
     {
         if (gameObject.name == "Player")
         {
-            
+
             playerStats = GetComponent<PlayerStats>();
             resistance = playerStats.ReturnAttribute("Resistance");
             maxHealth = playerStats.ReturnAttribute("Health");
@@ -59,7 +61,6 @@ public class Health : MonoBehaviour
     public void ResetHealth()
     {
         currentHealth = maxHealth;
-
     }
 
     public void SetParry(bool isParry)

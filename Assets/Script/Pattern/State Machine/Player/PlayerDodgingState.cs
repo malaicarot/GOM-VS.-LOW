@@ -62,7 +62,6 @@ public class PlayerDodgingState : PlayerBaseState
     {
         if (stateMachine.DodgeController.isPerfect)
         {
-            Debug.Log("Perfect Dodge!");
             stateMachine.StartSlowMotion(duration, slowFactor);
             stateMachine.Health.SetParry(true);
         }

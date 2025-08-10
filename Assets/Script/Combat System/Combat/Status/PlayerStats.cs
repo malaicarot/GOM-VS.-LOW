@@ -145,7 +145,7 @@ public class PlayerStats : MonoBehaviour
         {
             currentDamage += currentDamage / 2;
         }
-        Debug.Log(currentDamage);
+        // Debug.Log(currentDamage);
         return currentDamage;
     }
 }

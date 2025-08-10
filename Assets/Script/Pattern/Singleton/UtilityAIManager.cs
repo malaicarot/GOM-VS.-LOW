@@ -5,10 +5,14 @@ public class UtilityAIManager : MonoBehaviour
 {
     [SerializeField] float timeResetInterruped;
     public static UtilityAIManager UtilityAIManagerSingleton;
+
     public event Action OnInterrupedAction;
+    public event Action OnCounterPlayer;
+
     public bool interruped { get; set; } = false;
 
     float countTimeReset;
+    Health health;
 
 
 
@@ -24,6 +28,8 @@ public class UtilityAIManager : MonoBehaviour
             Destroy(UtilityAIManagerSingleton);
             return;
         }
+
+        // health = 
     }
 
 
@@ -36,7 +42,6 @@ public class UtilityAIManager : MonoBehaviour
 
     void ResetInterrupped()
     {
-        Debug.Log(interruped);
         if (interruped)
         {
             countTimeReset += Time.deltaTime;

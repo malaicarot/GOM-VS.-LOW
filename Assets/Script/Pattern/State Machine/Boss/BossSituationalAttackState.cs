@@ -1,35 +1,36 @@
 
 using UnityEngine;
-enum AttackType
-{
-    Counter,
-    Approach,
-}
 
 public class BossSituationalAttackSate : BossBaseState
 {
     readonly int JumpHash = Animator.StringToHash("Jump");
-    // readonly int JumpPunchHash = Animator.StringToHash("Jump_Punch");
-
     Vector3 momentum;
     Vector3 PlayerPosition;
-    public BossSituationalAttackSate(BossStateMachine bossStateMachine, string type) : base(bossStateMachine)
+
+
+    public BossSituationalAttackSate(BossStateMachine bossStateMachine) : base(bossStateMachine)
     {
+
     }
 
     public override void Enter()
     {
+        bossStateMachine.Animator.CrossFadeInFixedTime(JumpHash, bossStateMachine.CrossFadeDuration);
         PlayerPosition = bossStateMachine.Player.transform.position;
         bossStateMachine.ForceReceiver.AddJumpForce(bossStateMachine.BossJumpForce);
         momentum = bossStateMachine.Agent.velocity;
         momentum.y = 0f;
-        bossStateMachine.Animator.CrossFadeInFixedTime(JumpHash, bossStateMachine.CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        ApproachAttack(deltaTime);
+
+        AccumulateAttack(deltaTime);
         momentum.y -= 2f;
+        if (IsInAttackRange())
+        {
+            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
+        }
     }
 
     public override void Exit()
@@ -41,7 +42,7 @@ public class BossSituationalAttackSate : BossBaseState
         }
     }
 
-    void ApproachAttack(float deltaTime)
+    void AccumulateAttack(float deltaTime)
     {
         if (bossStateMachine.Agent != null)
         {
@@ -50,27 +51,21 @@ public class BossSituationalAttackSate : BossBaseState
 
             if (bossStateMachine.ForceReceiver.Movement.y <= 0 || bossStateMachine.Controller.velocity.y <= 0f)
             {
-                if (IsInAttackRange())
-                {
-                    bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
-                    return;
-                }
-
                 if (IsInChanseRange())
                 {
                     bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
                     return;
                 }
 
-                if (IsInCautiousRange())
-                {
-                    bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
-                    return;
-                }
+                bossStateMachine.SwitchState(new BossIdleState(bossStateMachine));
             }
         }
 
         bossStateMachine.Agent.velocity = bossStateMachine.Controller.velocity;
         FaceTarget();
     }
+
+
+
+
 }

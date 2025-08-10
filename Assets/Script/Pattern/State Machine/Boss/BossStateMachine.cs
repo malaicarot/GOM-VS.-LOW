@@ -15,18 +15,20 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
+    [field: SerializeField] public float DashSpeed { get; private set; }
     [field: SerializeField] public float BossJumpForce { get; private set; }
     [field: SerializeField] public int BossAttackDamage { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float BossChasingRange { get; private set; }
     [field: SerializeField] public float BossAttackRange { get; private set; }
-    [field: SerializeField] public float BossCautiousRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeResetInterruped { get; private set; }
+    [field: SerializeField] public int[] RandomHitCount { get; private set; }
 
 
     public Health Player { get; private set; }
-    public Attack[] AttackRandom;
+    public Attack[] AttackRandom { get; set; }
+    public int hitCount { get; set; }
 
     void Start()
     {
@@ -64,7 +66,6 @@ public class BossStateMachine : StateMachine
 
         Gizmos.DrawWireSphere(transform.position, BossChasingRange);
         Gizmos.DrawWireSphere(transform.position, BossAttackRange);
-        Gizmos.DrawWireSphere(transform.position, BossCautiousRange);
     }
 
 
@@ -95,15 +96,13 @@ public class BossStateMachine : StateMachine
             AttackRandom[i].AttackIndex = i + 1;
             AttackRandom[i].AttackTime = 0.8f;
         }
+    }
 
-
-
-        foreach (var item in AttackRandom)
-        {
-            Debug.Log(item.AttackAnimationName);
-            Debug.Log(item.AttackIndex);
-
-        }
+    public int RandomHitCountToCounter()
+    {
+        int index = Random.Range(0, RandomHitCount.Length);
+        Debug.Log("Hit Count Random: " + RandomHitCount[index]);
+        return RandomHitCount[index];
     }
 
 }

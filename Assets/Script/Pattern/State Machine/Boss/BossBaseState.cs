@@ -35,14 +35,6 @@ public abstract class BossBaseState : State
         atkRangeSqr = (bossStateMachine.Player.transform.position - bossStateMachine.transform.position).sqrMagnitude;
         return atkRangeSqr <= bossStateMachine.BossAttackRange * bossStateMachine.BossAttackRange;
     }
-    protected bool IsInCautiousRange()
-    {
-        if (bossStateMachine.Player.isDead) { return false; }
-        cautiousSqr = (bossStateMachine.Player.transform.position - bossStateMachine.transform.position).sqrMagnitude;
-        return cautiousSqr <= bossStateMachine.BossCautiousRange * bossStateMachine.BossCautiousRange;
-    }
-
-
 
     protected void FaceTarget()
     {

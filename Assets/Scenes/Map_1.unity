@@ -20884,6 +20884,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3429581555788233643, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: m_Radius
+      value: 164.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3529782911149834009, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: m_Name
       value: Player
@@ -21637,7 +21641,7 @@ Transform:
   m_GameObject: {fileID: 485449703585894818}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 373.7, y: 499.99, z: 1303}
+  m_LocalPosition: {x: 378.5, y: 499.99, z: 1397.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21695,15 +21699,15 @@ MonoBehaviour:
   - {fileID: 314795694}
   <Target>k__BackingField: {fileID: 2479034785731153701}
   <MoveSpeed>k__BackingField: 5
+  <DashSpeed>k__BackingField: 40
   <BossJumpForce>k__BackingField: 20
   <BossAttackDamage>k__BackingField: 20
   <CrossFadeDuration>k__BackingField: 0.1
   <BossChasingRange>k__BackingField: 10
   <BossAttackRange>k__BackingField: 2.86
-  <BossCautiousRange>k__BackingField: 22
   <BossAttackKnockback>k__BackingField: 0.05
   <TimeResetInterruped>k__BackingField: 2
-  AttackRandom: []
+  <RandomHitCount>k__BackingField: 040000000600000008000000
 --- !u!4 &7283812651687335396
 Transform:
   m_ObjectHideFlags: 0

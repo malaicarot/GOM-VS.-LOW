@@ -8,6 +8,7 @@ public class BossChasingState : BossBaseState
 
 
     float attackTime;
+    float accumulateTime;
 
     public BossChasingState(BossStateMachine bossStateMachine) : base(bossStateMachine)
     {
@@ -18,7 +19,7 @@ public class BossChasingState : BossBaseState
         attackTime = 0;
         bossStateMachine.Animator.CrossFadeInFixedTime(BossLocomotionHash, bossStateMachine.CrossFadeDuration);
     }
-    
+
     public override void Tick(float deltaTime)
     {
         bossStateMachine.Animator.SetFloat(BossMoveRightHash, 1, bossStateMachine.CrossFadeDuration, deltaTime);
@@ -51,6 +52,7 @@ public class BossChasingState : BossBaseState
     void ConditionSwitchState(float deltaTime)
     {
         attackTime += deltaTime;
+        accumulateTime += deltaTime;
 
         if (IsInAttackRange())
         {
@@ -60,8 +62,14 @@ public class BossChasingState : BossBaseState
 
         if (attackTime >= 3f)
         {
-            bossStateMachine.SwitchState(new BossSituationalAttackSate(bossStateMachine, "Approach"));
+            bossStateMachine.SwitchState(new BossApproachState(bossStateMachine));
             return;
         }
+
+        // if (accumulateTime >= 3f)
+        // {
+        //     bossStateMachine.SwitchState(new BossSituationalAttackSate(bossStateMachine));
+        //     return;
+        // }
     }
 }

@@ -6,6 +6,10 @@ public class BossIdleState : BossBaseState
     readonly int BossMoveRightHash = Animator.StringToHash("MoveRight");
     readonly int BossMoveForwardtHash = Animator.StringToHash("MoveForward");
 
+
+
+    float timeRoadToCaution;
+
     public BossIdleState(BossStateMachine bossStateMachine) : base(bossStateMachine)
     {
     }
@@ -27,11 +31,7 @@ public class BossIdleState : BossBaseState
             return;
         }
 
-        if (IsInCautiousRange())
-        {
-            bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
-            return;
-        }
+        ConditionSwitchState(deltaTime);
 
         if (IsInChanseRange())
         {
@@ -39,13 +39,24 @@ public class BossIdleState : BossBaseState
             return;
         }
 
-        if (IsInAttackRange())
-        {
-            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
-            return;
-        }
+        // if (IsInAttackRange())
+        // {
+        //     bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
+        //     return;
+        // }
     }
     public override void Exit()
     {
+    }
+
+
+    void ConditionSwitchState(float deltaTime)
+    {
+        timeRoadToCaution += deltaTime;
+        if (timeRoadToCaution >= 2)
+        {
+            bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
+            return;
+        }
     }
 }
