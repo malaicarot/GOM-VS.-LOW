@@ -11,7 +11,6 @@ public class PlayerDodgingState : PlayerBaseState
     float dodgeRemainingTime;
     float duration = 0.5f;
     float slowFactor = 0.5f;
-    bool isPerfect;
     public PlayerDodgingState(PlayerStateMachine stateMachine, Vector3 dodgingDirection) : base(stateMachine)
     {
         if (dodgingDirection == Vector3.zero)
@@ -28,6 +27,10 @@ public class PlayerDodgingState : PlayerBaseState
     {
         Dodge();
         stateMachine.Stamina.ReduceStamina(stateMachine.dodgeStaminaReduce);
+        stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
+        stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
+        stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
+        dodgeRemainingTime = stateMachine.DodgeDuration;
     }
 
     public override void Tick(float deltaTime)
@@ -62,20 +65,7 @@ public class PlayerDodgingState : PlayerBaseState
             Debug.Log("Perfect Dodge!");
             stateMachine.StartSlowMotion(duration, slowFactor);
             stateMachine.Health.SetParry(true);
-
-
-            stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
-            stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
-            stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
-            dodgeRemainingTime = stateMachine.DodgeDuration;
         }
-        else
-        {
 
-            stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);
-            stateMachine.Animator.SetFloat(DodgeForwardHash, dodgingDirection.y);
-            stateMachine.Animator.SetFloat(DodgeRightHash, dodgingDirection.x);
-            dodgeRemainingTime = stateMachine.DodgeDuration;
-        }
     }
 }

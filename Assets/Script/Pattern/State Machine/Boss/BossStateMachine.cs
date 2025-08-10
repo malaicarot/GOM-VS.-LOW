@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,14 +15,18 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
+    [field: SerializeField] public float BossJumpForce { get; private set; }
     [field: SerializeField] public int BossAttackDamage { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float BossChasingRange { get; private set; }
     [field: SerializeField] public float BossAttackRange { get; private set; }
     [field: SerializeField] public float BossCautiousRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
+    [field: SerializeField] public float TimeResetInterruped { get; private set; }
+
 
     public Health Player { get; private set; }
+    public Attack[] AttackRandom;
 
     void Start()
     {
@@ -61,4 +66,44 @@ public class BossStateMachine : StateMachine
         Gizmos.DrawWireSphere(transform.position, BossAttackRange);
         Gizmos.DrawWireSphere(transform.position, BossCautiousRange);
     }
+
+
+    public void RandomCombo()
+    {
+        List<int> validIndex = new List<int>();
+        int validNumber = Attack.Length;
+        AttackRandom = new Attack[validNumber];
+        for (int i = 0; i < AttackRandom.Length; i++)
+        {
+            int index = Random.Range(0, validNumber);
+            while (validIndex.Contains(index))
+            {
+                index = Random.Range(0, validNumber);
+            }
+            validIndex.Add(index);
+            AttackRandom[i] = Attack[index];
+        }
+
+        for (int i = 0; i < AttackRandom.Length; i++)
+        {
+            if (i == AttackRandom.Length - 1)
+            {
+                AttackRandom[i].AttackIndex = -1;
+                AttackRandom[i].AttackTime = 0;
+                break;
+            }
+            AttackRandom[i].AttackIndex = i + 1;
+            AttackRandom[i].AttackTime = 0.8f;
+        }
+
+
+
+        foreach (var item in AttackRandom)
+        {
+            Debug.Log(item.AttackAnimationName);
+            Debug.Log(item.AttackIndex);
+
+        }
+    }
+
 }

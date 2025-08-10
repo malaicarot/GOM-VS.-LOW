@@ -98,9 +98,6 @@ public class PlayerTargetState : PlayerBaseState
     void UpdateAnimation(float deltatime)
     {
         Vector3 direction = stateMachine.InputReader.Movement;
-        Debug.Log(direction.x);
-        Debug.Log(direction.y);
-        Debug.Log(direction.z);
 
         if (direction == Vector3.zero)
         {

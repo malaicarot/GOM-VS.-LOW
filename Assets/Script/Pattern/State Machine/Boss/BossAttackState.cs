@@ -11,7 +11,7 @@ public class BossAttackState : BossBaseState
 
     public BossAttackState(BossStateMachine bossStateMachine, int attackIndex) : base(bossStateMachine)
     {
-        attack = bossStateMachine.Attack[attackIndex];
+        attack = bossStateMachine.AttackRandom[attackIndex];
     }
 
     public override void Enter()
@@ -29,12 +29,10 @@ public class BossAttackState : BossBaseState
         FaceTarget();
         float normalizedTime = GetNormalizedTime(bossStateMachine.Animator, EnemyAttackTag);
         if (normalizedTime >= previousFrameTime && normalizedTime <= 1f)
-        // && IsInAttackRange()
         {
             if (normalizedTime >= attack.ForceTime)
             {
                 TryApplyForce();
-
             }
 
             TryCombo(normalizedTime);
@@ -53,7 +51,12 @@ public class BossAttackState : BossBaseState
 
     void TryCombo(float normalizedTime)
     {
-        if (attack.AttackIndex == -1) { return; }
+        if (attack.AttackIndex == -1)
+        {
+            UtilityAIManager.UtilityAIManagerSingleton.interruped = true;
+            return;
+        }
+
         if (normalizedTime < attack.AttackTime) { return; }
 
         bossStateMachine.SwitchState(
@@ -70,6 +73,4 @@ public class BossAttackState : BossBaseState
         bossStateMachine.ForceReceiver.AddForce(bossStateMachine.transform.forward * attack.Force);
         alreadyApplyForce = true;
     }
-
-
 }

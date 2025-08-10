@@ -18,41 +18,20 @@ public class BossCautiousState : BossBaseState
 
     public override void Enter()
     {
-        bossStateMachine.Animator.CrossFadeInFixedTime(BossLocomotionHash, bossStateMachine.CrossFadeDuration);
         changeTime = 0f;
         moveTime = 0f;
+        bossStateMachine.Animator.CrossFadeInFixedTime(BossLocomotionHash, bossStateMachine.CrossFadeDuration);
         targetPosition = GetRandomNavmeshPosition(bossStateMachine.transform.position);
     }
 
     public override void Tick(float deltaTime)
     {
-        changeTime += deltaTime;
-        moveTime += deltaTime;
-
-
         UpdateAnimation(deltaTime);
         PickNewNavMeshPosition(deltaTime);
-
-
-        if (IsInChanseRange())
-        {
-            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
-            return;
-        }
-
-        if (changeTime >= 1.5f)
-        {
-            bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
-        }
-
-        // if (changeTime >= 6f)
-        // {
-        //     bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
-        //     return;
-        // }
-
+        CoditionSwitchState(deltaTime);
         FaceTarget();
     }
+
     public override void Exit()
     {
         if (bossStateMachine.Agent != null && bossStateMachine.Agent.isOnNavMesh)
@@ -69,15 +48,10 @@ public class BossCautiousState : BossBaseState
         float xValue = velocity.x > 0 ? 1 : -1;
         float yValue = velocity.z > 0 ? 1 : -1;
 
-        
-        
-
-        Debug.Log(velocity);
         bossStateMachine.Animator.SetFloat(BossMoveRightHash, xValue, AnimationDamping, deltatime);
         bossStateMachine.Animator.SetFloat(BossMoveForwardtHash, yValue, AnimationDamping, deltatime);
 
     }
-
 
     Vector3 GetRandomNavmeshPosition(Vector3 origin)
     {
@@ -96,12 +70,33 @@ public class BossCautiousState : BossBaseState
     {
         if (bossStateMachine.Agent != null && bossStateMachine.Agent.isOnNavMesh)
         {
-            // targetPosition = GetRandomNavmeshPosition(bossStateMachine.transform.position);
-            // bossStateMachine.Agent.SetDestination(targetPosition);
             bossStateMachine.Agent.destination = targetPosition;
             Move(bossStateMachine.Agent.desiredVelocity.normalized * bossStateMachine.MoveSpeed, deltaTime);
-
         }
         bossStateMachine.Agent.velocity = bossStateMachine.Controller.velocity;
+    }
+
+    void CoditionSwitchState(float deltaTime)
+    {
+        changeTime += deltaTime;
+        moveTime += deltaTime;
+
+        if (IsInChanseRange())
+        {
+            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
+            return;
+        }
+
+        if (moveTime >= 1.5f)
+        {
+            targetPosition = GetRandomNavmeshPosition(bossStateMachine.transform.position);
+            moveTime = 0f;
+        }
+
+        if (changeTime >= 6f)
+        {
+            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
+            return;
+        }
     }
 }

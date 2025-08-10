@@ -21,9 +21,8 @@ public class PlayerJumpState : PlayerBaseState
     {
         Move(CalculateDirection() + momentum, deltaTime);
 
-        if (stateMachine.ForceReceiver.Movement.y <= 0 || stateMachine.Controller.velocity.y <= 0f)
+        if (stateMachine.ForceReceiver.Movement.y <= 0f || stateMachine.Controller.velocity.y <= 0f)
         {
-
             stateMachine.SwitchState(new PlayerInAirState(stateMachine));
             return;
         }

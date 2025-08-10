@@ -31,7 +31,6 @@ public class AttackDealDamage : MonoBehaviour
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(dealDamaged);
-
         }
 
         if (other.TryGetComponent<AttackHandler>(out AttackHandler attackHandler))
