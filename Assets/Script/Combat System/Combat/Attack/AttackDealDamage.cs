@@ -28,8 +28,13 @@ public class AttackDealDamage : MonoBehaviour
 
         alreadyCollider.Add(other);
 
+
         if (other.TryGetComponent<Health>(out Health health))
         {
+            if (this.CompareTag("EnemySpecialAttack"))
+            {
+                health.isCounterPlayer = true;
+            }
             health.DealDamage(dealDamaged);
         }
 

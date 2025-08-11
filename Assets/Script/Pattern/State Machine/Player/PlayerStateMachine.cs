@@ -60,6 +60,7 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
+        Health.OnStun += HandleStunState;
         PlayerStats.IncreaseStats += SetStats;
         PlayerCombat.OnSetWeapon += SetAttackBaseWeapon;
     }
@@ -68,6 +69,7 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
+        Health.OnStun -= HandleStunState;
         PlayerStats.IncreaseStats -= SetStats;
         PlayerCombat.OnSetWeapon -= SetAttackBaseWeapon;
 
@@ -81,6 +83,11 @@ public class PlayerStateMachine : StateMachine
     void HandleDeadState()
     {
         SwitchState(new PlayerDeadState(this));
+    }
+
+    void HandleStunState()
+    {
+        SwitchState(new PlayerStunState(this));
     }
 
     public void OnJump()

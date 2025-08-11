@@ -12,18 +12,24 @@ public class BossCounterState : BossBaseState
 
     public override void Enter()
     {
+        bossStateMachine.WeaponDisalbe.gameObject.SetActive(false);
+        bossStateMachine.WeaponThrow.gameObject.SetActive(true);
+        bossStateMachine.AttackHandler.OnEnableSpecialAttack();
         bossStateMachine.Animator.CrossFadeInFixedTime(Counter_1Hash, bossStateMachine.CrossFadeDuration);
         bossStateMachine.hitCount = 0;
     }
 
     public override void Tick(float deltaTime)
     {
+        FaceTarget();
+
         Counter();
+        ThrowWeaponToPlayer(deltaTime);
     }
 
     public override void Exit()
     {
-        
+
     }
 
     void Counter()
@@ -31,13 +37,17 @@ public class BossCounterState : BossBaseState
         bossStateMachine.hitCount = 0;
         if (GetNormalizedTime(bossStateMachine.Animator, EnemyCounterTag) > 0.8f && GetNormalizedTime(bossStateMachine.Animator, EnemyCounterTag) < 1f)
         {
-            // bossStateMachine.Animator.CrossFadeInFixedTime(Counter_2Hash, bossStateMachine.CrossFadeDuration);
-            // if (GetNormalizedTime(bossStateMachine.Animator, EnemyCounterTag) > 0.8f && GetNormalizedTime(bossStateMachine.Animator, EnemyCounterTag) < 1f)
-            // {
+            bossStateMachine.WeaponDisalbe.gameObject.SetActive(true);
+            bossStateMachine.WeaponThrow.gameObject.SetActive(false);
+            bossStateMachine.AttackHandler.OnDisableSpecialAttack();
+
             bossStateMachine.SwitchState(new BossIdleState(bossStateMachine));
-            // }
         }
     }
 
-
+    void ThrowWeaponToPlayer(float deltaTime)
+    {
+        Vector3 nomarlizedDirection = (bossStateMachine.Player.transform.position - bossStateMachine.WeaponThrow.transform.position).normalized;
+        bossStateMachine.WeaponThrow.transform.position += nomarlizedDirection * bossStateMachine.WeaponThrowSpeed * deltaTime;
+    }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Item
   - Ledge
   - EnemyAttack
+  - EnemySpecialAttack
   layers:
   - Default
   - TransparentFX

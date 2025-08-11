@@ -7,10 +7,11 @@ public class Health : MonoBehaviour
     [SerializeField] StatusBar statusBar;
     public event Action OnTakeDamage;
     public event Action OnDeath;
-
-    // public event Action OnCounter;
+    public event Action OnStun;
 
     public bool isDead => currentHealth == 0;
+
+    public bool isCounterPlayer = false;
 
     PlayerStats playerStats;
     float currentHealth;
@@ -82,6 +83,12 @@ public class Health : MonoBehaviour
         }
         currentHealth = Mathf.Max(currentHealth - damage + resistance, 0);
         OnTakeDamage?.Invoke();
+
+        if (isCounterPlayer)
+        {
+            OnStun?.Invoke();
+            isCounterPlayer = false;
+        }
 
         if (currentHealth == 0)
         {

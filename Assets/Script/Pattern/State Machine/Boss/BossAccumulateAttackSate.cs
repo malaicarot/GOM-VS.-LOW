@@ -1,20 +1,21 @@
 
 using UnityEngine;
 
-public class BossSituationalAttackSate : BossBaseState
+public class BossAccumulateAttackSate : BossBaseState
 {
     readonly int JumpHash = Animator.StringToHash("Jump");
     Vector3 momentum;
     Vector3 PlayerPosition;
 
 
-    public BossSituationalAttackSate(BossStateMachine bossStateMachine) : base(bossStateMachine)
+    public BossAccumulateAttackSate(BossStateMachine bossStateMachine) : base(bossStateMachine)
     {
 
     }
 
     public override void Enter()
     {
+        FaceTarget();
         bossStateMachine.Animator.CrossFadeInFixedTime(JumpHash, bossStateMachine.CrossFadeDuration);
         PlayerPosition = bossStateMachine.Player.transform.position;
         bossStateMachine.ForceReceiver.AddJumpForce(bossStateMachine.BossJumpForce);
