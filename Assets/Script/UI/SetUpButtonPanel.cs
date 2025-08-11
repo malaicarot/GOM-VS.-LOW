@@ -7,7 +7,7 @@ public class SetUpButtonPanel : MonoBehaviour
 
     void OnEnable()
     {
-        foreach (var specialEffect in SpecialEffectManagers.specialEffectManagers.specialEffectsDataList)
+        foreach (var specialEffect in SpecialEffectManagers.Instance.specialEffectsDataList)
         {
             var slotPrefab = Instantiate(prefabs, slotParent);
             SpecialAttackUI specialAttackUI = slotPrefab.GetComponent<SpecialAttackUI>();

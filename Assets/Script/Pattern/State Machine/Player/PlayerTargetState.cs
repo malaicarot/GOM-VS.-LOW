@@ -23,6 +23,7 @@ public class PlayerTargetState : PlayerBaseState
         stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
     }
 
+
     public override void Tick(float deltaTime)
     {
 
@@ -43,22 +44,17 @@ public class PlayerTargetState : PlayerBaseState
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
             return;
         }
-        if (stateMachine.InputReader.IsBlocking)
-        {
-            stateMachine.SwitchState(new PlayerBlockingState(stateMachine));
-            return;
-        }
 
         UpdateAnimation(deltaTime);
 
         float targetSpeed = stateMachine.InputReader.IsSprint ?
             speed * stateMachine.MultiplyCoefficientSpeed :
             speed;
-        if (targetSpeed >= speed)
+        if (targetSpeed <= speed)
         {
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
         }
-        else if (targetSpeed >= speed * stateMachine.MultiplyCoefficientSpeed)
+        else if (targetSpeed > speed)
         {
             stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
         }
@@ -102,12 +98,8 @@ public class PlayerTargetState : PlayerBaseState
         if (direction == Vector3.zero)
         {
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
+            return;
         }
-        // else
-        // {
-
-        //     stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
-        // }
 
         if (direction.x == 0)
         {
@@ -161,6 +153,4 @@ public class PlayerTargetState : PlayerBaseState
 
         return targetMovement;
     }
-
-
 }

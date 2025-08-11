@@ -105,6 +105,13 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerDodgingState(this, this.InputReader.Movement));
     }
 
+    public void NonInterrupted()
+    {
+        InputReader.DodgeEvent -= OnDodge;
+        InputReader.JumpEvent -= OnJump;
+        // InputReader.IsAttack = false;
+    }
+
     public void SetStats()
     {
         // foreach (Attack attack in Attacks)

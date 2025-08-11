@@ -1,30 +1,14 @@
 using System;
 using UnityEngine;
 
-public class UIManagers : MonoBehaviour
+public class UIManagers : Singleton<UIManagers>
 {
-    public static UIManagers UIManager;
-
     [SerializeField] GameObject UICheckpointInteraction;
     [SerializeField] GameObject UISystem;
 
 
     public event Action ActionCountinue;
     public event Action Rest;
-
-    void Start()
-    {
-        if (UIManager != null && UIManager != this)
-        {
-            Destroy(UIManager);
-            return;
-        }
-        else
-        {
-            UIManager = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
 
     public void ActiveCheckpointUI(bool state)
     {

@@ -1,24 +1,12 @@
 using System;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    public static SoundManager soundManager;
     AudioSource audioSource;
-
-    public event Action PlayWeaponSound;
-    void Awake()
+    
+    void Start()
     {
-        if (soundManager != null && soundManager != this)
-        {
-            Destroy(soundManager);
-            return;
-        }
-        else
-        {
-            soundManager = this;
-            DontDestroyOnLoad(gameObject);
-        }
         audioSource = GetComponent<AudioSource>();
     }
 

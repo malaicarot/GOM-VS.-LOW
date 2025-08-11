@@ -1,4 +1,4 @@
-using NUnit.Framework;
+// using NUnit.Framework;
 using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
@@ -12,6 +12,7 @@ public class Ragdoll : MonoBehaviour
     {
         allColliders = GetComponentsInChildren<Collider>(true);
         allRigidbodies = GetComponentsInChildren<Rigidbody>(true);
+        
         ToggleRagdoll(false);
     }
 

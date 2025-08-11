@@ -53,7 +53,7 @@ public class BossAttackState : BossBaseState
     {
         if (attack.AttackIndex == -1)
         {
-            UtilityAIManager.UtilityAIManagerSingleton.interruped = true;
+            UtilityAIManager.Instance.interruped = true;
             return;
         }
 

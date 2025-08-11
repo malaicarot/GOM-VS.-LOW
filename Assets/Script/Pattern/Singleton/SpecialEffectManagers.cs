@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public enum SpecialEffectType
 {
@@ -11,30 +11,21 @@ public enum SpecialEffectType
     OnCast,
     Custom
 }
-public class SpecialEffectManagers : MonoBehaviour
+public class SpecialEffectManagers : Singleton<SpecialEffectManagers>
 {
-    public static SpecialEffectManagers specialEffectManagers;
     public List<SpecialEffectsData> specialEffectsDataList;
-
-
-
     public event Action OnActiveEffect;
     public event Action OnReadySingleton;
 
-    void Awake()
+
+    protected override void Awake()
     {
-        if (specialEffectManagers != null && specialEffectManagers != this)
-        {
-            Destroy(specialEffectManagers);
-            return;
-        }
-        else
-        {
-            specialEffectManagers = this;
-            DontDestroyOnLoad(gameObject);
-            OnReadySingleton?.Invoke();
-        }
+        base.Awake();
+        OnReadySingleton?.Invoke();
     }
+    // void Start()
+    // {
+    // }
 
     public void UnlockEffect(string effectName)
     {

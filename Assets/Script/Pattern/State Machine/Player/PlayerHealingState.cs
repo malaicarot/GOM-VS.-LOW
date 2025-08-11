@@ -9,16 +9,15 @@ public class PlayerHealingState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Animator.CrossFadeInFixedTime(HealingAnimationHash, stateMachine.CrossFadeDuration);
         Healing();
+        stateMachine.Animator.CrossFadeInFixedTime(HealingAnimationHash, stateMachine.CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-
-        if (GetNormalizedTime(stateMachine.Animator, "Healing") > 0.8f && GetNormalizedTime(stateMachine.Animator, "Healing") < 1f)
+        if (GetNormalizedTime(stateMachine.Animator, "Healing") > 0.8f && GetNormalizedTime(stateMachine.Animator, "Healing") <= 1f)
         {
-            stateMachine.SwitchState(new PlayerTargetState(stateMachine));
+            ReturnToLocomotion();
         }
     }
     public override void Exit()

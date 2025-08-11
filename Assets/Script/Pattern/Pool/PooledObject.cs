@@ -11,7 +11,6 @@ public class PooledObject : MonoBehaviour
         if (Instance != null)
         {
             Instance.ReturnToPool(this);
-            Debug.Log("Return!");
         }
     }
 }

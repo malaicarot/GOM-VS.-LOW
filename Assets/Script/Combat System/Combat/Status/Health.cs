@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     public bool isDead => currentHealth == 0;
 
-    public bool isCounterPlayer = false;
+    public bool isCounterPlayer { get; set; } = false;
 
     PlayerStats playerStats;
     float currentHealth;
@@ -43,7 +43,6 @@ public class Health : MonoBehaviour
     public void SetResistance()
     {
         resistance = playerStats.ReturnAttribute("Resistance");
-        Debug.Log("Resistance value: " + resistance);
     }
 
     void Update()
@@ -82,12 +81,15 @@ public class Health : MonoBehaviour
             return;
         }
         currentHealth = Mathf.Max(currentHealth - damage + resistance, 0);
-        OnTakeDamage?.Invoke();
 
         if (isCounterPlayer)
         {
             OnStun?.Invoke();
             isCounterPlayer = false;
+        }
+        else
+        {
+            OnTakeDamage?.Invoke();
         }
 
         if (currentHealth == 0)

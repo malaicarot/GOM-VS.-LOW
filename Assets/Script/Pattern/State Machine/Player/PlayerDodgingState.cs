@@ -35,8 +35,6 @@ public class PlayerDodgingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-
-
         Vector3 targetMovement = new Vector3();
 
         targetMovement += stateMachine.transform.right * dodgingDirection.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;

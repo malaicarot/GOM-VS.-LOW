@@ -22,11 +22,12 @@ public class BossIdleState : BossBaseState
 
     public override void Tick(float deltaTime)
     {
+        FaceTarget();
         bossStateMachine.Animator.SetFloat(BossMoveRightHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
         bossStateMachine.Animator.SetFloat(BossMoveForwardtHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
         Move(deltaTime);
 
-        if (UtilityAIManager.UtilityAIManagerSingleton.interruped)
+        if (UtilityAIManager.Instance.interruped)
         {
             return;
         }
@@ -39,11 +40,11 @@ public class BossIdleState : BossBaseState
             return;
         }
 
-        // if (IsInAttackRange())
-        // {
-        //     bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
-        //     return;
-        // }
+        if (IsInAttackRange())
+        {
+            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
+            return;
+        }
     }
     public override void Exit()
     {

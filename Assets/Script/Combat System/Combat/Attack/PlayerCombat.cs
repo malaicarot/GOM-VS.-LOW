@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Mono.Cecil;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -11,7 +10,6 @@ public class PlayerCombat : MonoBehaviour
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
     public event Action OnSetWeapon;
-    // public event Action PlayWeaponSound;
     public WeaponSO weapon { get; private set; }
     public WeaponSO weaponSecondary { get; private set; }
     public GameObject mainWeapon { get; private set; }
@@ -28,24 +26,23 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        // PlayWeaponSound?.Invoke();
         ApplyEffect();
     }
 
     void OnEnable()
     {
-        SpecialEffectManagers.specialEffectManagers.OnActiveEffect += SetUpEffectActive;
+        SpecialEffectManagers.Instance.OnActiveEffect += SetUpEffectActive;
     }
 
     void OnDisable()
     {
-        SpecialEffectManagers.specialEffectManagers.OnActiveEffect -= SetUpEffectActive;
+        SpecialEffectManagers.Instance.OnActiveEffect -= SetUpEffectActive;
     }
 
 
     void SetUpEffectActive()
     {
-        foreach (SpecialEffectsData effect in SpecialEffectManagers.specialEffectManagers.specialEffectsDataList)
+        foreach (SpecialEffectsData effect in SpecialEffectManagers.Instance.specialEffectsDataList)
         {
             if (effect.unlocked)
             {

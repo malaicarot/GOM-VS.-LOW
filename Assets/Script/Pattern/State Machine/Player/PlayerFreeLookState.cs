@@ -10,7 +10,6 @@ public class PlayerFreeLookState : PlayerBaseState
     const float AnimationDamping = 0.1f;
     float speed;
     bool isTired;
-    // float time
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()

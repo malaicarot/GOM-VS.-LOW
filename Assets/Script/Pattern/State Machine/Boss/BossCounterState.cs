@@ -3,7 +3,6 @@ using UnityEngine;
 public class BossCounterState : BossBaseState
 {
     readonly int Counter_1Hash = Animator.StringToHash("Counter_1");
-    readonly int Counter_2Hash = Animator.StringToHash("Counter_2");
     readonly string EnemyCounterTag = "Counter";
 
     public BossCounterState(BossStateMachine bossStateMachine) : base(bossStateMachine)
@@ -17,6 +16,11 @@ public class BossCounterState : BossBaseState
         bossStateMachine.AttackHandler.OnEnableSpecialAttack();
         bossStateMachine.Animator.CrossFadeInFixedTime(Counter_1Hash, bossStateMachine.CrossFadeDuration);
         bossStateMachine.hitCount = 0;
+        // foreach (AttackDealDamage attackDealDamage in bossStateMachine.AttackDealDamage)
+        // {
+        //     // attackDealDamage.SetAttack(50, attack.AttackKnockback);
+        // }
+        bossStateMachine.AttackDealDamage[2].SetAttack(50, 5);
     }
 
     public override void Tick(float deltaTime)

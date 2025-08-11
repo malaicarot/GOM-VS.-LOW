@@ -5,7 +5,6 @@ public abstract class BossBaseState : State
     protected BossStateMachine bossStateMachine;
     float distanceSqr;
     float atkRangeSqr;
-    float cautiousSqr;
     Vector3 direction;
 
     public BossBaseState(BossStateMachine bossStateMachine)

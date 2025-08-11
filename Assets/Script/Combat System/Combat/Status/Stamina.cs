@@ -52,5 +52,4 @@ public class Stamina : MonoBehaviour
     {
         currentStamina = MathF.Max(currentStamina - amount, 0);
     }
-
 }

@@ -60,14 +60,7 @@ public class PlayerAttackState : PlayerBaseState
         }
         else
         {
-            if (stateMachine.Targeter.currentTarget != null)
-            {
-                stateMachine.SwitchState(new PlayerTargetState(stateMachine));
-            }
-            else
-            {
-                stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-            }
+            ReturnToLocomotion();
         }
 
         previousFrameTime = normalizedTime;
@@ -76,7 +69,7 @@ public class PlayerAttackState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.AttackHandlers.PlayAttackSound -= PlayerSound;
-        stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
+        stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
     }
 
     void TryCombo(float normalizedTime, int attackIndex, Attack[] nextComboList)
@@ -103,6 +96,6 @@ public class PlayerAttackState : PlayerBaseState
 
     void PlayerSound()
     {
-        SoundManager.soundManager.PlaySound(attack.AudioClip);
+        SoundManager.Instance.PlaySound(attack.AudioClip);
     }
 }

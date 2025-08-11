@@ -9,6 +9,7 @@ public class PlayerDeadState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.Ragdoll.ToggleRagdoll(true);
+        // stateMachine.Targeter.enabled = false;
     }
 
     public override void Tick(float deltaTime)
@@ -18,6 +19,4 @@ public class PlayerDeadState : PlayerBaseState
     {
 
     }
-
-   
 }

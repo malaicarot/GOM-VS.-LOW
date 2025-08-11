@@ -15,8 +15,8 @@ public class PlayerGetCheckPointState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        UIManagers.UIManager.ActionCountinue += stateMachine.OnReturnFreeLook;
-        UIManagers.UIManager.Rest += stateMachine.Rest;
+        UIManagers.Instance.ActionCountinue += stateMachine.OnReturnFreeLook;
+        UIManagers.Instance.Rest += stateMachine.Rest;
     }
 
     public override void Exit()

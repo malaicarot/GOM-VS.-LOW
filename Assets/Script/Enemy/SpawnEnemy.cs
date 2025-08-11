@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] GameObject[] areaSpawn;
-    // [Range(1, 10), SerializeField] uint enemiesQuantity;
     [SerializeField] int maxAttemps = 10;
     [SerializeField] float radius = 5f;
     [SerializeField] int numberOfPoint = 5;
@@ -64,22 +63,4 @@ public class SpawnEnemy : MonoBehaviour
         }
         return validTransform;
     }
-
-    // void OnDrawGizmosSelected()
-    // {
-    //     Debug.Log("Draw Gizmos");
-    //     Gizmos.color = Color.green;
-    //     foreach (var point in GetRandomPointsInArea(areaSpawn[3]))
-    //     {
-    //         Gizmos.DrawSphere(point, 1f);
-    //     }
-    //     foreach (var point in GetRandomPointsInArea(areaSpawn[4]))
-    //     {
-    //         Gizmos.DrawSphere(point, 1f);
-    //     }
-    //     foreach (var point in GetRandomPointsInArea(areaSpawn[5]))
-    //     {
-    //         Gizmos.DrawSphere(point, 1f);
-    //     }
-    // }
 }

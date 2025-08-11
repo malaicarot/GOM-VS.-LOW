@@ -15,15 +15,9 @@ public class PlayerStunState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        if (GetNormalizedTime(stateMachine.Animator, StunAnimationTag) > 0.8f && GetNormalizedTime(stateMachine.Animator, StunAnimationTag) < 0.9f)
+        if (GetNormalizedTime(stateMachine.Animator, StunAnimationTag) > 0.8f && GetNormalizedTime(stateMachine.Animator, StunAnimationTag) <= 1f)
         {
-            if (stateMachine.Targeter.currentTarget != null)
-            {
-                stateMachine.SwitchState(new PlayerTargetState(stateMachine));
-                return;
-            }
-            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-            return;
+            ReturnToLocomotion();
         }
     }
 

@@ -17,14 +17,7 @@ public class PlayerCollectionState : PlayerBaseState
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, PickUpTag);
         if (normalizedTime > 1f)
         {
-            if (stateMachine.Targeter.currentTarget != null)
-            {
-                stateMachine.SwitchState(new PlayerTargetState(stateMachine));
-            }
-            else
-            {
-                stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-            }
+            ReturnToLocomotion();
         }
     }
 
