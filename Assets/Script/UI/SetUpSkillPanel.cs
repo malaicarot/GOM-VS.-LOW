@@ -8,7 +8,7 @@ public class SetUpSkillPanel : MonoBehaviour
 
     void OnEnable()
     {
-        foreach (var skill in PlayerSkill.playerSkillSingleton.skillData)
+        foreach (var skill in PlayerSkill.Instance.skillData)
         {
             var slotPrefab = Instantiate(prefabs, slotParent);
             RectTransform rectTransform = slotPrefab.GetComponent<RectTransform>();

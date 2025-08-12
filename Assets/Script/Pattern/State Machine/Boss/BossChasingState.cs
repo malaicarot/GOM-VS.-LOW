@@ -60,16 +60,16 @@ public class BossChasingState : BossBaseState
             return;
         }
 
-        if (attackTime >= 3f)
-        {
-            bossStateMachine.SwitchState(new BossApproachState(bossStateMachine));
-            return;
-        }
-
-        // if (accumulateTime >= 3f)
+        // if (attackTime >= 3f)
         // {
-        //     bossStateMachine.SwitchState(new BossSituationalAttackSate(bossStateMachine));
+        //     bossStateMachine.SwitchState(new BossApproachState(bossStateMachine));
         //     return;
         // }
+
+        if (accumulateTime >= 3f)
+        {
+            bossStateMachine.SwitchState(new BossJumpAttackSate(bossStateMachine));
+            return;
+        }
     }
 }

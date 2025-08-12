@@ -98,6 +98,8 @@ public class PlayerTargetState : PlayerBaseState
         if (direction == Vector3.zero)
         {
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
+            stateMachine.Animator.SetFloat(TargetingRightHash, 0, AnimationDamping, deltatime);
+            stateMachine.Animator.SetFloat(TargetingForwardHash, 0, AnimationDamping, deltatime);
             return;
         }
 

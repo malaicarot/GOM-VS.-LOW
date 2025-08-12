@@ -11,6 +11,7 @@ public class ForceReceiver : MonoBehaviour
     float verticalVelocity;
     Vector3 impact;
     Vector3 dampingVelocity;
+    // public float fallMultiplier { get; set; } = 4f;
     public Vector3 Movement => impact + Vector3.up * verticalVelocity;
 
 
@@ -50,5 +51,10 @@ public class ForceReceiver : MonoBehaviour
     public void AddJumpForce(float jumpForce)
     {
         verticalVelocity += jumpForce;
+    }
+
+    public void AddMultiplierForFall(float _fallMultiplier)
+    {
+        verticalVelocity += Physics.gravity.y * _fallMultiplier * Time.deltaTime;
     }
 }

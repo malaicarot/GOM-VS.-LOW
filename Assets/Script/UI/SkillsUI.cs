@@ -19,7 +19,7 @@ public class SkillsUI : MonoBehaviour
     {
         if (!skillData.unlocked)
         {
-            PlayerSkill.playerSkillSingleton.UnlockSkill(skillData.SkillName);
+            PlayerSkill.Instance.UnlockSkill(skillData.SkillName);
             Refesh();
         }
     }

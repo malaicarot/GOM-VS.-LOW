@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackDealDamage : MonoBehaviour
 {
-    [SerializeField] Collider myCollider;
+    public Collider myCollider;
     List<Collider> alreadyCollider = new List<Collider>();
     int dealDamaged;
     float knockback;

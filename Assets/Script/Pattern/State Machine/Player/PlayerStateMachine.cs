@@ -131,7 +131,7 @@ public class PlayerStateMachine : StateMachine
     public void OnCastSkill()
     {
         if (Mana.currentMana <= 0) { return; }
-        if (!PlayerSkill.playerSkillSingleton.ButtonOnClick(Buttons[InputReader.ButtonIndex])) { return; }
+        if (!PlayerSkill.Instance.ButtonOnClick(Buttons[InputReader.ButtonIndex])) { return; }
 
         Buttons[InputReader.ButtonIndex].onClick.Invoke();
         SwitchState(new PlayerCastSkillState(this));

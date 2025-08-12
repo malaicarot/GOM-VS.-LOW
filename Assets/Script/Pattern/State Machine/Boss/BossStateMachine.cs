@@ -12,6 +12,7 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Attack[] Attack { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField] public BossSkill BossSkill { get; private set; }
     [field: SerializeField] public AttackDealDamage[] AttackDealDamage { get; private set; }
     [field: SerializeField] public AttackHandler AttackHandler { get; private set; }
     [field: SerializeField] public Target Target { get; private set; }
@@ -21,18 +22,22 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public float DashSpeed { get; private set; }
     [field: SerializeField] public float WeaponThrowSpeed { get; private set; }
     [field: SerializeField] public float BossJumpForce { get; private set; }
+    [field: SerializeField] public float FallMultiplier { get; private set; }
     [field: SerializeField] public int BossAttackDamage { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
     [field: SerializeField] public float BossChasingRange { get; private set; }
     [field: SerializeField] public float BossAttackRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeResetInterruped { get; private set; }
+    [field: SerializeField] public int JumpAttackTime { get; private set; }
+
     [field: SerializeField] public int[] RandomHitCount { get; private set; }
 
 
     public Health Player { get; private set; }
     public Attack[] AttackRandom { get; set; }
     public int hitCount { get; set; }
+    public int countJumpAttack { get; set; } = 0;
 
     void Start()
     {
@@ -46,7 +51,6 @@ public class BossStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeath;
-        // AttackDealDamage.OnS
     }
 
     void OnDisable()
@@ -108,6 +112,17 @@ public class BossStateMachine : StateMachine
         int index = Random.Range(0, RandomHitCount.Length);
         Debug.Log("Hit Count Random: " + RandomHitCount[index]);
         return RandomHitCount[index];
+    }
+
+
+    public void UseSkill(string _name, SkillData skillData)
+    {
+        string name = _name;
+        Ability ability = AbilityFactory.GetAbility(name);
+        if (ability != null)
+        {
+            ability.Proccess(skillData, this.transform.gameObject);
+        }
     }
 
 }

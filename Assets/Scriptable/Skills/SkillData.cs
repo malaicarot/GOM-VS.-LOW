@@ -13,6 +13,8 @@ public class SkillData : ScriptableObject
     public float ManaCost;
     public float CoolDown;
     public int LevelNeeded;
+    public int Damage;
+    public float KnockBack;
     public bool unlocked = false;
 
     [Header("Effect")]

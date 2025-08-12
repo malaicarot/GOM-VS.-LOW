@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerSkill : MonoBehaviour
+public class PlayerSkill : Singleton<PlayerSkill>
 {
-    public static PlayerSkill playerSkillSingleton;
     public event Action OnActiveSkill;
     [SerializeField] GameObject[] skillUI;
     [field: SerializeField] public List<SkillData> skillData { get; private set; }
@@ -19,23 +18,13 @@ public class PlayerSkill : MonoBehaviour
 
     void Start()
     {
-        if (playerSkillSingleton == null)
-        {
-            playerSkillSingleton = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
         fillImageList = new List<Image>();
         alreadySkill = new List<SkillData>();
         // UpdateImage();
         SetupStart();
         SetCooldownSkill();
     }
-
-
-
 
     void SetupStart()
     {
