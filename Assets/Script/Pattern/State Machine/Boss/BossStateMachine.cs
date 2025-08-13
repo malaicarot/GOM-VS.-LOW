@@ -18,8 +18,10 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public GameObject WeaponThrow { get; set; }
     [field: SerializeField] public GameObject WeaponDisalbe { get; set; }
+    [field: SerializeField] public Transform Projectile { get; set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float DashSpeed { get; private set; }
+    [field: SerializeField] public float BulletForce { get; private set; }
     [field: SerializeField] public float WeaponThrowSpeed { get; private set; }
     [field: SerializeField] public float BossJumpForce { get; private set; }
     [field: SerializeField] public float FallMultiplier { get; private set; }
@@ -29,8 +31,9 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public float BossAttackRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeResetInterruped { get; private set; }
-    [field: SerializeField] public int JumpAttackTime { get; private set; }
+    // [field: SerializeField] public float TimeResetInterruped { get; private set; }
 
+    [field: SerializeField] public int JumpAttackTime { get; private set; }
     [field: SerializeField] public int[] RandomHitCount { get; private set; }
 
 
@@ -38,6 +41,9 @@ public class BossStateMachine : StateMachine
     public Attack[] AttackRandom { get; set; }
     public int hitCount { get; set; }
     public int countJumpAttack { get; set; } = 0;
+    public int countBallisticsAttack { get; set; } = 0;
+
+
 
     void Start()
     {
@@ -115,13 +121,13 @@ public class BossStateMachine : StateMachine
     }
 
 
-    public void UseSkill(string _name, SkillData skillData)
+    public void UseSkill(string _name, SkillData skillData, Transform spawn)
     {
         string name = _name;
         Ability ability = AbilityFactory.GetAbility(name);
         if (ability != null)
         {
-            ability.Proccess(skillData, this.transform.gameObject);
+            ability.Proccess(skillData, this.gameObject, spawn);
         }
     }
 

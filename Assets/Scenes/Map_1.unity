@@ -2656,7 +2656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.11590901, y: -0.10037267, z: -0.011774149, w: 0.9881052}
+  m_LocalRotation: {x: -0.11590907, y: 0.10037265, z: 0.0117741525, w: 0.9881052}
   m_LocalPosition: {x: 377.98, y: 500.51, z: 1358.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7422,6 +7422,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 682836896}
+  - {fileID: 1890923872}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &767772664
@@ -17232,6 +17233,55 @@ PlayableDirector:
     value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
+--- !u!1 &1890923871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890923872}
+  - component: {fileID: 1890923873}
+  m_Layer: 0
+  m_Name: EffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890923872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890923871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 760366861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1890923873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890923871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d4fd48a4a3e354f8dfcc470f129bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 5
+  pooledObjects:
+  - {fileID: 8028592007420836594, guid: 9766042bdd858744d9d2208584a00875, type: 3}
+  - {fileID: -4625612768972435442, guid: f5c4be70aa17c82469bdc87ead8f583f, type: 3}
+  offScreen: {x: 0, y: 0, z: 0}
 --- !u!1 &1910076210
 GameObject:
   m_ObjectHideFlags: 0
@@ -19569,15 +19619,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5362544904971411322, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.115909
+      value: -0.115909055
       objectReference: {fileID: 0}
     - target: {fileID: 5362544904971411322, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.10037268
+      value: 0.10037265
       objectReference: {fileID: 0}
     - target: {fileID: 5362544904971411322, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.01177415
+      value: 0.011774152
       objectReference: {fileID: 0}
     - target: {fileID: 5409153601907408454, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: <jumpStaminaReduce>k__BackingField
@@ -19883,6 +19933,18 @@ PrefabInstance:
     - target: {fileID: 5552444784986347751, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
       propertyPath: m_Name
       value: Boss_1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956708771265788426, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0043
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956708771265788426, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01171
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956708771265788426, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

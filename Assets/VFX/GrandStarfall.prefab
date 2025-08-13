@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 5133321119647012360}
   - component: {fileID: 8701483839837886766}
   - component: {fileID: 182390428218920750}
+  - component: {fileID: 8028592007420836594}
   m_Layer: 0
-  m_Name: GroundFog_Skill
+  m_Name: GrandStarfall
   m_TagString: EnemySpecialAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +47,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.5
   simulationSpeed: 2
-  stopAction: 2
+  stopAction: 1
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4909,3 +4910,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8028592007420836594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356900698234653815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a2c5bd89e204b49b9ea5d8bb952bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

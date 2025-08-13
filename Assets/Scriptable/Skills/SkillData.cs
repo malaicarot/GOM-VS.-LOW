@@ -19,8 +19,8 @@ public class SkillData : ScriptableObject
 
     [Header("Effect")]
     public ParticleSystem Effect;
+    public GameObject EffectObject;
     public AudioClip Sound;
-
     [Header("Targeting")]
     public float Range;
     public bool IsAOE;

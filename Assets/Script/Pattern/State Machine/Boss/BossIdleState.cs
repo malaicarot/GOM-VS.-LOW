@@ -56,7 +56,9 @@ public class BossIdleState : BossBaseState
         timeRoadToCaution += deltaTime;
         if (timeRoadToCaution >= 2)
         {
-            bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
+            bossStateMachine.SwitchState(new BossBallisticsState(bossStateMachine));
+
+            // bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
             return;
         }
     }

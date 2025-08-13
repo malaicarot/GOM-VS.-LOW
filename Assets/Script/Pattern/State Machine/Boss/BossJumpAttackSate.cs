@@ -48,7 +48,7 @@ public class BossJumpAttackSate : BossBaseState
             {
                 if (!isOneTime)
                 {
-                    bossStateMachine.UseSkill(skillName, bossStateMachine.BossSkill.GetSkillBaseName(skillName));
+                    bossStateMachine.UseSkill(skillName, bossStateMachine.BossSkill.GetSkillBaseName(skillName), bossStateMachine.transform);
                     isOneTime = true;
                 }
 

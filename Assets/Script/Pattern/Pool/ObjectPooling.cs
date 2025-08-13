@@ -87,6 +87,7 @@ public class ObjectPooling : MonoBehaviour
 
     void SetTransform(PooledObject pooledObject, Vector3 position, Quaternion rotation)
     {
+
         NavMeshHit navMeshHit;
         if (NavMesh.SamplePosition(position, out navMeshHit, 10f, NavMesh.AllAreas))
         {
@@ -94,7 +95,7 @@ public class ObjectPooling : MonoBehaviour
         }
         else
         {
-            pooledObject.gameObject.transform.position = position;
+            pooledObject.gameObject.transform.position = position; 
         }
 
         pooledObject.gameObject.transform.rotation = rotation;

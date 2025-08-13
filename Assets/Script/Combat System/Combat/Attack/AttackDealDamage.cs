@@ -57,5 +57,7 @@ public class AttackDealDamage : MonoBehaviour
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
             force.AddForce(direction * knockback);
         }
+
+        
     }
 }
