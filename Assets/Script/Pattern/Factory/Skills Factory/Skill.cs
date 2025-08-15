@@ -6,7 +6,8 @@ public class Keep : Ability
 
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
-        ParticleSystem skill = GameObject.Instantiate(skillData.Effect, spawn.position, spawn.rotation);
+        GameObject gameObject = GameObject.Instantiate(skillData.EffectObject, spawn.position, spawn.rotation);
+        ParticleSystem skill = gameObject.GetComponent<ParticleSystem>();
         skill.Play();
 
     }
@@ -18,7 +19,8 @@ public class Stoning : Ability
 
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
-        ParticleSystem skill = GameObject.Instantiate(skillData.Effect, spawn.position, spawn.rotation);
+        GameObject gameObject = GameObject.Instantiate(skillData.EffectObject, spawn.position, spawn.rotation);
+        ParticleSystem skill = gameObject.GetComponent<ParticleSystem>();
         skill.Play();
     }
 }

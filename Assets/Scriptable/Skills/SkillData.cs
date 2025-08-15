@@ -18,8 +18,9 @@ public class SkillData : ScriptableObject
     public bool unlocked = false;
 
     [Header("Effect")]
-    public ParticleSystem Effect;
+    // public ParticleSystem Effect;
     public GameObject EffectObject;
+
     public AudioClip Sound;
     [Header("Targeting")]
     public float Range;

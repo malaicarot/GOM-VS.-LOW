@@ -31,10 +31,10 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public float BossAttackRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeResetInterruped { get; private set; }
-    // [field: SerializeField] public float TimeResetInterruped { get; private set; }
-
     [field: SerializeField] public int JumpAttackTime { get; private set; }
     [field: SerializeField] public int[] RandomHitCount { get; private set; }
+    [field: SerializeField] public float TimeWaitToCastAOE { get; private set; }
+    [field: SerializeField] public float TimeCastAOE { get; set; }
 
 
     public Health Player { get; private set; }

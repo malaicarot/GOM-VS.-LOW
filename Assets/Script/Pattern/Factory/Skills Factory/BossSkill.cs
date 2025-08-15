@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GrandStarfall : Ability
@@ -6,7 +7,7 @@ public class GrandStarfall : Ability
 
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
-        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.Effect.transform.rotation);
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.EffectObject.transform.rotation);
         AttackDealDamage attackDealDamage = skill.GetComponent<AttackDealDamage>();
         attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
         SphereCollider sphereCollider = skill.GetComponent<SphereCollider>();
@@ -23,8 +24,8 @@ public class DarkBullet : Ability
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
         BossStateMachine bossStateMachine = caster.GetComponent<BossStateMachine>();
-        Debug.Log(spawn.position );
-        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.EffectObject.transform.rotation);
+
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, bossStateMachine.Projectile.position, skillData.EffectObject.transform.rotation);
 
         Vector3 targetPoint = bossStateMachine.Player.transform.position + Vector3.up * 1.5f;
         Vector3 targetDirection = (targetPoint - skill.transform.position).normalized;
@@ -41,3 +42,18 @@ public class DarkBullet : Ability
         attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
 }
+
+public class MagicalExplosion : Ability
+{
+    public override string Name => "MagicalExplosion";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position + Vector3.up * 0.5F, skillData.EffectObject.transform.rotation);
+
+        AttackDealDamage attackDealDamage = skill.GetComponent<AttackDealDamage>();
+        attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+

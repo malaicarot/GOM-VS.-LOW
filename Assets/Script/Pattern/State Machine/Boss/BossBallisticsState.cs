@@ -16,8 +16,8 @@ public class BossBallisticsState : BossBaseState
     public override void Enter()
     {
         bossStateMachine.countBallisticsAttack++;
-        Debug.Log(bossStateMachine.countBallisticsAttack);
         bossStateMachine.Animator.CrossFadeInFixedTime(StartShootAnimationHash, bossStateMachine.CrossFadeDuration);
+        
         bossStateMachine.UseSkill(skillName, bossStateMachine.BossSkill.GetSkillBaseName(skillName), bossStateMachine.Projectile);
     }
 
