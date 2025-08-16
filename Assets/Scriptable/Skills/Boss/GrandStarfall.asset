@@ -22,7 +22,7 @@ MonoBehaviour:
   Damage: 30
   KnockBack: 7
   unlocked: 0
-  Effect: {fileID: 5228121037524751152, guid: 9766042bdd858744d9d2208584a00875, type: 3}
+  EffectObject: {fileID: 3356900698234653815, guid: 9766042bdd858744d9d2208584a00875, type: 3}
   Sound: {fileID: 0}
   Range: 0
   IsAOE: 0

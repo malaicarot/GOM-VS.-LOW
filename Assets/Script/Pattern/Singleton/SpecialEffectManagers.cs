@@ -17,15 +17,10 @@ public class SpecialEffectManagers : Singleton<SpecialEffectManagers>
     public event Action OnActiveEffect;
     public event Action OnReadySingleton;
 
-
-    protected override void Awake()
+    void Start()
     {
-        base.Awake();
         OnReadySingleton?.Invoke();
     }
-    // void Start()
-    // {
-    // }
 
     public void UnlockEffect(string effectName)
     {

@@ -34,10 +34,10 @@ public class PlayerCombat : MonoBehaviour
         SpecialEffectManagers.Instance.OnActiveEffect += SetUpEffectActive;
     }
 
-    void OnDisable()
-    {
-        SpecialEffectManagers.Instance.OnActiveEffect -= SetUpEffectActive;
-    }
+    // void OnDisable()
+    // {
+    //     SpecialEffectManagers.Instance.OnActiveEffect -= SetUpEffectActive;
+    // }
 
 
     void SetUpEffectActive()

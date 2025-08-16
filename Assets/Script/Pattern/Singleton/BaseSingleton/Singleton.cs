@@ -1,13 +1,17 @@
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Singleton<T> : MonoBehaviour where T : Component
 {
+    private static bool isQuit = false;
     private static T instance;
     public static T Instance
     {
         get
         {
+            if (isQuit) { return null; }
             if (instance == null)
             {
                 instance = FindAnyObjectByType<T>();
@@ -36,5 +40,10 @@ public class Singleton<T> : MonoBehaviour where T : Component
         {
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void OnApplicationQuit()
+    {
+        isQuit = true;
     }
 }
