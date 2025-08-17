@@ -67,9 +67,11 @@ public class BossMagicAOEState : BossBaseState
     public override void Exit()
     {
         bossStateMachine.Agent.enabled = true;
+        if (IsInAttackRange())
+        {
+            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
+        }
     }
-
-
 
     void Animation()
     {
@@ -78,7 +80,6 @@ public class BossMagicAOEState : BossBaseState
             bossStateMachine.Animator.CrossFadeInFixedTime(LoopMagicAnimationHash, bossStateMachine.CrossFadeDuration);
         }
     }
-
 
     void CastSkill()
     {

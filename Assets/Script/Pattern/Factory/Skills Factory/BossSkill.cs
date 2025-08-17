@@ -8,9 +8,10 @@ public class GrandStarfall : Ability
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
         PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.EffectObject.transform.rotation);
-        AttackDealDamage attackDealDamage = skill.GetComponent<AttackDealDamage>();
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
         attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
-        SphereCollider sphereCollider = skill.GetComponent<SphereCollider>();
+        SphereCollider sphereCollider = skill.GetComponentInChildren<SphereCollider>(true);
         sphereCollider.enabled = true;
         attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
@@ -34,11 +35,11 @@ public class DarkBullet : Ability
         bulletRb.linearVelocity = Vector3.zero;
         bulletRb.AddForce(targetDirection * bossStateMachine.BulletForce, ForceMode.Impulse);
 
-        AttackDealDamage attackDealDamage = skill.GetComponent<AttackDealDamage>();
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
         attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
 
-        CapsuleCollider sphereCollider = skill.GetComponent<CapsuleCollider>();
-        sphereCollider.enabled = true;
+        CapsuleCollider collider = skill.GetComponentInChildren<CapsuleCollider>(true);
+        collider.enabled = true;
         attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
 }
@@ -51,7 +52,23 @@ public class MagicalExplosion : Ability
     {
         PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position + Vector3.up * 0.5F, skillData.EffectObject.transform.rotation);
 
-        AttackDealDamage attackDealDamage = skill.GetComponent<AttackDealDamage>();
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
+public class DarkLightning : Ability
+{
+    public override string Name => "DarkLightning";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.EffectObject.transform.rotation);
+
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
         attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
         attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }

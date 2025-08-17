@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02aacfd2f94603243a445dc397a03649, type: 3}
-  m_Name: GrandStarfall
+  m_Name: DarkLightning
   m_EditorClassIdentifier: 
-  SkillName: GrandStarfall
+  SkillName: DarkLightning
   Description: 
   Sprite: {fileID: 0}
   Animation: {fileID: 0}
@@ -20,9 +20,9 @@ MonoBehaviour:
   CoolDown: 0
   LevelNeeded: 0
   Damage: 1
-  KnockBack: 7
+  KnockBack: 8
   unlocked: 0
-  EffectObject: {fileID: 3356900698234653815, guid: 9766042bdd858744d9d2208584a00875, type: 3}
+  EffectObject: {fileID: 978710901594022157, guid: ef633ab0d09f8244aaf7ddd06e14c555, type: 3}
   Sound: {fileID: 0}
   Range: 0
   IsAOE: 0

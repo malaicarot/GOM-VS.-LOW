@@ -8,9 +8,9 @@ public class Health : MonoBehaviour
     public event Action OnTakeDamage;
     public event Action OnDeath;
     public event Action OnStun;
+    public event Action OnProcessBloodThreshold;
 
     public bool isDead => currentHealth == 0;
-
     public bool isCounterPlayer { get; set; } = false;
 
     PlayerStats playerStats;
@@ -25,8 +25,6 @@ public class Health : MonoBehaviour
             playerStats = GetComponent<PlayerStats>();
             resistance = playerStats.ReturnAttribute("Resistance");
             maxHealth = playerStats.ReturnAttribute("Health");
-            Debug.Log("resistance: " + resistance);
-            Debug.Log("maxHealth: " + maxHealth);
             currentHealth = maxHealth;
         }
         else
@@ -43,6 +41,11 @@ public class Health : MonoBehaviour
     public void SetResistance()
     {
         resistance = playerStats.ReturnAttribute("Resistance");
+    }
+
+    public bool GetHealthToChangeState()
+    {
+        return currentHealth <= maxHealth / 2;
     }
 
     void Update()
@@ -95,6 +98,11 @@ public class Health : MonoBehaviour
         if (currentHealth == 0)
         {
             OnDeath?.Invoke();
+        }
+
+        if (GetHealthToChangeState())
+        {
+            OnProcessBloodThreshold?.Invoke();
         }
     }
 }

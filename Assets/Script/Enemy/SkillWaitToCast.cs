@@ -3,16 +3,33 @@ using UnityEngine;
 
 public class SkillWaitToCast : MonoBehaviour
 {
-    [SerializeField] Collider skillCollider;
+    [SerializeField] GameObject skillCollider;
     [SerializeField] float timeToWait;
+    bool isActive;
+    float time;
+
     void OnEnable()
     {
-        StartCoroutine(WaitToCast());
+        time = timeToWait;
+        isActive = true;
     }
 
-    IEnumerator WaitToCast()
+    void OnDisable()
     {
-        yield return new WaitForSecondsRealtime(timeToWait);
-        skillCollider.enabled = true;
+        isActive = false;
+        timeToWait = time;
+        skillCollider.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (isActive)
+        {
+            timeToWait -= Time.deltaTime;
+            if (timeToWait <= 0)
+            {
+                skillCollider.SetActive(true);
+            }
+        }
     }
 }

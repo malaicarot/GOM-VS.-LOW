@@ -57,12 +57,14 @@ public class BossStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeath;
+        Health.OnProcessBloodThreshold += HandleChangPhase;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeath;
+        Health.OnProcessBloodThreshold -= HandleChangPhase;
     }
 
     void HandleAttack()
@@ -73,6 +75,11 @@ public class BossStateMachine : StateMachine
     void HandleDeath()
     {
         SwitchState(new BossDeadState(this));
+    }
+
+    void HandleChangPhase()
+    {
+        SwitchState(new BossChangePhaseProcessState(this));
     }
 
     private void OnDrawGizmosSelected()
@@ -116,6 +123,7 @@ public class BossStateMachine : StateMachine
     public int RandomHitCountToCounter()
     {
         int index = Random.Range(0, RandomHitCount.Length);
+
         Debug.Log("Hit Count Random: " + RandomHitCount[index]);
         return RandomHitCount[index];
     }
@@ -130,5 +138,4 @@ public class BossStateMachine : StateMachine
             ability.Proccess(skillData, this.gameObject, spawn);
         }
     }
-
 }

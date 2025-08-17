@@ -10,6 +10,7 @@ public class PooledObject : MonoBehaviour
     {
         if (Instance != null)
         {
+            Debug.Log("Return to pool: " + Instance.gameObject.name);
             Instance.ReturnToPool(this);
         }
     }

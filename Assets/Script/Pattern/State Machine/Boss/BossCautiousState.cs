@@ -9,26 +9,25 @@ public class BossCautiousState : BossBaseState
     const float AnimationDamping = 0.1f;
 
     Vector3 targetPosition;
-    float changeTime;
-    float moveTime;
     float radius = 8f;
+
+    float timeToSwitchState = 0;
     public BossCautiousState(BossStateMachine bossStateMachine) : base(bossStateMachine)
     {
     }
 
     public override void Enter()
     {
-        changeTime = 0f;
-        moveTime = 0f;
         bossStateMachine.Animator.CrossFadeInFixedTime(BossLocomotionHash, bossStateMachine.CrossFadeDuration);
         targetPosition = GetRandomNavmeshPosition(bossStateMachine.transform.position);
     }
 
     public override void Tick(float deltaTime)
     {
+        timeToSwitchState += deltaTime;
         UpdateAnimation(deltaTime);
         PickNewNavMeshPosition(deltaTime);
-        CoditionSwitchState(deltaTime);
+        CoditionSwitchState();
         FaceTarget();
     }
 
@@ -50,7 +49,6 @@ public class BossCautiousState : BossBaseState
 
         bossStateMachine.Animator.SetFloat(BossMoveRightHash, xValue, AnimationDamping, deltatime);
         bossStateMachine.Animator.SetFloat(BossMoveForwardtHash, yValue, AnimationDamping, deltatime);
-
     }
 
     Vector3 GetRandomNavmeshPosition(Vector3 origin)
@@ -76,27 +74,26 @@ public class BossCautiousState : BossBaseState
         bossStateMachine.Agent.velocity = bossStateMachine.Controller.velocity;
     }
 
-    void CoditionSwitchState(float deltaTime)
+    void CoditionSwitchState()
     {
-        changeTime += deltaTime;
-        moveTime += deltaTime;
-
-        if (IsInChanseRange())
+        if (timeToSwitchState >= 2)
         {
-            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
-            return;
-        }
-
-        if (moveTime >= 1.5f)
-        {
-            targetPosition = GetRandomNavmeshPosition(bossStateMachine.transform.position);
-            moveTime = 0f;
-        }
-
-        if (changeTime >= 6f)
-        {
-            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
-            return;
+            int stateNumber = UtilityAIManager.Instance.RandomState();
+            if (stateNumber == 1)
+            {
+                bossStateMachine.SwitchState(new BossBallisticsState(bossStateMachine));
+                return;
+            }
+            else if (stateNumber == 2)
+            {
+                bossStateMachine.SwitchState(new BossJumpAttackSate(bossStateMachine));
+                return;
+            }
+            else if (stateNumber == 3)
+            {
+                bossStateMachine.SwitchState(new BossApproachState(bossStateMachine));
+                return;
+            }
         }
     }
 }

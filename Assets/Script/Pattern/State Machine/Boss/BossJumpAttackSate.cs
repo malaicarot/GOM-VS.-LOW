@@ -35,6 +35,12 @@ public class BossJumpAttackSate : BossBaseState
             bossStateMachine.Agent.ResetPath();
             bossStateMachine.Agent.velocity = Vector3.zero;
         }
+
+        // if (IsInAttackRange())
+        // {
+        //     bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
+        //     return;
+        // }
     }
 
     void AccumulateAttack(float deltaTime)

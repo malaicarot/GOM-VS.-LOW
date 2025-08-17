@@ -1,17 +1,29 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
+// [RequireComponent(typeof(PooledObject))]
 public class SelfReturn : MonoBehaviour
 {
     [SerializeField] float timeToReturn;
+    float time;
+
     void Start()
     {
-        StartCoroutine(CountdownTime());
+        time = timeToReturn;
     }
 
-    IEnumerator CountdownTime()
+    void OnDisable()
     {
-        yield return new WaitForSecondsRealtime(timeToReturn);
-        this.GetComponent<PooledObject>()?.Release();
+        time = timeToReturn;
+    }
+
+    void Update()
+    {
+        time -= Time.deltaTime;
+        if (time <= 0)
+        {
+            this.GetComponent<PooledObject>()?.Release();
+        }
     }
 }

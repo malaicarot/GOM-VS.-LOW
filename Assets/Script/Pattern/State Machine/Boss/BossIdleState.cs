@@ -26,6 +26,9 @@ public class BossIdleState : BossBaseState
         bossStateMachine.Animator.SetFloat(BossMoveRightHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
         bossStateMachine.Animator.SetFloat(BossMoveForwardtHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
         Move(deltaTime);
+        
+        bossStateMachine.SwitchState(new BossMagicAOEState(bossStateMachine));
+       
 
         if (UtilityAIManager.Instance.interruped)
         {
@@ -33,31 +36,17 @@ public class BossIdleState : BossBaseState
         }
 
         ConditionSwitchState(deltaTime);
-
-        if (IsInChanseRange())
-        {
-            bossStateMachine.SwitchState(new BossChasingState(bossStateMachine));
-            return;
-        }
-
-        if (IsInAttackRange())
-        {
-            bossStateMachine.SwitchState(new BossAttackState(bossStateMachine, 0));
-            return;
-        }
     }
+
     public override void Exit()
     {
     }
 
-
     void ConditionSwitchState(float deltaTime)
     {
         timeRoadToCaution += deltaTime;
-        if (timeRoadToCaution >= 2)
+        if (timeRoadToCaution >= 1)
         {
-            // bossStateMachine.SwitchState(new BossBallisticsState(bossStateMachine));
-
             bossStateMachine.SwitchState(new BossCautiousState(bossStateMachine));
             return;
         }

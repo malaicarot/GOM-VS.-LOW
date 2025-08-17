@@ -19,7 +19,7 @@ MonoBehaviour:
   ManaCost: 0
   CoolDown: 0
   LevelNeeded: 0
-  Damage: 60
+  Damage: 1
   KnockBack: 8
   unlocked: 0
   EffectObject: {fileID: 167467294356650407, guid: a2bbe394daa1baf448a838ff1ccdb90a, type: 3}

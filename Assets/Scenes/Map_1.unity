@@ -17162,6 +17162,7 @@ MonoBehaviour:
   - {fileID: 8028592007420836594, guid: 9766042bdd858744d9d2208584a00875, type: 3}
   - {fileID: -4625612768972435442, guid: f5c4be70aa17c82469bdc87ead8f583f, type: 3}
   - {fileID: 4056389446882087799, guid: a2bbe394daa1baf448a838ff1ccdb90a, type: 3}
+  - {fileID: 6211276051137029888, guid: ef633ab0d09f8244aaf7ddd06e14c555, type: 3}
   offScreen: {x: 0, y: 0, z: 0}
 --- !u!1 &1910076210
 GameObject:
@@ -19793,12 +19794,16 @@ PrefabInstance:
       objectReference: {fileID: 374533861}
     - target: {fileID: 2532801296323408570, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
       propertyPath: bossSkill.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2532801296323408570, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
       propertyPath: 'bossSkill.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 68fbc6078a68e354995e94d0683c94a6, type: 2}
+    - target: {fileID: 2532801296323408570, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
+      propertyPath: 'bossSkill.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 20b6726f099263f479db8f438bb93b8b, type: 2}
     - target: {fileID: 3007870439925579960, guid: 0d0afdad4b7485a43b4756fa3fc629dc, type: 3}
       propertyPath: specialAttack.Array.size
       value: 1
