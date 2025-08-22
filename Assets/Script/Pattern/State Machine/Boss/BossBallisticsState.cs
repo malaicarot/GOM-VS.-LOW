@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossBallisticsState : BossBaseState
 {
     readonly int StartShootAnimationHash = Animator.StringToHash("StartShoot");
-    readonly string StartShootAnimationTag = "StartShoot";
+    // readonly string StartShootAnimationTag = "StartShoot";
     string skillName = "DarkBullet";
     float timeToWait = 2f;
 
@@ -17,7 +17,6 @@ public class BossBallisticsState : BossBaseState
     {
         bossStateMachine.countBallisticsAttack++;
         bossStateMachine.Animator.CrossFadeInFixedTime(StartShootAnimationHash, bossStateMachine.CrossFadeDuration);
-        
         bossStateMachine.UseSkill(skillName, bossStateMachine.BossSkill.GetSkillBaseName(skillName), bossStateMachine.Projectile);
     }
 
@@ -26,7 +25,7 @@ public class BossBallisticsState : BossBaseState
 
         FaceTarget();
 
-        if (bossStateMachine.countBallisticsAttack <= 3)
+        if (bossStateMachine.countBallisticsAttack <= bossStateMachine.TimeToShootBullet)
         {
             timeToWait -= deltaTime;
             if (timeToWait <= 0)
@@ -41,7 +40,6 @@ public class BossBallisticsState : BossBaseState
             bossStateMachine.SwitchState(new BossIdleState(bossStateMachine));
             return;
         }
-
     }
 
     public override void Exit()

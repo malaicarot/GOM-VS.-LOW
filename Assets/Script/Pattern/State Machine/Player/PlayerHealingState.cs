@@ -26,9 +26,12 @@ public class PlayerHealingState : PlayerBaseState
 
     void Healing()
     {
-        if (stateMachine.HealingPotion.currentPotion <= 0) { return; }
+        if (stateMachine.HealingPotion.currentPotion <= 0)
+        {
+            ReturnToLocomotion();
+        }
+
         stateMachine.Health.RecoverHealth(stateMachine.healing);
         stateMachine.HealingPotion.ReducePotion(stateMachine.reducePotion);
     }
-
 }

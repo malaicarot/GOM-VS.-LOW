@@ -3,6 +3,8 @@ using UnityEngine;
 public class BossApproachState : BossBaseState
 {
     readonly int DashHash = Animator.StringToHash("Dash");
+
+    string skillName = "DarkStreak";
     public BossApproachState(BossStateMachine bossStateMachine) : base(bossStateMachine)
     {
     }
@@ -10,7 +12,10 @@ public class BossApproachState : BossBaseState
     public override void Enter()
     {
         bossStateMachine.Animator.CrossFadeInFixedTime(DashHash, bossStateMachine.CrossFadeDuration);
-
+        if (bossStateMachine.isPhaseTwo)
+        {
+            bossStateMachine.UseSkill(skillName, bossStateMachine.BossSkill.GetSkillBaseName(skillName), bossStateMachine.transform);
+        }
     }
 
     public override void Tick(float deltaTime)
@@ -41,6 +46,4 @@ public class BossApproachState : BossBaseState
         }
         bossStateMachine.Agent.velocity = bossStateMachine.Controller.velocity;
     }
-
-
 }

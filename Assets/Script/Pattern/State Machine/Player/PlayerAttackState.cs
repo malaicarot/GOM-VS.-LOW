@@ -7,6 +7,7 @@ public class PlayerAttackState : PlayerBaseState
     Attack attack;
     int currentAttackIndex;
     Attack[] currentComboList;
+    bool isTired;
     public PlayerAttackState(PlayerStateMachine stateMachine, int attackIndex, Attack[] comboList) : base(stateMachine)
     {
         currentComboList = comboList;
@@ -22,6 +23,9 @@ public class PlayerAttackState : PlayerBaseState
     {
         stateMachine.AttackHandlers.PlayAttackSound += PlayerSound;
         stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
+        stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
+        stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
+
 
         stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
@@ -37,8 +41,13 @@ public class PlayerAttackState : PlayerBaseState
     {
         Move(deltaTime);
         FaceTarget();
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator, AttackAnimationTag);
 
+        if (isTired)
+        {
+            ReturnToLocomotion();
+        }
+
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, AttackAnimationTag);
         if (normalizedTime >= previousFrameTime && normalizedTime < 1f)
         {
             if (normalizedTime >= attack.ForceTime)
@@ -70,6 +79,8 @@ public class PlayerAttackState : PlayerBaseState
     {
         stateMachine.AttackHandlers.PlayAttackSound -= PlayerSound;
         stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
+        stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
+        stateMachine.Stamina.OnEnergetic -= SetHighStaminaSpeed;
     }
 
     void TryCombo(float normalizedTime, int attackIndex, Attack[] nextComboList)
@@ -97,5 +108,15 @@ public class PlayerAttackState : PlayerBaseState
     void PlayerSound()
     {
         SoundManager.Instance.PlaySound(attack.AudioClip);
+    }
+
+    void SetLowStaminaSpeed()
+    {
+        isTired = true;
+    }
+
+    void SetHighStaminaSpeed()
+    {
+        isTired = false;
     }
 }

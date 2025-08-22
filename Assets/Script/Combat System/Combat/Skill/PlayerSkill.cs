@@ -7,7 +7,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
 {
     public event Action OnActiveSkill;
     [SerializeField] GameObject[] skillUI;
-    [field: SerializeField] public List<SkillData> skillData { get; private set; }
+    public List<SkillData> skillDatas { get; set; }
 
     public List<SkillData> alreadySkill { get; private set; }
 
@@ -16,19 +16,27 @@ public class PlayerSkill : Singleton<PlayerSkill>
     Image fillImage;       // Icon kĩ năng sắc nét, dùng để làm hiệu ứng hồi chiêu
     List<Image> fillImageList;
 
-    void Start()
+    protected override void Awake()
     {
-
+        base.Awake();
         fillImageList = new List<Image>();
         alreadySkill = new List<SkillData>();
-        // UpdateImage();
+    }
+
+    public void GetSkillDatas(List<SkillData> _skillDatas)
+    {
+        skillDatas = _skillDatas;
+    }
+
+    public void SetUp()
+    {
         SetupStart();
         SetCooldownSkill();
     }
 
     void SetupStart()
     {
-        foreach (SkillData skill in skillData)
+        foreach (SkillData skill in skillDatas)
         {
             if (skill.unlocked)
             {
@@ -39,7 +47,6 @@ public class PlayerSkill : Singleton<PlayerSkill>
 
     public void UpdateImage(SkillData skillData)
     {
-
         for (int i = 0; i < skillUI.Length; i++)
         {
             backgroundImage = skillUI[i].transform.Find("Background")?.GetComponent<Image>();
@@ -58,7 +65,6 @@ public class PlayerSkill : Singleton<PlayerSkill>
                 backgroundImage.gameObject.SetActive(true);
                 fillImage.gameObject.SetActive(true);
                 alreadySkill.Add(skillData);
-                Debug.Log(alreadySkill[0]);
                 break;
             }
         }
@@ -77,7 +83,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
 
     public void UnlockSkill(string skillName)
     {
-        SkillData skill = skillData.Find(name => name.SkillName == skillName);
+        SkillData skill = skillDatas.Find(name => name.SkillName == skillName);
         if (skill != null && !skill.unlocked)
         {
             skill.unlocked = true;
@@ -91,7 +97,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
         for (int i = 0; i < fillImageList.Count; i++)
         {
             CoolDown coolDown = fillImageList[i].GetComponent<CoolDown>();
-            coolDown.coolDownTime = skillData[i].CoolDown;
+            coolDown.coolDownTime = skillDatas[i].CoolDown;
         }
     }
 }

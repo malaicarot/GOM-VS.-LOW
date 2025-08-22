@@ -74,3 +74,19 @@ public class DarkLightning : Ability
     }
 }
 
+public class DarkStreak : Ability
+{
+    public override string Name => "DarkStreak";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.EffectObject.transform.rotation);
+        skill.transform.parent = caster.transform;
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
+        attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+        BoxCollider boxCollider = skill.GetComponentInChildren<BoxCollider>(true);
+        boxCollider.enabled = true;
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}

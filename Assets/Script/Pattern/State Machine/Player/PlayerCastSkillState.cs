@@ -38,7 +38,6 @@ public class PlayerCastSkillState : PlayerBaseState
     void UseSkill(int index)
     {
         string name = PlayerSkill.Instance.alreadySkill[index].SkillName;
-        Debug.Log(name);
         ability = AbilityFactory.GetAbility(name);
         if (ability != null)
         {

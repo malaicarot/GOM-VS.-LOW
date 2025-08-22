@@ -6,7 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] GameObject weaponRight;
     [SerializeField] GameObject weaponLeft;
-    public List<SpecialEffectsData> specialEffectsActiveList = new List<SpecialEffectsData>();
+    // public List<SpecialEffectsData> specialEffectsActiveList = new List<SpecialEffectsData>();
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
     public event Action OnSetWeapon;
@@ -15,56 +15,67 @@ public class PlayerCombat : MonoBehaviour
     public GameObject mainWeapon { get; private set; }
     public GameObject subWeapon { get; private set; }
 
-
+    void Awake()
+    {
+        
+    }
     void Start()
     {
-        SetUpEffectActive();
+        // SetUpEffectActive();
         EquipWeapon("GemSword");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
+
+        PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
+        PlayerSkill.Instance.SetUp();
     }
 
-    void Update()
-    {
-        ApplyEffect();
-    }
-
-    void OnEnable()
-    {
-        SpecialEffectManagers.Instance.OnActiveEffect += SetUpEffectActive;
-    }
-
-    // void OnDisable()
+    // void GetSkill()
     // {
-    //     SpecialEffectManagers.Instance.OnActiveEffect -= SetUpEffectActive;
+        
+    // }
+
+    // void Update()
+    // {
+    //     ApplyEffect();
+    // }
+
+    // void OnEnable()
+    // {
+    //     SpecialEffectManagers.Instance.OnActiveEffect += SetUpEffectActive;
+    // }
+
+    // void SetUpEffectActive()
+    // {
+    //     foreach (SpecialEffectsData effect in SpecialEffectManagers.Instance.specialEffectsDataList)
+    //     {
+    //         if (effect.unlocked)
+    //         {
+    //             specialEffectsActiveList.Add(effect);
+    //         }
+    //     }
     // }
 
 
-    void SetUpEffectActive()
-    {
-        foreach (SpecialEffectsData effect in SpecialEffectManagers.Instance.specialEffectsDataList)
-        {
-            if (effect.unlocked)
-            {
-                specialEffectsActiveList.Add(effect);
-            }
-        }
-    }
+    // void ApplyEffect()
+    // {
+    //     foreach (SpecialEffectsData effect in specialEffectsActiveList)
+    //     {
+    //         string name = effect.EffectName;
+    //         Effect effectOn = EffectFactory.GetEffect(name);
+    //         if (effectOn == null)
+    //         {
+    //             continue;
+    //         }
+    //         // effect.ActiveAtion();
+    //         effectOn.Proccess(effect, this.gameObject);
+    //     }
+    // }
 
 
-    void ApplyEffect()
+    void GetSkillOfWeapon()
     {
-        foreach (SpecialEffectsData effect in specialEffectsActiveList)
-        {
-            string name = effect.EffectName;
-            Effect effectOn = EffectFactory.GetEffect(name);
-            if (effectOn == null)
-            {
-                continue;
-            }
-            // effect.ActiveAtion();
-            effectOn.Proccess(effect, this.gameObject);
-        }
+        // foreach()
     }
 
     void EquipWeapon(string name)

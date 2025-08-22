@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
     public bool isDead => currentHealth == 0;
     public bool isCounterPlayer { get; set; } = false;
 
+    public bool isChangingPhase = false;
+
     PlayerStats playerStats;
     float currentHealth;
     int resistance;
@@ -100,9 +102,13 @@ public class Health : MonoBehaviour
             OnDeath?.Invoke();
         }
 
-        if (GetHealthToChangeState())
+        if (!isChangingPhase)
         {
-            OnProcessBloodThreshold?.Invoke();
+            if (GetHealthToChangeState())
+            {
+                OnProcessBloodThreshold?.Invoke();
+                isChangingPhase = true;
+            }
         }
     }
 }

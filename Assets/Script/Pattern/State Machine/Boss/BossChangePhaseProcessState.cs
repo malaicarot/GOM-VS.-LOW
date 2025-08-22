@@ -17,6 +17,8 @@ public class BossChangePhaseProcessState : BossBaseState
 
     public override void Enter()
     {
+        bossStateMachine.Health.OnTakeDamage -= bossStateMachine.HandleAttack;
+
         bossStateMachine.Animator.CrossFadeInFixedTime(StartChangePhaseAnimationHash, bossStateMachine.CrossFadeDuration);
     }
 
@@ -35,6 +37,7 @@ public class BossChangePhaseProcessState : BossBaseState
 
     public override void Exit()
     {
+        bossStateMachine.Health.OnTakeDamage += bossStateMachine.HandleAttack;
     }
 
     void Animation()

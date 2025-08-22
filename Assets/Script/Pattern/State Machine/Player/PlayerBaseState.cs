@@ -35,10 +35,12 @@ public abstract class PlayerBaseState : State
         if (stateMachine.Targeter.currentTarget != null)
         {
             stateMachine.SwitchState(new PlayerTargetState(stateMachine));
+            return;
         }
         else
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            return;
         }
     }
 
@@ -53,5 +55,5 @@ public abstract class PlayerBaseState : State
         return forward * stateMachine.InputReader.Movement.y + right * stateMachine.InputReader.Movement.x;
     }
 
-   
+
 }

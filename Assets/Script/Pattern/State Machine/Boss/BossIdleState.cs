@@ -25,10 +25,7 @@ public class BossIdleState : BossBaseState
         FaceTarget();
         bossStateMachine.Animator.SetFloat(BossMoveRightHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
         bossStateMachine.Animator.SetFloat(BossMoveForwardtHash, 0, bossStateMachine.CrossFadeDuration, deltaTime);
-        Move(deltaTime);
-        
-        bossStateMachine.SwitchState(new BossMagicAOEState(bossStateMachine));
-       
+        Move(deltaTime);       
 
         if (UtilityAIManager.Instance.interruped)
         {

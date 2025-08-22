@@ -10,11 +10,6 @@ public class UIManagers : Singleton<UIManagers>
     public event Action ActionCountinue;
     public event Action Rest;
 
-
-    // void Start()
-    // {
-    //     Debug.Log("asdad");
-    // }
     public void ActiveCheckpointUI(bool state)
     {
         UICheckpointInteraction.SetActive(state);

@@ -20,7 +20,7 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public GameObject WeaponDisalbe { get; set; }
     [field: SerializeField] public Transform Projectile { get; set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
-    [field: SerializeField] public float DashSpeed { get; private set; }
+    [field: SerializeField] public float DashSpeed { get; set; }
     [field: SerializeField] public float BulletForce { get; private set; }
     [field: SerializeField] public float WeaponThrowSpeed { get; private set; }
     [field: SerializeField] public float BossJumpForce { get; private set; }
@@ -31,17 +31,18 @@ public class BossStateMachine : StateMachine
     [field: SerializeField] public float BossAttackRange { get; private set; }
     [field: SerializeField] public float BossAttackKnockback { get; private set; }
     [field: SerializeField] public float TimeResetInterruped { get; private set; }
-    [field: SerializeField] public int JumpAttackTime { get; private set; }
+    [field: SerializeField] public int JumpAttackTime { get; set; }
     [field: SerializeField] public int[] RandomHitCount { get; private set; }
     [field: SerializeField] public float TimeWaitToCastAOE { get; private set; }
     [field: SerializeField] public float TimeCastAOE { get; set; }
-
+    [field: SerializeField] public float TimeToShootBullet { get; set; }
 
     public Health Player { get; private set; }
     public Attack[] AttackRandom { get; set; }
     public int hitCount { get; set; }
     public int countJumpAttack { get; set; } = 0;
     public int countBallisticsAttack { get; set; } = 0;
+    public bool isPhaseTwo { get; set; } = false;
 
 
 
@@ -67,7 +68,7 @@ public class BossStateMachine : StateMachine
         Health.OnProcessBloodThreshold -= HandleChangPhase;
     }
 
-    void HandleAttack()
+    public void HandleAttack()
     {
         SwitchState(new BossImpactState(this));
     }
@@ -79,6 +80,10 @@ public class BossStateMachine : StateMachine
 
     void HandleChangPhase()
     {
+        isPhaseTwo = true;
+        TimeToShootBullet *= 2;
+        JumpAttackTime *= 2;
+        DashSpeed *= 1.5f;
         SwitchState(new BossChangePhaseProcessState(this));
     }
 

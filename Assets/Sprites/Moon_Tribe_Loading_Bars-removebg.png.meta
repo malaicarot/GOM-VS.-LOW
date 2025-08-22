@@ -1,0 +1,764 @@
+fileFormatVersion: 2
+guid: fe4e81932b822d6408474c73bac912be
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 290
+        width: 82
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 050e202488bb2b7488483402f7e4f0d2
+      internalID: -515749361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_1
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 289
+        width: 75
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 453bef881152ae3489a03ed98040afe6
+      internalID: -394480067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 288
+        width: 63
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71d6befc38e5d4d4f89ecbd679c752e6
+      internalID: 2141635276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_3
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 291
+        width: 80
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b7dbe6175cc84f4fbd2fb13e0a80026
+      internalID: 1133776057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_4
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 290
+        width: 82
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491b3d5f5dc5c1643a4f011773c70e46
+      internalID: 1740453649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_5
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 291
+        width: 83
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4aa20e183fb95488c840b7a1f2d4b5
+      internalID: -173312375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_6
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 290
+        width: 83
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 937b4bd101139564699cd4a5b162fab1
+      internalID: 1106108960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_7
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 200
+        width: 82
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d563cfe959f3f847b3fc25081f399d5
+      internalID: 427521508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 204
+        width: 75
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 511fcb670970f5f4e957ffd0d6b352a3
+      internalID: -1157861350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_9
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 204
+        width: 74
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b645e998bdd55040a68ea062316157a
+      internalID: 1611880942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_10
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 197
+        width: 75
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85780c51ea74c5d4caede96fa69cd722
+      internalID: 1528738976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_11
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 200
+        width: 83
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d9e443381bb19448426f76302f7eda
+      internalID: -831854282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_12
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 203
+        width: 73
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38059f3c8e15dc848bb7c456937843c6
+      internalID: -866222394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_13
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 204
+        width: 62
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb952bdb175c9a14da931ba1ba9785a2
+      internalID: 844397556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 110
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50815769e61c7ff4b9d708d859ac4eea
+      internalID: 1102815757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_15
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 109
+        width: 69
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad551af032d89774fb6a7c1fd7f15485
+      internalID: 367451687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_16
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 109
+        width: 86
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4874724730ac4a428b7ff7f0f50ccc3
+      internalID: 1055004318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_17
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 106
+        width: 86
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ffb7e98b77be29498b2b07f43880a8e
+      internalID: -1914613137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_18
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 109
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 791b17fb840ad7d4d96da4996a4291d7
+      internalID: 614172404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_19
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 112
+        width: 69
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00bfbd7c04fe46949803157cf05546d2
+      internalID: 1392692154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_20
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 106
+        width: 85
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f3225b11cfd7f45b6e908f85056930
+      internalID: -1152426132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_21
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 26
+        width: 67
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4cbf91b3baa67940823ecf3c0186df4
+      internalID: -375459051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_22
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 26
+        width: 69
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cfdc8d530bdfa3438efef7ca595f8d7
+      internalID: 1909409784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_23
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 21
+        width: 71
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f078785891f9fbd4687647e4cab09879
+      internalID: -1465877080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_24
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 26
+        width: 71
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a3f803d28149304ba9ccc736ce9bf7a
+      internalID: -119191738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_25
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 18
+        width: 70
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc775f07da8ef6e46b11c422c514ac6d
+      internalID: 469037952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tribe_Loading_Bars-removebg_26
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 26
+        width: 62
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc7703dd8acf934594e050424975c90
+      internalID: -1943337629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 978b2b39656d93c49bfd2d0afd4cb5ee
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Moon_Tribe_Loading_Bars-removebg_0: -515749361
+      Moon_Tribe_Loading_Bars-removebg_1: -394480067
+      Moon_Tribe_Loading_Bars-removebg_10: 1528738976
+      Moon_Tribe_Loading_Bars-removebg_11: -831854282
+      Moon_Tribe_Loading_Bars-removebg_12: -866222394
+      Moon_Tribe_Loading_Bars-removebg_13: 844397556
+      Moon_Tribe_Loading_Bars-removebg_14: 1102815757
+      Moon_Tribe_Loading_Bars-removebg_15: 367451687
+      Moon_Tribe_Loading_Bars-removebg_16: 1055004318
+      Moon_Tribe_Loading_Bars-removebg_17: -1914613137
+      Moon_Tribe_Loading_Bars-removebg_18: 614172404
+      Moon_Tribe_Loading_Bars-removebg_19: 1392692154
+      Moon_Tribe_Loading_Bars-removebg_2: 2141635276
+      Moon_Tribe_Loading_Bars-removebg_20: -1152426132
+      Moon_Tribe_Loading_Bars-removebg_21: -375459051
+      Moon_Tribe_Loading_Bars-removebg_22: 1909409784
+      Moon_Tribe_Loading_Bars-removebg_23: -1465877080
+      Moon_Tribe_Loading_Bars-removebg_24: -119191738
+      Moon_Tribe_Loading_Bars-removebg_25: 469037952
+      Moon_Tribe_Loading_Bars-removebg_26: -1943337629
+      Moon_Tribe_Loading_Bars-removebg_3: 1133776057
+      Moon_Tribe_Loading_Bars-removebg_4: 1740453649
+      Moon_Tribe_Loading_Bars-removebg_5: -173312375
+      Moon_Tribe_Loading_Bars-removebg_6: 1106108960
+      Moon_Tribe_Loading_Bars-removebg_7: 427521508
+      Moon_Tribe_Loading_Bars-removebg_8: -1157861350
+      Moon_Tribe_Loading_Bars-removebg_9: 1611880942
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

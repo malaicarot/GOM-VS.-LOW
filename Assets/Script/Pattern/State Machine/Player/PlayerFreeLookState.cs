@@ -43,7 +43,6 @@ public class PlayerFreeLookState : PlayerBaseState
         float targetSpeed = stateMachine.InputReader.IsSprint ?
         speed * stateMachine.MultiplyCoefficientSpeed :
         speed;
-        Move(direction * targetSpeed, deltaTime);
 
         if (isTired)
         {
@@ -51,9 +50,12 @@ public class PlayerFreeLookState : PlayerBaseState
         }
         else
         {
+
             SetAnimation(0, 1, 2, deltaTime);
         }
 
+
+        Move(direction * targetSpeed, deltaTime);
         RotationByFaceDirection(direction, deltaTime);
     }
 
@@ -76,7 +78,6 @@ public class PlayerFreeLookState : PlayerBaseState
         }
     }
 
-
     void OnTarget()
     {
         if (!stateMachine.Targeter.SelectedTarget()) { return; }
@@ -98,6 +99,8 @@ public class PlayerFreeLookState : PlayerBaseState
         }
         else
         {
+            // stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
+
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
             stateMachine.Animator.SetFloat(MovementSpeedHash, walk, AnimationDamping, deltaTime);
         }

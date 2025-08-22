@@ -8,7 +8,7 @@ public class SelfReturn : MonoBehaviour
     [SerializeField] float timeToReturn;
     float time;
 
-    void Start()
+    void OnEnable()
     {
         time = timeToReturn;
     }
