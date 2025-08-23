@@ -20,7 +20,7 @@ public class UtilityAIManager : Singleton<UtilityAIManager>
 
     void OnEnable()
     {
-        health = GameObject.FindGameObjectWithTag("Boss").GetComponent<Health>();
+        health = GameObject.FindGameObjectWithTag("Boss")?.GetComponent<Health>();
     }
 
     void Update()

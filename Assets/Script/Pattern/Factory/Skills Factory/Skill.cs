@@ -27,7 +27,7 @@ public class Earthquake : Ability
     }
 }
 
-public class Enhancement : Ability
+public class EarthEnhancement : Ability
 {
     public override string Name => "Enhancement";
 

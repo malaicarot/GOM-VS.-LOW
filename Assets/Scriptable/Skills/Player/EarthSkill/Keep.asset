@@ -15,10 +15,9 @@ MonoBehaviour:
   SkillName: Keep
   Description: Summons a layer of rock that holds enemies in place for a short duration.
   Sprite: {fileID: 21300000, guid: 3df2305b11acdd14ba2c9cc2f40d8cd1, type: 3}
-  Animation: {fileID: 7400000, guid: a11330496a9c6b54891f67c207e0d54c, type: 2}
+  AnimationName: Keep
   ManaCost: 10
   CoolDown: 20
-  LevelNeeded: 0
   Damage: 0
   KnockBack: 0
   unlocked: 1

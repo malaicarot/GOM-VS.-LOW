@@ -8,8 +8,11 @@ public class PlayerSkill : Singleton<PlayerSkill>
     public event Action OnActiveSkill;
     [SerializeField] GameObject[] skillUI;
     public List<SkillData> skillDatas { get; set; }
-
     public List<SkillData> alreadySkill { get; private set; }
+
+    public event Action OnGotSkills;
+
+    public Target target;
 
 
     Image backgroundImage; // Icon kĩ năng được làm mờ 
@@ -99,5 +102,17 @@ public class PlayerSkill : Singleton<PlayerSkill>
             CoolDown coolDown = fillImageList[i].GetComponent<CoolDown>();
             coolDown.coolDownTime = skillDatas[i].CoolDown;
         }
+    }
+
+
+    public void TargetIndentify(Target target)
+    {
+        if (target == null)
+        {
+            return;
+        }
+        this.target = target;
+        Debug.Log(this.target.transform.position);
+        OnActiveSkill?.Invoke();
     }
 }

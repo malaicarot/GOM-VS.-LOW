@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PlayerCastSkillState : PlayerBaseState
 {
-    readonly int CastSkillHash = Animator.StringToHash("CastSkill");
-    readonly string CastSkillTag = "CastSkill";
-    readonly string overideName = "DefaultSkill";
+    readonly string CastSkillTag = "Skill";
     int skillIndex;
     Ability ability;
 
@@ -18,14 +16,15 @@ public class PlayerCastSkillState : PlayerBaseState
         skillIndex = stateMachine.InputReader.ButtonIndex;
         UseSkill(skillIndex);
         stateMachine.Mana.ReduceMana(PlayerSkill.Instance.alreadySkill[skillIndex].ManaCost);
-        stateMachine.PlayAnimation(stateMachine.AnimatorOverrideController, overideName, CastSkillHash, PlayerSkill.Instance.alreadySkill[skillIndex].Animation);
+        stateMachine.Animator.CrossFadeInFixedTime(PlayerSkill.Instance.alreadySkill[skillIndex].AnimationName, stateMachine.CrossFadeDuration);
+        PlayerSkill.Instance.TargetIndentify(stateMachine.Targeter.currentTarget);
     }
 
     public override void Tick(float deltaTime)
     {
 
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, CastSkillTag);
-        if (normalizedTime > 1f)
+        if (normalizedTime >= 0.8f && normalizedTime <= 1f)
         {
             ReturnToLocomotion();
         }

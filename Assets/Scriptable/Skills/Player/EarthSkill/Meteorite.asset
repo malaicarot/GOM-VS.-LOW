@@ -18,10 +18,9 @@ MonoBehaviour:
 
 '
   Sprite: {fileID: 21300000, guid: 39ea772f2306d00498eaf3e3db1b640f, type: 3}
-  Animation: {fileID: 0}
+  AnimationName: Meteorite
   ManaCost: 10
   CoolDown: 10
-  LevelNeeded: 0
   Damage: 0
   KnockBack: 0
   unlocked: 1

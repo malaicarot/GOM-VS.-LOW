@@ -10,7 +10,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Button[] Buttons { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
-    [field: SerializeField] public AnimatorOverrideController AnimatorOverrideController { get; private set; }
+    // [field: SerializeField] public AnimatorOverrideController AnimatorOverrideController { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
@@ -148,13 +148,13 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerHealingState(this));
     }
 
-    public void PlayAnimation(AnimatorOverrideController animatorOverrideController, string overideName, int animationHash, AnimationClip animation)
-    {
-        AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(animatorOverrideController);
-        runtimeOverride[overideName] = animation;
-        Animator.runtimeAnimatorController = runtimeOverride;
-        Animator.CrossFadeInFixedTime(animationHash, CrossFadeDuration);
-    }
+    // public void PlayAnimation(AnimatorOverrideController animatorOverrideController, string overideName, int animationHash, AnimationClip animation)
+    // {
+    //     AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(animatorOverrideController);
+    //     runtimeOverride[overideName] = animation;
+    //     Animator.runtimeAnimatorController = runtimeOverride;
+    //     Animator.CrossFadeInFixedTime(animationHash, CrossFadeDuration);
+    // }
 
 
     void OnTriggerEnter(Collider other)
