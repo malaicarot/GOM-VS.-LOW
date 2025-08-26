@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -126,9 +127,9 @@ public class PlayerStats : MonoBehaviour
         IncreaseStats?.Invoke();
     }
 
-    public void IncreaseResistance()
+    public void IncreaseResistance(int amount)
     {
-        IncreaseAmount("Resistance", resistanceIncrease);
+        IncreaseAmount("Resistance", amount);
         IncreaseStats?.Invoke();
     }
 
@@ -146,5 +147,17 @@ public class PlayerStats : MonoBehaviour
             currentDamage += currentDamage / 2;
         }
         return currentDamage;
+    }
+
+    public void ReturnValue(int amount)
+    {
+        StartCoroutine(ReturnDefaultValue(amount));
+    }
+
+    IEnumerator ReturnDefaultValue(int amount)
+    {
+        IncreaseResistance(amount);
+        yield return new WaitForSecondsRealtime(10f);
+        IncreaseResistance(-amount);
     }
 }
