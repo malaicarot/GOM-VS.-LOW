@@ -58,12 +58,14 @@ public class BossStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeath;
+        Health.OnHardCC += HandleHardCC;
         Health.OnProcessBloodThreshold += HandleChangPhase;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= HandleAttack;
+        Health.OnHardCC -= HandleHardCC;
         Health.OnDeath -= HandleDeath;
         Health.OnProcessBloodThreshold -= HandleChangPhase;
     }
@@ -76,6 +78,11 @@ public class BossStateMachine : StateMachine
     void HandleDeath()
     {
         SwitchState(new BossDeadState(this));
+    }
+
+    void HandleHardCC()
+    {
+        
     }
 
     void HandleChangPhase()

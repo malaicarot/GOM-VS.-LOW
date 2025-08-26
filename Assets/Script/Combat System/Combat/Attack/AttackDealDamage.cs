@@ -29,8 +29,16 @@ public class AttackDealDamage : MonoBehaviour
         alreadyCollider.Add(other);
 
 
+
+
+
         if (other.TryGetComponent<Health>(out Health health))
         {
+            if (this.CompareTag("Hard_CC"))
+            {
+                health.isHardCC = true;
+            }
+
             if (this.CompareTag("EnemySpecialAttack"))
             {
                 health.isCounterPlayer = true;

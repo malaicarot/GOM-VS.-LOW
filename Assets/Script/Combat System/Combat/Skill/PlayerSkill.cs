@@ -113,6 +113,6 @@ public class PlayerSkill : Singleton<PlayerSkill>
         }
         this.target = target;
         Debug.Log(this.target.transform.position);
-        OnActiveSkill?.Invoke();
+        // OnActiveSkill?.Invoke();
     }
 }

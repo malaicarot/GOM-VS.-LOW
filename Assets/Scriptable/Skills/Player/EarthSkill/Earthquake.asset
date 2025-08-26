@@ -18,10 +18,10 @@ MonoBehaviour:
   AnimationName: Earthquake
   ManaCost: 10
   CoolDown: 5
-  Damage: 0
+  Damage: 50
   KnockBack: 0
   unlocked: 1
-  EffectObject: {fileID: 0}
+  EffectObject: {fileID: 5214774174421580141, guid: 80d7d20184735a542828fac63cc1fed8, type: 3}
   Sound: {fileID: 0}
   Range: 0
   IsAOE: 0

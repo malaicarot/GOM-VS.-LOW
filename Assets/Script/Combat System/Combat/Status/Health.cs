@@ -8,12 +8,15 @@ public class Health : MonoBehaviour
     public event Action OnTakeDamage;
     public event Action OnDeath;
     public event Action OnStun;
+    public event Action OnHardCC;
     public event Action OnProcessBloodThreshold;
 
     public bool isDead => currentHealth == 0;
     public bool isCounterPlayer { get; set; } = false;
-
+    public bool isHardCC { get; set; } = false;
     public bool isChangingPhase = false;
+
+    
 
     PlayerStats playerStats;
     float currentHealth;
@@ -91,6 +94,11 @@ public class Health : MonoBehaviour
         {
             OnStun?.Invoke();
             isCounterPlayer = false;
+        }
+        else if (isHardCC)
+        {
+            OnHardCC?.Invoke();
+            isHardCC = false;
         }
         else
         {

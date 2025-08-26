@@ -39,6 +39,7 @@ public class EnemyStateMachine : StateMachine
 
     void OnEnable()
     {
+        Health.OnHardCC += HandleHardCC;
         Health.OnTakeDamage += HandleAttack;
         Health.OnDeath += HandleDeadState;
         FallToGround();
@@ -46,6 +47,7 @@ public class EnemyStateMachine : StateMachine
 
     void OnDisable()
     {
+        Health.OnHardCC -= HandleHardCC;
         Health.OnTakeDamage -= HandleAttack;
         Health.OnDeath -= HandleDeadState;
     }
@@ -53,6 +55,11 @@ public class EnemyStateMachine : StateMachine
     void HandleAttack()
     {
         SwitchState(new EnemyImpactState(this));
+    }
+
+    void HandleHardCC()
+    {
+        SwitchState(new EnemyHardCCState(this));
     }
 
     void HandleDeadState()

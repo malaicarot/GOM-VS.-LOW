@@ -40,7 +40,7 @@ public class PlayerCastSkillState : PlayerBaseState
         ability = AbilityFactory.GetAbility(name);
         if (ability != null)
         {
-            ability.Proccess(PlayerSkill.Instance.alreadySkill[index], stateMachine.gameObject, stateMachine.gameObject.transform);
+            ability.Proccess(PlayerSkill.Instance.alreadySkill[index], stateMachine.gameObject, stateMachine.SkillPosition.transform);
         }
     }
 }

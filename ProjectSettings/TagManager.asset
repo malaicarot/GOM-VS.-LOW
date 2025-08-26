@@ -12,6 +12,7 @@ TagManager:
   - Ledge
   - EnemyAttack
   - EnemySpecialAttack
+  - Hard_CC
   layers:
   - Default
   - TransparentFX
