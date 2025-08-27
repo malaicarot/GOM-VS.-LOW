@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class AttackDealDamage : MonoBehaviour
 {
     public Collider myCollider;
     List<Collider> alreadyCollider = new List<Collider>();
+    public event Action OnDissolve;
     int dealDamaged;
     float knockback;
 
@@ -29,8 +31,10 @@ public class AttackDealDamage : MonoBehaviour
         alreadyCollider.Add(other);
 
 
-
-
+        if (this.CompareTag("DragonAttack") && (other.CompareTag("Boss") || other.CompareTag("Enemy")))
+        {
+            OnDissolve?.Invoke();
+        }
 
         if (other.TryGetComponent<Health>(out Health health))
         {

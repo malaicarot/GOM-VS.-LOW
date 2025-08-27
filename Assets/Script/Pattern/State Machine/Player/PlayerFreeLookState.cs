@@ -81,6 +81,7 @@ public class PlayerFreeLookState : PlayerBaseState
     void OnTarget()
     {
         if (!stateMachine.Targeter.SelectedTarget()) { return; }
+        PlayerSkill.Instance.TargetIndentify(stateMachine.Targeter.currentTarget);
         stateMachine.SwitchState(new PlayerTargetState(stateMachine));
     }
 

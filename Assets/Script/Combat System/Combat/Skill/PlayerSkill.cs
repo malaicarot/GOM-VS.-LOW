@@ -12,7 +12,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
 
     public event Action OnGotSkills;
 
-    public Target target;
+    public Target target { get; private set; }
 
 
     Image backgroundImage; // Icon kĩ năng được làm mờ 
@@ -105,14 +105,12 @@ public class PlayerSkill : Singleton<PlayerSkill>
     }
 
 
-    public void TargetIndentify(Target target)
+    public void TargetIndentify(Target _target)
     {
-        if (target == null)
+        if (_target == null)
         {
             return;
         }
-        this.target = target;
-        Debug.Log(this.target.transform.position);
-        // OnActiveSkill?.Invoke();
+        this.target = _target;
     }
 }

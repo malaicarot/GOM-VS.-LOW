@@ -22,7 +22,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         // SetUpEffectActive();
-        EquipWeapon("GemSword");
+        EquipWeapon("EarthHammer");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
 

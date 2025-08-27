@@ -57,16 +57,17 @@ public class EarthEnhancement : Ability
     }
 }
 
-public class Meteorite : Ability
+public class EarthDragon : Ability
 {
-    public override string Name => "Meteorite";
+    public override string Name => "EarthDragon";
 
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
-        // GameObject gameObject = GameObject.Instantiate(skillData.EffectObject, spawn.position, spawn.rotation);
-        // ParticleSystem skill = gameObject.GetComponent<ParticleSystem>();
-        // skill.Play();
-        Debug.Log(Name);
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, spawn.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
+        // attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
 }
 

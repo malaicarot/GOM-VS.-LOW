@@ -13,6 +13,7 @@ TagManager:
   - EnemyAttack
   - EnemySpecialAttack
   - Hard_CC
+  - DragonAttack
   layers:
   - Default
   - TransparentFX

@@ -86,7 +86,5 @@ public class BossChasingState : BossBaseState
             bossStateMachine.SwitchState(new BossMagicAOEState(bossStateMachine));
             return;
         }
-
-
     }
 }

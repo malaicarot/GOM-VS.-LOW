@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e202f3996829c14cbce6da58989f3a6, type: 3}
-  m_Name: VikingSword
+  m_Name: FireAxe
   m_EditorClassIdentifier: 
-  Name: VikingSword
+  Name: FireAxe
   Thumbnail: {fileID: 0}
-  WeaponPrefab: {fileID: 2455212711425032272, guid: 9a85788d4cc95794a90c0b77a2994d13, type: 3}
+  WeaponPrefab: {fileID: 2657625865324565839, guid: 8b619c2273fa4e1478003dbcbaf3223b, type: 3}
   AnimationTag: Attack
   Attacks:
-  - <AttackAnimationName>k__BackingField: Sword_Attack_1
+  - <AttackAnimationName>k__BackingField: Axe_Attack_1
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
     <AttackIndex>k__BackingField: 1
@@ -25,8 +25,8 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: bee35a4829bd8d641935563d00945ca6, type: 3}
-  - <AttackAnimationName>k__BackingField: Sword_Attack_2
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 569a54f98f3716e4fafef371a854dc19, type: 3}
+  - <AttackAnimationName>k__BackingField: Axe_Attack_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
     <AttackIndex>k__BackingField: 2
@@ -35,7 +35,7 @@ MonoBehaviour:
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
     <AudioClip>k__BackingField: {fileID: 8300000, guid: e9ca1316c211e834d8b9bc76d8af4106, type: 3}
-  - <AttackAnimationName>k__BackingField: Sword_Attack_3
+  - <AttackAnimationName>k__BackingField: Axe_Attack_3
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
     <AttackIndex>k__BackingField: 3
@@ -44,7 +44,7 @@ MonoBehaviour:
     <AttackDamage>k__BackingField: 7
     <AttackKnockback>k__BackingField: 20
     <AudioClip>k__BackingField: {fileID: 8300000, guid: eee16dc9faa0eda4d9653d4cf7d56847, type: 3}
-  - <AttackAnimationName>k__BackingField: Sword_Attack_4
+  - <AttackAnimationName>k__BackingField: Axe_Attack_4
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
     <AttackIndex>k__BackingField: -1
@@ -53,3 +53,4 @@ MonoBehaviour:
     <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 20
     <AudioClip>k__BackingField: {fileID: 8300000, guid: e93ab68b3d5beff46839af47f10b34a7, type: 3}
+  SkillsOfWeapon: []
