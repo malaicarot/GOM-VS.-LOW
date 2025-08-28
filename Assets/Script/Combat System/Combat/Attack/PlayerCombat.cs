@@ -6,7 +6,6 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] GameObject weaponRight;
     [SerializeField] GameObject weaponLeft;
-    // public List<SpecialEffectsData> specialEffectsActiveList = new List<SpecialEffectsData>();
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
     public event Action OnSetWeapon;
@@ -17,65 +16,16 @@ public class PlayerCombat : MonoBehaviour
 
     void Awake()
     {
-        
+
     }
     void Start()
     {
-        // SetUpEffectActive();
-        EquipWeapon("EarthHammer");
+        EquipWeapon("FireAxe");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
 
         PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
         PlayerSkill.Instance.SetUp();
-    }
-
-    // void GetSkill()
-    // {
-        
-    // }
-
-    // void Update()
-    // {
-    //     ApplyEffect();
-    // }
-
-    // void OnEnable()
-    // {
-    //     SpecialEffectManagers.Instance.OnActiveEffect += SetUpEffectActive;
-    // }
-
-    // void SetUpEffectActive()
-    // {
-    //     foreach (SpecialEffectsData effect in SpecialEffectManagers.Instance.specialEffectsDataList)
-    //     {
-    //         if (effect.unlocked)
-    //         {
-    //             specialEffectsActiveList.Add(effect);
-    //         }
-    //     }
-    // }
-
-
-    // void ApplyEffect()
-    // {
-    //     foreach (SpecialEffectsData effect in specialEffectsActiveList)
-    //     {
-    //         string name = effect.EffectName;
-    //         Effect effectOn = EffectFactory.GetEffect(name);
-    //         if (effectOn == null)
-    //         {
-    //             continue;
-    //         }
-    //         // effect.ActiveAtion();
-    //         effectOn.Proccess(effect, this.gameObject);
-    //     }
-    // }
-
-
-    void GetSkillOfWeapon()
-    {
-        // foreach()
     }
 
     void EquipWeapon(string name)

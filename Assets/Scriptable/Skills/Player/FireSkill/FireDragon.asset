@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02aacfd2f94603243a445dc397a03649, type: 3}
-  m_Name: FireBullet
+  m_Name: FireDragon
   m_EditorClassIdentifier: 
-  SkillName: FireBullet
+  SkillName: FireDragon
   Description: 
-  Sprite: {fileID: 21300000, guid: 2c5d7653130803e4395dff8379356811, type: 3}
-  AnimationName: 
+  Sprite: {fileID: 21300000, guid: ce78dcf5506ebd140b8211e73eae7ebe, type: 3}
+  AnimationName: SummonBeast
   ManaCost: 0
   CoolDown: 0
   Damage: 0
   KnockBack: 0
-  unlocked: 0
+  unlocked: 1
   EffectObject: {fileID: 0}
   Sound: {fileID: 0}
   Range: 0
