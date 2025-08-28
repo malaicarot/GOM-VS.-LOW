@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Keep : Ability
@@ -67,6 +68,59 @@ public class EarthDragon : Ability
         AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
         attackDealDamage.gameObject.SetActive(true);
         attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
+
+public class Sear : Ability
+{
+    public override string Name => "Sear";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
+        Target target = playerStateMachine?.Targeter.currentTarget;
+        if (target == null)
+        {
+            Debug.Log("No tager!");
+            return;
+        }
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, skillData.EffectObject.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
+public class Conflagration : Ability
+{
+    public override string Name => "Conflagration";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
+        Target target = playerStateMachine?.Targeter.currentTarget;
+        if (target == null)
+        {
+            Debug.Log("No tager!");
+            return;
+        }
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, target.transform.position, skillData.EffectObject.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
+public class FireEnhancment : Ability
+{
+    public override string Name => "FireEnhancment";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
+        PlayerCombat playerCombat = playerStateMachine.PlayerCombat;
+        playerCombat.Enhancment(191, 7, 0, 10);
     }
 }
 

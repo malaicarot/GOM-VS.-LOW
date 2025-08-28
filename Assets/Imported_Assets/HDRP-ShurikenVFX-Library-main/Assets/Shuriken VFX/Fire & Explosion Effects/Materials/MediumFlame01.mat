@@ -34,7 +34,6 @@ Material:
   - _DOUBLESIDED_ON
   - _EMISSION
   - _ENABLE_FOG_ON_TRANSPARENT
-  - _MATERIAL_FEATURE_TRANSMISSION
   - _SURFACE_TYPE_TRANSPARENT
   - _TRANSPARENT_WRITES_MOTION_VEC
   m_InvalidKeywords: []
@@ -161,7 +160,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _LightingEnabled: 0
-    - _MaterialID: 5
+    - _MaterialID: 1
     - _MaterialTypeMask: 32
     - _Metallic: 0
     - _Mode: 2

@@ -16,12 +16,11 @@ MonoBehaviour:
   Description: 
   Sprite: {fileID: 21300000, guid: 19e4e3b2a253de047b24529835e274e5, type: 3}
   AnimationName: Conflagration
-  ManaCost: 0
-  CoolDown: 0
-  Damage: 0
-  KnockBack: 0
+  ManaCost: 10
+  CoolDown: 10
+  Damage: 90
+  KnockBack: 60
   unlocked: 1
-  EffectObject: {fileID: 0}
+  EffectObject: {fileID: 119252583124784622, guid: 1b4250dfd2b3af84eb0caae246ed074d, type: 3}
   Sound: {fileID: 0}
-  Range: 0
-  IsAOE: 0
+  IsHigh: 0

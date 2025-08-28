@@ -20,6 +20,5 @@ public class SkillData : ScriptableObject
     public GameObject EffectObject;
     public AudioClip Sound;
     [Header("Targeting")]
-    public float Range;
-    public bool IsAOE;
+    public bool IsHigh;
 }

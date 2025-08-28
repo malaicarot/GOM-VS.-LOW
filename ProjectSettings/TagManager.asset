@@ -14,6 +14,7 @@ TagManager:
   - EnemySpecialAttack
   - Hard_CC
   - DragonAttack
+  - VFX_1
   layers:
   - Default
   - TransparentFX

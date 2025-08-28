@@ -19,6 +19,6 @@ public class EffectPool : ObjectPooling
 
     public PooledObject GetEffect(string effectType, Vector3 position, Quaternion rotation)
     {
-        return GetPooledObject(effectType, position, rotation);
+        return GetPooledObject(effectType, position, rotation, false);
     }
 }

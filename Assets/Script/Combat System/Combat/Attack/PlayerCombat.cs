@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -13,6 +15,10 @@ public class PlayerCombat : MonoBehaviour
     public WeaponSO weaponSecondary { get; private set; }
     public GameObject mainWeapon { get; private set; }
     public GameObject subWeapon { get; private set; }
+
+    Material weaponMaterial;
+
+
 
     void Awake()
     {
@@ -59,4 +65,35 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+
+
+    public void Enhancment(int R, int B, int G, int damage)
+    {
+        StartCoroutine(ChangeMaterial(R, B, G, damage));
+    }
+    public IEnumerator ChangeMaterial(int R, int B, int G, int damage)
+    {
+        MeshRenderer meshRenderer = mainWeapon.GetComponent<MeshRenderer>();
+        weaponMaterial = meshRenderer.material;
+        Color baseColor = new Color(R, G, B);
+        Color emissiveColor = baseColor * 10;
+        weaponMaterial.SetColor("_EmissiveColor", emissiveColor);
+        DamageUp(damage);
+        // weaponMaterial.SetFloat("_ExposureWeight", 0.8f);
+
+        yield return new WaitForSecondsRealtime(7f);
+        Color emissiveBaseColor = baseColor * 1;
+        weaponMaterial.SetColor("_EmissiveColor", emissiveBaseColor);
+        DamageUp(-damage);
+    }
+
+
+    public void DamageUp(int damage)
+    {
+        foreach (var attackDamage in weapon.Attacks)
+        {
+            attackDamage.AttackDamage += damage;
+        }
+    }
+
 }

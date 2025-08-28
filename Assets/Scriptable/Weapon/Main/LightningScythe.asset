@@ -53,4 +53,8 @@ MonoBehaviour:
     <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 20
     <AudioClip>k__BackingField: {fileID: 8300000, guid: e93ab68b3d5beff46839af47f10b34a7, type: 3}
-  SkillsOfWeapon: []
+  SkillsOfWeapon:
+  - {fileID: 11400000, guid: 49ac0e1f765f8f14cadc347929019ae5, type: 2}
+  - {fileID: 11400000, guid: ed6e1faf698fe2e45b751872a1992965, type: 2}
+  - {fileID: 11400000, guid: 80a9951ba8af4ab45b3297df4bafa670, type: 2}
+  - {fileID: 11400000, guid: 00e810a49b634e64094624f06371ff0b, type: 2}

@@ -25,7 +25,7 @@ public class EnemyPool : ObjectPooling
 
     public PooledObject GetEnemy(string enemyType, Vector3 position, Quaternion rotation)
     {
-        return GetPooledObject(enemyType, position, rotation);
+        return GetPooledObject(enemyType, position, rotation, true);
     }
 
     public string RandomType()

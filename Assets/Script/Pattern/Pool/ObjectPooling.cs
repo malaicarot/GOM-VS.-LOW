@@ -43,7 +43,7 @@ public class ObjectPooling : MonoBehaviour
         }
     }
 
-    public PooledObject GetPooledObject(string type, Vector3 position, Quaternion rotation)
+    public PooledObject GetPooledObject(string type, Vector3 position, Quaternion rotation, bool isUseNavmesh)
     {
         if (!pooledObjectDictionary.ContainsKey(type) || String.IsNullOrEmpty(type))
         {
@@ -56,13 +56,13 @@ public class ObjectPooling : MonoBehaviour
             PooledObject urgentInstance = Instantiate(pooledObjects.Find(pooledObject => pooledObject.name == type));
             urgentInstance._Instance = this;
             urgentInstance.name = type;
-            SetTransform(urgentInstance, position, rotation);
+            SetTransform(urgentInstance, position, rotation, isUseNavmesh);
             return urgentInstance;
         }
 
         // Nếu có trong Dictionary và vẫn còn trong pool
         PooledObject nextInstance = pooledObjectDictionary[type].Pop();
-        SetTransform(nextInstance, position, rotation);
+        SetTransform(nextInstance, position, rotation, isUseNavmesh);
         nextInstance.gameObject.SetActive(true);
         return nextInstance;
     }
@@ -85,19 +85,22 @@ public class ObjectPooling : MonoBehaviour
 
     }
 
-    void SetTransform(PooledObject pooledObject, Vector3 position, Quaternion rotation)
+    void SetTransform(PooledObject pooledObject, Vector3 position, Quaternion rotation, bool isUseNavmesh)
     {
 
         NavMeshHit navMeshHit;
-        if (NavMesh.SamplePosition(position, out navMeshHit, 10f, NavMesh.AllAreas))
+        if (isUseNavmesh)
         {
-            pooledObject.gameObject.transform.position = navMeshHit.position;
+            if (NavMesh.SamplePosition(position, out navMeshHit, 10f, NavMesh.AllAreas))
+            {
+                pooledObject.gameObject.transform.position = navMeshHit.position;
+            }
         }
         else
         {
-            pooledObject.gameObject.transform.position = position; 
-        }
+            pooledObject.gameObject.transform.position = position;
 
+        }
         pooledObject.gameObject.transform.rotation = rotation;
     }
 }
