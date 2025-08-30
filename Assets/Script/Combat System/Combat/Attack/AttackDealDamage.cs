@@ -30,6 +30,11 @@ public class AttackDealDamage : MonoBehaviour
 
         alreadyCollider.Add(other);
 
+        if (other.CompareTag("Parry"))
+        {
+            return;
+        }
+
 
         if (this.CompareTag("DragonAttack") && (other.CompareTag("Boss") || other.CompareTag("Enemy")))
         {

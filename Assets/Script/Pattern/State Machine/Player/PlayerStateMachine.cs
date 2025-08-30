@@ -123,6 +123,7 @@ public class PlayerStateMachine : StateMachine
 
         Health.SetResistance();
         Health.SetHealth();
+        Stamina.SetStamina();
     }
     public void SetAttackBaseWeapon()
     {

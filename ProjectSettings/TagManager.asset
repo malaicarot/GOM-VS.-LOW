@@ -15,6 +15,7 @@ TagManager:
   - Hard_CC
   - DragonAttack
   - VFX_1
+  - Parry
   layers:
   - Default
   - TransparentFX

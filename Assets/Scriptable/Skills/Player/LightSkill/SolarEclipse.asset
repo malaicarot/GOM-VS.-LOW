@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: SolarEclipse
   Description: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 256a155d28cc1d44aac1b3696e1bcc7d, type: 3}
   AnimationName: SolarEclipse
-  ManaCost: 0
-  CoolDown: 0
-  Damage: 0
-  KnockBack: 0
-  unlocked: 0
-  EffectObject: {fileID: 0}
+  ManaCost: 2
+  CoolDown: 2
+  Damage: 50
+  KnockBack: 50
+  unlocked: 1
+  EffectObject: {fileID: 9054577597603078480, guid: 4004a59c433511d43aaa461842ec0ada, type: 3}
   Sound: {fileID: 0}
-  Range: 0
-  IsAOE: 0
+  IsHigh: 0

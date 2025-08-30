@@ -32,6 +32,7 @@ public class PlayerCastSkillState : PlayerBaseState
 
     public override void Exit()
     {
+        stateMachine.Health.SetParry(false);
     }
 
     void UseSkill(int index)

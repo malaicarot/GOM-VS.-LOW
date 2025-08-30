@@ -138,6 +138,11 @@ public class PlayerStats : MonoBehaviour
         IncreaseAmount("Health", healthIncrease);
         IncreaseStats?.Invoke();
     }
+    public void IncreaseStamina(int amount)
+    {
+        IncreaseAmount("Stamina", amount);
+        IncreaseStats?.Invoke();
+    }
 
     public int CalculateCritical(int currentDamage)
     {
@@ -149,15 +154,27 @@ public class PlayerStats : MonoBehaviour
         return currentDamage;
     }
 
-    public void ReturnValue(int amount)
+    public void ReturnResistanceValue(int amount)
     {
-        StartCoroutine(ReturnDefaultValue(amount));
+        StartCoroutine(ReturnDefaultResistanceValue(amount));
     }
 
-    IEnumerator ReturnDefaultValue(int amount)
+    IEnumerator ReturnDefaultResistanceValue(int amount)
     {
         IncreaseResistance(amount);
         yield return new WaitForSecondsRealtime(10f);
         IncreaseResistance(-amount);
+    }
+
+    public void ReturnStaminaValue(int amount)
+    {
+        StartCoroutine(ReturnDefaultStaminaValue(amount));
+    }
+
+    IEnumerator ReturnDefaultStaminaValue(int amount)
+    {
+        IncreaseStamina(amount);
+        yield return new WaitForSecondsRealtime(10f);
+        IncreaseStamina(-amount);
     }
 }

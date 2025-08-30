@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -26,7 +25,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Start()
     {
-        EquipWeapon("FireAxe");
+        EquipWeapon("LightSword");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
 
