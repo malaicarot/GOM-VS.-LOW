@@ -16,6 +16,7 @@ TagManager:
   - DragonAttack
   - VFX_1
   - Parry
+  - DPS
   layers:
   - Default
   - TransparentFX

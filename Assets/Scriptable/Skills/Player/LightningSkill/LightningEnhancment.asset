@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: LightningEnhancment
   Description: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 1480540e4695b594782d142bac4822df, type: 3}
   AnimationName: LightningEnhancment
   ManaCost: 0
   CoolDown: 0

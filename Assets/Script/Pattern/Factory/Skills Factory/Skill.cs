@@ -1,6 +1,8 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
 
+
+/*Earth*/
 public class Keep : Ability
 {
     public override string Name => "Keep";
@@ -71,7 +73,7 @@ public class EarthDragon : Ability
     }
 }
 
-
+/*Fire*/
 public class Sear : Ability
 {
     public override string Name => "Sear";
@@ -124,8 +126,7 @@ public class FireEnhancment : Ability
     }
 }
 
-
-
+/*Light*/
 public class Reflective : Ability
 {
     public override string Name => "Reflective";
@@ -157,7 +158,6 @@ public class SolarEclipse : Ability
     }
 }
 
-
 public class LightEnhancment : Ability
 {
     public override string Name => "LightEnhancment";
@@ -167,8 +167,66 @@ public class LightEnhancment : Ability
         PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
         // PlayerCombat playerCombat = playerStateMachine.PlayerCombat;
         // playerCombat.Enhancment(191, 7, 0, 10);
-
-
         playerStateMachine.PlayerStats.ReturnStaminaValue(100);
+    }
+}
+
+
+/*Lightning*/
+public class LightningStrike : Ability
+{
+    public override string Name => "LightningStrike";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
+        Target target = playerStateMachine?.Targeter.currentTarget;
+        if (target == null)
+        {
+            Debug.Log("No tager!");
+            return;
+        }
+        PooledObject effect = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, caster.transform.position, skillData.EffectObject.transform.rotation);
+
+        Vector3 direction = (target.gameObject.transform.position - playerStateMachine.gameObject.transform.position).normalized;
+        direction.y = 0;
+        playerStateMachine.Controller.Move((direction * 70) + playerStateMachine.ForceReceiver.Movement);
+        // attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
+public class LightningEnhancment : Ability
+{
+    public override string Name => "LightningEnhancment";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
+        // PlayerCombat playerCombat = playerStateMachine.PlayerCombat;
+        // playerCombat.Enhancment(191, 7, 0, 10);
+        playerStateMachine.PlayerStats.ReturnCriticalValue(50);
+    }
+}
+
+public class ThunderSwarm : Ability
+{
+    public override string Name => "ThunderSwarm";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
+        Target target = playerStateMachine?.Targeter.currentTarget;
+        if (target == null)
+        {
+            Debug.Log("No tager!");
+            return;
+        }
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, target.transform.position, skillData.EffectObject.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
+        attackDealDamage.myCollider = caster.GetComponent<CharacterController>();
+        SphereCollider sphereCollider = skill.GetComponentInChildren<SphereCollider>(true);
+        sphereCollider.enabled = true;
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
 }

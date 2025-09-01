@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] int healthIncrease = 10;
     [SerializeField] int attackDamageIncrease = 10;
     [SerializeField] int resistanceIncrease = 10;
+    [SerializeField] int criticalIncrease = 10;
     [SerializeField] int XPNeededToLevelUp = 10;
 
     // [Header("Event Action")]
@@ -28,6 +29,7 @@ public class PlayerStats : MonoBehaviour
     Health health;
     Mana mana;
     Stamina stamina;
+    int criticalRate = 10;
     int increasePoint = 0;
 
     void Start()
@@ -105,6 +107,9 @@ public class PlayerStats : MonoBehaviour
                 case "Resistance":
                     item.amount += resistanceIncrease;
                     break;
+                case "Critical":
+                    item.amount += criticalIncrease;
+                    break;
                 default:
                     break;
             }
@@ -126,7 +131,11 @@ public class PlayerStats : MonoBehaviour
         IncreaseAmount("Attacks", attackDamageIncrease);
         IncreaseStats?.Invoke();
     }
-
+    public void IncreaseCritical(int amount)
+    {
+        IncreaseAmount("Critical", amount);
+        IncreaseStats?.Invoke();
+    }
     public void IncreaseResistance(int amount)
     {
         IncreaseAmount("Resistance", amount);
@@ -154,6 +163,8 @@ public class PlayerStats : MonoBehaviour
         return currentDamage;
     }
 
+
+    /*Resistance*/
     public void ReturnResistanceValue(int amount)
     {
         StartCoroutine(ReturnDefaultResistanceValue(amount));
@@ -166,6 +177,7 @@ public class PlayerStats : MonoBehaviour
         IncreaseResistance(-amount);
     }
 
+    /*Stamina*/
     public void ReturnStaminaValue(int amount)
     {
         StartCoroutine(ReturnDefaultStaminaValue(amount));
@@ -176,5 +188,18 @@ public class PlayerStats : MonoBehaviour
         IncreaseStamina(amount);
         yield return new WaitForSecondsRealtime(10f);
         IncreaseStamina(-amount);
+    }
+
+    /*Critical*/
+    public void ReturnCriticalValue(int amount)
+    {
+        StartCoroutine(ReturnDefaultCriticalValue(amount));
+    }
+
+    IEnumerator ReturnDefaultCriticalValue(int amount)
+    {
+        IncreaseCritical(amount);
+        yield return new WaitForSecondsRealtime(10f);
+        IncreaseCritical(-amount);
     }
 }

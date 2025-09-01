@@ -25,7 +25,7 @@ public class AttackDealDamage : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other == myCollider) { return; }
-        if (alreadyCollider.Contains(other)) { return; }
+        if (alreadyCollider.Contains(other) && !this.CompareTag("DPS")) { return; }
         if (this.tag == other.tag) { return; }
 
         alreadyCollider.Add(other);
@@ -34,7 +34,6 @@ public class AttackDealDamage : MonoBehaviour
         {
             return;
         }
-
 
         if (this.CompareTag("DragonAttack") && (other.CompareTag("Boss") || other.CompareTag("Enemy")))
         {
@@ -61,18 +60,28 @@ public class AttackDealDamage : MonoBehaviour
             attackHandler.OnDisableAttackLeft();
         }
 
-        if (other.TryGetComponent<Target>(out Target target))
-        {
-            if (target.isFirstAttack)
-            {
-                target.isFirstAttack = false;
-            }
-        }
-
         if (other.TryGetComponent<ForceReceiver>(out ForceReceiver force))
         {
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
             force.AddForce(direction * knockback);
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent<ForceReceiver>(out ForceReceiver force))
+        {
+            Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
+            force.AddForce(direction * knockback);
+        }
+
+
+        if (other.TryGetComponent<Health>(out Health health))
+        {
+            if (this.CompareTag("DPS"))
+            {
+                health.DealDamage(dealDamaged);
+            }
         }
     }
 }

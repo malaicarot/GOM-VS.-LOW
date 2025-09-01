@@ -18,14 +18,9 @@ public class PlayerCombat : MonoBehaviour
     Material weaponMaterial;
 
 
-
-    void Awake()
-    {
-
-    }
     void Start()
     {
-        EquipWeapon("LightSword");
+        EquipWeapon("LightningScythe");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
 

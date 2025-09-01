@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: LightningDragon
   Description: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a64aa40e86237574f8d171283c2bb6b3, type: 3}
   AnimationName: SummonBeast
   ManaCost: 0
   CoolDown: 0

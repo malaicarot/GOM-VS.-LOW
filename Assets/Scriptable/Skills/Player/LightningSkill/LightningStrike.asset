@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: LightningStrike
   Description: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: ebaef5902556fef44b513ae4e893d599, type: 3}
   AnimationName: LightningStrike
-  ManaCost: 0
-  CoolDown: 0
-  Damage: 0
-  KnockBack: 0
+  ManaCost: 5
+  CoolDown: 5
+  Damage: 30
+  KnockBack: 40
   unlocked: 1
-  EffectObject: {fileID: 0}
+  EffectObject: {fileID: 1253090165289260776, guid: 768de58959d58d64c8796c2e1fd9fc32, type: 3}
   Sound: {fileID: 0}
   IsHigh: 0
