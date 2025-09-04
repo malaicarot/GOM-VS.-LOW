@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 5519880715197960807}
   - component: {fileID: 8505893042246724771}
   - component: {fileID: 8675426448835891045}
+  - component: {fileID: -659629498179232492}
   m_Layer: 0
   m_Name: EarthDragon
   m_TagString: Untagged
@@ -215,6 +216,7 @@ MonoBehaviour:
   <AttackDealDamage>k__BackingField: {fileID: 7550976428284291029}
   <MoveSpeed>k__BackingField: 80
   <CrossFadeDuration>k__BackingField: 0.1
+  <IsMove>k__BackingField: 1
 --- !u!95 &1857502072847915788
 Animator:
   serializedVersion: 7
@@ -319,6 +321,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a2c5bd89e204b49b9ea5d8bb952bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-659629498179232492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802527420691430754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61ab87bfa5863e4fbf7115f1ff1d747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToReturn: 6
 --- !u!1 &808450030588353584
 GameObject:
   m_ObjectHideFlags: 0

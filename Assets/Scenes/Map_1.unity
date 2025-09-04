@@ -2142,6 +2142,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268808951}
   m_CullTransparentMesh: 1
+--- !u!1 &281057902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2682983272389194776, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+  m_PrefabInstance: {fileID: 4914846217268930066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284055692
 GameObject:
   m_ObjectHideFlags: 0
@@ -16665,7 +16670,8 @@ MonoBehaviour:
   - {fileID: 4507079358811413406, guid: 4004a59c433511d43aaa461842ec0ada, type: 3}
   - {fileID: 1401173259361036471, guid: 768de58959d58d64c8796c2e1fd9fc32, type: 3}
   - {fileID: 5605087941140584601, guid: bf51bf561e8262640b0182336333afb9, type: 3}
-  offScreen: {x: 0, y: 0, z: 0}
+  - {fileID: 2489004678030955218, guid: 170afb5354f3f4a49848c1b0216d44da, type: 3}
+  offScreen: {x: 523.91644, y: 501.1353, z: 431.40518}
 --- !u!1 &1900311271
 GameObject:
   m_ObjectHideFlags: 0
@@ -19279,6 +19285,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 109.38681
       objectReference: {fileID: 0}
+    - target: {fileID: 5409153601907408454, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: <SummonPosition>k__BackingField
+      value: 
+      objectReference: {fileID: 281057902}
     - target: {fileID: 5409153601907408454, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: '<Buttons>k__BackingField.Array.data[0]'
       value: 

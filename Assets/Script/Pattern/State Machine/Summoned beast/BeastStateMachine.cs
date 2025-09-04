@@ -8,25 +8,19 @@ public class BeastStateMachine : StateMachine
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
     [field: SerializeField] public AttackDealDamage AttackDealDamage { get; private set; }
+    [field: SerializeField] public GameObject Effect { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float CrossFadeDuration { get; private set; }
+    [field: SerializeField] public bool IsMove { get; private set; }
 
-
-
-    public Health Enemy { get; private set; }
-
-    void Start()
+    void OnEnable()
     {
-        Enemy = GameObject.FindGameObjectWithTag("Boss").GetComponent<Health>();
+        AttackDealDamage.OnDissolve += HandleDisappear;
         Agent.updatePosition = false;
         Agent.updateRotation = false;
         SwitchState(new BeastAppearState(this));
     }
 
-    void OnEnable()
-    {
-        AttackDealDamage.OnDissolve += HandleDisappear;
-    }
 
     void OnDisable()
     {

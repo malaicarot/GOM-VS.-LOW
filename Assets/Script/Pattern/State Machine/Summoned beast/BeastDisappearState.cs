@@ -12,7 +12,6 @@ public class BeastDisappearState : BeastBaseState
     {
         beastStateMachine.Animator.CrossFadeInFixedTime(DisappearAnimationHash, beastStateMachine.CrossFadeDuration);
         beastStateMachine.ReturnBeast();
-
     }
 
     public override void Tick(float deltaTime)

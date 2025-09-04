@@ -1596,6 +1596,37 @@ Transform:
   - {fileID: 7027607226535809777}
   m_Father: {fileID: 2106387059015187435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2682983272389194776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1483514228086921352}
+  m_Layer: 6
+  m_Name: SummonPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1483514228086921352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682983272389194776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5033284273537889278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2734194776229691888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,6 +2200,7 @@ Transform:
   - {fileID: 2325626745869698801}
   - {fileID: 7283966407283825415}
   - {fileID: 6540227544383345419}
+  - {fileID: 1483514228086921352}
   - {fileID: 2572632690524203885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2195,6 +2227,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 800628861400807043}
   <SkillPosition>k__BackingField: {fileID: 5755404962754994422}
   <HighSkillPosition>k__BackingField: {fileID: 3723193482396509979}
+  <SummonPosition>k__BackingField: {fileID: 0}
   <Enhancement>k__BackingField: {fileID: 2325626745869698801}
   <Targeter>k__BackingField: {fileID: 1173917948237849128}
   <ForceReceiver>k__BackingField: {fileID: 7333313712604477172}
@@ -2261,6 +2294,7 @@ MonoBehaviour:
   healthIncrease: 10
   attackDamageIncrease: 10
   resistanceIncrease: 10
+  criticalIncrease: 10
   XPNeededToLevelUp: 10
 --- !u!114 &6403902148477909824
 MonoBehaviour:

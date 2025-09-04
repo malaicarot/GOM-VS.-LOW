@@ -42,7 +42,12 @@ public class PlayerCastSkillState : PlayerBaseState
         ability = AbilityFactory.GetAbility(name);
         if (ability != null)
         {
-            ability.Proccess(PlayerSkill.Instance.alreadySkill[index], stateMachine.gameObject, PlayerSkill.Instance.alreadySkill[skillIndex].IsHigh == true ? stateMachine.HighSkillPosition.transform : stateMachine.SkillPosition.transform);
+            Transform transform = PlayerSkill.Instance.alreadySkill[skillIndex].IsHigh == true ? stateMachine.HighSkillPosition.transform : stateMachine.SkillPosition.transform;
+            if (index == 3)
+            {
+                transform = stateMachine.SummonPosition.transform;
+            }
+            ability.Proccess(PlayerSkill.Instance.alreadySkill[index], stateMachine.gameObject, transform);
         }
     }
 }

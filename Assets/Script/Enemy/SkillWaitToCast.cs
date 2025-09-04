@@ -5,19 +5,18 @@ public class SkillWaitToCast : MonoBehaviour
 {
     [SerializeField] GameObject skillCollider;
     [SerializeField] float timeToWait;
-    bool isActive;
+    bool isActive = false;
     float time;
 
     void OnEnable()
     {
-        time = timeToWait;
         isActive = true;
     }
 
     void OnDisable()
     {
         isActive = false;
-        timeToWait = time;
+        time = 0;
         skillCollider.SetActive(false);
     }
 
@@ -25,8 +24,8 @@ public class SkillWaitToCast : MonoBehaviour
     {
         if (isActive)
         {
-            timeToWait -= Time.deltaTime;
-            if (timeToWait <= 0)
+            time += Time.deltaTime;
+            if (time >= timeToWait)
             {
                 skillCollider.SetActive(true);
             }

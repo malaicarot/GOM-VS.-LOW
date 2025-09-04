@@ -126,6 +126,19 @@ public class FireEnhancment : Ability
     }
 }
 
+public class FireDragon : Ability
+{
+    public override string Name => "FireDragon";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, spawn.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        // attackDealDamage.gameObject.SetActive(true);
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
 /*Light*/
 public class Reflective : Ability
 {
