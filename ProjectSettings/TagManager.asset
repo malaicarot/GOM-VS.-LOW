@@ -17,6 +17,7 @@ TagManager:
   - VFX_1
   - Parry
   - DPS
+  - DragonDefense
   layers:
   - Default
   - TransparentFX

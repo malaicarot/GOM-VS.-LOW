@@ -15,7 +15,10 @@ public class BeastStateMachine : StateMachine
 
     void OnEnable()
     {
-        AttackDealDamage.OnDissolve += HandleDisappear;
+        if (AttackDealDamage != null)
+        {
+            AttackDealDamage.OnDissolve += HandleDisappear;
+        }
         Agent.updatePosition = false;
         Agent.updateRotation = false;
         SwitchState(new BeastAppearState(this));
@@ -24,7 +27,10 @@ public class BeastStateMachine : StateMachine
 
     void OnDisable()
     {
-        AttackDealDamage.OnDissolve -= HandleDisappear;
+        if (AttackDealDamage != null)
+        {
+            AttackDealDamage.OnDissolve -= HandleDisappear;
+        }
     }
 
     void HandleDisappear()

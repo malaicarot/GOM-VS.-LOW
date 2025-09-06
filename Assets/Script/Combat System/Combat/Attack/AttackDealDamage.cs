@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class AttackDealDamage : MonoBehaviour
@@ -27,6 +26,11 @@ public class AttackDealDamage : MonoBehaviour
         if (other == myCollider) { return; }
         if (alreadyCollider.Contains(other) && !this.CompareTag("DPS")) { return; }
         if (this.tag == other.tag) { return; }
+        if (other.CompareTag("DragonDefense"))
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
 
         alreadyCollider.Add(other);
 
