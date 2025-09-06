@@ -18,6 +18,7 @@ TagManager:
   - Parry
   - DPS
   - DragonDefense
+  - DragonCC
   layers:
   - Default
   - TransparentFX

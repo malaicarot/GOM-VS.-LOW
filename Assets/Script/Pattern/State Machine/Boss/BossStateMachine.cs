@@ -82,7 +82,7 @@ public class BossStateMachine : StateMachine
 
     void HandleHardCC()
     {
-        
+        SwitchState(new BossHardCCState(this));
     }
 
     void HandleChangPhase()

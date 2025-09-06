@@ -50,7 +50,7 @@ public class BeastAttackState : BeastBaseState
 
     void Effect()
     {
-        if (PlayerSkill.Instance.target == null)
+        if (PlayerSkill.Instance.target == null || beastStateMachine.Effect == null)
         {
             return;
         }

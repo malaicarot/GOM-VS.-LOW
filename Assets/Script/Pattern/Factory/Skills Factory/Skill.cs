@@ -184,6 +184,19 @@ public class LightEnhancment : Ability
     }
 }
 
+public class LightDragon : Ability
+{
+    public override string Name => "LightDragon";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, spawn.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
+
 
 /*Lightning*/
 public class LightningStrike : Ability
@@ -251,8 +264,8 @@ public class LightningDragon : Ability
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
         PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, spawn.transform.rotation);
-        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
-        attackDealDamage.gameObject.SetActive(true);
-        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+        // AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        // attackDealDamage.gameObject.SetActive(true);
+        // attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
 }

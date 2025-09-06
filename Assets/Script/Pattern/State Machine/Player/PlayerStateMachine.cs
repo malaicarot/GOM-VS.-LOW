@@ -146,20 +146,10 @@ public class PlayerStateMachine : StateMachine
         return transform;
     }
 
-
     public void HandleHealing()
     {
         SwitchState(new PlayerHealingState(this));
     }
-
-    // public void PlayAnimation(AnimatorOverrideController animatorOverrideController, string overideName, int animationHash, AnimationClip animation)
-    // {
-    //     AnimatorOverrideController runtimeOverride = new AnimatorOverrideController(animatorOverrideController);
-    //     runtimeOverride[overideName] = animation;
-    //     Animator.runtimeAnimatorController = runtimeOverride;
-    //     Animator.CrossFadeInFixedTime(animationHash, CrossFadeDuration);
-    // }
-
 
     void OnTriggerEnter(Collider other)
     {
