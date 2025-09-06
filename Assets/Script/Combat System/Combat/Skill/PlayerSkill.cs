@@ -8,7 +8,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
     public event Action OnActiveSkill;
     [SerializeField] GameObject[] skillUI;
     public List<SkillData> skillDatas { get; set; }
-    public List<SkillData> alreadySkill { get; private set; }
+    public List<SkillData> alreadySkill { get; set; }
 
     public event Action OnGotSkills;
 
@@ -22,13 +22,13 @@ public class PlayerSkill : Singleton<PlayerSkill>
     protected override void Awake()
     {
         base.Awake();
-        fillImageList = new List<Image>();
-        alreadySkill = new List<SkillData>();
+        Reset();
     }
 
     public void GetSkillDatas(List<SkillData> _skillDatas)
     {
         skillDatas = _skillDatas;
+        Debug.Log(skillDatas);
     }
 
     public void SetUp()
@@ -36,31 +36,44 @@ public class PlayerSkill : Singleton<PlayerSkill>
         SetupStart();
         SetCooldownSkill();
     }
+    public void Reset()
+    {
+        fillImageList = new List<Image>();
+        alreadySkill = new List<SkillData>();
+    }
 
     void SetupStart()
     {
-        foreach (SkillData skill in skillDatas)
+        for (int i = 0; i < skillDatas.Count; i++)
         {
-            if (skill.unlocked)
-            {
-                UpdateImage(skill);
-            }
+            // if (skillDatas[i].unlocked)
+            // {
+                UpdateImage(skillDatas[i], i);
+            // }
         }
+        // foreach (SkillData skill in skillDatas)
+        // {
+        //     if (skill.unlocked)
+        //     {
+        //         UpdateImage(skill);
+        //     }
+        // }
     }
 
-    public void UpdateImage(SkillData skillData)
+    public void UpdateImage(SkillData skillData, int index)
     {
-        for (int i = 0; i < skillUI.Length; i++)
-        {
-            backgroundImage = skillUI[i].transform.Find("Background")?.GetComponent<Image>();
-            fillImage = skillUI[i].transform.Find("Fill")?.GetComponent<Image>();
-            if (backgroundImage.sprite != null)
-            {
-                continue;
-            }
 
-            if (backgroundImage.sprite == null)
-            {
+        // for (int i = 0; i < skillUI.Length; i++)
+        // {
+            backgroundImage = skillUI[index].transform.Find("Background")?.GetComponent<Image>();
+            fillImage = skillUI[index].transform.Find("Fill")?.GetComponent<Image>();
+            // if (backgroundImage.sprite != null)
+            // {
+                // continue;
+            // }
+
+            // if (backgroundImage.sprite == null)
+            // {
                 backgroundImage.sprite = skillData.Sprite;
                 fillImage.sprite = skillData.Sprite;
                 fillImage.fillAmount = 1;
@@ -68,9 +81,9 @@ public class PlayerSkill : Singleton<PlayerSkill>
                 backgroundImage.gameObject.SetActive(true);
                 fillImage.gameObject.SetActive(true);
                 alreadySkill.Add(skillData);
-                break;
-            }
-        }
+            //     break;
+            // }
+        // }
     }
 
     public bool ButtonOnClick(Button button)
@@ -90,7 +103,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
         if (skill != null && !skill.unlocked)
         {
             skill.unlocked = true;
-            UpdateImage(skill);
+            // UpdateImage(skill);
             OnActiveSkill?.Invoke();
         }
     }

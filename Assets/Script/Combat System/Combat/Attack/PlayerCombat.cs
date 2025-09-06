@@ -9,9 +9,11 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject weaponLeft;
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
-    public event Action OnSetWeapon;
-    public WeaponSO weapon { get; private set; }
-    public WeaponSO weaponSecondary { get; private set; }
+    public event Action OnSetMainWeapon;
+    public event Action OnSetSecondaryWeapon;
+
+    public WeaponSO weapon { get; set; }
+    public WeaponSO weaponSecondary { get; set; }
     public GameObject mainWeapon { get; private set; }
     public GameObject subWeapon { get; private set; }
 
@@ -20,15 +22,11 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
-        EquipWeapon("LightSword");
+        EquipWeapon("EarthHammer");
         EquipSecondaryWeapon("Iron_Dagger");
-        OnSetWeapon?.Invoke();
-
-        PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
-        PlayerSkill.Instance.SetUp();
     }
 
-    void EquipWeapon(string name)
+    public void EquipWeapon(string name)
     {
         foreach (WeaponSO weaponSO in weaponSOList)
         {
@@ -36,15 +34,21 @@ public class PlayerCombat : MonoBehaviour
             {
                 if (mainWeapon != null)
                 {
-                    mainWeapon = null;
+                    Destroy(mainWeapon);
+                    weapon = null;
                 }
+
                 weapon = weaponSO;
                 mainWeapon = Instantiate(weapon.WeaponPrefab, weaponRight.transform);
             }
         }
+        PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
+        PlayerSkill.Instance.SetUp();
+        OnSetMainWeapon?.Invoke();
+
     }
 
-    void EquipSecondaryWeapon(string name)
+    public void EquipSecondaryWeapon(string name)
     {
         foreach (WeaponSO weaponSO in weaponSOSecondaryList)
         {
@@ -58,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
                 subWeapon = Instantiate(weaponSecondary.WeaponPrefab, weaponLeft.transform);
             }
         }
+        OnSetSecondaryWeapon?.Invoke();
     }
 
 

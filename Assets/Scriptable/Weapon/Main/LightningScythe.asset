@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningScythe
   m_EditorClassIdentifier: 
   Name: LightningScythe
-  Thumbnail: {fileID: 0}
+  Thumbnail: {fileID: 21300000, guid: cc562f3f0e4defc40ab34798dbab49e9, type: 3}
   WeaponPrefab: {fileID: 5221380844292194378, guid: f0f31d6958f5de143bf9963ec2a41351, type: 3}
   AnimationTag: Attack
   Attacks:

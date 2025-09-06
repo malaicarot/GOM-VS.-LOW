@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EarthHammer
   m_EditorClassIdentifier: 
   Name: EarthHammer
-  Thumbnail: {fileID: 0}
+  Thumbnail: {fileID: 21300000, guid: dd35d944c503c5049a2fe63606ab9aad, type: 3}
   WeaponPrefab: {fileID: 5882740418562934682, guid: dea89ad487fba0d43998917fd5f30879, type: 3}
   AnimationTag: Attack
   Attacks:

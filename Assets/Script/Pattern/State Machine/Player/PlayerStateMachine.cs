@@ -65,7 +65,9 @@ public class PlayerStateMachine : StateMachine
         Health.OnDeath += HandleDeadState;
         Health.OnStun += HandleStunState;
         PlayerStats.IncreaseStats += SetStats;
-        PlayerCombat.OnSetWeapon += SetAttackBaseWeapon;
+        PlayerCombat.OnSetMainWeapon += SetAttackBaseMainWeapon;
+        PlayerCombat.OnSetSecondaryWeapon += SetAttackBaseSecondaryWeapon;
+
     }
 
     void OnDisable()
@@ -74,7 +76,9 @@ public class PlayerStateMachine : StateMachine
         Health.OnDeath -= HandleDeadState;
         Health.OnStun -= HandleStunState;
         PlayerStats.IncreaseStats -= SetStats;
-        PlayerCombat.OnSetWeapon -= SetAttackBaseWeapon;
+        PlayerCombat.OnSetMainWeapon -= SetAttackBaseMainWeapon;
+        PlayerCombat.OnSetSecondaryWeapon -= SetAttackBaseSecondaryWeapon;
+
 
     }
 
@@ -126,9 +130,13 @@ public class PlayerStateMachine : StateMachine
         Health.SetHealth();
         Stamina.SetStamina();
     }
-    public void SetAttackBaseWeapon()
+    public void SetAttackBaseMainWeapon()
     {
         Attacks = PlayerCombat.weapon.Attacks;
+    }
+
+    public void SetAttackBaseSecondaryWeapon()
+    {
         AttacksSecondary = PlayerCombat.weaponSecondary.Attacks;
     }
 

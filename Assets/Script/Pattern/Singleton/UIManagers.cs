@@ -10,6 +10,14 @@ public class UIManagers : Singleton<UIManagers>
     public event Action ActionCountinue;
     public event Action Rest;
 
+    public PlayerCombat playerCombat { get; set; }
+
+    void OnEnable()
+    {
+        playerCombat = FindFirstObjectByType<PlayerCombat>();
+    }
+
+
     public void ActiveCheckpointUI(bool state)
     {
         UICheckpointInteraction.SetActive(state);
