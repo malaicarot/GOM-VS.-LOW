@@ -16,10 +16,10 @@ MonoBehaviour:
   Description: 
   Sprite: {fileID: 21300000, guid: a64aa40e86237574f8d171283c2bb6b3, type: 3}
   AnimationName: SummonBeast
-  ManaCost: 0
-  CoolDown: 0
-  Damage: 0
-  KnockBack: 0
+  ManaCost: 5
+  CoolDown: 5
+  Damage: 50
+  KnockBack: 50
   unlocked: 1
   EffectObject: {fileID: 0}
   Sound: {fileID: 0}

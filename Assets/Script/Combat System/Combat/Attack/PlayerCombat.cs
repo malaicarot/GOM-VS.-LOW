@@ -20,7 +20,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
-        EquipWeapon("FireAxe");
+        EquipWeapon("LightningScythe");
         EquipSecondaryWeapon("Iron_Dagger");
         OnSetWeapon?.Invoke();
 

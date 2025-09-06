@@ -243,3 +243,16 @@ public class ThunderSwarm : Ability
         attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
     }
 }
+
+public class LightningDragon : Ability
+{
+    public override string Name => "LightningDragon";
+
+    public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
+    {
+        PooledObject skill = EffectPool.EffectPoolSingleton.GetEffect(skillData.SkillName, spawn.position, spawn.transform.rotation);
+        AttackDealDamage attackDealDamage = skill.GetComponentInChildren<AttackDealDamage>(true);
+        attackDealDamage.gameObject.SetActive(true);
+        attackDealDamage.SetAttack(skillData.Damage, skillData.KnockBack);
+    }
+}
