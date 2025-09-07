@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   statusBar: {fileID: 4362112447364717073}
+  isChangingPhase: 0
 --- !u!114 &4135968958642985391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRightLogic: {fileID: 7396788517980888782}
   attackLeftLogic: {fileID: 3266253607123096949}
+  specialAttack: []
 --- !u!114 &217552180024563807
 MonoBehaviour:
   m_ObjectHideFlags: 0

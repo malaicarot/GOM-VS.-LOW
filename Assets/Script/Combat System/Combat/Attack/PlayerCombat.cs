@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] GameObject weaponRight;
     [SerializeField] GameObject weaponLeft;
+
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
     public event Action OnSetMainWeapon;
@@ -42,10 +43,10 @@ public class PlayerCombat : MonoBehaviour
                 mainWeapon = Instantiate(weapon.WeaponPrefab, weaponRight.transform);
             }
         }
-        PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
-        PlayerSkill.Instance.SetUp();
-        OnSetMainWeapon?.Invoke();
 
+        PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
+        PlayerSkill.Instance.SetUp();   
+        OnSetMainWeapon?.Invoke();
     }
 
     public void EquipSecondaryWeapon(string name)
@@ -56,6 +57,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 if (subWeapon != null)
                 {
+                    Destroy(subWeapon);
                     subWeapon = null;
                 }
                 weaponSecondary = weaponSO;
@@ -70,6 +72,7 @@ public class PlayerCombat : MonoBehaviour
     {
         StartCoroutine(ChangeMaterial(R, B, G, damage));
     }
+
     public IEnumerator ChangeMaterial(int R, int B, int G, int damage)
     {
         MeshRenderer meshRenderer = mainWeapon.GetComponent<MeshRenderer>();
@@ -85,7 +88,6 @@ public class PlayerCombat : MonoBehaviour
         weaponMaterial.SetColor("_EmissiveColor", emissiveBaseColor);
         DamageUp(-damage);
     }
-
 
     public void DamageUp(int damage)
     {

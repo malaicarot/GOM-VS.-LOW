@@ -190,7 +190,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hammer_Attack_3
-  m_Speed: 1.4
+  m_Speed: 1.6
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -219,10 +219,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 5406106795327716792}
-    m_Position: {x: 320, y: 120, z: 0}
+    m_Position: {x: 320, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2332836227495127107}
-    m_Position: {x: 320, y: 180, z: 0}
+    m_Position: {x: 320, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4062678412336087397}
     m_Position: {x: 560, y: -30, z: 0}
@@ -231,46 +231,46 @@ AnimatorStateMachine:
     m_Position: {x: 560, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6123049650776535089}
-    m_Position: {x: 560, y: 70, z: 0}
+    m_Position: {x: 560, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5905207107117186389}
-    m_Position: {x: 560, y: 120, z: 0}
+    m_Position: {x: 560, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3480615953671369608}
     m_Position: {x: 80, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5182277360797923002}
-    m_Position: {x: 320, y: 70, z: 0}
+    m_Position: {x: 320, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4065893052466906972}
     m_Position: {x: 320, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1895690227171372524}
-    m_Position: {x: 320, y: 240, z: 0}
+    m_Position: {x: 320, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5258493046953897753}
     m_Position: {x: 320, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2895164903786458401}
-    m_Position: {x: 320, y: 480, z: 0}
+    m_Position: {x: 320, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1975904276519404212}
-    m_Position: {x: 320, y: 360, z: 0}
+    m_Position: {x: 320, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7833058133750691217}
-    m_Position: {x: 320, y: 420, z: 0}
+    m_Position: {x: 320, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1330445942767240719}
-    m_Position: {x: 570, y: 390, z: 0}
+    m_Position: {x: 570, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7101065232952931867}
-    m_Position: {x: 320, y: 540, z: 0}
+    m_Position: {x: 320, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6820849782915914007}
-    m_Position: {x: 560, y: 180, z: 0}
+    m_Position: {x: 560, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6016538409186217302}
-    m_Position: {x: 320, y: 300, z: 0}
+    m_Position: {x: 320, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -353346845313753521}
     m_Position: {x: 840, y: -30, z: 0}
@@ -315,46 +315,46 @@ AnimatorStateMachine:
     m_Position: {x: 70, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8306819076533857002}
-    m_Position: {x: 320, y: 600, z: 0}
+    m_Position: {x: 320, y: 590, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4625844337626454841}
-    m_Position: {x: 820, y: 370, z: 0}
+    m_Position: {x: 820, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1823520585185966918}
-    m_Position: {x: 1150, y: 490, z: 0}
+    m_Position: {x: 1150, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4763222224208517113}
-    m_Position: {x: 820, y: 420, z: 0}
+    m_Position: {x: 820, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3590630485365190195}
-    m_Position: {x: 820, y: 320, z: 0}
+    m_Position: {x: 820, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8503580255016181642}
-    m_Position: {x: 1040, y: 370, z: 0}
+    m_Position: {x: 1040, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1224886463809498170}
-    m_Position: {x: 1040, y: 320, z: 0}
+    m_Position: {x: 1040, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5292462667622420580}
-    m_Position: {x: 1040, y: 420, z: 0}
+    m_Position: {x: 1040, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8167327863235361696}
-    m_Position: {x: 1260, y: 320, z: 0}
+    m_Position: {x: 1260, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1851307913415088757}
-    m_Position: {x: 1260, y: 420, z: 0}
+    m_Position: {x: 1260, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4978293907359832267}
-    m_Position: {x: 1260, y: 370, z: 0}
+    m_Position: {x: 1260, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3485833067605229998}
-    m_Position: {x: 1480, y: 420, z: 0}
+    m_Position: {x: 1480, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1550498220221097118}
-    m_Position: {x: 1480, y: 370, z: 0}
+    m_Position: {x: 1480, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1887812557348388740}
-    m_Position: {x: 1480, y: 320, z: 0}
+    m_Position: {x: 1480, y: 310, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -362,7 +362,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 810, y: 180, z: 0}
+  m_ExitPosition: {x: 810, y: 170, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 5406106795327716792}
 --- !u!206 &-6044562108352445399
@@ -967,7 +967,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hammer_Attack_4
-  m_Speed: 1.5
+  m_Speed: 1.6
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -1149,7 +1149,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Axe_Attack_1
-  m_Speed: 1.6
+  m_Speed: 1.8
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -1201,7 +1201,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hammer_Attack_2
-  m_Speed: 1.3
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -1513,7 +1513,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hammer_Attack_1
-  m_Speed: 1.5
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

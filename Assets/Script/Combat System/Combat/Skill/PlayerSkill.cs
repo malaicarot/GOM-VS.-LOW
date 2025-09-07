@@ -28,7 +28,6 @@ public class PlayerSkill : Singleton<PlayerSkill>
     public void GetSkillDatas(List<SkillData> _skillDatas)
     {
         skillDatas = _skillDatas;
-        Debug.Log(skillDatas);
     }
 
     public void SetUp()
@@ -36,6 +35,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
         SetupStart();
         SetCooldownSkill();
     }
+    
     public void Reset()
     {
         fillImageList = new List<Image>();
@@ -46,44 +46,23 @@ public class PlayerSkill : Singleton<PlayerSkill>
     {
         for (int i = 0; i < skillDatas.Count; i++)
         {
-            // if (skillDatas[i].unlocked)
-            // {
-                UpdateImage(skillDatas[i], i);
-            // }
+            UpdateImage(skillDatas[i], i);
         }
-        // foreach (SkillData skill in skillDatas)
-        // {
-        //     if (skill.unlocked)
-        //     {
-        //         UpdateImage(skill);
-        //     }
-        // }
     }
 
     public void UpdateImage(SkillData skillData, int index)
     {
+        backgroundImage = skillUI[index].transform.Find("Background")?.GetComponent<Image>();
+        fillImage = skillUI[index].transform.Find("Fill")?.GetComponent<Image>();
 
-        // for (int i = 0; i < skillUI.Length; i++)
-        // {
-            backgroundImage = skillUI[index].transform.Find("Background")?.GetComponent<Image>();
-            fillImage = skillUI[index].transform.Find("Fill")?.GetComponent<Image>();
-            // if (backgroundImage.sprite != null)
-            // {
-                // continue;
-            // }
+        backgroundImage.sprite = skillData.Sprite;
+        fillImage.sprite = skillData.Sprite;
+        fillImage.fillAmount = 1;
+        fillImageList.Add(fillImage);
+        backgroundImage.gameObject.SetActive(true);
+        fillImage.gameObject.SetActive(true);
+        alreadySkill.Add(skillData);
 
-            // if (backgroundImage.sprite == null)
-            // {
-                backgroundImage.sprite = skillData.Sprite;
-                fillImage.sprite = skillData.Sprite;
-                fillImage.fillAmount = 1;
-                fillImageList.Add(fillImage);
-                backgroundImage.gameObject.SetActive(true);
-                fillImage.gameObject.SetActive(true);
-                alreadySkill.Add(skillData);
-            //     break;
-            // }
-        // }
     }
 
     public bool ButtonOnClick(Button button)

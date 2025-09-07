@@ -7,6 +7,23 @@ public class SystemUIManagers : MonoBehaviour
 
     GameObject current;
 
+    void Start()
+    {
+        this.gameObject.SetActive(false);
+        HideContent();
+    }
+
+    void HideContent()
+    {
+        foreach (GameObject item in content)
+        {
+            item.SetActive(false);
+        }
+    }
+
+
+
+
     GameObject ReturnGameObject(string name)
     {
         foreach (GameObject item in content)

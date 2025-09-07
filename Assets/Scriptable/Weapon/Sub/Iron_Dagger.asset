@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron_Dagger
   m_EditorClassIdentifier: 
   Name: Iron_Dagger
-  Thumbnail: {fileID: 0}
+  Thumbnail: {fileID: 21300000, guid: 5f82fa4c4e9f91248b7805f337c9597d, type: 3}
   WeaponPrefab: {fileID: 2258411484881710256, guid: d2a69bab98638ae41819a23ca7985832, type: 3}
   AnimationTag: Attack
   Attacks:
@@ -35,3 +35,4 @@ MonoBehaviour:
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 10
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 6c993a15b455bc34f895514875da6b13, type: 3}
+  SkillsOfWeapon: []
