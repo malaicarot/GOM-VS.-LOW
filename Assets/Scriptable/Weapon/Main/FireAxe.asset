@@ -25,7 +25,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 569a54f98f3716e4fafef371a854dc19, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7b7d460d14dd86742b05303895e63ef4, type: 3}
   - <AttackAnimationName>k__BackingField: Axe_Attack_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
@@ -34,7 +34,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: e9ca1316c211e834d8b9bc76d8af4106, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7b7d460d14dd86742b05303895e63ef4, type: 3}
   - <AttackAnimationName>k__BackingField: Axe_Attack_3
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
@@ -43,7 +43,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 7
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: eee16dc9faa0eda4d9653d4cf7d56847, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7b7d460d14dd86742b05303895e63ef4, type: 3}
   - <AttackAnimationName>k__BackingField: Axe_Attack_4
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     <Force>k__BackingField: 15
     <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: e93ab68b3d5beff46839af47f10b34a7, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7b7d460d14dd86742b05303895e63ef4, type: 3}
   SkillsOfWeapon:
   - {fileID: 11400000, guid: 332aa1a09ebe08d478d10747471cbef9, type: 2}
   - {fileID: 11400000, guid: 023c594eec6bbca478d1aa8660d1932d, type: 2}

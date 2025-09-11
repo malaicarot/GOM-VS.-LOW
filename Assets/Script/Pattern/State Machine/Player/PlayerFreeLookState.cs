@@ -46,12 +46,12 @@ public class PlayerFreeLookState : PlayerBaseState
 
         if (isTired)
         {
-            SetAnimation(0, 0.5f, 1.5f, deltaTime);
+            SetAnimation(0.5f, 1.5f, deltaTime);
         }
         else
         {
 
-            SetAnimation(0, 1, 2, deltaTime);
+            SetAnimation(1, 2, deltaTime);
         }
 
 
@@ -85,13 +85,19 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.SwitchState(new PlayerTargetState(stateMachine));
     }
 
-    void SetAnimation(float stand, float walk, float run, float deltaTime)
+    void SetAnimation(float walk, float run, float deltaTime)
     {
         if (stateMachine.InputReader.Movement == Vector2.zero)
         {
+            Debug.Log("Idle");
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
-            stateMachine.Animator.SetFloat(MovementSpeedHash, stand, AnimationDamping, deltaTime);
-            return;
+            stateMachine.Animator.SetFloat(MovementSpeedHash, 0, AnimationDamping, deltaTime);
+            float current = stateMachine.Animator.GetFloat(MovementSpeedHash);
+            if (Mathf.Abs(current) < 0.001f)
+            {
+                stateMachine.Animator.SetFloat(MovementSpeedHash, 0);
+            }
+            // return;
         }
         else if (stateMachine.InputReader.IsSprint)
         {

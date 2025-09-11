@@ -25,7 +25,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 569a54f98f3716e4fafef371a854dc19, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: bee35a4829bd8d641935563d00945ca6, type: 3}
   - <AttackAnimationName>k__BackingField: Sword_Attack_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
@@ -34,7 +34,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: e9ca1316c211e834d8b9bc76d8af4106, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: bee35a4829bd8d641935563d00945ca6, type: 3}
   - <AttackAnimationName>k__BackingField: Sword_Attack_3
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
@@ -43,7 +43,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 7
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: eee16dc9faa0eda4d9653d4cf7d56847, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: bee35a4829bd8d641935563d00945ca6, type: 3}
   - <AttackAnimationName>k__BackingField: Sword_Attack_4
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     <Force>k__BackingField: 15
     <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: e93ab68b3d5beff46839af47f10b34a7, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: bee35a4829bd8d641935563d00945ca6, type: 3}
   SkillsOfWeapon:
   - {fileID: 11400000, guid: 0298dd827e4393d49bf7d604c6d7da6d, type: 2}
   - {fileID: 11400000, guid: 5b338d27760f41c48817d1e2bbb9fc17, type: 2}

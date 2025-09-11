@@ -52,6 +52,8 @@ public class PlayerStats : MonoBehaviour
 
     public void LevelUp()
     {
+        Effect effect = EffectFactory.GetEffect("LevelUp");
+        effect.Proccess(gameObject);
         playerLevel++;
         XPNeededToLevelUp += 5;
         increasePoint = playerLevel;
@@ -201,5 +203,20 @@ public class PlayerStats : MonoBehaviour
         IncreaseCritical(amount);
         yield return new WaitForSecondsRealtime(10f);
         IncreaseCritical(-amount);
+    }
+
+    public void Footstep()
+    {
+        SoundManager.Instance.PlaySFX("Footstep");
+    }
+
+    public void JumpStart()
+    {
+        SoundManager.Instance.PlaySFX("JumpStart");
+    }
+
+    public void Grounded()
+    {
+        SoundManager.Instance.PlaySFX("Grounded");
     }
 }

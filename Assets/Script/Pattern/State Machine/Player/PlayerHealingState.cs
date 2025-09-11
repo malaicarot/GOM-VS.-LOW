@@ -9,6 +9,7 @@ public class PlayerHealingState : PlayerBaseState
 
     public override void Enter()
     {
+        SoundManager.Instance.PlaySFX("Healing");
         Healing();
         stateMachine.Animator.CrossFadeInFixedTime(HealingAnimationHash, stateMachine.CrossFadeDuration);
     }

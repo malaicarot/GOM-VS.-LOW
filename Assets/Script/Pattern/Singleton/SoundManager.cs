@@ -1,32 +1,51 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    AudioSource audioSource;
-    
+    [SerializeField] AudioSource sfxAudioSource;
+    [SerializeField] AudioSource musicAudioSource;
+    [SerializeField] List<AudioClip> audioClips;
+
+    Dictionary<string, AudioClip> sfxDictionary = new Dictionary<string, AudioClip>();
+
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        foreach (AudioClip audioClip in audioClips)
+        {
+            if (!sfxDictionary.ContainsKey(audioClip.name))
+            {
+                sfxDictionary.Add(audioClip.name, audioClip);
+            }
+        }
     }
+
 
     public void PlaySound(AudioClip audioClip)
     {
-        if (audioSource != null && audioClip != null)
+        if (sfxAudioSource != null && audioClip != null)
         {
-            audioSource.clip = audioClip;
+            sfxAudioSource.clip = audioClip;
         }
-        audioSource.Stop();
-        audioSource.Play();
+        sfxAudioSource.Stop();
+        sfxAudioSource.Play();
     }
 
-    public void StopSound(AudioClip audioClip)
+
+    public void PlaySFX(string sfxType, bool isRandomPitch = false)
     {
-        if (audioSource != null && audioClip != null)
+        if (sfxDictionary.TryGetValue(sfxType, out AudioClip audioClip))
         {
-            audioSource.clip = audioClip;
+            if (isRandomPitch)
+            {
+                sfxAudioSource.pitch = Random.Range(0.9f, 1.1f);
+            }
+            else
+            {
+                sfxAudioSource.pitch = 1f;
+            }
+            sfxAudioSource.PlayOneShot(audioClip);
         }
-        audioSource.Stop();
     }
-
 
 }
