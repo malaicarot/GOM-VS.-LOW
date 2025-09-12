@@ -21,11 +21,9 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.AttackHandlers.PlayAttackSound += PlayerSound;
         stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
         stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
         stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
-
 
         stateMachine.Stamina.ReduceStamina(stateMachine.attackStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AttackAnimationName, attack.AnimationDuration);
@@ -77,7 +75,6 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.AttackHandlers.PlayAttackSound -= PlayerSound;
         stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
         stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
         stateMachine.Stamina.OnEnergetic -= SetHighStaminaSpeed;
@@ -103,11 +100,6 @@ public class PlayerAttackState : PlayerBaseState
 
         stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * attack.Force);
         alreadyApplyForce = true;
-    }
-
-    void PlayerSound()
-    {
-        SoundManager.Instance.PlaySound(attack.AudioClip);
     }
 
     void SetLowStaminaSpeed()

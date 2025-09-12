@@ -3,15 +3,31 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
+    [SerializeField] AudioSource playerActionAudioSource;
     [SerializeField] AudioSource sfxAudioSource;
     [SerializeField] AudioSource musicAudioSource;
-    [SerializeField] List<AudioClip> audioClips;
 
+
+    [SerializeField] List<AudioClip> playerAudioClips;
+    [SerializeField] List<AudioClip> sfxAudioClips;
+
+    Dictionary<string, AudioClip> playerDictionary = new Dictionary<string, AudioClip>();
     Dictionary<string, AudioClip> sfxDictionary = new Dictionary<string, AudioClip>();
 
     void Start()
     {
-        foreach (AudioClip audioClip in audioClips)
+        ////Player
+        foreach (AudioClip audioClip in playerAudioClips)
+        {
+            if (!playerDictionary.ContainsKey(audioClip.name))
+            {
+                playerDictionary.Add(audioClip.name, audioClip);
+            }
+        }
+
+
+        //// SFX
+        foreach (AudioClip audioClip in sfxAudioClips)
         {
             if (!sfxDictionary.ContainsKey(audioClip.name))
             {
@@ -21,29 +37,27 @@ public class SoundManager : Singleton<SoundManager>
     }
 
 
-    public void PlaySound(AudioClip audioClip)
-    {
-        if (sfxAudioSource != null && audioClip != null)
-        {
-            sfxAudioSource.clip = audioClip;
-        }
-        sfxAudioSource.Stop();
-        sfxAudioSource.Play();
-    }
 
-
-    public void PlaySFX(string sfxType, bool isRandomPitch = false)
+    public void PlayerActionSound(string sfxType, bool isRandomPitch = false)
     {
-        if (sfxDictionary.TryGetValue(sfxType, out AudioClip audioClip))
+        if (playerDictionary.TryGetValue(sfxType, out AudioClip audioClip))
         {
             if (isRandomPitch)
             {
-                sfxAudioSource.pitch = Random.Range(0.9f, 1.1f);
+                playerActionAudioSource.pitch = Random.Range(0.9f, 1.1f);
             }
             else
             {
-                sfxAudioSource.pitch = 1f;
+                playerActionAudioSource.pitch = 1f;
             }
+            playerActionAudioSource.PlayOneShot(audioClip);
+        }
+    }
+
+    public void PlaySFX(string sfxType)
+    {
+        if (sfxDictionary.TryGetValue(sfxType, out AudioClip audioClip))
+        {
             sfxAudioSource.PlayOneShot(audioClip);
         }
     }

@@ -25,7 +25,7 @@ public class PlayerDodgingState : PlayerBaseState
 
     public override void Enter()
     {
-        SoundManager.Instance.PlaySFX("Dodge");
+        SoundManager.Instance.PlayerActionSound("Dodge");
         Dodge();
         stateMachine.Stamina.ReduceStamina(stateMachine.dodgeStaminaReduce);
         stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, stateMachine.CrossFadeDuration);

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "Scriptable Objects/WeaponSO")]
@@ -11,6 +10,7 @@ public class WeaponSO : ScriptableObject
     public GameObject WeaponPrefab;
     [Header("Logic")]
     public string AnimationTag;
+    public AudioClip WeaponImpact;
     public Attack[] Attacks;
     public List<SkillData> SkillsOfWeapon;
 }

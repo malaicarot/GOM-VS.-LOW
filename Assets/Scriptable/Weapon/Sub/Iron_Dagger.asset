@@ -16,6 +16,7 @@ MonoBehaviour:
   Thumbnail: {fileID: 21300000, guid: 5f82fa4c4e9f91248b7805f337c9597d, type: 3}
   WeaponPrefab: {fileID: 2258411484881710256, guid: d2a69bab98638ae41819a23ca7985832, type: 3}
   AnimationTag: Attack
+  WeaponImpact: {fileID: 0}
   Attacks:
   - <AttackAnimationName>k__BackingField: Attack_Secondary_1
     <AnimationDuration>k__BackingField: 0.1
@@ -25,7 +26,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 10
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7d5a2364976c9e941bed39b122b82a0a, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: b2ffc17921c79dc428e1557370a8dede, type: 3}
   - <AttackAnimationName>k__BackingField: Attack_Secondary_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
@@ -34,5 +35,5 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 10
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 6c993a15b455bc34f895514875da6b13, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: b2ffc17921c79dc428e1557370a8dede, type: 3}
   SkillsOfWeapon: []

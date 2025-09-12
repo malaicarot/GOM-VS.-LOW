@@ -16,6 +16,7 @@ MonoBehaviour:
   Thumbnail: {fileID: 21300000, guid: cc562f3f0e4defc40ab34798dbab49e9, type: 3}
   WeaponPrefab: {fileID: 5221380844292194378, guid: f0f31d6958f5de143bf9963ec2a41351, type: 3}
   AnimationTag: Attack
+  WeaponImpact: {fileID: 8300000, guid: 44488a9fb064bea41bf37a6ae373e0b9, type: 3}
   Attacks:
   - <AttackAnimationName>k__BackingField: Sword_Attack_1
     <AnimationDuration>k__BackingField: 0.1
@@ -25,7 +26,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 5736c1c6c072506428aea4baca07b778, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: abfc5666d5dc7de4bbdbbba85df0d13d, type: 3}
   - <AttackAnimationName>k__BackingField: Sword_Attack_2
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
@@ -34,7 +35,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 5
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 5736c1c6c072506428aea4baca07b778, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: abfc5666d5dc7de4bbdbbba85df0d13d, type: 3}
   - <AttackAnimationName>k__BackingField: Sword_Attack_3
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0.8
@@ -43,7 +44,7 @@ MonoBehaviour:
     <Force>k__BackingField: 10
     <AttackDamage>k__BackingField: 7
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 5736c1c6c072506428aea4baca07b778, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: abfc5666d5dc7de4bbdbbba85df0d13d, type: 3}
   - <AttackAnimationName>k__BackingField: Sword_Attack_4
     <AnimationDuration>k__BackingField: 0.1
     <AttackTime>k__BackingField: 0
@@ -52,7 +53,7 @@ MonoBehaviour:
     <Force>k__BackingField: 15
     <AttackDamage>k__BackingField: 8
     <AttackKnockback>k__BackingField: 20
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: 5736c1c6c072506428aea4baca07b778, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: abfc5666d5dc7de4bbdbbba85df0d13d, type: 3}
   SkillsOfWeapon:
   - {fileID: 11400000, guid: 49ac0e1f765f8f14cadc347929019ae5, type: 2}
   - {fileID: 11400000, guid: ed6e1faf698fe2e45b751872a1992965, type: 2}

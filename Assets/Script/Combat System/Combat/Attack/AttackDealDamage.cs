@@ -6,6 +6,8 @@ public class AttackDealDamage : MonoBehaviour
 {
     public Collider myCollider;
     List<Collider> alreadyCollider = new List<Collider>();
+    
+    public event Action OnHit;
     public event Action OnDissolve;
     public event Action OnDragonCC;
     int dealDamaged;
@@ -54,6 +56,7 @@ public class AttackDealDamage : MonoBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
+            OnHit?.Invoke();
             if (this.CompareTag("Hard_CC"))
             {
                 health.isHardCC = true;

@@ -205,18 +205,5 @@ public class PlayerStats : MonoBehaviour
         IncreaseCritical(-amount);
     }
 
-    public void Footstep()
-    {
-        SoundManager.Instance.PlaySFX("Footstep");
-    }
 
-    public void JumpStart()
-    {
-        SoundManager.Instance.PlaySFX("JumpStart");
-    }
-
-    public void Grounded()
-    {
-        SoundManager.Instance.PlaySFX("Grounded");
-    }
 }

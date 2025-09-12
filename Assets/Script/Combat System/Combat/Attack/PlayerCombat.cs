@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] GameObject weaponRight;
     [SerializeField] GameObject weaponLeft;
+    [SerializeField] AttackDealDamage attackDealDamage;
 
     public List<WeaponSO> weaponSOList;
     public List<WeaponSO> weaponSOSecondaryList;
@@ -21,10 +22,27 @@ public class PlayerCombat : MonoBehaviour
     Material weaponMaterial;
 
 
+
     void Start()
     {
         EquipWeapon("EarthHammer");
         EquipSecondaryWeapon("Iron_Dagger");
+    }
+
+    void OnEnable()
+    {
+        attackDealDamage.OnHit += PlaySFXWeaponHit;
+    }
+
+    void OnDisable()
+    {
+        attackDealDamage.OnHit -= PlaySFXWeaponHit;
+    }
+
+
+    void PlaySFXWeaponHit()
+    {
+        SoundManager.Instance.PlaySFX(weapon.WeaponImpact.name);
     }
 
     public void EquipWeapon(string name)
@@ -45,7 +63,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         PlayerSkill.Instance.GetSkillDatas(weapon.SkillsOfWeapon);
-        PlayerSkill.Instance.SetUp();   
+        PlayerSkill.Instance.SetUp();
         OnSetMainWeapon?.Invoke();
     }
 
@@ -96,5 +114,4 @@ public class PlayerCombat : MonoBehaviour
             attackDamage.AttackDamage += damage;
         }
     }
-
 }
