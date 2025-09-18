@@ -23863,6 +23863,14 @@ PrefabInstance:
       propertyPath: statusBar
       value: 
       objectReference: {fileID: 134178034}
+    - target: {fileID: 71736161469583306, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: increaseMana
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 794903817025192258, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: mana
+      value: 
+      objectReference: {fileID: 8348456593819607488}
     - target: {fileID: 1078006225097762499, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: statusBar
       value: 
@@ -23931,6 +23939,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.0117746005
       objectReference: {fileID: 0}
+    - target: {fileID: 5363415352059896232, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: playerAttributes.Array.data[1].amount
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5409153601907408454, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: <SummonPosition>k__BackingField
       value: 
@@ -23955,6 +23967,10 @@ PrefabInstance:
       propertyPath: attackDealDamage
       value: 
       objectReference: {fileID: 1679099724}
+    - target: {fileID: 7157595206059425966, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: mana
+      value: 
+      objectReference: {fileID: 8348456593819607488}
     - target: {fileID: 8245511613078875398, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: statusBar
       value: 
@@ -26192,6 +26208,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f84f2079a36c9c46ba2ce3c2c99a78f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8348456593819607488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 71736161469583306, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+  m_PrefabInstance: {fileID: 4914846217268930066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835756999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb07e5801982b747bb7e505935c8ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8358024408926833713

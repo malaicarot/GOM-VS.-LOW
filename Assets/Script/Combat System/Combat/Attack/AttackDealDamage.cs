@@ -10,6 +10,8 @@ public class AttackDealDamage : MonoBehaviour
     public event Action OnHit;
     public event Action OnDissolve;
     public event Action OnDragonCC;
+    public event Action OnIncreaseMana;
+
     int dealDamaged;
     float knockback;
 
@@ -57,6 +59,7 @@ public class AttackDealDamage : MonoBehaviour
         if (other.TryGetComponent<Health>(out Health health))
         {
             OnHit?.Invoke();
+            OnIncreaseMana?.Invoke();
             if (this.CompareTag("Hard_CC"))
             {
                 health.isHardCC = true;

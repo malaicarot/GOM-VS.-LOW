@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Mana : MonoBehaviour
 {
-    float maxMana = 100f;
+    [SerializeField] float increaseMana = 10;
     [SerializeField] StatusBar statusBar;
     PlayerStats playerStats;
 
@@ -11,35 +11,32 @@ public class Mana : MonoBehaviour
     void Start()
     {
         playerStats = GetComponent<PlayerStats>();
-        SetMana();
+        // SetMana();
     }
 
     void Update()
     {
         if (statusBar != null)
         {
-            statusBar.fillAmount = currentMana / maxMana;
-
+            statusBar.fillAmount = currentMana / playerStats.ReturnAttribute("Mana");
         }
     }
 
     public void SetMana()
     {
-        maxMana = playerStats.ReturnAttribute("Mana");
-        currentMana = maxMana;
+        currentMana += increaseMana;
     }
 
 
     public void ResetMana()
     {
-        currentMana = maxMana;
+        currentMana = 0;
     }
 
     public void IncreaseMana(float amount)
     {
-        currentMana = Mathf.Min(currentMana + amount, maxMana);
+        currentMana = Mathf.Min(currentMana + amount, playerStats.ReturnAttribute("Mana"));
     }
-
 
     public void ReduceMana(float amount)
     {

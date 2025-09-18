@@ -22,7 +22,6 @@ public class PlayerCombat : MonoBehaviour
     Material weaponMaterial;
 
 
-
     void Start()
     {
         EquipWeapon("EarthHammer");

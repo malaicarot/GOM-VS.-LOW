@@ -67,7 +67,6 @@ public class PlayerStateMachine : StateMachine
         PlayerStats.IncreaseStats += SetStats;
         PlayerCombat.OnSetMainWeapon += SetAttackBaseMainWeapon;
         PlayerCombat.OnSetSecondaryWeapon += SetAttackBaseSecondaryWeapon;
-
     }
 
     void OnDisable()
@@ -121,15 +120,11 @@ public class PlayerStateMachine : StateMachine
 
     public void SetStats()
     {
-        // foreach (Attack attack in Attacks)
-        // {
-        //     attack.AttackDamage = PlayerStats.ReturnAttribute("Attacks");
-        // }
-
         Health.SetResistance();
         Health.SetHealth();
         Stamina.SetStamina();
     }
+
     public void SetAttackBaseMainWeapon()
     {
         Attacks = PlayerCombat.weapon.Attacks;
@@ -143,6 +138,11 @@ public class PlayerStateMachine : StateMachine
     public void OnCastSkill()
     {
         if (Mana.currentMana <= 0) { return; }
+        if (PlayerSkill.Instance.alreadySkill[InputReader.ButtonIndex].ManaCost > Mana.currentMana)
+        {
+            return;
+        }
+
         if (!PlayerSkill.Instance.ButtonOnClick(Buttons[InputReader.ButtonIndex])) { return; }
 
         Buttons[InputReader.ButtonIndex].onClick.Invoke();

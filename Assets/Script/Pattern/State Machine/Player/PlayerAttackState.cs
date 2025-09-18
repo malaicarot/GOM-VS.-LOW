@@ -30,9 +30,9 @@ public class PlayerAttackState : PlayerBaseState
 
         foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
         {
+            attackDamage.OnIncreaseMana += stateMachine.Mana.SetMana;
             attackDamage.SetAttack(stateMachine.PlayerStats.CalculateCritical(attack.AttackDamage), attack.AttackKnockback);
         }
-
     }
 
     public override void Tick(float deltaTime)
@@ -78,6 +78,10 @@ public class PlayerAttackState : PlayerBaseState
         stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
         stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
         stateMachine.Stamina.OnEnergetic -= SetHighStaminaSpeed;
+        foreach (AttackDealDamage attackDamage in stateMachine.AttackDealDamage)
+        {
+            attackDamage.OnIncreaseMana -= stateMachine.Mana.SetMana;
+        }
     }
 
     void TryCombo(float normalizedTime, int attackIndex, Attack[] nextComboList)
@@ -111,4 +115,6 @@ public class PlayerAttackState : PlayerBaseState
     {
         isTired = false;
     }
+    
+    // void
 }

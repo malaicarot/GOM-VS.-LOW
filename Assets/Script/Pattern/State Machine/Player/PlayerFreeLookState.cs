@@ -89,7 +89,6 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         if (stateMachine.InputReader.Movement == Vector2.zero)
         {
-            Debug.Log("Idle");
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
             stateMachine.Animator.SetFloat(MovementSpeedHash, 0, AnimationDamping, deltaTime);
             float current = stateMachine.Animator.GetFloat(MovementSpeedHash);

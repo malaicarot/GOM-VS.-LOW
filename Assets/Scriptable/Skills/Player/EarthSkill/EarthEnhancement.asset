@@ -17,12 +17,11 @@ MonoBehaviour:
     additional damage from the earth effect, increasing the chance of stunning enemies.
   Sprite: {fileID: 21300000, guid: c57abacc41e1b6c4cab311b5ea4fbba5, type: 3}
   AnimationName: Enhancement
-  ManaCost: 10
+  ManaCost: 50
   CoolDown: 3
   Damage: 0
   KnockBack: 0
   unlocked: 1
   EffectObject: {fileID: 4616543092078937179, guid: 84efc832abd1b8947a0f69260f614880, type: 3}
   Sound: {fileID: 0}
-  Range: 0
-  IsAOE: 0
+  IsHigh: 0
