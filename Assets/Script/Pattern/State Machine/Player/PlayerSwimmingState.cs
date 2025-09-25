@@ -1,43 +1,26 @@
-using System.Security.Cryptography;
-using JetBrains.Annotations;
 using UnityEngine;
 
-public class PlayerFreeLookState : PlayerBaseState
+public class PlayerSwimmingState : PlayerBaseState
 {
     readonly int MovementSpeedHash = Animator.StringToHash("MovementSpeed");
-    readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
+    readonly int FreeLookSwimmingHash = Animator.StringToHash("FreeLookSwimming");
     const float AnimationDamping = 0.1f;
     float speed;
     bool isTired;
-    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+    public PlayerSwimmingState(PlayerStateMachine stateMachine) : base(stateMachine)
+    {
+    }
 
     public override void Enter()
     {
-        stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, stateMachine.CrossFadeDuration);
-        stateMachine.InputReader.TargetEvent += OnTarget;
-        stateMachine.InputReader.JumpEvent += stateMachine.OnJump;
-        stateMachine.InputReader.DodgeEvent += stateMachine.OnDodge;
-        stateMachine.InputReader.HealingEvent += stateMachine.HandleHealing;
-        stateMachine.InputReader.SkillEvent += stateMachine.OnCastSkill;
+        stateMachine.Animator.CrossFadeInFixedTime(FreeLookSwimmingHash, stateMachine.CrossFadeDuration);
         stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
         stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
+
     }
 
     public override void Tick(float deltaTime)
     {
-        if (stateMachine.InputReader.IsAttack)
-        {
-
-            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.Attacks));
-            return;
-        }
-
-        if (stateMachine.InputReader.IsSecondaryAttack)
-        {
-            stateMachine.SwitchState(new PlayerAttackState(stateMachine, 0, stateMachine.AttacksSecondary));
-            return;
-        }
-
         Vector3 direction = CalculateDirection();
         float targetSpeed = stateMachine.InputReader.IsSprint ?
         speed * stateMachine.MultiplyCoefficientSpeed :
@@ -60,11 +43,6 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.InputReader.TargetEvent -= OnTarget;
-        stateMachine.InputReader.JumpEvent -= stateMachine.OnJump;
-        stateMachine.InputReader.DodgeEvent -= stateMachine.OnDodge;
-        stateMachine.InputReader.HealingEvent -= stateMachine.HandleHealing;
-        stateMachine.InputReader.SkillEvent -= stateMachine.OnCastSkill;
         stateMachine.Stamina.OnTired -= SetLowStaminaSpeed;
         stateMachine.Stamina.OnEnergetic -= SetHighStaminaSpeed;
     }
@@ -76,14 +54,6 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(direction), stateMachine.RotationDamping * deltaTime);
         }
     }
-
-    void OnTarget()
-    {
-        if (!stateMachine.Targeter.SelectedTarget()) { return; }
-        PlayerSkill.Instance.TargetIndentify(stateMachine.Targeter.currentTarget);
-        stateMachine.SwitchState(new PlayerTargetState(stateMachine));
-    }
-
     void SetAnimation(float walk, float run, float deltaTime)
     {
         if (stateMachine.InputReader.Movement == Vector2.zero)
@@ -95,7 +65,6 @@ public class PlayerFreeLookState : PlayerBaseState
             {
                 stateMachine.Animator.SetFloat(MovementSpeedHash, 0);
             }
-            // return;
         }
         else if (stateMachine.InputReader.IsSprint)
         {
@@ -104,8 +73,6 @@ public class PlayerFreeLookState : PlayerBaseState
         }
         else
         {
-            // stateMachine.Stamina.ReduceStamina(stateMachine.sprintStaminaReduce);
-
             stateMachine.Stamina.RecoveryStamina(stateMachine.staminaRecovery);
             stateMachine.Animator.SetFloat(MovementSpeedHash, walk, AnimationDamping, deltaTime);
         }

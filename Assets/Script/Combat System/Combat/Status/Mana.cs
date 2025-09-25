@@ -11,7 +11,6 @@ public class Mana : MonoBehaviour
     void Start()
     {
         playerStats = GetComponent<PlayerStats>();
-        // SetMana();
     }
 
     void Update()

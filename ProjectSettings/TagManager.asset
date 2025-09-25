@@ -19,6 +19,7 @@ TagManager:
   - DPS
   - DragonDefense
   - DragonCC
+  - River
   layers:
   - Default
   - TransparentFX

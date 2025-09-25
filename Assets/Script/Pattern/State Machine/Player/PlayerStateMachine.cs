@@ -16,6 +16,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Transform Enhancement { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+    [field: SerializeField] public CheckEnvironment CheckEnvironment { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public HealingPotion HealingPotion { get; private set; }
     [field: SerializeField] public Mana Mana { get; private set; }
@@ -67,6 +68,7 @@ public class PlayerStateMachine : StateMachine
         PlayerStats.IncreaseStats += SetStats;
         PlayerCombat.OnSetMainWeapon += SetAttackBaseMainWeapon;
         PlayerCombat.OnSetSecondaryWeapon += SetAttackBaseSecondaryWeapon;
+        CheckEnvironment.OnInRiver += HandleSwim;
     }
 
     void OnDisable()
@@ -77,8 +79,7 @@ public class PlayerStateMachine : StateMachine
         PlayerStats.IncreaseStats -= SetStats;
         PlayerCombat.OnSetMainWeapon -= SetAttackBaseMainWeapon;
         PlayerCombat.OnSetSecondaryWeapon -= SetAttackBaseSecondaryWeapon;
-
-
+        CheckEnvironment.OnInRiver -= HandleSwim;
     }
 
     void HandleAttack()
@@ -94,6 +95,11 @@ public class PlayerStateMachine : StateMachine
     void HandleStunState()
     {
         SwitchState(new PlayerStunState(this));
+    }
+
+    void HandleSwim()
+    {
+        SwitchState(new PlayerSwimmingState(this));
     }
 
     public void OnJump()
