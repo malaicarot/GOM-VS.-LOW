@@ -21,9 +21,6 @@ public class SystemUIManagers : MonoBehaviour
         }
     }
 
-
-
-
     GameObject ReturnGameObject(string name)
     {
         foreach (GameObject item in content)

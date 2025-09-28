@@ -16,7 +16,6 @@ public class PlayerSwimmingState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookSwimmingHash, stateMachine.CrossFadeDuration);
         stateMachine.Stamina.OnTired += SetLowStaminaSpeed;
         stateMachine.Stamina.OnEnergetic += SetHighStaminaSpeed;
-
     }
 
     public override void Tick(float deltaTime)

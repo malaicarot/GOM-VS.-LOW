@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,9 +10,9 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] Image MainWeaponInUse;
     [SerializeField] Image SecondaryWeaponInUse;
 
+    public event Action OnGetMainWeapon;
 
-
-    List<Image> mainWeaponSprite;
+    public List<Image> mainWeaponSprite;
     List<Image> secondaryWeaponSprite;
 
     void Start()
@@ -31,12 +32,6 @@ public class WeaponUI : MonoBehaviour
         UIManagers.Instance.playerCombat.OnSetMainWeapon += SetMainWeaponInUse;
         UIManagers.Instance.playerCombat.OnSetSecondaryWeapon += SetSecondaryWeaponInUse;
     }
-
-    // void OnDisable()
-    // {
-    //     UIManagers.Instance.playerCombat.OnSetMainWeapon += SetMainWeaponInUse;
-    //     UIManagers.Instance.playerCombat.OnSetSecondaryWeapon += SetSecondaryWeaponInUse;
-    // }
 
     void SetMainWeaponInUse()
     {
@@ -61,6 +56,7 @@ public class WeaponUI : MonoBehaviour
     public void UpdateWeaponThumbnail(List<Image> weaponListType)
     {
         if (weaponListType == null) { return; }
+        OnGetMainWeapon?.Invoke();
         for (int i = 0; i < weaponListType.Count; i++)
         {
             weaponListType[i].sprite = UIManagers.Instance.playerCombat.weaponSOList[i].Thumbnail;

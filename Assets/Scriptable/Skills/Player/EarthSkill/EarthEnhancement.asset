@@ -21,7 +21,7 @@ MonoBehaviour:
   CoolDown: 3
   Damage: 0
   KnockBack: 0
-  unlocked: 1
+  unlocked: 0
   EffectObject: {fileID: 4616543092078937179, guid: 84efc832abd1b8947a0f69260f614880, type: 3}
   Sound: {fileID: 0}
   IsHigh: 0
