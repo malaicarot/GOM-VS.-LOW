@@ -6,5 +6,6 @@ public class AttributeData : ScriptableObject
     [Header("General Infor")]
     [TextArea, SerializeField] string Description;
     public Sprite Thumbnail;
+    public int Value;
 
 }

@@ -6,12 +6,11 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Main Player Stats")]
-    [SerializeField] int playerXP = 0;
-    [SerializeField] int playerLevel = 0;
+    [SerializeField] AttributeData playerXP;
+    [SerializeField] AttributeData playerLevel;
 
     [Header("Player Attributes")]
-    public List<BaseAttributes> playerAttributes = new List<BaseAttributes>();
-
+    public List<AttributeData> AttributeDatas;
 
     [Header("Stats Increase")]
     [SerializeField] int manaIncrease = 10;
@@ -41,11 +40,11 @@ public class PlayerStats : MonoBehaviour
 
     public void RaiseXP(int amount)
     {
-        playerXP += amount;
-        if (playerXP >= XPNeededToLevelUp)
+        playerXP.Value += amount;
+        if (playerXP.Value >= XPNeededToLevelUp)
         {
             LevelUp();
-            playerXP = playerXP - XPNeededToLevelUp;
+            playerXP.Value -= -XPNeededToLevelUp;
             IncreaseStats?.Invoke();
         }
     }
@@ -54,9 +53,9 @@ public class PlayerStats : MonoBehaviour
     {
         Effect effect = EffectFactory.GetEffect("LevelUp");
         effect.Proccess(gameObject);
-        playerLevel++;
+        playerLevel.Value++;
         XPNeededToLevelUp += 5;
-        increasePoint = playerLevel;
+        increasePoint = playerLevel.Value;
         IncreaseAttributes();
         health.SetHealth();
         health.SetResistance();
@@ -66,11 +65,11 @@ public class PlayerStats : MonoBehaviour
 
     public int ReturnAttribute(string name)
     {
-        foreach (BaseAttributes item in playerAttributes)
+        foreach (AttributeData stat in AttributeDatas)
         {
-            if (item.attributeData.name == name)
+            if (stat.name == name)
             {
-                return item.amount;
+                return stat.Value;
             }
         }
         return 0;
@@ -78,11 +77,11 @@ public class PlayerStats : MonoBehaviour
 
     public Sprite ReturnAttributeSprite(string name)
     {
-        foreach (BaseAttributes item in playerAttributes)
+        foreach (AttributeData stat in AttributeDatas)
         {
-            if (item.attributeData.name == name)
+            if (stat.name == name)
             {
-                return item.attributeData.Thumbnail;
+                return stat.Thumbnail;
             }
         }
         return null;
@@ -90,27 +89,27 @@ public class PlayerStats : MonoBehaviour
 
     public void IncreaseAttributes()
     {
-        foreach (BaseAttributes item in playerAttributes)
+        foreach (AttributeData stat in AttributeDatas)
         {
-            switch (item.attributeData.name)
+            switch (stat.name)
             {
                 case "Health":
-                    item.amount += healthIncrease;
+                    stat.Value += healthIncrease;
                     break;
                 case "Mana":
-                    item.amount += manaIncrease;
+                    stat.Value += manaIncrease;
                     break;
                 case "Stamina":
-                    item.amount += staminaIncrease;
+                    stat.Value += staminaIncrease;
                     break;
                 case "Attacks":
-                    item.amount += attackDamageIncrease;
+                    stat.Value += attackDamageIncrease;
                     break;
                 case "Resistance":
-                    item.amount += resistanceIncrease;
+                    stat.Value += resistanceIncrease;
                     break;
                 case "Critical":
-                    item.amount += criticalIncrease;
+                    stat.Value += criticalIncrease;
                     break;
                 default:
                     break;
@@ -119,11 +118,11 @@ public class PlayerStats : MonoBehaviour
     }
     void IncreaseAmount(string name, int amount)
     {
-        foreach (BaseAttributes item in playerAttributes)
+        foreach (AttributeData stat in AttributeDatas)
         {
-            if (item.attributeData.name == name)
+            if (stat.name == name)
             {
-                item.amount += amount;
+                stat.Value += amount;
             }
         }
     }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Description: 
   Thumbnail: {fileID: 21300000, guid: cf6478ef684ce7f4c830edba147c7607, type: 3}
+  Value: 100
