@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Critical
   m_EditorClassIdentifier: 
   Description: 
-  Thumbnail: {fileID: 21300000, guid: 4dc051a0301cecb4aa1a85036ace2a58, type: 3}
-  Value: 10
+  Thumbnail: {fileID: 21300000, guid: 5403f24130f3a8b49ad9c91465c0b477, type: 3}
+  Value: 100

@@ -21,8 +21,8 @@ public class SpecialAttackUI : MonoBehaviour
     {
         if (!specialEffectsData.unlocked)
         {
-            SpecialEffectManagers.Instance.UnlockEffect(specialEffectsData.EffectName);
-            Refesh();
+            // SpecialEffectManagers.Instance.UnlockEffect(specialEffectsData.EffectName);
+            // Refesh();
         }
     }
 

@@ -16,19 +16,22 @@ public class SpecialEffectManagers : Singleton<SpecialEffectManagers>
     public List<SpecialEffectsData> specialEffectsDataList;
     public event Action OnActiveEffect;
     public event Action OnReadySingleton;
+    PlayerStats playerStats;
 
     void Start()
     {
+        playerStats = FindFirstObjectByType<PlayerStats>();
         OnReadySingleton?.Invoke();
     }
 
-    public void UnlockEffect(string effectName)
+    public bool UnlockEffect(SkillData skillData)
     {
-        var skill = specialEffectsDataList.Find(name => name.EffectName == effectName);
-        if (skill != null && !skill.unlocked)
+        if (playerStats.skillUpPoint.Value == skillData.DragonVeinPoint)
         {
-            skill.unlocked = true;
-            OnActiveEffect?.Invoke();
+            playerStats.skillUpPoint.Value--;
+            skillData.unlocked = true;
+            return true;
         }
+        return false;
     }
 }

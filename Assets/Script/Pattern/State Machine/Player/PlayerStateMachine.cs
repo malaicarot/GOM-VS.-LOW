@@ -66,8 +66,8 @@ public class PlayerStateMachine : StateMachine
         Health.OnDeath += HandleDeadState;
         Health.OnStun += HandleStunState;
         PlayerStats.IncreaseStats += SetStats;
-        PlayerCombat.OnSetMainWeapon += SetAttackBaseMainWeapon;
-        PlayerCombat.OnSetSecondaryWeapon += SetAttackBaseSecondaryWeapon;
+        PlayerSingleton.Instance.OnSetMainWeapon += SetAttackBaseMainWeapon;
+        PlayerSingleton.Instance.OnSetSecondaryWeapon += SetAttackBaseSecondaryWeapon;
         CheckEnvironment.OnInRiver += HandleSwim;
     }
 
@@ -77,8 +77,6 @@ public class PlayerStateMachine : StateMachine
         Health.OnDeath -= HandleDeadState;
         Health.OnStun -= HandleStunState;
         PlayerStats.IncreaseStats -= SetStats;
-        PlayerCombat.OnSetMainWeapon -= SetAttackBaseMainWeapon;
-        PlayerCombat.OnSetSecondaryWeapon -= SetAttackBaseSecondaryWeapon;
         CheckEnvironment.OnInRiver -= HandleSwim;
     }
 
@@ -133,12 +131,12 @@ public class PlayerStateMachine : StateMachine
 
     public void SetAttackBaseMainWeapon()
     {
-        Attacks = PlayerCombat.weapon.Attacks;
+        Attacks = PlayerSingleton.Instance.weapon.Attacks;
     }
 
     public void SetAttackBaseSecondaryWeapon()
     {
-        AttacksSecondary = PlayerCombat.weaponSecondary.Attacks;
+        AttacksSecondary = PlayerSingleton.Instance.weaponSecondary.Attacks;
     }
 
     public void OnCastSkill()

@@ -10,15 +10,13 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] Image MainWeaponInUse;
     [SerializeField] Image SecondaryWeaponInUse;
 
-    public event Action OnGetMainWeapon;
+    public event Action OnGetMainWeapon; // Sự kiện khi đổi vũ khí, sẽ cập nhật UI
 
-    public List<Image> mainWeaponSprite;
+    public List<Image> mainWeaponSprite { get; set; }
     List<Image> secondaryWeaponSprite;
 
     void Start()
     {
-        // UIManagers.Instance.playerCombat.EquipWeapon("EarthHammer");
-        // UIManagers.Instance.playerCombat.EquipSecondaryWeapon("Iron_Dagger");
         mainWeaponSprite = new List<Image>();
         secondaryWeaponSprite = new List<Image>();
         GetImageComponent(ScrollbarContentMain, mainWeaponSprite);
@@ -29,20 +27,19 @@ public class WeaponUI : MonoBehaviour
 
     void OnEnable()
     {
-        UIManagers.Instance.playerCombat.OnSetMainWeapon += SetMainWeaponInUse;
-        UIManagers.Instance.playerCombat.OnSetSecondaryWeapon += SetSecondaryWeaponInUse;
+        PlayerSingleton.Instance.OnSetMainWeapon += SetMainWeaponInUse;
+        PlayerSingleton.Instance.OnSetSecondaryWeapon += SetSecondaryWeaponInUse;
     }
 
     void SetMainWeaponInUse()
     {
-        MainWeaponInUse.sprite = UIManagers.Instance.playerCombat.weapon.Thumbnail;
+        MainWeaponInUse.sprite = PlayerSingleton.Instance.weapon.Thumbnail;
     }
 
     void SetSecondaryWeaponInUse()
     {
-        SecondaryWeaponInUse.sprite = UIManagers.Instance.playerCombat.weaponSecondary.Thumbnail;
+        SecondaryWeaponInUse.sprite = PlayerSingleton.Instance.weaponSecondary.Thumbnail;
     }
-
 
     void GetImageComponent(GameObject contentObject, List<Image> images)
     {
@@ -52,14 +49,13 @@ public class WeaponUI : MonoBehaviour
         }
     }
 
-
     public void UpdateWeaponThumbnail(List<Image> weaponListType)
     {
-        if (weaponListType == null) { return; }
         OnGetMainWeapon?.Invoke();
+        if (weaponListType == null) { return; }
         for (int i = 0; i < weaponListType.Count; i++)
         {
-            weaponListType[i].sprite = UIManagers.Instance.playerCombat.weaponSOList[i].Thumbnail;
+            weaponListType[i].sprite = PlayerSingleton.Instance.weaponSOList[i].Thumbnail;
         }
     }
 
@@ -68,21 +64,21 @@ public class WeaponUI : MonoBehaviour
         if (weaponListType == null) { return; }
         for (int i = 0; i < weaponListType.Count; i++)
         {
-            weaponListType[i].sprite = UIManagers.Instance.playerCombat.weaponSOSecondaryList[i].Thumbnail;
+            weaponListType[i].sprite = PlayerSingleton.Instance.weaponSOSecondaryList[i].Thumbnail;
         }
     }
-
 
     public void GetMainWeapon(Button button)
     {
         PlayerSkill.Instance.Reset();
         string mainWeaponName = button.GetComponent<Image>().sprite.name;
-        UIManagers.Instance.playerCombat.EquipWeapon(mainWeaponName);
+        PlayerSingleton.Instance.EquipWeapon(mainWeaponName, PlayerSingleton.Instance.weaponRight.transform);
+        UIManagers.Instance.UpdateSkillImage();
     }
 
     public void GetSecondaryWeapon(Button button)
     {
         string secondaryWeaponName = button.GetComponent<Image>().sprite.name;
-        UIManagers.Instance.playerCombat.EquipSecondaryWeapon(secondaryWeaponName);
+        PlayerSingleton.Instance.EquipWeapon(secondaryWeaponName, PlayerSingleton.Instance.weaponLeft.transform);
     }
 }

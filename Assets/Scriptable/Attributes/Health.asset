@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Health
   m_EditorClassIdentifier: 
   Description: 
-  Thumbnail: {fileID: 21300000, guid: 108ca3e7dda90d945b0914bf9259ec94, type: 3}
-  Value: 100
+  Thumbnail: {fileID: 21300000, guid: da7a4ff3d13174147bfd65aadd183d25, type: 3}
+  Value: 190

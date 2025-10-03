@@ -9,10 +9,9 @@ public class PlayerSkill : Singleton<PlayerSkill>
     [SerializeField] GameObject[] skillUI;
     public List<SkillData> skillDatas { get; set; }
     public List<SkillData> alreadySkill { get; set; }
-
     public event Action OnGotSkills;
-
     public Target target { get; private set; }
+    [SerializeField] PlayerStats playerStats;
 
 
     Image backgroundImage; // Icon kĩ năng được làm mờ 
@@ -35,7 +34,7 @@ public class PlayerSkill : Singleton<PlayerSkill>
         SetupStart();
         SetCooldownSkill();
     }
-    
+
     public void Reset()
     {
         fillImageList = new List<Image>();
@@ -54,15 +53,17 @@ public class PlayerSkill : Singleton<PlayerSkill>
     {
         backgroundImage = skillUI[index].transform.Find("Background")?.GetComponent<Image>();
         fillImage = skillUI[index].transform.Find("Fill")?.GetComponent<Image>();
-
         backgroundImage.sprite = skillData.Sprite;
         fillImage.sprite = skillData.Sprite;
         fillImage.fillAmount = 1;
+        if (!skillData.unlocked)
+        {
+            fillImage.enabled = false;
+        }
         fillImageList.Add(fillImage);
         backgroundImage.gameObject.SetActive(true);
         fillImage.gameObject.SetActive(true);
         alreadySkill.Add(skillData);
-
     }
 
     public bool ButtonOnClick(Button button)
@@ -76,15 +77,24 @@ public class PlayerSkill : Singleton<PlayerSkill>
         return true;
     }
 
-    public void UnlockSkill(string skillName)
+    public bool UnlockSkill(SkillData skillData)
     {
-        SkillData skill = skillDatas.Find(name => name.SkillName == skillName);
-        if (skill != null && !skill.unlocked)
+        if (skillData != null && skillData.DragonVeinPoint <= playerStats.skillUpPoint.Value)
         {
-            skill.unlocked = true;
-            // UpdateImage(skill);
-            OnActiveSkill?.Invoke();
+            skillData.unlocked = true;
+            playerStats.skillUpPoint.Value -= skillData.DragonVeinPoint;
+
+            foreach (Image image in fillImageList)
+            {
+                if (skillData.Sprite == image.sprite)
+                {
+                    image.enabled = true;
+                    return true;
+                }
+            }
         }
+        Debug.Log("Not enough!");
+        return false;
     }
 
     void SetCooldownSkill()

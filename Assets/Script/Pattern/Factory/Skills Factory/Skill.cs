@@ -120,9 +120,7 @@ public class FireEnhancment : Ability
 
     public override void Proccess(SkillData skillData, GameObject caster, Transform spawn)
     {
-        PlayerStateMachine playerStateMachine = caster.GetComponent<PlayerStateMachine>();
-        PlayerCombat playerCombat = playerStateMachine.PlayerCombat;
-        playerCombat.Enhancment(191, 7, 0, 10);
+        PlayerSingleton.Instance.Enhancment(191, 7, 0, 10);
     }
 }
 

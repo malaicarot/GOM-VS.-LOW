@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Main Player Stats")]
     [SerializeField] AttributeData playerXP;
     [SerializeField] AttributeData playerLevel;
+    public AttributeData skillUpPoint;
 
     [Header("Player Attributes")]
     public List<AttributeData> AttributeDatas;
@@ -53,6 +54,7 @@ public class PlayerStats : MonoBehaviour
     {
         Effect effect = EffectFactory.GetEffect("LevelUp");
         effect.Proccess(gameObject);
+        skillUpPoint.Value++;
         playerLevel.Value++;
         XPNeededToLevelUp += 5;
         increasePoint = playerLevel.Value;
@@ -116,6 +118,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
     void IncreaseAmount(string name, int amount)
     {
         foreach (AttributeData stat in AttributeDatas)
@@ -132,11 +135,13 @@ public class PlayerStats : MonoBehaviour
         IncreaseAmount("Attacks", attackDamageIncrease);
         IncreaseStats?.Invoke();
     }
+
     public void IncreaseCritical(int amount)
     {
         IncreaseAmount("Critical", amount);
         IncreaseStats?.Invoke();
     }
+
     public void IncreaseResistance(int amount)
     {
         IncreaseAmount("Resistance", amount);
@@ -148,6 +153,7 @@ public class PlayerStats : MonoBehaviour
         IncreaseAmount("Health", healthIncrease);
         IncreaseStats?.Invoke();
     }
+
     public void IncreaseStamina(int amount)
     {
         IncreaseAmount("Stamina", amount);
@@ -203,6 +209,5 @@ public class PlayerStats : MonoBehaviour
         yield return new WaitForSecondsRealtime(10f);
         IncreaseCritical(-amount);
     }
-
 
 }

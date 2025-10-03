@@ -15,9 +15,6 @@ public class PlayerCastSkillState : PlayerBaseState
     {
         skillIndex = stateMachine.InputReader.ButtonIndex;
         UseSkill(skillIndex);
-        stateMachine.Mana.ReduceMana(PlayerSkill.Instance.alreadySkill[skillIndex].ManaCost);
-        stateMachine.Animator.CrossFadeInFixedTime(PlayerSkill.Instance.alreadySkill[skillIndex].AnimationName, stateMachine.CrossFadeDuration);
-        PlayerSkill.Instance.TargetIndentify(stateMachine.Targeter.currentTarget);
     }
 
     public override void Tick(float deltaTime)
@@ -37,17 +34,27 @@ public class PlayerCastSkillState : PlayerBaseState
 
     void UseSkill(int index)
     {
-        string name = PlayerSkill.Instance.alreadySkill[index].SkillName;
-
-        ability = AbilityFactory.GetAbility(name);
-        if (ability != null)
+        if (PlayerSkill.Instance.alreadySkill[index].unlocked)
         {
-            Transform transform = PlayerSkill.Instance.alreadySkill[skillIndex].IsHigh == true ? stateMachine.HighSkillPosition.transform : stateMachine.SkillPosition.transform;
-            if (index == 3)
+            string name = PlayerSkill.Instance.alreadySkill[index].SkillName;
+
+            ability = AbilityFactory.GetAbility(name);
+            if (ability != null)
             {
-                transform = stateMachine.SummonPosition.transform;
+                Transform transform = PlayerSkill.Instance.alreadySkill[skillIndex].IsHigh == true ? stateMachine.HighSkillPosition.transform : stateMachine.SkillPosition.transform;
+                if (index == 3)
+                {
+                    transform = stateMachine.SummonPosition.transform;
+                }
+                ability.Proccess(PlayerSkill.Instance.alreadySkill[index], stateMachine.gameObject, transform);
             }
-            ability.Proccess(PlayerSkill.Instance.alreadySkill[index], stateMachine.gameObject, transform);
+            stateMachine.Mana.ReduceMana(PlayerSkill.Instance.alreadySkill[skillIndex].ManaCost);
+            stateMachine.Animator.CrossFadeInFixedTime(PlayerSkill.Instance.alreadySkill[skillIndex].AnimationName, stateMachine.CrossFadeDuration);
+            PlayerSkill.Instance.TargetIndentify(stateMachine.Targeter.currentTarget);
+        }
+        else
+        {
+            ReturnToLocomotion();
         }
     }
 }

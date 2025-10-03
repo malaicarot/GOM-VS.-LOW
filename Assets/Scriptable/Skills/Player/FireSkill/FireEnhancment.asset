@@ -21,7 +21,7 @@ MonoBehaviour:
   Damage: 0
   KnockBack: 0
   unlocked: 1
+  DragonVeinPoint: 1
   EffectObject: {fileID: 0}
   Sound: {fileID: 0}
-  Range: 0
-  IsAOE: 0
+  IsHigh: 0

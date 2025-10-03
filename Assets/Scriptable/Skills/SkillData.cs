@@ -15,6 +15,7 @@ public class SkillData : ScriptableObject
     public int Damage;
     public float KnockBack;
     public bool unlocked = false;
+    public int DragonVeinPoint;
 
     [Header("Effect")]
     public GameObject EffectObject;

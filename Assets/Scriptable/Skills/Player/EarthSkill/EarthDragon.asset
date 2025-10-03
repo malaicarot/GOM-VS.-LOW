@@ -24,6 +24,7 @@ MonoBehaviour:
   Damage: 40
   KnockBack: 50
   unlocked: 1
+  DragonVeinPoint: 1
   EffectObject: {fileID: 802527420691430754, guid: 402a408b1e84d854db24de708c9da1e9, type: 3}
   Sound: {fileID: 0}
   IsHigh: 0
