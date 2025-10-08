@@ -20,7 +20,7 @@ MonoBehaviour:
   CoolDown: 5
   Damage: 50
   KnockBack: 50
-  unlocked: 1
+  unlocked: 0
   DragonVeinPoint: 1
   EffectObject: {fileID: 0}
   Sound: {fileID: 0}

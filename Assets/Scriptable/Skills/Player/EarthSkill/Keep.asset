@@ -20,7 +20,7 @@ MonoBehaviour:
   CoolDown: 2
   Damage: 0
   KnockBack: 0
-  unlocked: 1
+  unlocked: 0
   DragonVeinPoint: 1
   EffectObject: {fileID: 7039455098572163698, guid: 86ebfd5736b15ba409f66304ee9d20fa, type: 3}
   Sound: {fileID: 0}

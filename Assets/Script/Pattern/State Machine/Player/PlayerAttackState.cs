@@ -115,6 +115,4 @@ public class PlayerAttackState : PlayerBaseState
     {
         isTired = false;
     }
-    
-    // void
 }

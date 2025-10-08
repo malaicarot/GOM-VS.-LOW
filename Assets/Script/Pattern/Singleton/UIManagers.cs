@@ -22,7 +22,7 @@ public class UIManagers : Singleton<UIManagers>
     public event Action ActionCountinue;
     public event Action Rest;
     public PlayerCombat playerCombat { get; set; }
-    
+
 
     void Start()
     {
@@ -83,6 +83,10 @@ public class UIManagers : Singleton<UIManagers>
             if (!PlayerSingleton.Instance.weapon.SkillsOfWeapon[i].unlocked)
             {
                 SkillsUI[i].color = Color.gray;
+            }
+            else
+            {
+                SkillsUI[i].color = Color.white;
             }
         }
         WeaponInUseImage.sprite = PlayerSingleton.Instance.weapon.Thumbnail;

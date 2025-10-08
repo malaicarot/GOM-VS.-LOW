@@ -60,6 +60,10 @@ public class PlayerSkill : Singleton<PlayerSkill>
         {
             fillImage.enabled = false;
         }
+        else
+        {
+            fillImage.enabled = true;
+        }
         fillImageList.Add(fillImage);
         backgroundImage.gameObject.SetActive(true);
         fillImage.gameObject.SetActive(true);
