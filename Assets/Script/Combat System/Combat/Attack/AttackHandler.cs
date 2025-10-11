@@ -8,7 +8,7 @@ public class AttackHandler : MonoBehaviour
 
     [SerializeField] GameObject[] specialAttack;
 
-    public event Action PlayAttackSound;
+    // public event Action PlayAttackSound;
 
     public void OnEnableAttackRight()
     {
@@ -17,7 +17,7 @@ public class AttackHandler : MonoBehaviour
             return;
         }
         attackRightLogic.SetActive(true);
-        PlayAttackSound?.Invoke();
+        // PlayAttackSound?.Invoke();
     }
 
     public void OnDisableAttackRight()
@@ -36,8 +36,7 @@ public class AttackHandler : MonoBehaviour
             return;
         }
         attackLeftLogic.SetActive(true);
-        PlayAttackSound?.Invoke();
-
+        // PlayAttackSound?.Invoke();
     }
 
     public void OnDisableAttackLeft()
@@ -60,7 +59,7 @@ public class AttackHandler : MonoBehaviour
         {
             attack.SetActive(true);
         }
-        PlayAttackSound?.Invoke();
+        // PlayAttackSound?.Invoke();
     }
 
     public void OnDisableSpecialAttack()

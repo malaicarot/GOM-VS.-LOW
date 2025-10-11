@@ -5,7 +5,9 @@ public enum WeaponType
     Hammer,
     Axe,
     Scythe,
-    Sword
+    Sword,
+    Polearm,
+    Dagger
 }
 
 

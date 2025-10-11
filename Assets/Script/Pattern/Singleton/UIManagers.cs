@@ -15,6 +15,9 @@ public class UIManagers : Singleton<UIManagers>
     [SerializeField] Image WeaponInUseImage;
     [SerializeField] Image[] SkillsUI;
     // [SerializeField] WeaponUI weaponUI;
+
+
+    [Header("Brew Content UI")]
     GameObject isActiveObject;
 
 

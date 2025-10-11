@@ -40,8 +40,13 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlayerActionSound(string sfxType, bool isRandomPitch = false)
     {
+        // if (playerActionAudioSource.clip != null)
+        // {
+        //     playerActionAudioSource.Stop();
+        // }
         if (playerDictionary.TryGetValue(sfxType, out AudioClip audioClip))
         {
+
             if (isRandomPitch)
             {
                 playerActionAudioSource.pitch = Random.Range(0.9f, 1.1f);
@@ -56,6 +61,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySFX(string sfxType)
     {
+        sfxAudioSource.Stop();
         if (sfxDictionary.TryGetValue(sfxType, out AudioClip audioClip))
         {
             sfxAudioSource.PlayOneShot(audioClip);

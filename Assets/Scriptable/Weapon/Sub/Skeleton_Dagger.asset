@@ -16,7 +16,7 @@ MonoBehaviour:
   Thumbnail: {fileID: 21300000, guid: c9d0df9e6e649254f8cf4ec40ed18de4, type: 3}
   WeaponPrefab: {fileID: 7434734217426156271, guid: 62f13eb3a927a40439d9df3f845c4f15, type: 3}
   AnimationTag: Attack
-  WeaponImpact: {fileID: 0}
+  WeaponImpact: {fileID: 8300000, guid: b2ffc17921c79dc428e1557370a8dede, type: 3}
   Attacks:
   - <AttackAnimationName>k__BackingField: Attack_Secondary_1
     <AnimationDuration>k__BackingField: 0.1

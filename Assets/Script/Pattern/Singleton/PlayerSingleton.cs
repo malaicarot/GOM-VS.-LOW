@@ -29,6 +29,11 @@ public class PlayerSingleton : Singleton<PlayerSingleton>
     {
         SoundManager.Instance.PlaySFX(weapon.WeaponImpact.name);
     }
+    
+    public void PlaySFXSubWeaponHit()
+    {
+        SoundManager.Instance.PlaySFX(weaponSecondary.WeaponImpact.name);
+    }
 
     public void EquipWeapon(string name, Transform weaponTransform)
     {

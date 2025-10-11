@@ -29,10 +29,14 @@ public class EnemyChasingState : EnemyBaseState
         MoveToPlayer(deltaTime);
         enemyState.Animator.SetFloat(EnemySpeedHash, 1, AnimationDamping, deltaTime);
     }
+    
     public override void Exit()
     {
-        enemyState.NavMeshAgent.ResetPath();
-        enemyState.NavMeshAgent.velocity = Vector3.zero;
+        if (enemyState.NavMeshAgent.isOnNavMesh)
+        {
+            enemyState.NavMeshAgent.ResetPath();
+            enemyState.NavMeshAgent.velocity = Vector3.zero;
+        }
     }
 
     void MoveToPlayer(float deltaTime)
