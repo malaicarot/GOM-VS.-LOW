@@ -1,6 +1,7 @@
 using System;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class UIManagers : Singleton<UIManagers>
 {
@@ -18,10 +19,10 @@ public class UIManagers : Singleton<UIManagers>
 
 
     [Header("Brew Content UI")]
+    [SerializeField] GameObject brewContent;
+    [SerializeField] GameObject brewImageElement;
+
     GameObject isActiveObject;
-
-
-
     public event Action ActionCountinue;
     public event Action Rest;
     public PlayerCombat playerCombat { get; set; }
@@ -112,6 +113,17 @@ public class UIManagers : Singleton<UIManagers>
                     image.color = Color.white;
                 }
             }
+        }
+    }
+
+    public void UpdateBrewContent()
+    {
+        foreach (var item in PlayerInventories.Instance.Item)
+        {
+            GameObject img = Instantiate(brewImageElement);
+            img.transform.parent = brewContent.transform;
+            Image imageChild = img.GetComponentInChildren<Image>(true);
+            imageChild.sprite = item.Key.Thumbnail;
         }
     }
 }

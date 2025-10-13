@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class PlayerCollectionState : PlayerBaseState
 {
-    readonly int PickUpAnimatioHash = Animator.StringToHash("Pick_Up");
-    string PickUpTag = "Pick_Up";
+    readonly int PickUpAnimatioHash = Animator.StringToHash("PickUp");
+    string PickUpTag = "PickUp";
     public PlayerCollectionState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(PickUpAnimatioHash, stateMachine.CrossFadeDuration);
-
+        PlayerInventories.Instance.AddItemByType(stateMachine.item.ReturnItem());
     }
 
     public override void Tick(float deltaTime)
@@ -23,5 +23,6 @@ public class PlayerCollectionState : PlayerBaseState
 
     public override void Exit()
     {
+        UIManagers.Instance.UpdateBrewContent();
     }
 }

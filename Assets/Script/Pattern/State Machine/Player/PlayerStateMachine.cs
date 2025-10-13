@@ -52,6 +52,7 @@ public class PlayerStateMachine : StateMachine
     public Attack[] AttacksSecondary { get; private set; }
     public AttackHandler AttackHandlerEnemy { get; set; }
     public float perfectDodgeTime;
+    public Item item { get; set; }
 
     void Start()
     {
@@ -180,6 +181,7 @@ public class PlayerStateMachine : StateMachine
         {
             if (other.CompareTag("Item"))
             {
+                item = other.GetComponent<Item>();
                 SwitchState(new PlayerCollectionState(this));
             }
             else if (other.CompareTag("CheckPoint"))

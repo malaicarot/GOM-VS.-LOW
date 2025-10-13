@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Linq;
+using UnityEngine;
 public enum ItemType
 {
     Inlay,
@@ -10,45 +11,30 @@ public enum ItemType
 
 public class PlayerInventories : Singleton<PlayerInventories>
 {
+    public Dictionary<ItemBase, int> Item { get; set; }
 
-    [SerializeField] List<ItemBase> InlayItem;
-    [SerializeField] List<ItemBase> MaterialItem;
-    [SerializeField] List<ItemBase> UsingItem;
-
-    public List<ItemBase> ReturnListInlayItem(string typeList)
+    void Start()
     {
-        switch (typeList)
-        {
-            case "Inlay":
-                return InlayItem;
-            case "Material":
-                return MaterialItem;
-            case "Using":
-                return UsingItem;
-            default:
-                return null;
-        }
+        Item = new Dictionary<ItemBase, int>();
     }
-
-
     public void AddItemByType(ItemBase itemBase)
     {
-        switch (itemBase.ItemType)
+        if (!CheckExited(itemBase))
         {
-            case "Inlay":
-                InlayItem.Add(itemBase);
-                break;
-            case "Material":
-                MaterialItem.Add(itemBase);
-                break;
-            case "Using":
-                UsingItem.Add(itemBase);
-                break;
-            default:
-                break;
+            Item.Add(itemBase, 1);
         }
     }
 
-
-
+    bool CheckExited(ItemBase itemBase)
+    {
+        foreach (var item in Item)
+        {
+            if (item.Key.ItemName == itemBase.ItemName)
+            {
+                Item[item.Key]++;
+                return true;
+            }
+        }
+        return false;
+    }
 }
