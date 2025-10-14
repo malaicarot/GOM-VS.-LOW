@@ -27,6 +27,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public AttackHandler AttackHandlers { get; private set; }
     [field: SerializeField] public DodgeController DodgeController { get; private set; }
     [field: SerializeField] public Respawn Respawn { get; private set; }
+    [field: SerializeField] public PlayerInventories PlayerInventories { get; private set; }
+
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float TargetMoveSpeed { get; private set; }
     [field: SerializeField] public float LowStaminaSpeed { get; private set; }
@@ -173,18 +175,23 @@ public class PlayerStateMachine : StateMachine
                 SwitchState(new PlayerLedgeBalanceState(this));
             }
         }
+
+        if (InputReader.IsInteract)
+        {
+            var item = other.GetComponent<Item>();
+            if (item)
+            {
+                PlayerInventory.Instance.inventoryObject.AddItem(item.item, 1);
+                Destroy(item.gameObject);
+            }
+        }
     }
 
     void OnTriggerStay(Collider other)
     {
         if (InputReader.IsInteract)
         {
-            if (other.CompareTag("Item"))
-            {
-                item = other.GetComponent<Item>();
-                SwitchState(new PlayerCollectionState(this));
-            }
-            else if (other.CompareTag("CheckPoint"))
+            if (other.CompareTag("CheckPoint"))
             {
                 CheckPoint checkPoint = other.GetComponent<CheckPoint>();
                 checkPoint.GlowingEyes();

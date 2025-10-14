@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b431053468bc8c47a08f8052d12faa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  item: {fileID: 11400000, guid: 9c6c1771d5821264abf628e791d0428c, type: 2}
+  item: {fileID: 11400000, guid: f1bc4281a851ecc45a0f15e3831a1e5a, type: 2}
 --- !u!65 &125784582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,7 @@ GameObject:
   - component: {fileID: 167666428}
   - component: {fileID: 167666429}
   m_Layer: 5
-  m_Name: Health Board
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b431053468bc8c47a08f8052d12faa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  item: {fileID: 11400000, guid: 1b63ab0eae2ff1b4cbf4ded81bafce9d, type: 2}
+  item: {fileID: 11400000, guid: e641d04e2e5a2b44fb4a34d489d14d48, type: 2}
 --- !u!65 &213490572
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5484,7 +5484,7 @@ GameObject:
   - component: {fileID: 530398603}
   - component: {fileID: 530398604}
   m_Layer: 5
-  m_Name: Mana Board
+  m_Name: Mana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5686,7 +5686,7 @@ GameObject:
   - component: {fileID: 559388582}
   - component: {fileID: 559388583}
   m_Layer: 5
-  m_Name: Resistance Board
+  m_Name: Resistance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6155,7 +6155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.008392946}
+  m_AnchoredPosition: {x: 0, y: 0.015370598}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &608823957
@@ -8222,7 +8222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b431053468bc8c47a08f8052d12faa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  item: {fileID: 11400000, guid: 9c6c1771d5821264abf628e791d0428c, type: 2}
+  item: {fileID: 11400000, guid: 03b9f8b5fc900f3489cf71047f6f7518, type: 2}
 --- !u!65 &763978018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9711,7 +9711,7 @@ GameObject:
   - component: {fileID: 913637132}
   - component: {fileID: 913637133}
   m_Layer: 5
-  m_Name: AtkDamage Board
+  m_Name: Attacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10097,7 +10097,7 @@ GameObject:
   - component: {fileID: 951573169}
   - component: {fileID: 951573170}
   m_Layer: 5
-  m_Name: Stamina Board
+  m_Name: Stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14590,6 +14590,20 @@ MonoBehaviour:
   - {fileID: 2069375857}
   - {fileID: 1836297806}
   - {fileID: 642578657}
+  statsValue:
+  - {fileID: 11400000, guid: fa36ad9f49266964bbb55a0ecb591f34, type: 2}
+  - {fileID: 11400000, guid: cbd2f61b83ed9074da6b24d96177f7b9, type: 2}
+  - {fileID: 11400000, guid: 19a6782dccd5b4b4fae3b1930a48e9a8, type: 2}
+  - {fileID: 11400000, guid: 5a763847d15920646be9820e3e3c25c5, type: 2}
+  - {fileID: 11400000, guid: 6846fc90979676743a9b7e54645e79d2, type: 2}
+  - {fileID: 11400000, guid: 1ddca9ace53c3c043830b1164deb394e, type: 2}
+  statsContentUI:
+  - {fileID: 167666427}
+  - {fileID: 530398602}
+  - {fileID: 951573168}
+  - {fileID: 559388581}
+  - {fileID: 913637131}
+  - {fileID: 2096588377}
   brewContent: {fileID: 608823955}
   brewImageElement: {fileID: 6633096125475759023, guid: 888dec78b2c661642bda6e703a4b4d6b, type: 3}
 --- !u!1 &1359109363
@@ -14824,7 +14838,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 783950647}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99924594
+  m_Size: 0.9994442
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17444,7 +17458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b431053468bc8c47a08f8052d12faa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  item: {fileID: 11400000, guid: 411094744360a5d42a87b2c56afa36e1, type: 2}
+  item: {fileID: 11400000, guid: 03b9f8b5fc900f3489cf71047f6f7518, type: 2}
 --- !u!1 &1581985228
 GameObject:
   m_ObjectHideFlags: 0
@@ -22707,6 +22721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbafc67dfdf2a5a4187dc4a64daed43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventories
+  inventoryObject: {fileID: 11400000, guid: c1272607b4d899d41b98b62e572f8ebf, type: 2}
 --- !u!1 &2007565119
 GameObject:
   m_ObjectHideFlags: 0
@@ -23537,7 +23552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b431053468bc8c47a08f8052d12faa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  item: {fileID: 11400000, guid: 083442d47b459084b90b6052278381b5, type: 2}
+  item: {fileID: 11400000, guid: 40165b0e3c3bda94d8a23bc38c12f1ec, type: 2}
 --- !u!65 &2091314494
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23978,7 +23993,7 @@ GameObject:
   - component: {fileID: 2096588378}
   - component: {fileID: 2096588379}
   m_Layer: 5
-  m_Name: DragonVein Board
+  m_Name: DragonVein
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24041,7 +24056,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2108166238}
   - component: {fileID: 2108166240}
-  - component: {fileID: 2108166239}
   m_Layer: 5
   m_Name: Stats_Content
   m_TagString: Untagged
@@ -24070,25 +24084,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2108166239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108166237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 397d53809347c74498eccc403afda808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsBoard:
-  - {fileID: 167666427}
-  - {fileID: 530398602}
-  - {fileID: 951573168}
-  - {fileID: 559388581}
-  - {fileID: 913637131}
-  - {fileID: 2096588377}
 --- !u!114 &2108166240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27883,6 +27878,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8348456593819607489}
     - target: {fileID: 5409153601907408454, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      propertyPath: <PlayerInventories>k__BackingField
+      value: 
+      objectReference: {fileID: 8348456593819607490}
+    - target: {fileID: 5409153601907408454, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       propertyPath: '<Buttons>k__BackingField.Array.data[0]'
       value: 
       objectReference: {fileID: 1469123077}
@@ -27936,6 +27935,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3529782911149834009, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8348456593819607482}
+    - targetCorrespondingSourceObject: {fileID: 3529782911149834009, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8348456593819607490}
   m_SourcePrefab: {fileID: 100100000, guid: e44541aa2007a4f4ca2e077840ce08de, type: 3}
 --- !u!1 &4991284620967601459
 GameObject:
@@ -30197,6 +30199,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: River
+--- !u!114 &8348456593819607490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835756999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8199438beb541d54ba8257f3f707e4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventories
+  inventoryObject: {fileID: 11400000, guid: c1272607b4d899d41b98b62e572f8ebf, type: 2}
 --- !u!1 &8358024408926833713
 GameObject:
   m_ObjectHideFlags: 0

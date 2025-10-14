@@ -2,6 +2,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class UIManagers : Singleton<UIManagers>
 {
@@ -17,6 +18,9 @@ public class UIManagers : Singleton<UIManagers>
     [SerializeField] Image[] SkillsUI;
     // [SerializeField] WeaponUI weaponUI;
 
+    [Header("Stat Content UI")]
+    [SerializeField] List<AttributeData> statsValue;
+    [SerializeField] List<GameObject> statsContentUI;
 
     [Header("Brew Content UI")]
     [SerializeField] GameObject brewContent;
@@ -31,6 +35,8 @@ public class UIManagers : Singleton<UIManagers>
     void Start()
     {
         UpdateSkillImage();
+        SetUpStats();
+        UpdateBrewContent();
     }
 
     void OnEnable()
@@ -116,14 +122,38 @@ public class UIManagers : Singleton<UIManagers>
         }
     }
 
+    // For stats content UI
+
+    public void SetUpStats()
+    {
+        foreach (var statUI in statsContentUI)
+        {
+            foreach (var statValue in statsValue)
+            {
+                if (statUI.name == statValue.name)
+                {
+                    TextMeshProUGUI text = statUI.GetComponentInChildren<TextMeshProUGUI>(true);
+                    text.text = statValue.Value.ToString();
+                    Image image = statUI.GetComponentInChildren<Image>(true);
+                    image.sprite = statValue.Thumbnail;
+                }
+            }
+        }
+    }
+
+    // For brew content UI
     public void UpdateBrewContent()
     {
-        foreach (var item in PlayerInventories.Instance.Item)
+        for (int i = 0; i < PlayerInventory.Instance.inventoryObject.Contains.Count; i++)
         {
-            GameObject img = Instantiate(brewImageElement);
-            img.transform.parent = brewContent.transform;
-            Image imageChild = img.GetComponentInChildren<Image>(true);
-            imageChild.sprite = item.Key.Thumbnail;
+            if (PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits == false)
+            {
+                GameObject img = Instantiate(brewImageElement);
+                img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
+                Image imageChild = img.GetComponentInChildren<Image>(true);
+                imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
+                PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
+            }
         }
     }
 }

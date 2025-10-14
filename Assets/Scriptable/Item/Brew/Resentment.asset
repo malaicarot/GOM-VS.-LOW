@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f274bc3699aa784a902f1378d74a011, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fe7c8f0670d3614f82dcbd085069f9c, type: 3}
   m_Name: Resentment
-  m_EditorClassIdentifier: Assembly-CSharp::ItemBase
+  m_EditorClassIdentifier: Assembly-CSharp::BrewItemBase
   ItemName: Resentment
-  ItemType: Inlay
-  SellingPrice: 100
+  SellingPrice: 0
+  _ItemType: 1
   Thumbnail: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
   ModelPrefab: {fileID: 0}
+  isExits: 1

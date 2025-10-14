@@ -63,6 +63,7 @@ public class PlayerStats : MonoBehaviour
         health.SetResistance();
         mana.SetMana();
         stamina.SetStamina();
+        UIManagers.Instance.SetUpStats();
     }
 
     public int ReturnAttribute(string name)

@@ -9,13 +9,13 @@ public class PlayerCollectionState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(PickUpAnimatioHash, stateMachine.CrossFadeDuration);
-        PlayerInventories.Instance.AddItemByType(stateMachine.item.ReturnItem());
+        PlayerInventory.Instance.AddItemByType(stateMachine.item.ReturnItem());
     }
 
     public override void Tick(float deltaTime)
     {
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, PickUpTag);
-        if (normalizedTime > 1f)
+        if (normalizedTime < 0.9f)
         {
             ReturnToLocomotion();
         }
@@ -23,6 +23,6 @@ public class PlayerCollectionState : PlayerBaseState
 
     public override void Exit()
     {
-        UIManagers.Instance.UpdateBrewContent();
+        // UIManagers.Instance.UpdateBrewContent();
     }
 }

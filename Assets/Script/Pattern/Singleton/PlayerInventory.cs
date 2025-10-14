@@ -2,16 +2,10 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
-public enum ItemType
-{
-    Inlay,
-    Material,
-    Using
-}
-
-public class PlayerInventories : Singleton<PlayerInventories>
+public class PlayerInventory : Singleton<PlayerInventory>
 {
     public Dictionary<ItemBase, int> Item { get; set; }
+    public InventoryObject inventoryObject;
 
     void Start()
     {
