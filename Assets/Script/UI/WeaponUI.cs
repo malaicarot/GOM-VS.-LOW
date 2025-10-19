@@ -7,22 +7,26 @@ public class WeaponUI : MonoBehaviour
 {
     [SerializeField] GameObject ScrollbarContentMain;
     [SerializeField] GameObject ScrollbarContentSecondary;
+    [SerializeField] GameObject WeaponButtonPrefab;
     [SerializeField] Image MainWeaponInUse;
     [SerializeField] Image SecondaryWeaponInUse;
 
     public event Action OnGetMainWeapon; // Sự kiện khi đổi vũ khí, sẽ cập nhật UI
 
-    public List<Image> mainWeaponSprite { get; set; }
-    List<Image> secondaryWeaponSprite;
+    // public List<Image> mainWeaponSprite { get; set; }
+
+
+    List<Button> main;
+    List<Button> sub;
+
 
     void Start()
     {
-        mainWeaponSprite = new List<Image>();
-        secondaryWeaponSprite = new List<Image>();
-        GetImageComponent(ScrollbarContentMain, mainWeaponSprite);
-        GetImageComponent(ScrollbarContentSecondary, secondaryWeaponSprite);
-        UpdateWeaponThumbnail(mainWeaponSprite);
-        UpdateSecondaryWeaponThumbnail(secondaryWeaponSprite);
+        main = new List<Button>();
+        sub = new List<Button>();
+
+        InstantiateButton(PlayerSingleton.Instance.weaponSOList, ScrollbarContentMain, true);
+        InstantiateButton(PlayerSingleton.Instance.weaponSOSecondaryList, ScrollbarContentSecondary, false);
     }
 
     void OnEnable()
@@ -41,44 +45,39 @@ public class WeaponUI : MonoBehaviour
         SecondaryWeaponInUse.sprite = PlayerSingleton.Instance.weaponSecondary.Thumbnail;
     }
 
-    void GetImageComponent(GameObject contentObject, List<Image> images)
+    void InstantiateButton(List<WeaponSO> listWeapons, GameObject parent, bool isMainWeapon)
     {
-        foreach (Image img in contentObject.GetComponentsInChildren<Image>(true))
+        foreach (var weapon in listWeapons)
         {
-            images.Add(img);
+            GameObject weaponButton = Instantiate(WeaponButtonPrefab);
+            Button button = weaponButton.GetComponent<Button>();
+            Image childImage = weaponButton.transform.GetChild(0).GetComponent<Image>();
+            childImage.sprite = weapon.Thumbnail;
+            weaponButton.GetComponent<RectTransform>().transform.SetParent(parent.transform);
+
+            if (isMainWeapon)
+            {
+                main.Add(button);
+                button.onClick.AddListener(() => GetMainWeapon(weapon.Name));
+
+            }
+            else
+            {
+                sub.Add(button);
+                button.onClick.AddListener(() => GetSecondaryWeapon(weapon.Name));
+            }
         }
     }
 
-    public void UpdateWeaponThumbnail(List<Image> weaponListType)
-    {
-        OnGetMainWeapon?.Invoke();
-        if (weaponListType == null) { return; }
-        for (int i = 0; i < weaponListType.Count; i++)
-        {
-            weaponListType[i].sprite = PlayerSingleton.Instance.weaponSOList[i].Thumbnail;
-        }
-    }
-
-    public void UpdateSecondaryWeaponThumbnail(List<Image> weaponListType)
-    {
-        if (weaponListType == null) { return; }
-        for (int i = 0; i < weaponListType.Count; i++)
-        {
-            weaponListType[i].sprite = PlayerSingleton.Instance.weaponSOSecondaryList[i].Thumbnail;
-        }
-    }
-
-    public void GetMainWeapon(Button button)
+    public void GetMainWeapon(string weaponName)
     {
         PlayerSkill.Instance.Reset();
-        string mainWeaponName = button.GetComponent<Image>().sprite.name;
-        PlayerSingleton.Instance.EquipWeapon(mainWeaponName, PlayerSingleton.Instance.weaponRight.transform);
+        PlayerSingleton.Instance.EquipWeapon(weaponName, PlayerSingleton.Instance.weaponRight.transform);
         UIManagers.Instance.UpdateSkillImage();
     }
 
-    public void GetSecondaryWeapon(Button button)
+    public void GetSecondaryWeapon(string weaponName)
     {
-        string secondaryWeaponName = button.GetComponent<Image>().sprite.name;
-        PlayerSingleton.Instance.EquipWeapon(secondaryWeaponName, PlayerSingleton.Instance.weaponLeft.transform);
+        PlayerSingleton.Instance.EquipSecondaryWeapon(weaponName, PlayerSingleton.Instance.weaponLeft.transform);
     }
 }
