@@ -36,8 +36,10 @@ public class UIManagers : Singleton<UIManagers>
     {
         UpdateSkillImage();
         SetUpStats();
-        UpdateBrewContent();
-
+        foreach (var item in PlayerInventory.Instance.inventoryObject.Contains)
+        {
+            UpdateBrewContent(item.itemBase, true);
+        }
     }
 
     void OnEnable()
@@ -143,26 +145,40 @@ public class UIManagers : Singleton<UIManagers>
     }
 
     // For brew content UI
-    public void UpdateBrewContent()
+    public void UpdateBrewContent(ItemBase itemBase, bool isFirstRender)
     {
         List<InventoriesSlot> playerInventories = PlayerInventory.Instance.inventoryObject.Contains;
+
         for (int i = 0; i < playerInventories.Count; i++)
         {
-            if (playerInventories[i] == null || playerInventories[i].itemBase == null)
+            if (playerInventories[i] == null || playerInventories[i].itemBase == null || playerInventories[i].itemBase != itemBase || !playerInventories[i].itemBase.isExits) // nếu chưa nhặt item
             {
                 continue;
             }
 
-            if (!playerInventories[i].itemBase.isExits)
+            if (isFirstRender)
             {
-                continue;
+                GameObject img = Instantiate(brewImageElement);
+                img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
+                Image imageChild = img.GetComponentInChildren<Image>(true);
+                imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
+                PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
             }
-
-            GameObject img = Instantiate(brewImageElement);
-            img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
-            Image imageChild = img.GetComponentInChildren<Image>(true);
-            imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
-            PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
+            else
+            {
+                if (playerInventories[i].quantity > 1) // nếu đã nhặt và có nhiều hơn 1 
+                {
+                    Debug.Log($"{playerInventories[i].itemBase.ItemName}: {playerInventories[i].quantity}");
+                }
+                else
+                {
+                    GameObject img = Instantiate(brewImageElement);
+                    img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
+                    Image imageChild = img.GetComponentInChildren<Image>(true);
+                    imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
+                    PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
+                }
+            }
         }
     }
 }

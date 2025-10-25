@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
     {
         if (statusBar != null)
         {
-            statusBar.fillAmount = currentHealth / maxHealth;
+            statusBar.value = currentHealth / maxHealth;
         }
 
         if (this.gameObject.CompareTag("Boss"))

@@ -17,7 +17,7 @@ public class Mana : MonoBehaviour
     {
         if (statusBar != null)
         {
-            statusBar.fillAmount = currentMana / playerStats.ReturnAttribute("Mana");
+            statusBar.value = currentMana / playerStats.ReturnAttribute("Mana");
         }
     }
 

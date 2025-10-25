@@ -3,19 +3,19 @@ using UnityEngine.UI;
 
 public class StatusBar : MonoBehaviour
 {
-    [SerializeField] Image fill;
+    [SerializeField] Slider slider;
     [SerializeField] float changeSpeed = 10f;
-    public float fillAmount { get; set; } = 1.0f;
+    public float value { get; set; } = 1.0f;
+
 
     void Update()
     {
-        UpdateFill(fill.fillAmount, fillAmount, changeSpeed);
+
+        UpdateValue(slider.value, value, changeSpeed);
     }
 
-    public void UpdateFill(float current, float next, float speed)
+    public void UpdateValue(float current, float next, float speed)
     {
-        fill.fillAmount = Mathf.Lerp(current, next, speed * Time.deltaTime);
+        slider.value = Mathf.Lerp(current, next, speed * Time.deltaTime);
     }
-
-    
 }

@@ -178,11 +178,11 @@ public class PlayerStateMachine : StateMachine
 
         if (InputReader.IsInteract)
         {
-            var item = other.GetComponent<Item>();
+            Item item = other.GetComponent<Item>();
             if (item)
             {
-                PlayerInventory.Instance.inventoryObject.AddItem(item.item, 1);
-                Destroy(item.gameObject);
+                SwitchState(new PlayerCollectionState(this, item));
+                // Destroy(.gameObject);
             }
         }
     }

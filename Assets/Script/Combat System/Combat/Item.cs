@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
 
     public void ReturnToPool()
     {
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }
 

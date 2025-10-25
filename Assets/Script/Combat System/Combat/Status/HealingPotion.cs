@@ -14,7 +14,7 @@ public class HealingPotion : MonoBehaviour
 
     void Update()
     {
-        statusBar.fillAmount = currentPotion / maxPotion;
+        statusBar.value = currentPotion / maxPotion;
     }
 
     public void ResetPotion()

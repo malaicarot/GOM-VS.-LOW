@@ -27,7 +27,7 @@ public class Stamina : MonoBehaviour
         {
             OnEnergetic?.Invoke();
         }
-        statusBar.fillAmount = currentStamina / maxStamina;
+        statusBar.value = currentStamina / maxStamina;
     }
 
     public void SetStamina()
