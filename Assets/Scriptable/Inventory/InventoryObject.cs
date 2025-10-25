@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public List<InventoriesSlot> Contains = new List<InventoriesSlot>();
+    
 
     public void AddItem(ItemBase itemBase, int quantity)
     {
@@ -24,7 +25,7 @@ public class InventoryObject : ScriptableObject
             Contains.Add(new InventoriesSlot(itemBase, quantity));
             // itemBase.isExits = true;
         }
-        UIManagers.Instance.UpdateBrewContent();
+
     }
 }
 
@@ -34,6 +35,7 @@ public class InventoriesSlot
 {
     public ItemBase itemBase;
     public int quantity;
+    public event Action OnGetItem;
 
     public InventoriesSlot(ItemBase itemBase, int quantity)
     {

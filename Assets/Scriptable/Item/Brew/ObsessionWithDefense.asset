@@ -17,4 +17,4 @@ MonoBehaviour:
   _ItemType: 1
   Thumbnail: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
   ModelPrefab: {fileID: 0}
-  isExits: 1
+  isExits: 0

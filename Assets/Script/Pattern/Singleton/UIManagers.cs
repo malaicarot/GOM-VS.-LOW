@@ -37,6 +37,7 @@ public class UIManagers : Singleton<UIManagers>
         UpdateSkillImage();
         SetUpStats();
         UpdateBrewContent();
+
     }
 
     void OnEnable()
@@ -144,16 +145,24 @@ public class UIManagers : Singleton<UIManagers>
     // For brew content UI
     public void UpdateBrewContent()
     {
-        for (int i = 0; i < PlayerInventory.Instance.inventoryObject.Contains.Count; i++)
+        List<InventoriesSlot> playerInventories = PlayerInventory.Instance.inventoryObject.Contains;
+        for (int i = 0; i < playerInventories.Count; i++)
         {
-            if (PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits == false)
+            if (playerInventories[i] == null || playerInventories[i].itemBase == null)
             {
-                GameObject img = Instantiate(brewImageElement);
-                img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
-                Image imageChild = img.GetComponentInChildren<Image>(true);
-                imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
-                PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
+                continue;
             }
+
+            if (!playerInventories[i].itemBase.isExits)
+            {
+                continue;
+            }
+
+            GameObject img = Instantiate(brewImageElement);
+            img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
+            Image imageChild = img.GetComponentInChildren<Image>(true);
+            imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
+            PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
         }
     }
 }

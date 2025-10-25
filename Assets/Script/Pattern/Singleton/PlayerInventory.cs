@@ -10,6 +10,16 @@ public class PlayerInventory : Singleton<PlayerInventory>
     void Start()
     {
         Item = new Dictionary<ItemBase, int>();
+        Setup();
+
+    }
+
+    void Setup()
+    {
+        foreach(var item in inventoryObject.Contains)
+        {
+            AddItemByType(item.itemBase);
+        }
     }
     public void AddItemByType(ItemBase itemBase)
     {

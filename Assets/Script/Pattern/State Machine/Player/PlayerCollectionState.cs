@@ -23,6 +23,6 @@ public class PlayerCollectionState : PlayerBaseState
 
     public override void Exit()
     {
-        // UIManagers.Instance.UpdateBrewContent();
+        UIManagers.Instance.UpdateBrewContent();
     }
 }
