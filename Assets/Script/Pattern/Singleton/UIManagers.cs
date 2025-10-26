@@ -6,6 +6,9 @@ using TMPro;
 
 public class UIManagers : Singleton<UIManagers>
 {
+    [Header("Canvas Component")]
+    [SerializeField] Canvas canvas;
+
     [Header("Main UI")]
     [SerializeField] GameObject UICheckpointInteraction;
     [SerializeField] GameObject UISystem;
@@ -45,6 +48,12 @@ public class UIManagers : Singleton<UIManagers>
     void OnEnable()
     {
         playerCombat = FindFirstObjectByType<PlayerCombat>();
+    }
+
+    /*Get the Canvas Component*/
+    public Canvas GetCanvans()
+    {
+        return canvas;
     }
 
     public void ActiveCheckpointUI(bool state)
@@ -159,7 +168,7 @@ public class UIManagers : Singleton<UIManagers>
             if (isFirstRender)
             {
                 GameObject img = Instantiate(brewImageElement);
-                img.GetComponent<RectTransform>().transform.parent = brewContent.transform;
+                img.GetComponent<RectTransform>().transform.SetParent(brewContent.transform);
                 Image imageChild = img.GetComponentInChildren<Image>(true);
                 imageChild.sprite = PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.Thumbnail;
                 PlayerInventory.Instance.inventoryObject.Contains[i].itemBase.isExits = true;
