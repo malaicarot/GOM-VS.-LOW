@@ -32,7 +32,17 @@ public class PlayerHealingState : PlayerBaseState
             ReturnToLocomotion();
         }
 
+        if (PlayerInventory.Instance.isUltimateHealing)
+        {
+            UltimateHealing();
+        }
+
         stateMachine.Health.RecoverHealth(stateMachine.healing);
         stateMachine.HealingPotion.ReducePotion(stateMachine.reducePotion);
+    }
+
+    void UltimateHealing()
+    {
+        stateMachine.Health.RecoverHealth(stateMachine.healing);
     }
 }

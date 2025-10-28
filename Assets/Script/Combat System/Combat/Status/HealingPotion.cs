@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class HealingPotion : MonoBehaviour
@@ -6,6 +7,11 @@ public class HealingPotion : MonoBehaviour
     [SerializeField] StatusBar statusBar;
     [SerializeField] float maxPotion;
     public float currentPotion { get; set; }
+
+
+    // Action for special effect
+
+
 
     void Start()
     {
@@ -30,5 +36,24 @@ public class HealingPotion : MonoBehaviour
             return;
         }
         currentPotion = Mathf.Min(currentPotion - amount, maxPotion);
+    }
+
+    //Special Effect when attach item from brew
+
+    public void UltimateHealing()
+    {
+        // OnUltimateHealing?.Invoke();
+    }
+    public void RestoreMana()
+    {
+
+    }
+    public void CriticalTime()
+    {
+
+    }
+    public void SetCooldown()
+    {
+
     }
 }

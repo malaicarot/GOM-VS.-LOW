@@ -1,17 +1,21 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     Canvas canvas;
     RectTransform rectTransform;
     CanvasGroup canvasGroup;
 
+    public event Action OnDropChecking;
+
     void Awake()
     {
         canvas = UIManagers.Instance.GetCanvans();
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
+        rectTransform = this.GetComponent<RectTransform>();
+        canvasGroup = this.GetComponent<CanvasGroup>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -24,6 +28,8 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         Debug.Log("Begin Drag!");
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
+        rectTransform.transform.SetParent(canvas.GetComponent<RectTransform>().transform, true);
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -37,10 +43,26 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         Debug.Log("End Drag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
+
+        // if(eventData.pointerDrag == null || eventData.pointerDrag?.GetComponent<SlotItemDrop>() == null)
+        // {
+        //     Debug.Log("Don't exits!");
+        // }
+        // else
+        // {
+        //     Debug.Log("Exits!");
+        // }
+
+        // if (eventData.pointerEnter == null || eventData.pointerEnter?.GetComponent<SlotItemDrop>() == null)
+        // {
+        //     rectTransform.SetParent(UIManagers.Instance.ReturnBrewContent().transform, false);
+        // }
     }
 
-    public void OnDrop(PointerEventData eventData)
+
+    public void ResetParent(Transform _rectTransform)
     {
-        throw new System.NotImplementedException();
+        this.rectTransform.SetParent(_rectTransform, false);
     }
 }

@@ -28,6 +28,7 @@ public class UIManagers : Singleton<UIManagers>
     [Header("Brew Content UI")]
     [SerializeField] GameObject brewContent;
     [SerializeField] GameObject brewImageElement;
+    [SerializeField] GameObject SlotForDropItem;
 
     GameObject isActiveObject;
     public event Action ActionCountinue;
@@ -189,5 +190,15 @@ public class UIManagers : Singleton<UIManagers>
                 }
             }
         }
+    }
+
+    public RectTransform ReturnSlotParentComponent()
+    {
+        return SlotForDropItem.GetComponent<RectTransform>();
+    }
+
+    public RectTransform ReturnBrewContent()
+    {
+        return brewContent.GetComponent<RectTransform>();
     }
 }
